@@ -1,9 +1,9 @@
 {
-  "name": "B2B",
-  "short_name": "B2B Hermes",
+  "name": "Hermes-Manager",
+  "short_name": "Hermes-Manager",
   "display": "standalone",
   "background_color": "#ccc",
-  "description": "B2B Hermes portal",
+  "description": "Hermes-Manager",
   "theme_color": "#ff1111",
   "icons": [
     {
