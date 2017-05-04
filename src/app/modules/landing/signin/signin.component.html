@@ -1,0 +1,25 @@
+<md-card>
+  <form class="example-form" (ngSubmit)="login()">
+
+    <div class="alert alert-danger" *ngIf="authenticationError">
+      <strong>Failed to sign in!</strong> Please check your credentials and try again.
+    </div>
+
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Login"
+             name="username"  [(ngModel)]="username">
+    </md-input-container>
+    <br>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Password" type="password"
+             name="password" [(ngModel)]="password">
+    </md-input-container>
+
+    <md-checkbox name="rememberMe" id="rememberMe" [(ngModel)]="rememberMe">Remember Me</md-checkbox>
+
+    <br>
+    <button md-raised-button>Sign in</button>
+
+
+  </form>
+</md-card>

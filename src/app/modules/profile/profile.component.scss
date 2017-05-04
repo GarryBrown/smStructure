@@ -1,0 +1,31 @@
+@import "~theme.scss";
+
+nav {
+
+    a {
+        outline: 0px solid gray;
+    
+        font-size:1.2em;
+        // text-transform: uppercase;
+        // color: $text-color; 
+
+        &:hover, &:link, &:visited {
+            text-decoration: none;
+        }    
+        
+    }
+
+
+    a[ng-reflect-active="true"] {
+        color: #666;
+    }
+ 
+
+    md-icon {
+        // color: $text-color; 
+        font-size:1.4em;
+        margin: auto;
+        vertical-align: middle;
+    }
+
+}

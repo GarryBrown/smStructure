@@ -1,0 +1,14 @@
+
+<md-input-container>
+  <input mdInput type="text" placeholder="{{placeholder}}" [(ngModel)]="value" (ngModelChange)="search($event)">
+</md-input-container>
+<div *ngIf="value && value.length >=3 && daDataList && daDataList.length" class="suggestions">
+  <ul>
+    <li *ngFor="let data of daDataList" (click)="onSelect(data)">
+        <div>{{data.value}}</div>
+        <span>{{data.data.inn}},</span>
+        <span>{{data.data.address.value}}</span>
+    </li>
+  </ul>
+</div>
+<!-- trouble with tripple data.address.value-->

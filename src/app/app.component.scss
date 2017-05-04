@@ -1,0 +1,63 @@
+$width-sidebar: 240px;
+$heightHeader: 64px;
+
+/* *********** CONTENT ***********  */
+
+.content{
+  position: absolute;
+  top:$heightHeader;
+  left:$width-sidebar;
+  width: calc(100% - #{$width-sidebar});
+  outline: 0px solid blue;
+  padding: 10px 20px;
+
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+.full-content {
+  outline: 0px solid black;
+  padding:10px 10px 10px 55px;
+  left:0;
+  width: calc(100% - 15px);
+
+}
+
+.background{
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  z-index: -10;
+  background-color: rgba(0,0,0,0.02);
+}
+
+/*  FOR TABLET  */
+@media (max-width:801px)  {
+  .content{
+    left:0;
+    width: 100%;
+    padding:10px;
+  }
+
+  .full-content {
+    outline: 0px solid black;
+    padding:10px;
+    width: 100%;
+
+  }
+  .overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+}

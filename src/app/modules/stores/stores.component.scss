@@ -1,0 +1,28 @@
+@import "~theme.scss";
+
+
+
+md-list-item {
+    button {
+        margin-right: 5px;
+        background-color: $tsPrimary300;        
+    }
+    button:first-of-type {
+        background-color: $tsAccent300;      
+    }
+
+}
+
+.btn-new {
+    margin-top:10px;
+ 
+}
+
+.toolbar-action {
+    
+    md-select {
+        margin-top: 10px;
+    }
+
+
+}

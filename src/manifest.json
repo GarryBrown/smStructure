@@ -1,0 +1,38 @@
+{
+  "name": "B2B",
+  "short_name": "B2B Hermes",
+  "display": "standalone",
+  "background_color": "#ccc",
+  "description": "B2B Hermes portal",
+  "theme_color": "#ff1111",
+  "icons": [
+    {
+    "src": "/assets/icon/icon16.png",
+    "sizes": "16x16",
+    "type": "image/png"
+  }, {
+    "src": "/assets/icon/icon24.png",
+    "sizes": "24x24",
+    "type": "image/png"
+  }, {
+    "src": "/assets/icon/icon32.png",
+    "sizes": "32x32",
+    "type": "image/png"
+  }, {
+    "src": "/assets/icon/icon64.png",
+    "sizes": "64x64",
+    "type": "image/png"
+  }, {
+    "src": "/assets/icon/icon128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  },
+   {
+    "src": "/assets/icon/icon144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }
+  ],
+  "start_url": "/",
+  "orientation": "landscape"
+}

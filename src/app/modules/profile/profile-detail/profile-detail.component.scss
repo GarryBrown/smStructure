@@ -1,0 +1,31 @@
+@import "~theme.scss";
+
+
+md-toolbar {
+  margin-top:1.3em;
+  margin-bottom:1.3em;
+
+  &:first-of-type {
+    margin-top:0;
+  }
+}
+.name-info {
+  width:40%;
+  margin-left: 25px;
+  margin-top: 25px;
+}
+
+.extra {
+
+  md-input-container {
+    width:350px;
+    margin-top:15px;
+    margin-left:25px;
+  }
+
+}
+
+button {
+  margin-top:15px;
+  margin-left:25px;
+}

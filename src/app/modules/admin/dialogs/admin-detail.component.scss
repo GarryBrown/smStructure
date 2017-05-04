@@ -1,0 +1,22 @@
+@import "~theme.scss";
+
+.wrapper {
+  
+}
+
+md-slide-toggle {
+  position: absolute;
+  right: 24px;
+}
+
+.btn-close{
+  position: absolute;
+  bottom: 24px;
+  right:24px;
+  // margin-top:10px;
+  // margin-top:24px;
+
+  &:focus {
+    outline:none;
+  }
+}

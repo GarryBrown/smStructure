@@ -1,0 +1,41 @@
+<div class="wrapper">
+
+  <div *ngIf="user">
+    <md-toolbar>
+        <span>{{user.login}}</span>
+        <md-slide-toggle
+            color="accent"
+            [checked]="user.activated"
+            [disabled]="true">
+          </md-slide-toggle>
+    </md-toolbar>
+    <dl class="row-md jh-entity-details">
+        
+        <dt><span>First Name</span></dt>
+        <dd>{{user.firstName}}</dd>
+        <dt><span>Last Name</span></dt>
+        <dd>{{user.lastName}}</dd>
+        <dt><span>Email</span></dt>
+        <dd>{{user.email}}</dd>
+        <dt><span>Lang Key</span></dt>
+        <dd>{{user.langKey}}</dd>
+        <dt><span>Created By</span></dt>
+        <dd>{{user.createdBy}}</dd>
+        <dt><span>Created Date</span></dt>
+        <dd>{{user.createdDate | date:'dd/MM/yy HH:mm' }}</dd>
+        <dt><span>Last Modified By</span></dt>
+        <dd>{{user.lastModifiedBy}}</dd>
+        <dt><span>Last Modified Date</span></dt>
+        <dd>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</dd>
+        <dt><span>Profiles</span></dt>
+        <dd>
+            <md-chip-list >
+              <md-chip *ngFor="let authority of user.authorities">{{authority}}</md-chip>
+            </md-chip-list>
+        </dd>
+    </dl>
+</div>
+
+
+<button type="button" md-raised-button (click)="dialogRef.close()" class="btn-close" color="accent">Закрыть</button>
+</div>

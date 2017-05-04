@@ -1,0 +1,39 @@
+<md-card>
+  <form class="example-form" (ngSubmit)="signUp()">
+    <div class="message">
+      <h4 *ngIf="message">{{message}}</h4>
+    </div>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Ф.И.О."
+             name="username"  [(ngModel)]="username">
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Наименование предприятия"
+             name="a"  [(ngModel)]="a">
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Адрес"
+             name="b"  [(ngModel)]="b">
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="ОГРН"
+             name="s"  [(ngModel)]="s">
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="КПП"
+             name="d"  [(ngModel)]="d">
+    </md-input-container>
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Телефон"
+             name="c"  [(ngModel)]="c">
+    </md-input-container>
+    <br>
+
+
+    <md-checkbox name="rememberMe" id="rememberMe" [(ngModel)]="agree">Я принимаю условия <a href="http://www.greecevac-ru.com/russia/pdf/PNDRUS_13.03.13.pdf">какого-то странного</a> соглашения</md-checkbox>
+
+    <button md-raised-button color="accent" [disabled]="!agree">Оставить заявку</button>
+
+
+  </form>
+</md-card>

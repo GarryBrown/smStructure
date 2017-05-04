@@ -1,0 +1,53 @@
+//$height-card = 70% + 150px;
+md-card {
+  display: block;
+  width:50%;
+  min-width:300px;
+  margin:0 auto;
+  margin-top:7%;
+  outline: 0px solid black;
+  background-color: rgba(255,255,255,0.9);
+
+  form {
+    width: 100%;
+  }
+}
+.message {
+  width:90%;
+  text-align: center;
+  margin: 5px auto;
+  color: rgba(0,0,0,0.6);
+}
+md-input-container {
+  width:90%;
+  margin:5px;
+  margin-left:24px;
+}
+md-checkbox {
+  color: #bcbcbc;
+  float: left;
+  margin-left:24px;
+  width:90%;
+  font-size: 14px;
+  margin-top:5px;
+
+  outline:0px solid red;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  a{
+    color:inherit;
+    text-decoration: underline;
+  }
+}
+
+button {
+  margin-top:5px;
+  margin-left:24px;
+}
+
+
+

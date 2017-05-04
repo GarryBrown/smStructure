@@ -1,0 +1,65 @@
+<md-card>
+
+  <form action="">
+    <md-select placeholder="Точки доставки">
+      <md-option *ngFor="let food of foods" [value]="food.value">
+        {{ food.viewValue }}
+      </md-option>
+    </md-select>
+    <md-select placeholder="Статус заказа">
+      <md-option *ngFor="let food of foods" [value]="food.value">
+        {{ food.viewValue }}
+      </md-option>
+    </md-select>
+
+    <material-datepicker [(date)]="dateFrom" [placeholder]="dateFromPlaceholder"></material-datepicker>
+    <material-datepicker [(date)]="dateTo" [placeholder]="dateToPlaceholder"></material-datepicker>
+
+    <button md-raised-button color="accent"><md-icon>filter_list</md-icon>Фильтр</button>
+  </form>
+
+
+  <br>
+
+  <div class="table-responsive">
+  <table class="table  table-hover table-striped  table-condensed dataTables-example" >
+    <thead>
+    <tr appSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+      <th appSortBy="dateOfDocument"><span>Дата</span> <span class="fa fa-sort"></span></th>
+      <th appSortBy="numberOfDocument"><span>Документ</span> <span class="fa fa-sort"></span></th>
+      <th><span>ТТ</span> <span class="fa fa-sort"></span></th>
+      <th><span>Заказанно</span><span class="fa fa-sort"></span></th>
+      <th><span>Выписанно</span><span class="fa fa-sort"></span></th>
+      <th><span>Задолженность</span><span class="fa fa-sort"></span></th>
+      <th><span>Статус</span><span class="fa fa-sort"></span></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td align="left">{{order.dateOfDocument | date: 'd.MM.y'}}</td>
+      <td align="left">{{order.numberOfDocument}}</td>
+      <td align="left">{{order.deliveryPoint.description}}</td>
+      <td align="right">{{order.orderAmount | prettyCount }}</td>
+      <td align="right">{{order.saleAmount | prettyCount}}</td>
+      <td  align="right">{{order.receivables}}</td>
+      <td class="left">{{order.typeOfOrderStatus.description}}</td>
+      <td>
+        <button md-raised-button type="submit"
+                [routerLink]="['/',  { outlets: { popup: 'order/'+ order.id + '/detail' } }]"
+                replaceUrl="true"
+
+                class="btn-sm btn_details">
+          <md-icon size="sm">visibility</md-icon>
+          <span class="hidden-md-down">Просмотр</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ngb-pagination [collectionSize]="200" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+  </div>
+
+
+
+</md-card>

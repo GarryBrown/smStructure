@@ -1,0 +1,23 @@
+@import "~theme.scss";
+:host {
+  position: absolute;
+  bottom:0px;
+  padding: 10px;
+  //background-color: md-color($primary);
+  background-color: $tsPrimary;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  a {
+    outline:0px solid gray;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}
