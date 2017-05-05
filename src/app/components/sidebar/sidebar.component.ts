@@ -32,26 +32,17 @@ export class SidebarComponent implements OnInit {
       this.resetToggle();
     });
     sidebartoggle.missionConfirmed$.subscribe( show => this.show = show );
-    // does't work, subscribe empty
 
-    // principal.userAuth$.subscribe(user => {
-    //   console.log(user);
-    //   this.user = user
-    //   this.resetToggle();
-    // } , error => {
-    //     console.log('user is undefined');
-    //     this.user = null;
-    //   });
-    this.account.getAccount()
-      .then(user => {
-        console.log(user);
-        this.user = user;
-        this.resetToggle();
-      }, error => {
-        console.log('user is undefined');
-        this.user = null;
-      });
+    principal.userAuth$.subscribe(user => {
+      console.log(user);
+      this.user = user
+      this.resetToggle();
+      } , error => {
+      console.log('user is undefined');
+      this.user = null;
+    });
 
+    this.getUser(); 
   }
 
   toggle() {
@@ -83,4 +74,15 @@ export class SidebarComponent implements OnInit {
     this.sidebartoggle.sidebarToggle(this.show);
   }
 
+  getUser() {
+    this.account.getAccount()
+      .then(user => {
+        console.log(user);
+        this.user = user;
+        this.resetToggle();
+      }, error => {
+        console.log('user is undefined');
+        this.user = null;
+      });
+  }
 }

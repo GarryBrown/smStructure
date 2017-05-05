@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ng2-cookies';
+import { Router } from '@angular/router';
+
+import { PrincipalService } from '../../../core';
+import { AuthJwtService } from '../../../core';
 
 @Component({
   selector: 'app-activate',
@@ -10,8 +14,12 @@ import { CookieService } from 'ng2-cookies';
 export class ActivateComponent implements OnInit {
 
   constructor(
-    private cookieService: CookieService,) { 
-    this.checkCookie();
+    private principal: PrincipalService,
+    private cookieService: CookieService,
+    private router: Router,
+    private authServerProvider: AuthJwtService) { 
+
+    this.checkUser();
   }
 
   ngOnInit() {
@@ -19,13 +27,53 @@ export class ActivateComponent implements OnInit {
 
 
   checkCookie() {
-        //this.cookieService.set('jwt', 'dasdasdsdasdas');
-        //this.cookieService.delete('jwt');
         console.log('cookie === ');
-        console.log(this.cookieService.get('jwt'));
-        console.log('cookie === ');
-        
+        let cookie = this.cookieService.get('jwt');
+        let rememberMe = this.cookieService.get('rememberMe');
+        if (this.cookieService.check('jwt')) {
+          this.loginWithJwt(cookie, rememberMe);
+        }  else {
+          console.log('user none and cookie empty');
+        }     
+  }
+
+
+  loginWithJwt (jwt, rememberMe, callback?) {
+    let cb = callback || function() {};
+    
+    this.authServerProvider.loginWithToken(jwt, rememberMe).then(jwt => {
+        this.principal.identity(true).then(account => {
+          console.log(account);
+          if (account) {
+            this.redirect(account);
+          } else {
+            console.log('account empty');
+          }
+          
+
+        });
+        return cb();
+      }, err => {
+        console.log('some error of promise auth!');
+        return cb(err);
+      });
+  }
+
+  redirect(account) {
+    if (this.principal.isAdmin(account.authorities)) {
+      this.router.navigate(['admin']);
+    } else {
+      this.router.navigate(['orders']);
     }
+  }
+
+  checkUser() {
+    if (!this.principal.isAuthenticated()) {
+      this.checkCookie();
+    } else {
+      this.principal.identity().then(account => this.redirect(account)); 
+    }
+  }
 
 
 }

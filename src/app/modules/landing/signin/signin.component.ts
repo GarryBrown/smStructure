@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SigninService } from './signin.service';
-import { SidebarToggleService } from '../../../core/utils/sidebar-toggle.service';
+import { SidebarToggleService, PrincipalService } from '../../../core';
 import { User } from '../../../models';
 
 @Component({
@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
   credentials: any;
 
   constructor(
+    private principal: PrincipalService,
     private loginService: SigninService,
     private router: Router,
     private sidebartoggle: SidebarToggleService
@@ -29,7 +30,6 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
-
   login () {
     this.loginService.login({
       username: this.username,
@@ -38,28 +38,18 @@ export class SigninComponent implements OnInit {
     }).then((account: User) => {
       this.authenticationError = false;
       this.sidebartoggle.auth(account);
-      if (this.isAdmin(account.authorities)) {
+      if (this.principal.isAdmin(account.authorities)) {
         this.router.navigate(['dashboard']);
       } else {
         this.router.navigate(['orders']);
       }
     }).catch(() => {
-      console.log('some error of promise!');
+      console.log('some error of promise auth!');
       this.authenticationError = true;
     });
   }
 
-  isAdmin(authorities: Array<string>): boolean {
-    let isAdmin = false;
-    authorities.forEach(
-      el => {
-        if (el === 'ROLE_ADMIN') {
-          isAdmin = true;
-        }
-      }
-    );
-    return isAdmin;
-  }
+  
 
 
 }

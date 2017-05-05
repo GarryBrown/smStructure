@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { PrincipalService } from '../../../core/principal/principal.service';
-import { AuthJwtService } from '../../../core/auth/auth-jwt.service';
+import { PrincipalService } from '../../../core';
+import { AuthJwtService } from '../../../core';
 
 @Injectable()
 export class SigninService {

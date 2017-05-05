@@ -76,16 +76,16 @@ export class PrincipalService {
           this.authenticated = true;
           this.urlApi = account.createdBy;
         } else {
-          this._identity = null;
+          this._identity = undefined;
           this.authenticated = false;
-          this.urlApi = null;
+          this.urlApi = undefined;
         }
         this.authenticationState.next(this._identity);
         return this._identity;
       }).catch(err => {
-        this._identity = null;
+        this._identity = undefined;
         this.authenticated = false;
-        this.urlApi = null;
+        this.urlApi = undefined;
         return null;
       });
     }
@@ -118,6 +118,18 @@ export class PrincipalService {
     getImageUrl(): String {
         return this.isIdentityResolved () ? this._identity.imageUrl : null;
     }
+
+    isAdmin(authorities: Array<string>): boolean {
+    let isAdmin = false;
+    authorities.forEach(
+      el => {
+        if (el === 'ROLE_ADMIN') {
+          isAdmin = true;
+        }
+      }
+    );
+    return isAdmin;
+  }
 
 
 }
