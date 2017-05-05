@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
-import { OrdersService } from '../orders.service';
+import { OrdersService } from '../kpi.service';
 import { OrderDetailComponent } from './order-detail.component';
 
 

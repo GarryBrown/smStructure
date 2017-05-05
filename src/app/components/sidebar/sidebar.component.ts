@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+//import {TranslateService} from '@ngx-translate/core';
 
 
 import { SidebarService } from './sidebar.service';
@@ -22,10 +22,10 @@ export class SidebarComponent implements OnInit {
     private router: Router,
     private account: SidebarService,
     private sidebartoggle: SidebarToggleService,
-    private translate: TranslateService,
+    // private translate: TranslateService,
     private principal: PrincipalService
   ) {
-    translate.use('ru');
+    // translate.use('ru');
     sidebartoggle.userAuth$.subscribe(user => {
       console.log(user);
       this.user = user;

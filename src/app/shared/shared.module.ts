@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -29,13 +30,13 @@ export function HttpLoaderFactory(http: Http) {
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [Http]
-      }
-    }),
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [Http]
+    //   }
+    // }),
   ],
   declarations: [
     SortByDirective,
@@ -51,6 +52,7 @@ export function HttpLoaderFactory(http: Http) {
     NgbModule,
     TranslateModule,
     PrettyCountPipe,
+    NgxChartsModule,
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,

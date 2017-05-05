@@ -4,15 +4,15 @@ import { Response } from '@angular/http';
 import {MdDialog, MdDialogRef} from '@angular/material';
 
 
-import { OrdersService } from './orders.service';
+import { OrdersService } from './kpi.service';
 import { OrdersPopupService } from './dialogs/orders-popup.service';
 
 
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss'],
+  selector: 'app-kpi',
+  templateUrl: './kpi.component.html',
+  styleUrls: ['./kpi.component.scss'],
   providers: [OrdersService]
 })
 export class OrdersComponent implements OnInit, OnDestroy {

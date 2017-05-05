@@ -67,27 +67,39 @@ export class PrincipalService {
         return Promise.resolve(this._identity);
       }
 
-      return this.account.get().toPromise().then(account => {
+    return new Promise((resolve, reject) => {
+       setTimeout(() => {
+         this._identity = {
+           firstname:'Elon',
+           lastname: 'Musk',
+           hobby: 'Murder'
+         };
+         this.authenticated = true;
+         resolve(this._identity);
+       }, 500);
+     });
 
-        account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
+    //   return this.account.get().toPromise().then(account => {
 
-        if (account) {
-          this._identity = account;
-          this.authenticated = true;
-          this.urlApi = account.createdBy;
-        } else {
-          this._identity = null;
-          this.authenticated = false;
-          this.urlApi = null;
-        }
-        this.authenticationState.next(this._identity);
-        return this._identity;
-      }).catch(err => {
-        this._identity = null;
-        this.authenticated = false;
-        this.urlApi = null;
-        return null;
-      });
+    //     account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
+
+    //     if (account) {
+    //       this._identity = account;
+    //       this.authenticated = true;
+    //       this.urlApi = account.createdBy;
+    //     } else {
+    //       this._identity = null;
+    //       this.authenticated = false;
+    //       this.urlApi = null;
+    //     }
+    //     this.authenticationState.next(this._identity);
+    //     return this._identity;
+    //   }).catch(err => {
+    //     this._identity = null;
+    //     this.authenticated = false;
+    //     this.urlApi = null;
+    //     return null;
+    //   });
     }
 
     getUrl(): string {

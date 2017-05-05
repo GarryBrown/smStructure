@@ -11,6 +11,7 @@ import { PrincipalService } from './principal/principal.service';
 
 import { DateUtilService } from './utils/date-util.service';
 import { SidebarToggleService } from './utils/sidebar-toggle.service';
+import { CSRFService } from './auth/csrf.service';
 
 @NgModule({
   exports: [
@@ -28,6 +29,7 @@ export class CoreModule {
         AccountService,
         PrincipalService,
         DateUtilService,
+        CSRFService,
         //ElementRef,
         SidebarToggleService
       ]

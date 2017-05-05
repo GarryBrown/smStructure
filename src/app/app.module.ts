@@ -18,7 +18,7 @@ import { SidebarModule } from './components/sidebar/sidebar.module';
 
 
 /* Modules */
-import { OrdersModule } from './modules/orders/orders.module';
+import { KPIModule } from './modules/kpi/kpi.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { StoresModule } from './modules/stores/stores.module';
@@ -49,7 +49,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     /* modules */
     AccountModule,
     LandingModule,
-    OrdersModule,
+    KPIModule,
     AdminModule,
     DashboardModule,
     StoresModule,

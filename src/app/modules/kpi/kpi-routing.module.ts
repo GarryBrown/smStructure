@@ -4,7 +4,7 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { PaginUtilService } from '../../shared/services/pagin-util.service';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
-import { OrdersComponent } from './orders.component';
+import { OrdersComponent } from './kpi.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
 
 @Injectable()

@@ -15,7 +15,7 @@ export class OrdersService {
               private  dateUtils: DateUtilService,
               private principal: PrincipalService,
   ) {
-    this.resourceUrl = principal.getUrl() + this.resourceUrl;
+    // this.resourceUrl = principal.getUrl() + this.resourceUrl;
   }
 
   create(order: any): Observable<any> {
