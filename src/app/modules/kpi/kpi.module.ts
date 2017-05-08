@@ -13,12 +13,13 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.module';
 /*service */
-import { OrdersService } from './kpi.service';
+import { KPIService } from './kpi.service';
 import { OrdersPopupService } from './dialogs/orders-popup.service';
 /* components */
-import { OrdersComponent } from './kpi.component';
+import { KPIComponent } from './kpi.component';
 import { OrderDetailComponent } from './dialogs/order-detail.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
 
 
 @NgModule({
@@ -32,8 +33,8 @@ import { OrderPopupComponent } from './dialogs/order-popup.component';
     InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [OrdersComponent, OrderPopupComponent, OrderDetailComponent],
-  entryComponents: [OrderDetailComponent],
-  providers: [OrdersService, OrdersPopupService, DateUtilService, UserResolvePagingParams, ]
+  declarations: [KPIComponent, OrderPopupComponent, OrderDetailComponent, PlanChartComponent],
+  entryComponents: [OrderDetailComponent, PlanChartComponent],
+  providers: [KPIService, OrdersPopupService, DateUtilService, UserResolvePagingParams, ]
 })
 export class KPIModule { }

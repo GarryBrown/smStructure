@@ -3,11 +3,12 @@ $heightHeader: 64px;
 
 /* *********** CONTENT ***********  */
 
-.content{
+.content {
   position: absolute;
   top:$heightHeader;
   left:$width-sidebar;
   width: calc(100% - #{$width-sidebar});
+  height: calc(100% - #{$heightHeader});;
   outline: 0px solid blue;
   padding: 10px 20px;
 
@@ -16,17 +17,14 @@ $heightHeader: 64px;
   transition: all 0.5s ease-in-out;
 }
 
-
-
 .full-content {
   outline: 0px solid black;
   padding:10px 10px 10px 55px;
   left:0;
   width: calc(100% - 15px);
-
 }
 
-.background{
+.background {
   position: absolute;
   top:0;
   left:0;
@@ -38,19 +36,17 @@ $heightHeader: 64px;
 
 /*  FOR TABLET  */
 @media (max-width:801px)  {
-  .content{
+  .content {
     left:0;
     width: 100%;
     padding:10px;
   }
-
   .full-content {
     outline: 0px solid black;
     padding:10px;
     width: 100%;
-
   }
-  .overlay{
+  .overlay {
     position: absolute;
     top:0;
     left:0;
@@ -59,5 +55,4 @@ $heightHeader: 64px;
     z-index: 9;
     background-color: rgba(0, 0, 0, 0.25);
   }
-
 }

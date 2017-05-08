@@ -6,7 +6,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const routes: Routes = [
   // Main redirect
-  {path: '', redirectTo: 'orders', pathMatch: 'full'},
+  {path: '', redirectTo: 'kpi', pathMatch: 'full'},
   {
     path: '', component: SidebarComponent,
     outlet: 'sidebar'

@@ -1,5 +1,5 @@
-<md-card>
-
-  
-
-</md-card>
+<div class="row" style="position: absolute"  *ngIf="plans">
+  <div class="col-lg-4 col-md-6" *ngFor="let plan of plans">
+    <plan-chart [plan]="plan"> </plan-chart>
+  </div>
+</div>

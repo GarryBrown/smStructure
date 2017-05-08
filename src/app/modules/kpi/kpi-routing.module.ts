@@ -4,7 +4,7 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { PaginUtilService } from '../../shared/services/pagin-util.service';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
-import { OrdersComponent } from './kpi.component';
+import { KPIComponent } from './kpi.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
 
 @Injectable()
@@ -25,8 +25,8 @@ export class UserResolvePagingParams implements Resolve<any> {
 
 const OrdersRoutes: Routes = [
   {
-    path: 'orders',
-    component: OrdersComponent,
+    path: 'kpi',
+    component: KPIComponent,
     canActivate: [RouteAccessService],
     resolve: {
       'pagingParams': UserResolvePagingParams

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
-import { OrdersService } from '../kpi.service';
+import { KPIService } from '../kpi.service';
 import { OrderDetailComponent } from './order-detail.component';
 
 
@@ -13,7 +13,7 @@ export class OrdersPopupService {
   constructor(
     private dialog: MdDialog,
     private router: Router,
-    private ordersService: OrdersService
+    private ordersService: KPIService
   ) { }
 
   public open(component: any, id: number) {

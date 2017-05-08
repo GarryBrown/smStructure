@@ -1,0 +1,16 @@
+  <div style="height: 290px; width: 100%; ">
+    <p>{{plan.name}}</p>
+  <ngx-charts-gauge
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="data"
+      [max]="plan.plan"
+      [angleSpan]="180"
+      [startAngle]="-90"
+      [units]="unitsText"
+      [bigSegments]="1"
+      [smallSegments]="0"
+      [valueFormatting]="valueFormatting"
+      (select)="onSelect($event)">
+    </ngx-charts-gauge>
+  </div>
