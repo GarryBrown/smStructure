@@ -20,6 +20,8 @@ import { InterceptableHttp } from './interceptor/interceptable-http';
 import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { Http } from '@angular/http';
+import { CustomChartComponent } from "app/components/customChart/custom-chart.component";
+import { CustomChartModule } from "app/components/customChart/custom-chart.module";
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,7 +44,7 @@ export function HttpLoaderFactory(http: Http) {
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,
-    PrettyCountPipe
+    PrettyCountPipe,
     ],
   exports: [
     CommonModule,
@@ -56,6 +58,7 @@ export function HttpLoaderFactory(http: Http) {
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,
+    CustomChartModule
     ],
   providers: [
      PaginUtilService,

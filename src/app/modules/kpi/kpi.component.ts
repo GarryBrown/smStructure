@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewContainerRef, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -15,13 +15,18 @@ import { Plan } from "app/models/plan.model";
 export class KPIComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   plans: Plan[];
+  selectedValue: any[];
+
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public  kpiService: KPIService,
-    private viewContainerRef: ViewContainerRef,
-    private elementRef: ElementRef
   ) {}
 
   ngOnInit() {

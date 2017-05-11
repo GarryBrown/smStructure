@@ -1,0 +1,46 @@
+:host {
+    position: relative;
+    overflow: hidden;
+}
+
+:host.responsive {
+    width: 100%;
+}
+
+:host.responsive>svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.center-text {
+    top: auto;
+    bottom: 10%;
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 3vmax;
+    left: 50%;
+    color: '#000000';
+}
+
+.left-value {
+    left: 4%;
+    position: absolute;
+    font-size: 1vmax;
+}
+
+.right-value {
+    right: 4%;
+    position: absolute;
+    font-size: 1vmax;
+}
+
+.chart-wrapper {
+    position: relative;
+}
+
+.chart-container {
+    margin: 16px 16px;
+}

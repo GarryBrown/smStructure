@@ -1,0 +1,24 @@
+<div class="chart-container">
+  <div class="chart-wrapper">
+      <div class="title">{{ title }}</div>
+      <div class="center-text">{{current}}</div>
+      <svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="_viewBox">
+          <circle
+            fill="none"
+            [attr.cx]="radius"
+            [attr.cy]="radius"
+            [attr.r]="radius - stroke / 2"
+            [style.stroke]="resolveColor(background)"
+            [style.stroke-width]="stroke"/>
+          <path
+            #path
+            fill="none"
+            [style.stroke-width]="stroke"
+            [style.stroke]="resolveColor(color)"
+            [style.stroke-linecap]="rounded ? 'round' : ''"
+            [attr.transform]="getPathTransform()"/>
+        </svg>
+        <div class="left-value">0</div>
+        <div class="right-value">{{max}}</div>
+  </div>
+</div>

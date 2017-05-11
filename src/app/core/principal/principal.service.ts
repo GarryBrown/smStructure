@@ -72,7 +72,8 @@ export class PrincipalService {
          this._identity = {
            firstname:'Elon',
            lastname: 'Musk',
-           hobby: 'Murder'
+           hobby: 'Murder',
+           imageUrl: 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg',
          };
          this.authenticated = true;
          resolve(this._identity);

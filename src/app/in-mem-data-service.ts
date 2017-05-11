@@ -16,11 +16,11 @@ export class InMemDataService implements InMemoryDbService {
     ];
 
     let plansKPI = [
-      {"id": 1, "plan": 500, "fact": 300, "name": "Товарооборот", "value": 300},
-      {"id": 2, "plan": 400, "fact": 100, "name": "Покрытие", "value": 300},
-      {"id": 2, "plan": 50, "fact": 40, "name": "Листинг", "value": 300},
-      {"id": 2, "plan": 50, "fact": 40, "name": "Листинг", "value": 300},
-      {"id": 2, "plan": 50, "fact": 40, "name": "Листинг", "value": 300},
+      {"id": 1, "plan": 500, "fact": 300, "name": "Товарооборот"},
+      {"id": 2, "plan": 400, "fact": 100, "name": "Покрытие"},
+      {"id": 3, "plan": 54, "fact": 100, "name": "Листинг"},
+      {"id": 4, "plan": 133, "fact": 41, "name": "Листинг"},
+      {"id": 5, "plan": 50, "fact": 40, "name": "Листинг"},
     ];
 
     let deliveryPoints = [
