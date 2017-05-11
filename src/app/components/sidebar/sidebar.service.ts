@@ -12,7 +12,6 @@ export class SidebarService {
 
   logout () {
     this.auth.logout().subscribe();
-    this.principal.authenticate(null);
   }
 
   getAccount(): any {

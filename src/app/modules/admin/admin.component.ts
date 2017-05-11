@@ -102,8 +102,8 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActive(user, isActivated) {
-        user.activated = isActivated;
+  setActive(user, active) {
+        user.activated = active.checked;
 
         this.userService.update(user).subscribe(
             (response) => {
@@ -112,6 +112,7 @@ export class AdminComponent implements OnInit, OnDestroy {
                     this.success = 'OK';
                     this.loadData();
                 } else {
+                    user.activated = !active.checked;
                     this.success = null;
                     this.error = 'ERROR';
                 }

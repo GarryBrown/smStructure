@@ -4,7 +4,7 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { AdminService } from '../admin.service';
-import { AdminDetailComponent } from './admin-detail.component';
+import { User } from '../../../models';
 
 
 @Injectable()
@@ -13,15 +13,19 @@ export class AdminPopupService {
   constructor(
     private dialog: MdDialog,
     private router: Router,
-    private dashboardService: AdminService
+    private adminService: AdminService
   ) { }
 
   public open(component: any, login?: string) {
 
-    this.dashboardService.find(login)
-      .subscribe(user => {
-        this.bindDialog(component, user)
-      });
+    if (login) {
+        this.adminService.find(login)
+          .subscribe(user => {
+            this.bindDialog(component, user);
+        });
+      } else {
+        this.bindDialog(component, new User());
+      }
 
   }
 

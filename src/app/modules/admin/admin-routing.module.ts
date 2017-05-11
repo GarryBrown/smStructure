@@ -33,7 +33,17 @@ const AdminRoutes: Routes = [
     }
   },
   {
-    path: 'user/:id/detail',
+    path: 'user/:login/detail',
+    component: AdminPopupComponent,
+    outlet: 'popup'
+  },
+  {
+    path: 'user/:login/edit',
+    component: AdminPopupComponent,
+    outlet: 'popup'
+  },
+  {
+    path: 'user/new',
     component: AdminPopupComponent,
     outlet: 'popup'
   },

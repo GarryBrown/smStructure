@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(private sidebartoggle: SidebarToggleService,
-              private principal: PrincipalService) {
+    private principal: PrincipalService) {
   }
 
 
@@ -23,12 +23,20 @@ export class AppComponent implements OnInit {
     this.principal.identity(false).then(
       user => this.user = user
     );
-    this.sidebartoggle.userAuth$.subscribe(user => {
-      console.log(user);
-      this.user = user;
-    });
+    // this.principal.userAuth$.subscribe(user => {
+    //   console.log(user);
+    //   this.user = user
+    // },
+    //   error => {
+    //     console.log('user is undefined');
+    //     this.user = null;
+    //   });
+    // this.sidebartoggle.userAuth$.subscribe(user => {
+    //   console.log(user);
+    //   this.user = user;
+    // });
 
-    this.sidebartoggle.missionConfirmed$.subscribe( show => { this.show = show; });
+    this.sidebartoggle.missionConfirmed$.subscribe(show => { this.show = show; });
   }
 
   swipe(action = this.SWIPE_ACTION.RIGHT) {

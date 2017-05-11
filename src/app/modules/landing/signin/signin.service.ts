@@ -6,24 +6,27 @@ import { AuthJwtService } from '../../../core';
 @Injectable()
 export class SigninService {
 
-  constructor (
+  constructor(
     private principal: PrincipalService,
     private authServerProvider: AuthJwtService
-  ) {}
+  ) { }
 
-  login (credentials, callback?) {
-    let cb = callback || function() {};
+  login(credentials, callback?) {
+    let cb = callback || function () { };
 
     return new Promise((resolve, reject) => {
-      this.authServerProvider.login(credentials).subscribe(data => {
-        this.principal.identity(true).then(account => {
-          console.log(account);
-          if (account !== null) {
+      this.authServerProvider.login(credentials).subscribe(jwt => {
+        if (jwt) {
+          this.principal.identity(true).then(account => {
+            if (account !== null) {
+              resolve(account);
+            }
+          });
+          return cb();
+        } else {
+          reject('Error role b2b');
+        }
 
-          }
-          resolve(account);
-        });
-        return cb();
       }, err => {
         this.logout();
         reject(err);
@@ -32,7 +35,7 @@ export class SigninService {
     });
   }
 
-  logout () {
+  logout() {
     this.authServerProvider.logout().subscribe();
     this.principal.authenticate(null);
   }

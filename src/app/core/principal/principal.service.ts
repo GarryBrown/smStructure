@@ -17,10 +17,16 @@ export class PrincipalService {
         private account: AccountService,
         private authJwt: AuthJwtService
     ) {}
+    
+      auth(user: any) {
+    this.authenticationState.next(user);
+  }
 
     authenticate (_identity) {
       this._identity = _identity;
       this.authenticated = _identity !== null;
+      console.log('=====this.authenticationState.next(this._identity);');
+      this.authenticationState.next(this._identity);
     }
 
     fakeUpdateProfile(user) {
@@ -86,6 +92,7 @@ export class PrincipalService {
         this._identity = undefined;
         this.authenticated = false;
         this.urlApi = undefined;
+        this.authenticationState.next(this._identity);
         return null;
       });
     }

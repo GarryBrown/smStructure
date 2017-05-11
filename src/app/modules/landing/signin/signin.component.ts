@@ -37,11 +37,14 @@ export class SigninComponent implements OnInit {
       rememberMe: this.rememberMe
     }).then((account: User) => {
       this.authenticationError = false;
+      console.log('=====AUTH PRINCIPAL NEXT');
+      this.principal.authenticate(account);
+      console.log("=====AUTH SIDEBAR NEXT");
       this.sidebartoggle.auth(account);
       if (this.principal.isAdmin(account.authorities)) {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['admin']);
       } else {
-        this.router.navigate(['orders']);
+        this.router.navigate(['profile']);
       }
     }).catch(() => {
       console.log('some error of promise auth!');

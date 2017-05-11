@@ -26,11 +26,12 @@ export class SidebarComponent implements OnInit {
     private principal: PrincipalService
   ) {
     translate.use('ru');
-    sidebartoggle.userAuth$.subscribe(user => {
-      console.log(user);
-      this.user = user;
-      this.resetToggle();
-    });
+    console.log("=====SIDEBAR CONSTRUECTOR");
+    // sidebartoggle.userAuth$.subscribe(user => {
+    //   console.log(user);
+    //   this.user = user;
+    //   this.resetToggle();
+    // });
     sidebartoggle.missionConfirmed$.subscribe( show => this.show = show );
 
     principal.userAuth$.subscribe(user => {
@@ -58,12 +59,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("=====SIDEBAR ONINIT");
   }
 
   logout() {
     this.account.logout();
-    this.sidebartoggle.auth(false); // user logout emit
+    this.principal.authenticate(null); // user logout emit
     this.resetToggle();
     this.router.navigate(['/login']);
   }
