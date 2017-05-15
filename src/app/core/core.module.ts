@@ -11,6 +11,7 @@ import { PrincipalService } from './principal/principal.service';
 
 import { DateUtilService } from './utils/date-util.service';
 import { SidebarToggleService } from './utils/sidebar-toggle.service';
+import { UrlB2bService } from './utils/url-b2b.service';
 
 @NgModule({
   exports: [
@@ -29,7 +30,8 @@ export class CoreModule {
         PrincipalService,
         DateUtilService,
         //ElementRef,
-        SidebarToggleService
+        SidebarToggleService,
+        UrlB2bService
       ]
     };
   }

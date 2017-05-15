@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { PrincipalService } from '../../core';
+import { UrlB2bService } from '../../core';
 
 @Injectable()
 export class StoresService {
 
-  private resourceUrl = '/api/deliveryPoints';
+  private resourceUrl = '/api/shops';
 
   constructor(private http: Http,
-              private principal: PrincipalService,
+              private urlB2bService: UrlB2bService,
   ) {
-    this.resourceUrl = principal.getUrl() + this.resourceUrl;
+    this.resourceUrl = urlB2bService.getUrl() + this.resourceUrl;
   }
 
   create(store: any): Observable<any> {

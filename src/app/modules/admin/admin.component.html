@@ -18,14 +18,15 @@
         <table class="table  table-hover table-striped  table-condensed dataTables-example">
             <thead>
                 <tr appSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                    <th jhiSortBy="login"><span>Login</span> <span class="fa fa-sort"></span></th>
-                    <th jhiSortBy="email"><span>Email</span> <span class="fa fa-sort"></span></th>
-                    <th></th>
-                    <th jhiSortBy="langKey"> <span>Lang Key</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="id"><span>Id</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="login"><span>Login</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="email"><span>Email</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="activated"><span>Activated</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="langKey"> <span>Lang Key</span> <span class="fa fa-sort"></span></th>
                     <th><span>Profiles</span></th>
-                    <th jhiSortBy="createdDate"><span>Created Date</span> <span class="fa fa-sort"></span></th>
-                    <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <span class="fa fa-sort"></span></th>
-                    <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="createdDate"><span>Created Date</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="lastModifiedBy"><span>Last Modified By</span> <span class="fa fa-sort"></span></th>
+                    <th appSortBy="lastModifiedDate"><span>Last Modified Date</span> <span class="fa fa-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { SharedModule } from '../../shared';
@@ -25,7 +24,6 @@ import { AdminPopupComponent } from './dialogs/admin-popup.component';
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
     DatepickerModule,
     AdminRoutingModule,
     SharedModule,

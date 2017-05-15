@@ -1,13 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
-import {MdDialog, MdDialogRef} from '@angular/material';
-
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { OrdersService } from './orders.service';
 import { OrdersPopupService } from './dialogs/orders-popup.service';
-
-
 
 @Component({
   selector: 'app-orders',
@@ -18,6 +15,8 @@ import { OrdersPopupService } from './dialogs/orders-popup.service';
 export class OrdersComponent implements OnInit, OnDestroy {
   orders: any[];
 
+  error: any;
+  success: any;
 
   itemsPerPage: number;
   routeData: any;
@@ -27,21 +26,21 @@ export class OrdersComponent implements OnInit, OnDestroy {
   predicate: any;
   reverse: any;
   /* filter */
-  dateFrom:any;
+  dateFrom: any;
   dateTo: any;
   foods = [
-    {value: 'steak-0', viewValue: 'P&G'},
-    {value: 'pizza-1', viewValue: 'Food'},
-    {value: 'tacos-2', viewValue: 'Tacko'}
+    { value: 'steak-0', viewValue: 'P&G' },
+    { value: 'pizza-1', viewValue: 'Food' },
+    { value: 'tacos-2', viewValue: 'Tacko' }
   ];
-  dateFromPlaceholder:string = "С";
-  dateToPlaceholder:string = "По";
+  dateFromPlaceholder: string = "С";
+  dateToPlaceholder: string = "По";
 
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public  ordersService: OrdersService,
+    public ordersService: OrdersService,
     public dialog: MdDialog,
     private dialogsService: OrdersPopupService,
     private viewContainerRef: ViewContainerRef
@@ -56,7 +55,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    //console.log(`on init page: ${this.page}`);
     this.loadData();
   }
 
@@ -64,10 +62,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.routeData.unsubscribe();
   }
 
-
-
-  transition () {
-    this.router.navigate(['/dashboard'], { queryParams:
+  transition() {
+    this.router.navigate(['/orders'], {
+      queryParams:
       {
         page: this.page,
         sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -76,18 +73,18 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  loadData(){
-    //console.log(`loading page: ${this.page} \n with sort: ${this.sort()}`);
+  loadData() {
     this.ordersService.query({
       page: this.page - 1,
-      size : this.itemsPerPage,
-      sort : this.sort()}).subscribe(
+      size: this.itemsPerPage,
+      sort: this.sort()
+    }).subscribe(
       (res: Response) => this.onSuccess(res.json(), res.headers),
       (res: Response) => this.onError(res.json())
-    )
+      )
   }
 
-  sort () {
+  sort() {
     let result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
@@ -102,11 +99,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  private onSuccess (data, headers) {
+  private onSuccess(data, headers) {
     this.orders = this.ordersService.computing(data.data);
   }
 
-  private onError (error) {
+  private onError(error) {
     console.log('On error things');
   }
 

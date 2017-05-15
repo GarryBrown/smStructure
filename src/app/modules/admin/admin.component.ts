@@ -1,13 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
-import {MdDialog, MdDialogRef} from '@angular/material';
-
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { AdminService } from './admin.service';
 import { AdminPopupService } from './dialogs/admin-popup.service';
-
-
 
 @Component({
   selector: 'app-admin',
@@ -31,9 +28,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   /* filter */
 
   foods = [
-    {value: 'steak-0', viewValue: 'P&G'},
-    {value: 'pizza-1', viewValue: 'Food'},
-    {value: 'tacos-2', viewValue: 'Tacko'}
+    { value: 'steak-0', viewValue: 'P&G' },
+    { value: 'pizza-1', viewValue: 'Food' },
+    { value: 'tacos-2', viewValue: 'Tacko' }
   ];
 
 
@@ -41,7 +38,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public  userService: AdminService,
+    public userService: AdminService,
     public dialog: MdDialog,
     private dialogsService: AdminPopupService,
     private viewContainerRef: ViewContainerRef
@@ -56,7 +53,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    //console.log(`on init page: ${this.page}`);
     this.loadData();
   }
 
@@ -64,10 +60,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.routeData.unsubscribe();
   }
 
-
-
-  transition () {
-    this.router.navigate(['/admin'], { queryParams:
+  transition() {
+    console.log('transition');
+    this.router.navigate(['/admin'], {
+      queryParams:
       {
         page: this.page,
         sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -76,18 +72,18 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  loadData(){
-    //console.log(`loading page: ${this.page} \n with sort: ${this.sort()}`);
+  loadData() {
     this.userService.query({
       page: this.page - 1,
-      size : this.itemsPerPage,
-      sort : this.sort()}).subscribe(
+      size: this.itemsPerPage,
+      sort: this.sort()
+    }).subscribe(
       (res: Response) => this.onSuccess(res.json(), res.headers),
       (res: Response) => this.onError(res.json())
-    )
+      )
   }
 
-  sort () {
+  sort() {
     let result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
@@ -103,39 +99,31 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   setActive(user, active) {
-        user.activated = active.checked;
+    user.activated = active.checked;
 
-        this.userService.update(user).subscribe(
-            (response) => {
-                if (response.status === 200) {
-                    this.error = null;
-                    this.success = 'OK';
-                    this.loadData();
-                } else {
-                    user.activated = !active.checked;
-                    this.success = null;
-                    this.error = 'ERROR';
-                }
-            });
-    }
+    this.userService.update(user).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.error = null;
+          this.success = 'OK';
+          this.loadData();
+        } else {
+          user.activated = !active.checked;
+          this.success = null;
+          this.error = 'ERROR';
+        }
+      });
+  }
 
-  private onSuccess (data, headers) {
-    //this.queryCount = this.totalItems;
-    //console.log('_success_');
-    //console.log(data.data);
+  private onSuccess(data, headers) {
     console.log(data);
     this.users = data;
   }
 
-  private onError (error) {
+  private onError(error) {
     console.log('On error things');
   }
 
-  /*openModal(order) {
-    this.dialogsService
-      .open(order, this.viewContainerRef)
-      .subscribe(res => console.log(res));
-  }*/
 
 }
 

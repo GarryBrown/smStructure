@@ -9,7 +9,7 @@ import { User } from '../../../models';
 
 @Injectable()
 export class AdminPopupService {
- order: any;
+  order: any;
   constructor(
     private dialog: MdDialog,
     private router: Router,
@@ -19,13 +19,13 @@ export class AdminPopupService {
   public open(component: any, login?: string) {
 
     if (login) {
-        this.adminService.find(login)
-          .subscribe(user => {
-            this.bindDialog(component, user);
+      this.adminService.find(login)
+        .subscribe(user => {
+          this.bindDialog(component, user);
         });
-      } else {
-        this.bindDialog(component, new User());
-      }
+    } else {
+      this.bindDialog(component, new User());
+    }
 
   }
 
@@ -38,9 +38,8 @@ export class AdminPopupService {
     dialogRef = this.dialog.open(component, config);
     dialogRef.componentInstance.user = user;
 
-
     dialogRef.afterClosed().subscribe(res => {
-      this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+      this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
     });
 
     return dialogRef;

@@ -1,7 +1,12 @@
 {
-  "/api/*": {
-    "target": "https://gateway.hermes-mobile.ru:8443",
-    "secure": false,
-    "logLevel": "debug"
-  }
+    "/api/*": {
+        "target": "https://localhost:8443",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/hermesb2b/api/*": {
+        "target": "https://localhost:8443",
+        "secure": false,
+        "logLevel": "debug"
+    }
 }
