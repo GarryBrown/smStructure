@@ -6,11 +6,12 @@ import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
 
-  constructor(private paginationUtil: PaginUtilService) {}
+  constructor(private paginationUtil: PaginUtilService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     let page = route.queryParams['page'] ? route.queryParams['page'] : '1';
@@ -23,25 +24,22 @@ export class UserResolvePagingParams implements Resolve<any> {
   }
 }
 
-const OrdersRoutes: Routes = [
+const KPIRoutes: Routes = [
   {
     path: 'kpi',
     component: KPIComponent,
     canActivate: [RouteAccessService],
-    resolve: {
-      'pagingParams': UserResolvePagingParams
-    }
+    resolve: { 'pagingParams': UserResolvePagingParams }
   },
   {
-    path: 'order/:id/detail',
-    component: OrderPopupComponent,
-    outlet: 'popup'
-  },
+    path: 'kpi/detail/:id',
+    component: PlanDetailTOComponent
+  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(OrdersRoutes, { useHash: true }),
+    RouterModule.forRoot(KPIRoutes, { useHash: true }),
   ],
   exports: [
     RouterModule

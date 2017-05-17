@@ -28,6 +28,7 @@ import { AccountModule } from './modules/account/account.module';
 
 
 
+
 export class MyHammerConfig extends HammerGestureConfig  {
   overrides = <any>{
       'swipe': {velocity: 0.4, threshold: 20} // override default settings
@@ -36,7 +37,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

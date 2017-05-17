@@ -1,0 +1,34 @@
+<md-card class="top-menu">
+    <md-select placeholder="Выберите торговых представителей" [(ngModel)]="selectedAgents" [multiple]="true">
+        <md-option *ngFor="let agent of agents" [value]="agent">
+            {{agent.name}}
+        </md-option>
+    </md-select>
+</md-card>
+
+<md-card>
+    <table class="table  table-hover table-striped  table-condensed dataTables-example">
+        <thead>
+            <td *ngFor="let column of headerColumns">
+                {{column}}
+            </td>
+        </thead>
+        <tbody *ngIf="selectedAgents">
+            <tr *ngFor="let agent of selectedAgents">
+                <!--<td><a [routerLink]="['../user-management', user.login]">{{user.id}}</a></td>-->
+                <td>{{agent.name}}</td>
+                <td>{{agent.sumplan}}</td>
+                <td>{{agent.sumfact}}</td>
+                <td>{{agent.sumpercent}}</td>
+                <td>{{agent.prediction}}</td>
+                <td>{{agent.predicrion_percent}}</td>
+                <td>{{agent.gap}}</td>
+                <td>{{agent.planforDay}}</td>
+                <!--<td>
+                    <button md-mini-fab mdTooltip="Просмотр деталей" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" [routerLink]="['/', { outlets: { popup: 'user/' + user.login + '/detail' } }]"><md-icon>visibility</md-icon></button>
+                    <button md-mini-fab mdTooltip="Редактировать точку" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" [routerLink]="['/', { outlets: { popup: 'user/' + user.login + '/edit' } }]"><md-icon>create</md-icon></button>
+                </td>-->
+            </tr>
+        </tbody>
+    </table>
+</md-card>

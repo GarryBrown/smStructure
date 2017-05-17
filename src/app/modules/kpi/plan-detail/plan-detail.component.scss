@@ -1,5 +1,5 @@
-.container {
-    margin-top: 32px;
+table {
+    border: 1px;
 }
 
 .top-menu {
@@ -17,11 +17,4 @@
         flex: 1 1 auto;
         align-self: center;
     }
-}
-
-.day-month-group {
-    flex: 1 1 auto;
-    margin-right: 32px;
-    display: inline-flex;
-    flex-direction: column;
 }

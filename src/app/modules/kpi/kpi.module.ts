@@ -20,6 +20,8 @@ import { KPIComponent } from './kpi.component';
 import { OrderDetailComponent } from './dialogs/order-detail.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
 import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
+import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
+
 
 
 @NgModule({
@@ -33,8 +35,8 @@ import { PlanChartComponent } from "app/components/planChart/plan-chart.componen
     InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [KPIComponent, OrderPopupComponent, OrderDetailComponent, PlanChartComponent],
-  entryComponents: [OrderDetailComponent, PlanChartComponent],
+  declarations: [KPIComponent, OrderPopupComponent, PlanDetailTOComponent, OrderDetailComponent, PlanChartComponent],
+  entryComponents: [OrderDetailComponent, PlanChartComponent, PlanDetailTOComponent],
   providers: [KPIService, OrdersPopupService, DateUtilService, UserResolvePagingParams, ]
 })
 export class KPIModule { }

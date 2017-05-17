@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewContainerRef, Input, SimpleChanges, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef, Input, SimpleChanges, ElementRef, OnChanges } from '@angular/core';
 import { Plan } from "app/models/plan.model";
 import { CustomChartModule } from "app/components/customChart/custom-chart.module";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'plan-chart',
@@ -8,34 +9,45 @@ import { CustomChartModule } from "app/components/customChart/custom-chart.modul
   styleUrls: ['./plan-chart.component.scss'],
   providers: [CustomChartModule]
 })
-export class PlanChartComponent implements OnInit, OnDestroy {
-   @Input() plan: Plan
-    data: any[] = [];
-    colorScheme = {
-      domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    };
-    unitsText = '';
+export class PlanChartComponent implements OnInit, OnDestroy, OnChanges {
+  // @Input() plan: Plan
+  @Input() plans: Array<Plan> = [];
+  sumPlan: number;
+  sumFact: number;
+  name: string;
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+  unitsText = '';
 
-    valueFormatting = (text) => {
-      const percent = parseFloat((this.plan.fact / (this.plan.plan / 100)).toFixed(2)) + '%';
-      return percent;
-    }
+  valueFormatting = (text) => {
+    const percent = parseFloat((this.sumFact / (this.sumPlan / 100)).toFixed(2)) + '%';
+    return percent;
+  }
 
-    constructor() {
-    }
+  constructor(private router: Router) {
+  }
 
-    ngOnInit() {
-      console.log(this.plan);
-      this.data.push({name: this.plan.name, value: this.plan.fact});
-      // this.unitsText = ' ('+this.plan.fact+')';
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+     this.sumPlan = this.plans.reduce((sum, plan) => {
+      return sum + plan.plan
+    }, 0);
+    this.sumFact = this.plans.reduce((sum, plan) => {
+      return sum + plan.fact
+    }, 0);
+    this.name = this.plans[0].name;
+  }
 
-    ngOnDestroy() {
-    }
+  ngOnInit() {
+  }
 
-    
-    onSelect(event) {
-      console.log(event);
-    }
+  ngOnDestroy() {
+  }
+
+  onClickPlan(event) {
+    console.log(event);
+    console.log("event");
+    this.router.navigate(['kpi/detail/'+this.plans[0].id]);
+  }
 
 }

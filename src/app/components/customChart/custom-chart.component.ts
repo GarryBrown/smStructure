@@ -143,6 +143,10 @@ export class CustomChartComponent implements OnChanges {
     }
   }
 
+  onChartClick(){
+    this.onClick.emit();
+  }
+
   @ViewChild('path') _path;
   @Input() title: string;
   @Input() current: number;
@@ -158,5 +162,6 @@ export class CustomChartComponent implements OnChanges {
   @Input() clockwise: boolean = this._defaults.get('clockwise');
   @Input() semicircle: boolean = this._defaults.get('semicircle');
   @Input() rounded: boolean = this._defaults.get('rounded');
+  @Output() onClick: EventEmitter<any> = new EventEmitter();
   @Output() onRender: EventEmitter<number> = new EventEmitter();
 }

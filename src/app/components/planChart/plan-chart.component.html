@@ -1,9 +1,10 @@
 <custom-chart
-  [title]="plan.name"
-  [current]="plan.fact"
-  [max]="plan.plan"
+  [title]="name"
+  [current]="sumFact"
+  [max]="sumPlan"
   [semicircle]="true"
   [stroke]="35"
   [responsive]="true"
   [clockwise]="true"
+  (onClick)="onClickPlan()"
 ></custom-chart>

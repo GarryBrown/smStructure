@@ -67,6 +67,10 @@ export class KPIService {
       });
   }
 
+  loadPlanDetails(): Observable<Response> {
+    return this.http.get('/api/planDetailsByPlanId');
+  }
+
   delete(id: number): Observable<Response> {
     return this.http.delete(`${this.resourceUrl}/${id}`);
   }
