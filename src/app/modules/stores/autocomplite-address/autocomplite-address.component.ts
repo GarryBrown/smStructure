@@ -8,6 +8,8 @@ import { DaDataService } from '../../../shared/services/da-data.service';
 })
 export class AutocompliteAddressComponent implements OnInit {
   @Input('placeholder') placeholder: string;
+  @Input('isDisableForm') isDisableForm: boolean;
+  
   @Output() selectSug = new EventEmitter();
   daDataList: any;
   value: any;

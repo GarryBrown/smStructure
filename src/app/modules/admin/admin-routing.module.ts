@@ -40,7 +40,7 @@ const AdminRoutes: Routes = [
   {
     path: 'user/:login/edit',
     component: AdminPopupComponent,
-    outlet: 'popup'
+    outlet: 'popup',
   },
   {
     path: 'user/new',

@@ -13,7 +13,7 @@ import { customHttpProvider } from './blocks/interceptor/http.provider';
 /* Basic */
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { SidebarModule } from './components/sidebar/sidebar.module';
+import { LayoutrModule } from './components//layout.module';
 
 
 
@@ -45,7 +45,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     Ng2Webstorage,
     RouterModule,
     /*layouts */
-    SidebarModule,
+    LayoutrModule,
     /* modules */
     AccountModule,
     LandingModule,

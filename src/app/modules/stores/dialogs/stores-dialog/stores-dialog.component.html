@@ -3,39 +3,61 @@
 <div class="wrapper">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
-        <md-select placeholder="Юр. лицо" style="width: 50%">
+        <md-select placeholder="Юр. лицо" style="width: 50%; margin-right: 24px;" [disabled]="isDisableForm">
             <md-option *ngFor="let customer of customers" [value]="customer.id">
                 {{ customer.shortDescription }}
             </md-option>
         </md-select>
+        <button *ngIf="!isDisableForm" type="button" md-raised-button color="accent" (click)="openAddCustomer()">
+            <md-icon>add</md-icon>
+        </button>
         <br>
-        <md-input-container>
-            <input mdInput placeholder="Наименование" name="description" [(ngModel)]="store.description" required>
+        <br>
+        <md-input-container class="input-block">
+            <input mdInput placeholder="Полное наименование" name="description" [(ngModel)]="store.description" required [disabled]="isDisableForm">
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput placeholder="Краткое наименование" name="shortDescription" [(ngModel)]="store.shortDescription" required [disabled]="isDisableForm">
         </md-input-container>
 
+        <label for="">Время работы</label>
+        <br>
         <md-input-container>
-            <input mdInput placeholder="Контактный телефон" name="phoneNumber" [(ngModel)]="store.phoneNumber" required>
+            <input mdInput placeholder="С" name="acceptanceStartTime" [(ngModel)]="store.acceptanceStartTime" required [disabled]="isDisableForm">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="По" name="acceptanceEndTime" [(ngModel)]="store.acceptanceEndTime" required [disabled]="isDisableForm">
+        </md-input-container>
+
+
+
+        <br>
+        <label>Адрес юридический</label>
+        <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
+        <br>
+        <label>Адрес фактичский</label>
+        <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
+
+
+        <md-input-container class="input-block">
+            <input mdInput placeholder="Email" name="email" [(ngModel)]="store.email" required [disabled]="isDisableForm">
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput placeholder="Контактный телефон" name="phoneNumber" [(ngModel)]="store.phoneNumber" required [disabled]="isDisableForm">
         </md-input-container>
         <br>
-        <h6>Адрес торговой точки</h6>
-        <app-autocomplite-address [placeholder]="'Введите адрес'"></app-autocomplite-address>
-        <md-input-container>
-            <input mdInput placeholder="Страна" name="description" required>
-        </md-input-container>
-
-        <br>
-        <h6>Адрес доставки</h6>
-        <app-autocomplite-address [placeholder]="'Введите адрес'"></app-autocomplite-address>
-        <h6>Адрес приема товара</h6>
-        <app-autocomplite-address [placeholder]="'Введите адрес'"></app-autocomplite-address>
 
 
-        <div class="modal-footer">
+        <div class="modal-footer" style="border-top:0">
             <button md-raised-button type="button" (click)="clear()">
                 <md-icon>close</md-icon>
                 <span>Отмена</span>
             </button>
-            <button md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
+            <button *ngIf="isDisableForm" md-raised-button color="accent" type="button" (click)="toggleIsDisableForm()">
+                <md-icon>edit</md-icon>
+                <span>Изменить</span>
+            </button>
+            <button *ngIf="!isDisableForm" md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
                 <md-icon>done</md-icon>
                 <span>Сохранить</span>
             </button>

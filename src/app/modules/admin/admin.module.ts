@@ -19,6 +19,7 @@ import { AdminComponent } from './admin.component';
 import { AdminDetailComponent } from './dialogs/admin-detail/admin-detail.component';
 import { AdminDialogComponent } from './dialogs/admin-dialog/admin-dialog.component';
 import { AdminPopupComponent } from './dialogs/admin-popup.component';
+import { ListShopsComponent } from './dialogs/list-shops/list-shops.component';
 
 
 @NgModule({
@@ -31,8 +32,8 @@ import { AdminPopupComponent } from './dialogs/admin-popup.component';
     // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [AdminComponent, AdminPopupComponent, AdminDetailComponent, AdminDialogComponent],
-  entryComponents: [AdminDetailComponent, AdminDialogComponent],
+  declarations: [AdminComponent, AdminPopupComponent, AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
+  entryComponents: [AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
   providers: [AdminService, AdminPopupService, DateUtilService, UserResolvePagingParams, ]
 })
 export class AdminModule { }

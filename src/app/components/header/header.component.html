@@ -1,31 +1,35 @@
-<md-toolbar color="primary">    
+<md-toolbar color="primary">
     <nav>
-        
         <div class="burger" *ngIf="user">
-          <button md-icon-button (click)="toggle()" *ngIf="!show" class="open-menu">
+            <button md-icon-button (click)="toggle()" *ngIf="!show" class="open-menu">
             <md-icon>menu</md-icon>
           </button>
-          <button  md-icon-button (click)="toggle()" *ngIf="show" class="close-menu">
+            <button md-icon-button (click)="toggle()" *ngIf="show" class="close-menu">
             <md-icon>close</md-icon>
           </button>
         </div>
         <div class="logo" routerLink="/"></div>
-  
-        <a md-button (click)="alert('Тут откроется окно с заказом или переход на него =)');">
-          <md-icon class="cart-icon">shopping_cart</md-icon>
-          <span>Корзина</span>
+
+        <a class="hide-header-item" md-button (click)="alert('Тут откроется окно с заказом или переход на него =)');">
+            <md-icon class="cart-icon">shopping_cart</md-icon>
+            <span>Корзина</span>
         </a>
-        <a md-raised-button color="accent">Помощь</a>
+        <a class="hide-header-item" md-raised-button color="accent">Помощь</a>
+        <button md-icon-button class="dropdown-menu-mobile" [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+
     </nav>
 
-    <!--<button md-button [md-menu-trigger-for]="menu">
-        MENU
-    </button>
-
     <md-menu #menu="mdMenu">
-      <button md-menu-item>Lemon</button>
-      <button md-menu-item>Lime</button>
-      <button md-menu-item>Banana</button>
-    </md-menu>-->
+        <button md-menu-item>
+          <md-icon>shopping_cart</md-icon>
+            <span>Корзина</span>
+        </button>
+        <button md-menu-item>
+          <md-icon>voicemail</md-icon>
+          <span>Помощь</span>
+        </button>
+    </md-menu>
 
 </md-toolbar>

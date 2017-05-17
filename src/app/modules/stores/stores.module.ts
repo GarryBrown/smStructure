@@ -9,8 +9,9 @@ import { StoresRoutingModule } from './stores-routing.module';
 import { StoresComponent } from './stores.component';
 import { StoresPopupComponent } from './dialogs/stores-popup.component';
 import { StoresDetailComponent } from './dialogs/stores-detail/stores-detail.component';
-import { StoresDialogComponent } from './dialogs/stores-dialog/stores-dialog.component';
+import { StoresDialogComponent, AddCustomerComponent } from './dialogs/stores-dialog/stores-dialog.component';
 import { AutocompliteAddressComponent } from './autocomplite-address/autocomplite-address.component';
+
 /*service */
 import { StoresService } from './stores.service';
 
@@ -27,12 +28,14 @@ import { StoresService } from './stores.service';
     StoresPopupComponent,
     StoresDetailComponent,
     StoresDialogComponent,
-    AutocompliteAddressComponent
+    AutocompliteAddressComponent,
+    AddCustomerComponent
     ],
   entryComponents: [
     StoresDetailComponent,
     StoresDialogComponent,
-    AutocompliteAddressComponent
+    AutocompliteAddressComponent,
+    AddCustomerComponent
     ],
   providers: [StoresService]
 })

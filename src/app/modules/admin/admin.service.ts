@@ -47,6 +47,7 @@ export class AdminService {
         };
 
         return this.http.get(this.resourceUrl, options);
+        // return this.http.get(this.resourceUrl);
     }
 
     delete(login: string): Observable<Response> {

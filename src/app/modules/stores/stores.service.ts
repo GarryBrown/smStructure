@@ -40,7 +40,7 @@ export class StoresService {
   query(req?: any): Observable<Response> {
     let options = this.createRequestOption(req);
     //return this.http.get(this.resourceUrl).map(res => res);
-    return this.http.get(this.resourceUrl) // i remove options, need add it
+    return this.http.get(this.resourceUrl, options)
       .map((res: any) => this.convertResponse(res));
       //.map( (res: any) => this.computing(res));
   }

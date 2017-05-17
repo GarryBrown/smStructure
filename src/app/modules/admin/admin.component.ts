@@ -5,6 +5,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { AdminService } from './admin.service';
 import { AdminPopupService } from './dialogs/admin-popup.service';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-admin',
@@ -18,9 +19,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   error: any;
   success: any;
 
-  itemsPerPage: number;
+
   routeData: any;
   /* pagin */
+  itemsPerPage: number;
+  totalItems: any;
   page: any;
   previousPage: any;
   predicate: any;
@@ -61,7 +64,6 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   transition() {
-    console.log('transition');
     this.router.navigate(['/admin'], {
       queryParams:
       {
@@ -98,24 +100,27 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  setActive(user, active) {
-    user.activated = active.checked;
+
+  setActive(user, active, prorerty) {
+    user[prorerty] = active.checked;
 
     this.userService.update(user).subscribe(
       (response) => {
         if (response.status === 200) {
           this.error = null;
           this.success = 'OK';
-          this.loadData();
+          // this.loadData();
         } else {
-          user.activated = !active.checked;
+          user[prorerty] = !active.checked;
           this.success = null;
           this.error = 'ERROR';
         }
       });
   }
 
+
   private onSuccess(data, headers) {
+    this.totalItems = headers.get('X-Total-Count');
     console.log(data);
     this.users = data;
   }

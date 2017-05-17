@@ -9,3 +9,13 @@ md-toolbar {
 md-input-container {
     width: 100%;
 }
+
+.shops-block {
+    margin-top: 24px;
+    md-icon {
+        cursor: pointer;
+    }
+    .remove-shop {
+        color: white;
+    }
+}

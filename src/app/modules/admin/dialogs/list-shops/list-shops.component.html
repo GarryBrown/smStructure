@@ -1,0 +1,22 @@
+<md-toolbar>Магази</md-toolbar>
+<div class="table-responsive">
+    <table class="table  table-hover   table-condensed">
+        <thead>
+            <tr>
+                <th><span>Id</span></th>
+                <th><span>Наименование</span></th>
+                <th><span>Статус</span></th>
+                <th><span>Адрес Фактический</span></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="stores">
+            <tr *ngFor="let store of stores; let i = index;">
+                <td>{{store.id}}</td>
+                <td>{{store.description}}</td>
+                <td>{{store.isActive}}</td>
+                <td>{{store.addresses}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination [collectionSize]="200" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+</div>

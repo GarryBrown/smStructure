@@ -36,7 +36,15 @@ export class AdminPopupService {
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
+
+     user.shops = [
+      { address: "г. Краснодар, ул. Стахановская д. 55", description: 'Табрис'},
+      { address: "г. Краснодар, ул. Красная д. 3", description: 'Ашан'},
+      { address: "г. Ростов, ул. Ленина д. 86", description: 'Магнит'}
+    ];
     dialogRef.componentInstance.user = user;
+
+
 
     dialogRef.afterClosed().subscribe(res => {
       this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });

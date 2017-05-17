@@ -3,6 +3,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { User } from '../../../../models';
 
 import { AdminService } from '../../admin.service';
+import { ListShopsComponent } from '../list-shops/list-shops.component';
 
 @Component({
   selector: 'app-admin-dialog',
@@ -17,10 +18,16 @@ export class AdminDialogComponent implements OnInit, OnDestroy {
     'en',
     'ru'
   ];
+  isDisableForm: boolean;
 
-  constructor(public dialogRef: MdDialogRef<AdminDialogComponent>,
+  constructor(
+    public dialogRef: MdDialogRef<AdminDialogComponent>,
+    public dialog: MdDialog,
     private adminService: AdminService, ) {
     this.authorities = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_B2B'];
+    this.isDisableForm = true;
+
+
   }
 
 
@@ -56,11 +63,21 @@ export class AdminDialogComponent implements OnInit, OnDestroy {
   }
 
 
-  setActive(active) {
-    console.log(active);
-    this.user.activated = active.checked;
+  setActive(active, prorerty) {
+    this.user[prorerty] = active.isActive;
+  }
+
+  toggleIsDisableForm() {
+    this.isDisableForm = !this.isDisableForm;
   }
 
   ngOnDestroy() { }
+
+  openAddShop() {
+    let dialogRef = this.dialog.open(ListShopsComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      //this.selectedOption = result;
+    });
+  }
 
 }
