@@ -1,0 +1,29 @@
+<tr>
+    <td>
+        <button type="button" class="btn" (click)="toggle($e)">
+          <ng-template [ngIf]="isExpanded">-</ng-template>
+          <ng-template [ngIf]="!isExpanded">+</ng-template>
+        </button> {{agent.name}}
+    </td>
+    <td>{{agent.sumplan}}</td>
+    <td>{{agent.sumfact}}</td>
+    <td>{{agent.sumpercent}}</td>
+    <td>{{agent.prediction}}</td>
+    <td>{{agent.predicrion_percent}}</td>
+    <td>{{agent.gap}}</td>
+    <td>{{agent.planforDay}}</td>
+</tr>
+<ng-template [ngIf]="isExpanded">
+    <ng-template ngFor let-deliveryPoint [ngForOf]="agent.deliveryPointsPlans">
+        <tr>
+            <td>{{deliveryPoint.name}}</td>
+            <td>{{deliveryPoint.plan}}</td>
+            <td>{{deliveryPoint.fact}}</td>
+            <td>{{deliveryPoint.sumpercent}}</td>
+            <td>{{deliveryPoint.prediction}}</td>
+            <td>{{deliveryPoint.predicrion_percent}}</td>
+            <td>{{deliveryPoint.gap}}</td>
+            <td>{{deliveryPoint.planforDay}}</td>
+        </tr>
+    </ng-template>
+</ng-template>

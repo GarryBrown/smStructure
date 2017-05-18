@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Agent } from "app/models/agent.model";
 import { KPIService } from "app/modules/kpi/kpi.service";
@@ -6,16 +6,15 @@ import { KPIService } from "app/modules/kpi/kpi.service";
 @Component({
   selector: 'app-plan-detail',
   templateUrl: './plan-detail.component.html',
-  styleUrls: ['./plan-detail.component.scss']
+  styleUrls: ['./plan-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PlanDetailTOComponent implements OnInit {
   agents: Array<any>;
   selectedAgents: Array<any>;
-  
   headerColumns: Array<string> = ["Маршрут", "Цель", "Факт", "%", "Прогноз", "Прогноз %", "GAP", "План на день"];
 
   constructor(
-    private route: ActivatedRoute,
     private kpiService: KPIService
   ) { }
 
