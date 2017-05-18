@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { SharedModule } from '../../shared/shared.module';
-import { DateUtilService } from '../../core/utils/date-util.service';
+import { SharedModule } from '../../shared';
+import { DateUtilService } from '../../core';
 /* test api */
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '../../in-mem-data-service';
@@ -26,7 +25,6 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 //import {TranslateService} from '@ngx-translate/core';
 
@@ -26,32 +26,24 @@ export class SidebarComponent implements OnInit {
     private principal: PrincipalService
   ) {
     // translate.use('ru');
-    sidebartoggle.userAuth$.subscribe(user => {
-      console.log(user);
-      this.user = user;
-      this.resetToggle();
-    });
-    sidebartoggle.missionConfirmed$.subscribe( show => this.show = show );
-    // does't work, subscribe empty
-
-    // principal.userAuth$.subscribe(user => {
+    console.log("=====SIDEBAR CONSTRUECTOR");
+    // sidebartoggle.userAuth$.subscribe(user => {
     //   console.log(user);
-    //   this.user = user
+    //   this.user = user;
     //   this.resetToggle();
-    // } , error => {
-    //     console.log('user is undefined');
-    //     this.user = null;
-    //   });
-    this.account.getAccount()
-      .then(user => {
-        console.log(user);
-        this.user = user;
-        this.resetToggle();
-      }, error => {
-        console.log('user is undefined');
-        this.user = null;
-      });
+    // });
+    sidebartoggle.missionConfirmed$.subscribe(show => this.show = show);
 
+    principal.userAuth$.subscribe(user => {
+      console.log(user);
+      this.user = user
+      this.resetToggle();
+    }, error => {
+      console.log('user is undefined');
+      this.user = null;
+    });
+
+    this.getUser();
   }
 
   toggle() {
@@ -67,12 +59,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log("=====SIDEBAR ONINIT");
   }
 
   logout() {
     this.account.logout();
-    this.sidebartoggle.auth(false); // user logout emit
+    this.principal.authenticate(null); // user logout emit
     this.resetToggle();
     this.router.navigate(['/login']);
   }
@@ -83,4 +75,15 @@ export class SidebarComponent implements OnInit {
     this.sidebartoggle.sidebarToggle(this.show);
   }
 
+  getUser() {
+    this.account.getAccount()
+      .then(user => {
+        console.log(user);
+        this.user = user;
+        this.resetToggle();
+      }, error => {
+        console.log('user is undefined');
+        this.user = null;
+      });
+  }
 }

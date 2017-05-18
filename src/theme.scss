@@ -1,71 +1,22 @@
 @import '~@angular/material/theming';
-
 // NOTE: Theming is currently experimental and not yet publically released!
-
 @include mat-core();
-
-// $primary: md-palette($md-teal);
-// $accent:  md-palette($md-red, A200, A100, A400);//red //indigo
 $primary: mat-palette($mat-blue-grey);
-$accent:  mat-palette($mat-teal);
-
-
-// $accent300: #E57373;
-// $primary50: #E0F2F1;
-// $primary200: #80CBC4;
-// $primary300: #4DB6AC;
-
+$accent: mat-palette($mat-teal);
+$warn: mat-palette($mat-red, 400);
 $text-color: #646868;
-// $primary: mat-palette($mat-blue-grey);
-// $accent:  mat-palette($mat-red, A200, A100, A400);//red //indigo
-
-
 $tsAccent: #E57373;
 $tsAccent300: #E57373;
-
 $tsPrimary: #607D8B;
 $tsPrimary300: #90A4AE;
 $tsPrimary200: #B0BEC5;
 $tsPrimary50: #E0F2F1;
-
-
-/* GREEN */
-/*$tsAccent: #E57373;
-$tsAccent300: #E57373;
-$tsPrimary50: #E0F2F1;
-$tsPrimary200: #83B7A4;
-$tsPrimary300: #58A78D;
-$tsPrimary: #009877;*/
-
-/* DARK BLUE */
-/*$tsAccent: #009877;
-$tsAccent300: #58A78D;
-
-$tsPrimary: #09324b;
-$tsPrimary300: #3A4E61;
-$tsPrimary200: #60697B;
-$tsPrimary50: #878D9B;*/
-
-/* LIME */
-/*$tsAccent: #009877;
-$tsAccent300: #58A78D;
-
-$tsPrimary: #DBD8C2;
-$tsPrimary300: #E3E0CC;
-$tsPrimary200: #E9E7D8;
-$tsPrimary50: #EFEFE4;*/
-
-
-$theme: mat-light-theme($primary, $accent);
-
+$theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
-
 .m2app-dark {
-  $dark-primary: mat-palette($mat-pink, 700, 500, 900);
-  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
-  $dark-warn:    mat-palette($mat-deep-orange);
-
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
-  @include angular-material-theme($dark-theme);
+    $dark-primary: mat-palette($mat-pink, 700, 500, 900);
+    $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+    $dark-warn: mat-palette($mat-deep-orange);
+    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+    @include angular-material-theme($dark-theme);
 }

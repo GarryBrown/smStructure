@@ -8,7 +8,7 @@ import { PrincipalService } from '../../core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss', './media.header.component.scss'],
   providers: [SidebarService]
 })
 export class HeaderComponent implements OnInit {

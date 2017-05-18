@@ -1,8 +1,8 @@
 import { NgModule, Injectable } from '@angular/core';
 import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 
-import { PaginUtilService } from '../../shared/services/pagin-util.service';
-import { RouteAccessService } from '../../core/auth/route-access.service';
+import { PaginUtilService } from '../../shared';
+import { RouteAccessService } from '../../core';
 
 import { AdminComponent } from './admin.component';
 import { AdminPopupComponent } from './dialogs/admin-popup.component';
@@ -33,7 +33,17 @@ const AdminRoutes: Routes = [
     }
   },
   {
-    path: 'user/:id/detail',
+    path: 'user/:login/detail',
+    component: AdminPopupComponent,
+    outlet: 'popup'
+  },
+  {
+    path: 'user/:login/edit',
+    component: AdminPopupComponent,
+    outlet: 'popup',
+  },
+  {
+    path: 'user/new',
     component: AdminPopupComponent,
     outlet: 'popup'
   },

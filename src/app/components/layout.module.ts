@@ -1,13 +1,13 @@
 import { NgModule, Provider } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared';
+import { SharedModule } from '../shared';
 
-import { SidebarComponent } from './sidebar.component';
-import { FooterComponent } from '../footer/footer.component';
-import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
-import { SidebarService } from './sidebar.service';
+import { SidebarService } from './sidebar/sidebar.service';
 
 
 @NgModule({
@@ -19,4 +19,4 @@ import { SidebarService } from './sidebar.service';
     ]
 })
 
-export class SidebarModule {}
+export class LayoutrModule {}

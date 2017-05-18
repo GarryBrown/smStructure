@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { Store } from '../../../../models/store.model';
 
 import { StoresService } from '../../stores.service';
@@ -13,16 +13,20 @@ import { DaDataService } from '../../../../shared/services/da-data.service';
 export class StoresDialogComponent implements OnInit, OnDestroy {
   isSaving: Boolean;
   public store: Store;
+  isDisableForm: boolean;
   customers = [
-    { id: 1, shortDescription: 'Nike'},
-    { id: 2, shortDescription: 'Jordan'},
-    { id: 3, shortDescription: 'Culture'}
+    { id: 1, shortDescription: 'Nike' },
+    { id: 2, shortDescription: 'Jordan' },
+    { id: 3, shortDescription: 'Culture' }
   ];
 
-  constructor(public dialogRef: MdDialogRef<StoresDialogComponent>,
-              private storesService: StoresService,
-              private daData: DaDataService) {
-   }
+  constructor(
+    public dialogRef: MdDialogRef<StoresDialogComponent>,
+    public dialog: MdDialog,
+    private storesService: StoresService,
+    private daData: DaDataService) {
+      this.isDisableForm = true;
+  }
 
 
   ngOnInit() {
@@ -30,31 +34,55 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
   }
 
   clear() {
-        this.dialogRef.close('Cancel');
+    this.dialogRef.close('Cancel');
   }
 
   save() {
     console.log('save');
     console.log(this.store);
-        this.isSaving = true;
-        if (this.store.id !== undefined ) {
-            console.log('update');
-            this.storesService.update(this.store).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
-        } else {
-            console.log('create');
-            this.storesService.create(this.store).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
-        }
+    this.isSaving = true;
+    if (this.store.id !== undefined) {
+      console.log('update');
+      this.storesService.update(this.store).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+    } else {
+      console.log('create');
+      this.storesService.create(this.store).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+    }
   }
 
   private onSaveSuccess(result) {
-      this.isSaving = false;
-      this.dialogRef.close(result);
+    this.isSaving = false;
+    this.dialogRef.close(result);
   }
 
-    private onSaveError() {
-        this.isSaving = false;
-    }
+  private onSaveError() {
+    this.isSaving = false;
+  }
 
-  ngOnDestroy(){}
+  toggleIsDisableForm() {
+    this.isDisableForm = !this.isDisableForm;
+  }
 
+  ngOnDestroy() { }
+
+
+  openAddCustomer() {
+    let dialogRef = this.dialog.open(AddCustomerComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      //this.selectedOption = result;
+    });
+  }
+
+}
+
+
+
+@Component({
+  selector: 'app-add-customer',
+  template: `
+  <h1> Woooow </h1>`
+})
+
+export class AddCustomerComponent {
+  constructor(public dialogRef: MdDialogRef<AddCustomerComponent>) { }
 }

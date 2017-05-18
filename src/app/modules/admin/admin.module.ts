@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { SharedModule } from '../../shared';
@@ -17,14 +16,15 @@ import { AdminService } from './admin.service';
 import { AdminPopupService } from './dialogs/admin-popup.service';
 /* components */
 import { AdminComponent } from './admin.component';
-import { AdminDetailComponent } from './dialogs/admin-detail.component';
+import { AdminDetailComponent } from './dialogs/admin-detail/admin-detail.component';
+import { AdminDialogComponent } from './dialogs/admin-dialog/admin-dialog.component';
 import { AdminPopupComponent } from './dialogs/admin-popup.component';
+import { ListShopsComponent } from './dialogs/list-shops/list-shops.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule.forRoot(),
     DatepickerModule,
     AdminRoutingModule,
     SharedModule,
@@ -32,8 +32,8 @@ import { AdminPopupComponent } from './dialogs/admin-popup.component';
     // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [AdminComponent, AdminPopupComponent, AdminDetailComponent],
-  entryComponents: [AdminDetailComponent],
+  declarations: [AdminComponent, AdminPopupComponent, AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
+  entryComponents: [AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
   providers: [AdminService, AdminPopupService, DateUtilService, UserResolvePagingParams, ]
 })
 export class AdminModule { }

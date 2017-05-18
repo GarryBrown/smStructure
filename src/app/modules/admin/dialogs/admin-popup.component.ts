@@ -1,15 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { AdminDetailComponent } from './admin-detail.component';
+import { AdminDetailComponent } from './admin-detail/admin-detail.component';
+import { AdminDialogComponent } from './admin-dialog/admin-dialog.component';
 import { AdminPopupService } from './admin-popup.service';
 
 
 
 @Component({
-  selector: 'order-popup',
-  template: ''
+  selector: 'admin-popup',
+  template: '',
+  providers: [AdminPopupService]
 })
 export class AdminPopupComponent implements OnInit, OnDestroy {
 
@@ -17,14 +19,26 @@ export class AdminPopupComponent implements OnInit, OnDestroy {
   routeSub: any;
 
   constructor (
-    public dashboardPopup: AdminPopupService,
-    private route: ActivatedRoute
+    public adminPopup: AdminPopupService,
+    private route: ActivatedRoute,
+    private router: Router,
 
   ) {}
 
   ngOnInit() {
+
     this.routeSub = this.route.params.subscribe(params => {
-      this.modalRef = this.dashboardPopup.open(AdminDetailComponent, params['id']);
+
+      if (this.router.url.indexOf('detail') !== -1) {
+       this.modalRef = this.adminPopup.open(AdminDetailComponent, params['login']);
+      } else {
+        if (params['login']) {
+          this.modalRef = this.adminPopup.open(AdminDialogComponent, params['login']);
+        } else {
+          this.modalRef = this.adminPopup.open(AdminDialogComponent);
+        }
+      }
+
     });
   }
 

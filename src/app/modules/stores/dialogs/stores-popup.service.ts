@@ -4,12 +4,12 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { StoresService } from '../stores.service';
-import { Store } from '../../../models/store.model';
+import { Store } from '../../../models';
 
 
 @Injectable()
 export class StoresPopupService {
- store: any;
+  store: any;
   constructor(
     private dialog: MdDialog,
     private router: Router,
@@ -18,15 +18,16 @@ export class StoresPopupService {
 
   public open(component: any, id?: number) {
 
-      if (id) {
-        this.storesService.find(id)
-          .subscribe(store => {
-            this.bindDialog(component, store.data);
+    if (id) {
+      this.storesService.find(id)
+        .subscribe(store => {
+          console.log(store);
+          this.bindDialog(component, store);
         });
-      } else {
-        console.log(new Store());
-        this.bindDialog(component, new Store());
-      }
+    } else {
+      console.log(new Store());
+      this.bindDialog(component, new Store());
+    }
   }
 
 
@@ -42,8 +43,8 @@ export class StoresPopupService {
 
 
     dialogRef.afterClosed().subscribe(res => {
-        console.log('closed');
-        this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+      console.log('closed');
+      this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
     });
 
     return dialogRef;

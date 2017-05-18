@@ -1,0 +1,90 @@
+<md-toolbar>Создание и редактирование пользователя</md-toolbar>
+<div class="wrapper">
+
+
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+        <br>
+        <md-input-container>
+            <input mdInput placeholder="Id" name="id" [(ngModel)]="user.id" disabled>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Логин" type="text" name="login" #loginInput="ngModel" [(ngModel)]="user.login" required minlength=1 maxlength=50 pattern="^[_'.@A-Za-z0-9-]*$" [disabled]="isDisableForm">
+        </md-input-container>
+
+        <md-input-container class="example-full-width" *ngIf="!user.id">
+            <input mdInput placeholder="Пароль" type="password" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" minlength=4 maxlength=50 required [disabled]="isDisableForm">
+        </md-input-container>
+        <md-input-container class="example-full-width" *ngIf="!user.id">
+            <input mdInput placeholder="Confirm password" type="password" id="confirmPassword" name="confirmPassword" #confirmPasswordInput="ngModel" [(ngModel)]="confirmPassword" minlength=4 maxlength=50 required [disabled]="isDisableForm">
+        </md-input-container>
+
+        <br>
+        <md-input-container>
+            <input mdInput placeholder="Имя" type="text" name="firstName" #firstNameInput="ngModel" [(ngModel)]="user.firstName" maxlength="50" [disabled]="isDisableForm">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Фамилия" type="text" name="lastName" #lastNameInput="ngModel" [(ngModel)]="user.lastName" maxlength="50" [disabled]="isDisableForm">
+        </md-input-container>
+
+        <br>
+        <md-input-container>
+            <input mdInput placeholder="Email" type="email" name="email" #emailInput="ngModel" [(ngModel)]="user.email" required maxlength="100" [disabled]="isDisableForm">
+        </md-input-container>
+
+        <br>
+        <md-select placeholder="Язык" *ngIf="languages && languages.length > 0" id="langKey" name="langKey" [(ngModel)]="user.langKey" [disabled]="isDisableForm">
+            <md-option *ngFor="let language of languages" [value]="language">
+                {{ language }}
+            </md-option>
+        </md-select>
+
+        <md-select placeholder="Права" *ngIf="authorities && authorities.length > 0" id="authority" multiple name="authority" [(ngModel)]="user.authorities" [disabled]="isDisableForm">
+            <md-option *ngFor="let authority of authorities" [value]="authority">
+                {{ authority }}
+            </md-option>
+        </md-select>
+
+        <label>Активность:</label>
+        <md-slide-toggle color="accent" [checked]="user.isActive" [disabled]="isDisableForm" (change)="setActive($event, 'isActive')">
+        </md-slide-toggle>
+        <label>Подтвержден:</label>
+        <md-slide-toggle color="accent" [checked]="user.isVerified" [disabled]="isDisableForm" (change)="setActive($event, 'isVerified')">
+        </md-slide-toggle>
+
+        <div class="shops-block">
+            <button *ngIf="!isDisableForm" md-raised-button color="accent" type="button" (click)="openAddShop()">
+                <md-icon>add</md-icon>
+                <span>Добавить</span>
+            </button>
+
+            <md-list>
+                <md-list-item *ngFor="let shop of user.shops">
+                    <!--<md-icon md-list-icon>close</md-icon>-->
+                    <h4 md-line>{{shop.description}}</h4>
+                    <p md-line> {{shop.address}} </p>
+                    <button class="remove-shop" md-mini-fab type="button" color="warn" (click)="removeShop()" [disabled]="isDisableForm">
+                        <md-icon>close</md-icon>
+                    </button>
+                </md-list-item>
+            </md-list>
+        </div>
+
+
+        <div class="modal-footer">
+            <button md-raised-button type="button" (click)="clear()">
+                <md-icon>close</md-icon>
+                <span>Отмена</span>
+            </button>
+            <button *ngIf="isDisableForm" md-raised-button color="accent" type="button" (click)="toggleIsDisableForm()">
+                <md-icon>edit</md-icon>
+                <span>Изменить</span>
+            </button>
+            <button *ngIf="!isDisableForm" md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
+                <md-icon>done</md-icon>
+                <span>Сохранить</span>
+            </button>
+        </div>
+
+    </form>
+</div>

@@ -38,8 +38,8 @@ export class StoresComponent implements OnInit {
   }
 
   private onSuccess (data) {
-    console.log(data.data);
-    this.stores = data.data;
+    console.log(data);
+    this.stores = data;
   }
 
   private onError (error) {
