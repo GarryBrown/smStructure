@@ -1,22 +1,33 @@
-<md-toolbar>Магази</md-toolbar>
+<md-toolbar>Магазины</md-toolbar>
 <div class="table-responsive">
-    <table class="table  table-hover   table-condensed">
-        <thead>
-            <tr>
-                <th><span>Id</span></th>
-                <th><span>Наименование</span></th>
-                <th><span>Статус</span></th>
-                <th><span>Адрес Фактический</span></th>
-            </tr>
-        </thead>
-        <tbody *ngIf="stores">
-            <tr *ngFor="let store of stores; let i = index;">
-                <td>{{store.id}}</td>
-                <td>{{store.description}}</td>
-                <td>{{store.isActive}}</td>
-                <td>{{store.addresses}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <ngb-pagination [collectionSize]="200" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+  <table class="table  table-hover   table-condensed">
+    <thead>
+      <tr>
+        <th><span>Id</span></th>
+        <th><span>Наименование</span></th>
+        <th><span>Статус</span></th>
+        <th><span>Адрес Фактический</span></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="stores">
+      <tr *ngFor="let store of stores; let i = index;" (click)="selectStore(store)" [ngClass]="{'active': isExistInList(store.id)}">
+        <td>{{store.id}}</td>
+        <td>{{store.description}}</td>
+        <td>{{store.isActive}}</td>
+        <td>{{store.addresses}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ngb-pagination [collectionSize]="totalItems" [pageSize]="itemsPerPage" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+
+  <div class="modal-footer">
+    <button md-raised-button type="button" (click)="close()">
+        <md-icon>close</md-icon>
+        <span>Отмена</span>
+    </button>
+    <button md-raised-button color="accent" (click)="save()">
+        <md-icon>done</md-icon>
+        <span>Сохранить</span>
+    </button>
+  </div>
 </div>

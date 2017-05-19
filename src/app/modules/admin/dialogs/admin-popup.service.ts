@@ -4,17 +4,17 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { AdminService } from '../admin.service';
-import { User } from '../../../models';
+import { User, Store } from '../../../models';
 
 
 @Injectable()
 export class AdminPopupService {
-  order: any;
+  shopsMock: any[];
   constructor(
     private dialog: MdDialog,
     private router: Router,
     private adminService: AdminService
-  ) { }
+  ) { this.setMock();}
 
   public open(component: any, login?: string) {
 
@@ -37,11 +37,7 @@ export class AdminPopupService {
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
 
-     user.shops = [
-      { address: "г. Краснодар, ул. Стахановская д. 55", description: 'Табрис'},
-      { address: "г. Краснодар, ул. Красная д. 3", description: 'Ашан'},
-      { address: "г. Ростов, ул. Ленина д. 86", description: 'Магнит'}
-    ];
+    user.shops = this.shopsMock;
     dialogRef.componentInstance.user = user;
 
 
@@ -53,4 +49,75 @@ export class AdminPopupService {
     return dialogRef;
   }
 
+
+
+
+  setMock() {
+    this.shopsMock = [ {
+  "id" : 2,
+  "uid" : "e0faedee1e1c45f896d13a1a4181b341",
+  "isActive" : true,
+  "description" : "Shop 2",
+  "shortDescription" : "Shop 2",
+  "phoneNumber" : "79181003456",
+  "email" : "shop@locakhost",
+  "acceptanceStartTime" : "18:00:00",
+  "acceptanceEndTime" : "09:00:00",
+  "customer" : {
+    "id" : 0,
+    "uid" : "",
+    "isActive" : false,
+    "inn" : "",
+    "kpp" : "",
+    "description" : "Нет данных",
+    "shortDescription" : "Нет данных",
+    "phoneNumber" : "",
+    "email" : "",
+    "typeOfCustomer" : {
+      "id" : 0,
+      "uid" : "00000000000000000000000000000000",
+      "isActive" : false,
+      "description" : "Нет данных"
+    },
+    "shops" : null,
+    "addresses" : null
+  },
+  "typeOfShop" : {
+    "id" : 1,
+    "uid" : "Самообслуживание",
+    "isActive" : true,
+    "description" : "Самообслуживание"
+  },
+  "branch" : {
+    "id" : 6,
+    "uid" : "KR",
+    "isActive" : true,
+    "description" : "Краснодар",
+    "shops" : null
+  },
+  "users" : null,
+  "addresses" : null,
+  "deliveryDays" : null,
+  "typesOfPayments" : null,
+  "typesOfSaleDocuments" : null
+}, {
+  "id" : 3,
+  "uid" : "ea3671c1e6874e19bcb22cc98cc51e45",
+  "isActive" : true,
+  "description" : "Shop 2",
+  "shortDescription" : "Shop 2",
+  "phoneNumber" : "79181003456",
+  "email" : "shop@locakhost",
+  "acceptanceStartTime" : "18:00:00",
+  "acceptanceEndTime" : "09:00:00",
+  "customer" : 0,
+  "typeOfShop" : 1,
+  "branch" : 6,
+  "users" : null,
+  "addresses" : null,
+  "deliveryDays" : null,
+  "typesOfPayments" : null,
+  "typesOfSaleDocuments" : null
+} ];
+  }
 }

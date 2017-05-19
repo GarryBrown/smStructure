@@ -41,30 +41,3 @@ table {
         }
     }
 }
-
-
-/******** ngb-pagination *********/
-
-ngb-pagination /deep/ {
-    ul {
-        margin-left: 40%;
-    }
-    a {
-        color: $text-color;
-        &:hover {
-            color: $text-color;
-        }
-    }
-    .page-item.active .page-link {
-        background-color: mat-color($accent);
-        color: #fff;
-        border: 1px solid mat-color($accent);
-    }
-    .page-link {
-        padding: .40rem .65rem;
-    }
-    .page-item:first-child .page-link,
-    .page-item:last-child .page-link {
-        border-radius: 0;
-    }
-}

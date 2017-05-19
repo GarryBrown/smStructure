@@ -14,6 +14,7 @@ import { AdminRoutingModule, UserResolvePagingParams } from './admin-routing.mod
 /*service */
 import { AdminService } from './admin.service';
 import { AdminPopupService } from './dialogs/admin-popup.service';
+import { DeleteUtilsService } from '../../shared';
 /* components */
 import { AdminComponent } from './admin.component';
 import { AdminDetailComponent } from './dialogs/admin-detail/admin-detail.component';
@@ -32,8 +33,21 @@ import { ListShopsComponent } from './dialogs/list-shops/list-shops.component';
     // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [AdminComponent, AdminPopupComponent, AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
-  entryComponents: [AdminDetailComponent, AdminDialogComponent, ListShopsComponent],
-  providers: [AdminService, AdminPopupService, DateUtilService, UserResolvePagingParams, ]
+  declarations: [
+    AdminComponent,
+    AdminPopupComponent,
+    AdminDetailComponent,
+    AdminDialogComponent,
+    ListShopsComponent],
+  entryComponents: [
+    AdminDetailComponent,
+    AdminDialogComponent,
+    ListShopsComponent],
+  providers: [
+    AdminService,
+    AdminPopupService,
+    DateUtilService,
+    UserResolvePagingParams,
+    DeleteUtilsService]
 })
 export class AdminModule { }

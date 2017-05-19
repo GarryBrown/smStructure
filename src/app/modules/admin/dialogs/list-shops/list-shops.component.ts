@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { StoresService } from '../../../stores/stores.service';
 import { Store } from '../../../../models';
+import { ListShopsService } from './list-shops.service';
+import { DeleteUtilsService } from '../../../../shared';
 
 @Component({
   selector: 'app-list-shops',
   templateUrl: './list-shops.component.html',
-  styleUrls: ['./list-shops.component.scss']
+  styleUrls: ['./list-shops.component.scss'],
+  providers: [ListShopsService]
 })
 export class ListShopsComponent implements OnInit {
   stores: Store[];
+  public selectedStores: Store[];
 
   error: any;
   success: any;
-
-
-  routeData: any;
   /* pagin */
   itemsPerPage: number;
   totalItems: any;
@@ -25,7 +27,6 @@ export class ListShopsComponent implements OnInit {
   predicate: any;
   reverse: any;
   /* filter */
-
   foods = [
     { value: 'steak-0', viewValue: 'P&G' },
     { value: 'pizza-1', viewValue: 'Food' },
@@ -33,13 +34,18 @@ export class ListShopsComponent implements OnInit {
   ];
 
   constructor(
-    private storesService: StoresService
+    private storesService: StoresService,
+    private listShopsService: ListShopsService,
+    public dialog: MdDialog,
+    public dialogRef: MdDialogRef<ListShopsComponent>,
+    private deleteUtilsService: DeleteUtilsService 
   ) {
-    this.previousPage = 0;
-    this.page = 0;
+    this.previousPage = 1;
+    this.page = 1;
     this.reverse = 'asc';
     this.predicate = 'id';
-
+    this.itemsPerPage = 2;
+    this.selectedStores = [];
   }
 
   ngOnInit() {
@@ -47,15 +53,27 @@ export class ListShopsComponent implements OnInit {
   }
 
 
+  selectStore(store: Store) {
+    
+    if (this.selectedStores.length) {
+      if(this.deleteUtilsService.isExistInList(this.selectedStores, store.id)) {
+        this.deleteUtilsService.removeById(this.selectedStores, store.id)
+          .then(
+            (selectedList) => {
+              this.selectedStores = selectedList;
+            },
+            (error) => console.error('Can\'t remove store')
+          )
+      } else {
+        this.selectedStores.push(store);
+      }
+    } else {
+      this.selectedStores.push(store);
+    }
+  }
+
+
   transition() {
-    console.log('transition');
-    // this.router.navigate(['/admin'], {
-    //   queryParams:
-    //   {
-    //     page: this.page,
-    //     sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
-    //   }
-    // });
     this.loadData();
   }
 
@@ -67,7 +85,12 @@ export class ListShopsComponent implements OnInit {
     }).subscribe(
       (res: Response) => this.onSuccess(res.json(), res.headers),
       (res: Response) => this.onError(res.json())
-      )
+      );
+  }
+
+  //hightLighting active class
+  isExistInList(id: string) {
+    return this.selectedStores.some(store => store.id === id);
   }
 
   sort() {
@@ -79,6 +102,7 @@ export class ListShopsComponent implements OnInit {
   }
 
   loadPage(page: number) {
+    console.log('loadPage');
     if (page !== this.previousPage) {
       this.previousPage = page;
       this.transition();
@@ -86,15 +110,23 @@ export class ListShopsComponent implements OnInit {
   }
 
 
-
   private onSuccess(data, headers) {
-    this.totalItems = 2 // headers.get('X-Total-Count');
+    this.totalItems = headers.get('X-Total-Count');
+    console.log('total' + this.totalItems);
     console.log(data);
     this.stores = data;
   }
 
   private onError(error) {
-    console.log('On error things');
+    console.error('On error things');
+  }
+
+  close() {
+    this.dialogRef.close(null);
+  }
+
+  save() {
+    this.dialogRef.close(this.selectedStores);
   }
 
 

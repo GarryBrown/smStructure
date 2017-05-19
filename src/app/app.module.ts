@@ -15,8 +15,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LayoutrModule } from './components//layout.module';
 
-
-
 /* Modules */
 import { OrdersModule } from './modules/orders/orders.module';
 import { AdminModule } from './modules/admin/admin.module';

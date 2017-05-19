@@ -8,4 +8,5 @@ export * from './pipes/pretty-count.pipe';
 
 export * from './services/da-data.service';
 export * from './services/pagin-util.service';
+export * from './services/delete-utils.service';
 export * from './shared.module';

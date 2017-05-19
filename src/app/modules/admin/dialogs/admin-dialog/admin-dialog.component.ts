@@ -4,11 +4,12 @@ import { User } from '../../../../models';
 
 import { AdminService } from '../../admin.service';
 import { ListShopsComponent } from '../list-shops/list-shops.component';
+import { DeleteUtilsService } from '../../../../shared';
 
 @Component({
   selector: 'app-admin-dialog',
   templateUrl: './admin-dialog.component.html',
-  styleUrls: ['./admin-dialog.component.scss']
+  styleUrls: ['./admin-dialog.component.scss'],
 })
 export class AdminDialogComponent implements OnInit, OnDestroy {
   isSaving: Boolean;
@@ -23,11 +24,11 @@ export class AdminDialogComponent implements OnInit, OnDestroy {
   constructor(
     public dialogRef: MdDialogRef<AdminDialogComponent>,
     public dialog: MdDialog,
-    private adminService: AdminService, ) {
+    private adminService: AdminService,
+    private deleteUtilsService: DeleteUtilsService 
+  ) {
     this.authorities = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_B2B'];
     this.isDisableForm = true;
-
-
   }
 
 
@@ -40,15 +41,10 @@ export class AdminDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    console.log('save');
-    console.log(this.user);
-    console.log(this.user.id);
     this.isSaving = true;
     if (this.user.id !== null) {
-      console.log('update');
       this.adminService.update(this.user).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
     } else {
-      console.log('create');
       this.adminService.create(this.user).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
     }
   }
@@ -74,10 +70,26 @@ export class AdminDialogComponent implements OnInit, OnDestroy {
   ngOnDestroy() { }
 
   openAddShop() {
-    let dialogRef = this.dialog.open(ListShopsComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      //this.selectedOption = result;
+    let dialogRef = this.dialog.open(ListShopsComponent, {
+      height: '80%',
+      width: '70%',
     });
+    
+    dialogRef.componentInstance.selectedStores = this.user.shops;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.user.shops = result;
+      }
+      
+    });
+  }
+
+  removeShop(id) {
+    this.deleteUtilsService.removeById(this.user.shops, id)
+      .then(
+        (newList) => this.user.shops = newList,
+        (err) => console.error('can\'t remove this shop from list')
+      );
   }
 
 }

@@ -11,6 +11,7 @@ import { SortDirective } from './directive/sort.directive';
 import { HasAuthorityDirective } from './directive/has-authority.directive';
 import { PaginUtilService } from './services/pagin-util.service';
 import { DaDataService } from './services/da-data.service';
+import { DeleteUtilsService } from './services/delete-utils.service';
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
 
 import { HttpInterceptor } from './interceptor/http.interceptor';
@@ -57,7 +58,8 @@ export function HttpLoaderFactory(http: Http) {
     ],
   providers: [
      PaginUtilService,
-     DaDataService
+     DaDataService,
+     DeleteUtilsService,
     ]
 })
 export class SharedModule { }
