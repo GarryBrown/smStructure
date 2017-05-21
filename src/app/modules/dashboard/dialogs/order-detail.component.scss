@@ -66,8 +66,7 @@ hr {
   float: right;
   margin-top:10px;
   margin-top:24px;
-  background-color: md-color($accent);
-  //background-color: $accent300;
+  background-color: md-color($ts-accent);
 
   &:focus {
     outline:none;

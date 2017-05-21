@@ -15,9 +15,6 @@ export class PlanChartComponent implements OnInit, OnDestroy, OnChanges {
   sumPlan: number;
   sumFact: number;
   name: string;
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
   unitsText = '';
 
   valueFormatting = (text) => {
@@ -29,7 +26,7 @@ export class PlanChartComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-     this.sumPlan = this.plans.reduce((sum, plan) => {
+    this.sumPlan = this.plans.reduce((sum, plan) => {
       return sum + plan.plan
     }, 0);
     this.sumFact = this.plans.reduce((sum, plan) => {
@@ -45,9 +42,7 @@ export class PlanChartComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onClickPlan(event) {
-    console.log(event);
-    console.log("event");
-    this.router.navigate(['kpi/detail/'+this.plans[0].id]);
+    this.router.navigate(['kpi/detail/' + this.plans[0].id]);
   }
 
 }

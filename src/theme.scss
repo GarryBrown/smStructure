@@ -1,22 +1,19 @@
 @import '~@angular/material/theming';
-// NOTE: Theming is currently experimental and not yet publically released!
 @include mat-core();
-$primary: mat-palette($mat-blue-grey);
-$accent: mat-palette($mat-teal);
-$warn: mat-palette($mat-red, 400);
-$text-color: #646868;
+$ts-primary: mat-palette($mat-teal, 600);
+$ts-accent: mat-palette($mat-deep-orange);
+$ts-warn: mat-palette($mat-red);
+$ts-theme: mat-light-theme($ts-primary, $ts-accent, $ts-warn);
+@include angular-material-theme($ts-theme);
+
+$text-color: #000;
 $tsAccent: #E57373;
 $tsAccent300: #E57373;
 $tsPrimary: #607D8B;
-$tsPrimary300: #90A4AE;
-$tsPrimary200: #B0BEC5;
+$tsPrimary300: mat-color($mat-teal, 50);
+$tsPrimary200: mat-color($mat-teal, 200);
+$divider-black: rgba(0, 0, 0, 0.12);
+$grey-light: mat-color($mat-grey, 200);
+$grey-dark: mat-color($mat-grey, 400);
+$ts-primary-300: #B0BEC5;
 $tsPrimary50: #E0F2F1;
-$theme: mat-light-theme($primary, $accent, $warn);
-@include angular-material-theme($theme);
-.m2app-dark {
-    $dark-primary: mat-palette($mat-pink, 700, 500, 900);
-    $dark-accent: mat-palette($mat-blue-grey, A200, A100, A400);
-    $dark-warn: mat-palette($mat-deep-orange);
-    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-    @include angular-material-theme($dark-theme);
-}

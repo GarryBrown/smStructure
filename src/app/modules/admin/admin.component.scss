@@ -56,9 +56,9 @@ ngb-pagination /deep/ {
         }
     }
     .page-item.active .page-link {
-        background-color: mat-color($accent);
+        background-color: mat-color($ts-accent);
         color: #fff;
-        border: 1px solid mat-color($accent);
+        border: 1px solid mat-color($ts-accent);
     }
     .page-link {
         padding: .40rem .65rem;

@@ -55,7 +55,6 @@ thead  tr th span:first-of-type {
 }
 
 .btn_details {
-  //background-color: $accent300;
   background-color: $tsAccent300;
   color: #fff;
   md-icon {
@@ -81,9 +80,9 @@ ngb-pagination /deep/  {
   }
 
   .page-item.active .page-link {
-    background-color: md-color($accent);
+    background-color: md-color($ts-accent);
     color: #fff;
-    border: 1px solid md-color($accent);
+    border: 1px solid md-color($ts-accent);
   }
   .page-link {
     padding: .40rem .65rem;
