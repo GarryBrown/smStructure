@@ -99,10 +99,11 @@ export class PrincipalService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this._identity = {
+          login: 'ElonMusk1971',
           firstname: 'Elon',
           lastname: 'Musk',
           hobby: 'Murder',
-          imageUrl: 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg',
+          imageUrl: 'https://www.aivanet.com/wp-content/uploads/2015/10/elonmusk3.jpg',
         };
         this.authenticated = true;
         this.authenticationState.next(this._identity);

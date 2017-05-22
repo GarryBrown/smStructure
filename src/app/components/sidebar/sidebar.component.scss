@@ -25,17 +25,15 @@ $heightSidebar: calc(100% - 64px);
     outline: 0px solid red;
     .profile-background {
         margin-top: 0px;
-        padding-top: 20px;
-        height: 150px;
+        padding: 16px;
         width: 100%;
-        padding-left: 20px;
         background-color: mat-color($ts-primary);
         outline: 0px solid green;
         .avatar {
             outline: 0px solid yellow;
-            width: 80px;
-            height: 80px;
-            margin-left: 15px;
+            width: 64px;
+            height: 64px;
+            margin-left: 16px;
             background-size: cover;
             background-position: center;
             border-radius: 50%;
@@ -43,8 +41,8 @@ $heightSidebar: calc(100% - 64px);
                 margin-left: 0;
             }
         }
-        button,
-        md-icon {
+        button {
+            margin-top: 8px;
             color: #ffffff;
         }
     }
