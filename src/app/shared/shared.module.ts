@@ -9,10 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SortByDirective } from './directive/sort-by.directive';
 import { SortDirective } from './directive/sort.directive';
 import { HasAuthorityDirective } from './directive/has-authority.directive';
+
 import { PaginUtilService } from './services/pagin-util.service';
 import { DaDataService } from './services/da-data.service';
 import { DeleteUtilsService } from './services/delete-utils.service';
+import { StoresService } from './services/stores.service';
+
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
+
+import { StoresDialogComponent, AddCustomerComponent } from './components/stores-dialog/stores-dialog.component';
 
 import { HttpInterceptor } from './interceptor/http.interceptor';
 import { InterceptableHttp } from './interceptor/interceptable-http';
@@ -30,6 +35,9 @@ export function HttpLoaderFactory(http: Http) {
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -42,7 +50,9 @@ export function HttpLoaderFactory(http: Http) {
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,
-    PrettyCountPipe
+    PrettyCountPipe,
+    StoresDialogComponent,
+    AddCustomerComponent
     ],
   exports: [
     CommonModule,
@@ -55,11 +65,14 @@ export function HttpLoaderFactory(http: Http) {
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,
+    StoresDialogComponent,
+    AddCustomerComponent,
     ],
   providers: [
      PaginUtilService,
      DaDataService,
      DeleteUtilsService,
+     StoresService,
     ]
 })
 export class SharedModule { }

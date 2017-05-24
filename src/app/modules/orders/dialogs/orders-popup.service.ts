@@ -18,10 +18,14 @@ export class OrdersPopupService {
 
   public open(component: any, id: number) {
 
-    this.ordersService.find(id)
-      .subscribe(order => {
-        this.bindDialog(component, order);
-      });
+    // this.ordersService.find(id)
+    //   .subscribe(order => {
+    //     this.bindDialog(component, order);
+    //   });
+    let order = this.ordersService.mockFind(id)[0];
+    console.log(order);
+    this.bindDialog(component, order);
+
 
   }
 
@@ -32,7 +36,7 @@ export class OrdersPopupService {
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
-    dialogRef.componentInstance.order = order.data;
+    dialogRef.componentInstance.order = order;
 
 
     dialogRef.afterClosed().subscribe(res => {

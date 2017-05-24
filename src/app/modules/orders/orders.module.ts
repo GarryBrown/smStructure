@@ -18,6 +18,7 @@ import { OrdersPopupService } from './dialogs/orders-popup.service';
 import { OrdersComponent } from './orders.component';
 import { OrderDetailComponent } from './dialogs/order-detail.component';
 import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { CouseDialogComponent } from './dialogs/couse-dialog/couse-dialog.component';
 
 
 @NgModule({
@@ -30,8 +31,8 @@ import { OrderPopupComponent } from './dialogs/order-popup.component';
     // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
-  declarations: [OrdersComponent, OrderPopupComponent, OrderDetailComponent],
-  entryComponents: [OrderDetailComponent],
+  declarations: [OrdersComponent, OrderPopupComponent, OrderDetailComponent, CouseDialogComponent],
+  entryComponents: [OrderDetailComponent, CouseDialogComponent],
   providers: [OrdersService, OrdersPopupService, DateUtilService, UserResolvePagingParams, ]
 })
 export class OrdersModule { }

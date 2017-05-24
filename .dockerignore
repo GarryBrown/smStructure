@@ -1,0 +1,17 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+#  directory
+node_modules
+gulp
+src
+#  files
+npm-debug.log
+.bowerrc
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitattributes
+.gitignore
+.yo-rc.json
+bower.json
+gulpfile.js

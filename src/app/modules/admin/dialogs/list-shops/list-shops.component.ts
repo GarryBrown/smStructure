@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
 import { StoresService } from '../../../stores/stores.service';
-import { Store } from '../../../../models';
 import { ListShopsService } from './list-shops.service';
+import { Store } from '../../../../models';
 import { DeleteUtilsService } from '../../../../shared';
+
 
 @Component({
   selector: 'app-list-shops',
@@ -38,7 +39,7 @@ export class ListShopsComponent implements OnInit {
     private listShopsService: ListShopsService,
     public dialog: MdDialog,
     public dialogRef: MdDialogRef<ListShopsComponent>,
-    private deleteUtilsService: DeleteUtilsService 
+    private deleteUtilsService: DeleteUtilsService,
   ) {
     this.previousPage = 1;
     this.page = 1;
@@ -127,6 +128,13 @@ export class ListShopsComponent implements OnInit {
 
   save() {
     this.dialogRef.close(this.selectedStores);
+  }
+
+
+  dialogShop(event: Event ,id?: number) {
+    event.stopPropagation();
+    console.log(event);
+    this.listShopsService.open(id);
   }
 
 

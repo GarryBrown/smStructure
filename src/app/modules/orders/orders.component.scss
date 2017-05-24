@@ -1,97 +1,93 @@
 @import "~theme.scss";
 
-
 /* forms */
-.form-filter{
-  //background-color: #00B8D4;
 
-  margin: -24px -24px 10px -24px;
+.form-filter {
+    //background-color: #00B8D4;
+    margin: -24px -24px 10px -24px;
 }
 
 material-datepicker {
-  margin-right:10px;
-
-  /deep/ div input {
-    border: none;
-
-  }
+    margin-right: 10px;
+    /deep/ div input {
+        border: none;
+    }
 }
-material-datepicker /deep/  {
-  input {
-    border: none !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
-  }
 
+material-datepicker /deep/ {
+    input {
+        border: none !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    }
 }
 
 md-select {
-  margin-right:10px;
-  width:15%;
-  min-width: 150px;
+    margin-right: 10px;
+    width: 15%;
+    min-width: 150px;
 }
 
 button {
-  //background-color: md-color($primary);
-  background-color: $tsAccent;
-
-  md-icon {
-    font-size: 18px;
-    padding-top:4px;
-  }
+    //background-color: md-color($primary);
+    background-color: $tsAccent;
+    md-icon {
+        font-size: 18px;
+        padding-top: 4px;
+    }
 }
+
 
 /* table */
 
 .table-responsive {
-  margin-left: -15px;
-  margin-right: -15px;
-  width:102%;
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 102%;
 }
+
 table {
-  font-size: 14px;
+    font-size: 14px;
 }
-thead  tr th span:first-of-type {
-  margin-right:3px;
+
+thead tr th span:first-of-type {
+    margin-right: 3px;
 }
 
 .btn_details {
-  //background-color: $accent300;
-  background-color: $tsAccent300;
-  color: #fff;
-  md-icon {
+    //background-color: $accent300;
+    background-color: $tsAccent300;
     color: #fff;
-    font-size: 18px;
-    padding-top: 2px;
-  }
+    md-icon {
+        color: #fff;
+        font-size: 18px;
+        padding-top: 2px;
+    }
 }
+
 
 /******** ngb-pagination *********/
 
-
-ngb-pagination /deep/  {
-  ul {
-    margin-left: 30%;
-  }
-
-  a {
-    color: gray;
-    &:hover{
-      color:gray;
+ngb-pagination /deep/ {
+    ul {
+        margin-left: 40%;
     }
-  }
-
-  .page-item.active .page-link {
-    background-color: md-color($accent);
-    color: #fff;
-    border: 1px solid md-color($accent);
-  }
-  .page-link {
-    padding: .40rem .65rem;
-  }
-
-  .page-item:first-child .page-link, .page-item:last-child .page-link{
-    border-radius: 0;
-  }
+    a {
+        color: $text-color;
+        &:hover {
+            color: $text-color;
+        }
+    }
+    .page-item.active .page-link {
+        background-color: mat-color($accent);
+        color: #fff;
+        border: 1px solid mat-color($accent);
+    }
+    .page-link {
+        color: mat-color($accent);
+        padding: .40rem .65rem;
+    }
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        border-radius: 0;
+    }
 }
-
-

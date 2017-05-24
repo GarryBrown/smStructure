@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit {
       if (this.principal.isAdmin(account.authorities)) {
         this.router.navigate(['admin']);
       } else {
-        this.router.navigate(['profile']);
+        this.router.navigate(['dashboard']);
       }
     }).catch(() => {
       console.log('some error of promise auth!');

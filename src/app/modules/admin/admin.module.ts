@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { SharedModule } from '../../shared';
+import { SharedModule, StoresDialogComponent, AddCustomerComponent } from '../../shared';
 import { DateUtilService } from '../../core';
 /* test api */
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -23,13 +23,14 @@ import { AdminPopupComponent } from './dialogs/admin-popup.component';
 import { ListShopsComponent } from './dialogs/list-shops/list-shops.component';
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     DatepickerModule,
     AdminRoutingModule,
     SharedModule,
-
     // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
 
   ],
@@ -38,11 +39,14 @@ import { ListShopsComponent } from './dialogs/list-shops/list-shops.component';
     AdminPopupComponent,
     AdminDetailComponent,
     AdminDialogComponent,
-    ListShopsComponent],
+    ListShopsComponent,
+    ],
   entryComponents: [
     AdminDetailComponent,
     AdminDialogComponent,
-    ListShopsComponent],
+    ListShopsComponent,
+    StoresDialogComponent,
+    AddCustomerComponent],
   providers: [
     AdminService,
     AdminPopupService,

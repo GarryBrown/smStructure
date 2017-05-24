@@ -9,7 +9,7 @@ import { Store } from '../../../models';
 
 @Injectable()
 export class StoresPopupService {
-  store: any;
+  store: Store;
   constructor(
     private dialog: MdDialog,
     private router: Router,
@@ -40,7 +40,6 @@ export class StoresPopupService {
     dialogRef = this.dialog.open(component, config);
 
     dialogRef.componentInstance.store = store;
-
 
     dialogRef.afterClosed().subscribe(res => {
       console.log('closed');

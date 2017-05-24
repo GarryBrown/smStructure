@@ -14,14 +14,15 @@ export class DaDataService {
       return this.http.post(this.urlCustomer, req, { headers : headers })
         .map((res: Response) => {
           return res.json();
-      });
+      })
+      ;
     }
 
     queryAddress(req) {
       let headers = this.createHeader();
       return this.http.post(this.urlAddress, req, { headers : headers })
         .map((res: Response) => {
-          return res.json();
+          return res.json().suggestions;
       });
     }
 

@@ -1,0 +1,91 @@
+<md-toolbar>Создание и редактирование торговой точки</md-toolbar>
+
+<div class="wrapper">
+  <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <md-select placeholder="Юр. лицо" style="width: 50%; margin-right: 24px;" [disabled]="isDisableForm">
+      <md-option *ngFor="let customer of customers" [value]="customer.id">
+        {{ customer.shortDescription }}
+      </md-option>
+    </md-select>
+    <button *ngIf="!isDisableForm" type="button" md-raised-button color="accent" (click)="openAddCustomer()">
+            <md-icon>add</md-icon>
+        </button>
+    <br>
+    <br>
+    <md-input-container class="input-block">
+      <input mdInput placeholder="Полное наименование" name="description" [(ngModel)]="store.description" required [disabled]="isDisableForm">
+    </md-input-container>
+    <md-input-container class="input-block">
+      <input mdInput placeholder="Краткое наименование" name="shortDescription" [(ngModel)]="store.shortDescription" required [disabled]="isDisableForm">
+    </md-input-container>
+
+
+    <!-- ==== Autocomplite ==== -->
+
+    <md-input-container class="address-autocomplete">
+      <input mdInput placeholder="Адресс юридический" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+    </md-input-container>
+
+    <!--[displayWith]="displayFn"-->
+    <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let state of filteredStates | async" [value]="state.value">
+        {{ state.value }}
+      </md-option>
+    </md-autocomplete>
+
+    <md-input-container class="address-autocomplete">
+      <input mdInput placeholder="Адресс фактический" [mdAutocomplete]="auto1" [formControl]="stateCtrl1">
+    </md-input-container>
+
+    <!--[displayWith]="displayFn"-->
+    <md-autocomplete #auto1="mdAutocomplete">
+      <md-option *ngFor="let state of filteredStates | async" [value]="state.value">
+        {{ state.value }}
+      </md-option>
+    </md-autocomplete>
+
+
+    <br>
+    <!--<label>Адрес юридический</label>
+    <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
+    <br>
+    <label>Адрес фактичский</label>
+    <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
+-->
+
+    <md-input-container class="input-block">
+      <input mdInput placeholder="Email" name="email" [(ngModel)]="store.email" required [disabled]="isDisableForm">
+    </md-input-container>
+    <md-input-container class="input-block">
+      <input mdInput placeholder="Контактный телефон" name="phoneNumber" [(ngModel)]="store.phoneNumber" required [disabled]="isDisableForm">
+    </md-input-container>
+    <br>
+
+    <!--<label for="">Время работы</label>-->
+    <br>
+    <md-input-container>
+      <input mdInput placeholder="С" name="acceptanceStartTime" [(ngModel)]="store.acceptanceStartTime" required [disabled]="isDisableForm">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="По" name="acceptanceEndTime" [(ngModel)]="store.acceptanceEndTime" required [disabled]="isDisableForm">
+    </md-input-container>
+
+
+    <div class="modal-footer" style="border-top:0">
+      <button md-raised-button type="button" (click)="clear()">
+                <md-icon>close</md-icon>
+                <span>Отмена</span>
+            </button>
+      <button *ngIf="isDisableForm" md-raised-button color="accent" type="button" (click)="toggleIsDisableForm()">
+                <md-icon>edit</md-icon>
+                <span>Изменить</span>
+            </button>
+      <button *ngIf="!isDisableForm" md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
+                <md-icon>done</md-icon>
+                <span>Сохранить</span>
+            </button>
+    </div>
+
+  </form>
+</div>

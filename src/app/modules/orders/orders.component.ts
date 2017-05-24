@@ -74,14 +74,15 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.ordersService.query({
-      page: this.page - 1,
-      size: this.itemsPerPage,
-      sort: this.sort()
-    }).subscribe(
-      (res: Response) => this.onSuccess(res.json(), res.headers),
-      (res: Response) => this.onError(res.json())
-      )
+    this.orders = this.ordersService.computing(this.ordersService.mockOrders);
+    // this.ordersService.query({
+    //   page: this.page - 1,
+    //   size: this.itemsPerPage,
+    //   sort: this.sort()
+    // }).subscribe(
+    //   (res: Response) => this.onSuccess(res.json(), res.headers),
+    //   (res: Response) => this.onError(res.json())
+    //   )
   }
 
   sort() {

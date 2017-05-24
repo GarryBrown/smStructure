@@ -1,4 +1,10 @@
-<md-toolbar>Магазины</md-toolbar>
+<md-toolbar>
+  <span>Магазины</span>
+  <button md-raised-button color="accent" (click)="dialogShop()">
+          <md-icon>add</md-icon>
+          <span>Добавить</span>
+        </button>
+</md-toolbar>
 <div class="table-responsive">
   <table class="table  table-hover   table-condensed">
     <thead>
@@ -15,6 +21,11 @@
         <td>{{store.description}}</td>
         <td>{{store.isActive}}</td>
         <td>{{store.addresses}}</td>
+        <td>
+          <button md-mini-fab color="accent" (click)="dialogShop($event,store.id)">
+            <md-icon>edit</md-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

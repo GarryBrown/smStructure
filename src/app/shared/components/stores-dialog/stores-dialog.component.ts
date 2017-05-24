@@ -1,9 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Store } from '../../../../models/store.model';
+import { Store } from '../../../models';
+import { FormControl } from '@angular/forms';
+import { MdAutocompleteModule } from '@angular/material';
 
-import { StoresService } from '../../stores.service';
-import { DaDataService } from '../../../../shared/services/da-data.service';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
+
+import { StoresService } from '../../services/stores.service';
+import { DaDataService } from '../../services/da-data.service';
+
 
 @Component({
   selector: 'app-stores-dialog',
@@ -20,18 +27,36 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
     { id: 3, shortDescription: 'Culture' }
   ];
 
+  stateCtrl: FormControl;
+  stateCtrl1: FormControl;
+  filteredStates: Observable<any[]>;
+
   constructor(
     public dialogRef: MdDialogRef<StoresDialogComponent>,
     public dialog: MdDialog,
     private storesService: StoresService,
     private daData: DaDataService) {
-      this.isDisableForm = true;
+    this.isDisableForm = true;
+    this.stateCtrl = new FormControl({ value: '', disabled: this.isDisableForm });
+    this.stateCtrl1 = new FormControl({ value: '', disabled: this.isDisableForm });
+    this.filteredStates = this.stateCtrl.valueChanges
+      .filter(val => val.length >= 1)
+      .flatMap(inputString => this.daData.queryAddress({ query: inputString }));
+
+
   }
 
 
   ngOnInit() {
     this.isSaving = false;
   }
+
+
+  displayFn(obj): any {
+    console.log(obj);
+    return obj.value;
+  }
+
 
   clear() {
     this.dialogRef.close('Cancel');
@@ -61,6 +86,15 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
 
   toggleIsDisableForm() {
     this.isDisableForm = !this.isDisableForm;
+    if (!this.isDisableForm) {
+      this.stateCtrl.enable();
+      this.stateCtrl1.enable();
+    } else {
+      this.stateCtrl.disable();
+      this.stateCtrl1.disable();
+    }
+
+    console.log(this.stateCtrl);
   }
 
   ngOnDestroy() { }
