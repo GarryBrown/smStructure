@@ -16,6 +16,7 @@ export class SigninComponent implements OnInit {
   rememberMe: boolean;
   username: string;
   credentials: any;
+  loading: boolean;
 
   constructor(
     private principal: PrincipalService,
@@ -25,12 +26,25 @@ export class SigninComponent implements OnInit {
   ) {
     this.credentials = {};
     this.rememberMe = true;
+    this.loading = true;
+
+
   }
 
   ngOnInit() {
+    console.log(` isAuthenticated on da SIGNIN ${this.principal.isAuthenticated()}`);
+    this.principal.identity().then(
+      account => {
+        if (account) this.redirect();
+        this.loading = false;
+      },
+      rej => {
+        this.loading = false;
+      }
+    );
   }
 
-  login () {
+  login() {
     this.loginService.login({
       username: this.username,
       password: this.password,
@@ -52,7 +66,9 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  
 
+  redirect() {
+    this.router.navigate(['/orders']);
+  }
 
 }

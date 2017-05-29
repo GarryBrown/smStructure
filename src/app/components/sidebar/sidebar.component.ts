@@ -1,6 +1,6 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 import { SidebarService } from './sidebar.service';
@@ -26,24 +26,16 @@ export class SidebarComponent implements OnInit {
     private principal: PrincipalService
   ) {
     translate.use('ru');
-    console.log("=====SIDEBAR CONSTRUECTOR");
-    // sidebartoggle.userAuth$.subscribe(user => {
-    //   console.log(user);
-    //   this.user = user;
-    //   this.resetToggle();
-    // });
-    sidebartoggle.missionConfirmed$.subscribe( show => this.show = show );
+    sidebartoggle.missionConfirmed$.subscribe(show => this.show = show);
 
     principal.userAuth$.subscribe(user => {
-      console.log(user);
       this.user = user
       this.resetToggle();
-      } , error => {
-      console.log('user is undefined');
+    }, error => {
       this.user = null;
     });
 
-    this.getUser(); 
+    this.getUser();
   }
 
   toggle() {
@@ -59,14 +51,21 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("=====SIDEBAR ONINIT");
   }
 
   logout() {
-    this.account.logout();
-    this.principal.authenticate(null); // user logout emit
-    this.resetToggle();
-    this.router.navigate(['/login']);
+    this.account.logout().subscribe(
+      s => console.log(s),
+      er => console.log(er),
+      () => {
+        this.principal.authenticate(null);
+        this.resetToggle();
+        this.router.navigate(['/login']).then(
+          s => console.log(s),
+          er => console.log(er)
+        );
+      }
+    );
   }
 
 
@@ -78,11 +77,9 @@ export class SidebarComponent implements OnInit {
   getUser() {
     this.account.getAccount()
       .then(user => {
-        console.log(user);
         this.user = user;
         this.resetToggle();
       }, error => {
-        console.log('user is undefined');
         this.user = null;
       });
   }

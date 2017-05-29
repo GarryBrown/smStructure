@@ -1,39 +1,35 @@
 <md-toolbar>Создание и редактирование торговой точки</md-toolbar>
 
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-    <!-- Search customer daData -->
-    <app-autocomplite-customer [placeholder]="'Введите название, ИНН или адрес'" (selectSug)="onSelectSug($event)"></app-autocomplite-customer>
-    <!-- inn -->
-    <md-input-container>
-        <input mdInput placeholder="Инн" name="inn" 
-        [(ngModel)]="customer.inn" required>
-    </md-input-container>   
-    <!--description -->
-    <md-input-container>
-        <input mdInput placeholder="Полное название" name="description" 
-        [(ngModel)]="customer.description" required>
-    </md-input-container>
-    <!--shortDescription -->
-    <md-input-container>
-        <input mdInput placeholder="Короткое название" name="shortDescription" 
-        [(ngModel)]="customer.shortDescription" (ngModelChange)="search($event)" required>
-    </md-input-container>
-    <!--address -->
-    <md-input-container>
-        <input mdInput placeholder="Адрес" name="address" 
-        [(ngModel)]="customer.address"  required>
-    </md-input-container>
+  <!-- Search customer daData -->
+  <app-autocomplite-customer [placeholder]="'Введите название, ИНН или адрес'" (selectSug)="onSelectSug($event)"></app-autocomplite-customer>
+  <!-- inn -->
+  <md-input-container>
+    <input mdInput placeholder="Инн" name="inn" [(ngModel)]="customer.inn" required>
+  </md-input-container>
+  <!--description -->
+  <md-input-container>
+    <input mdInput placeholder="Полное название" name="description" [(ngModel)]="customer.description" required>
+  </md-input-container>
+  <!--shortDescription -->
+  <md-input-container>
+    <input mdInput placeholder="Короткое название" name="shortDescription" [(ngModel)]="customer.shortDescription" required>
+  </md-input-container>
+  <!--address -->
+  <md-input-container>
+    <input mdInput placeholder="Адрес" name="address" [(ngModel)]="customer.address" required>
+  </md-input-container>
 
 
-    <div class="modal-footer">
-        <button md-raised-button type="button" (click)="clear()">
+  <div class="modal-footer">
+    <button md-raised-button type="button" (click)="clear()">
             <md-icon>close</md-icon>
             <span>Отмена</span>
         </button>
-        <button md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
+    <button md-raised-button color="accent" type="submit" [disabled]="editForm.form.invalid || isSaving">
             <md-icon>done</md-icon>
             <span>Сохранить</span>
         </button>
-    </div>
+  </div>
 
 </form>

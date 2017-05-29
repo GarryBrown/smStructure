@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
+import { PrincipalService } from '../../core';
 import { OrdersService } from './orders.service';
 import { OrdersPopupService } from './dialogs/orders-popup.service';
+import { Account } from '../../models';
 
 @Component({
   selector: 'app-orders',
@@ -17,6 +19,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   error: any;
   success: any;
+  loading: boolean;
+  reloadFunc: any;
+  localReloadToggle: boolean;
 
   itemsPerPage: number;
   routeData: any;
@@ -41,6 +46,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public ordersService: OrdersService,
+    private principal: PrincipalService,
     public dialog: MdDialog,
     private dialogsService: OrdersPopupService,
     private viewContainerRef: ViewContainerRef
@@ -51,11 +57,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.reverse = data['pagingParams'].ascending;
       this.predicate = data['pagingParams'].predicate;
     });
+    this.loading = true;
   }
 
 
   ngOnInit() {
     this.loadData();
+    this.principal.identity().then(
+      account => {
+        console.log('then work');
+        this.checkAutoReload(account);
+      }
+    )
+
   }
 
   ngOnDestroy() {
@@ -75,6 +89,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.orders = this.ordersService.computing(this.ordersService.mockOrders);
+    setTimeout(
+      () => this.loading = false,
+      1200)
     // this.ordersService.query({
     //   page: this.page - 1,
     //   size: this.itemsPerPage,
@@ -102,10 +119,43 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   private onSuccess(data, headers) {
     this.orders = this.ordersService.computing(data.data);
+    this.loading = false;
   }
 
   private onError(error) {
     console.log('On error things');
+  }
+
+  /******AUTORELOAD*******/
+
+  checkAutoReload(user: Account) {
+    this.localReloadToggle = user.autoReload;
+    if (user.autoReload) {
+      console.log('autoReload work');
+      this.autoReload();
+    }
+  }
+
+  autoReload() {
+    this.reloadFunc = setInterval( () => this.runReload(), 5000);
+  }
+
+  runReload() {
+    this.loading = true;
+    this.loadData();
+  }
+
+  stopAutoReload() {
+    clearInterval(this.reloadFunc);
+  }
+
+  toggleReload() {
+    if ( this.localReloadToggle ) {
+      this.stopAutoReload();
+    } else {
+      this.autoReload();
+    }
+    this.localReloadToggle = !this.localReloadToggle;
   }
 
 

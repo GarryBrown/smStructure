@@ -1,5 +1,6 @@
 <md-card>
-
+  <md-progress-bar *ngIf="loading" style="position:absolute; top: 10px; left:0;" mode="indeterminate" color="accent"></md-progress-bar>
+  <!--<md-spinner *ngIf="loading" mode="indeterminate" strokeWidth="10px" color="accent" style="position:absolute; top: 10px; left:0; height:30px" mode="indeterminate"></md-spinner>-->
   <form action="">
     <md-select placeholder="Точки доставки">
       <md-option *ngFor="let food of foods" [value]="food.value">
@@ -16,6 +17,10 @@
     <material-datepicker [(date)]="dateTo" [placeholder]="dateToPlaceholder"></material-datepicker>
 
     <button md-raised-button color="accent"><md-icon>filter_list</md-icon>Фильтр</button>
+    <label>Автообновление</label>
+    <md-slide-toggle color="accent" [checked]="localReloadToggle" (change)="toggleReload()">
+    </md-slide-toggle>
+
   </form>
 
 
@@ -45,10 +50,13 @@
           <td align="right">{{order.receivables}}</td>
           <td class="left">{{order.typeOfOrderStatus.description}}</td>
           <td>
-            <button md-raised-button type="submit" color="accent" [routerLink]="['/',  { outlets: { popup: 'order/'+ order.id + '/detail' } }]" replaceUrl="true" class="btn-sm btn_details">
+            <button md-mini-fab type="button" color="accent" [routerLink]="['/',  { outlets: { popup: 'order/'+ order.id + '/detail' } }]" replaceUrl="true">
+              <md-icon size="sm">visibility</md-icon>
+            </button>
+            <!--<button md-raised-button type="submit" color="accent" [routerLink]="['/',  { outlets: { popup: 'order/'+ order.id + '/detail' } }]" replaceUrl="true" class="btn-sm btn_details">
           <md-icon size="sm">visibility</md-icon>
           <span class="hidden-md-down">Просмотр</span>
-        </button>
+        </button>-->
           </td>
         </tr>
       </tbody>

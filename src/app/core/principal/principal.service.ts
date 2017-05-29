@@ -16,25 +16,26 @@ export class PrincipalService {
     constructor(
         private account: AccountService,
         private authJwt: AuthJwtService
-    ) {}
-    
-      auth(user: any) {
-    this.authenticationState.next(user);
-  }
+    ) { }
 
-    authenticate (_identity) {
-      this._identity = _identity;
-      this.authenticated = _identity !== null;
-      console.log('=====this.authenticationState.next(this._identity);');
-      this.authenticationState.next(this._identity);
+    auth(user: any) {
+        this.authenticationState.next(user);
+    }
+
+    authenticate(_identity) {
+        this._identity = _identity;
+        this.authenticated = _identity !== null;
+        console.log(`==== set authenticated : ${this.authenticated}`);
+        console.log('=====this.authenticationState.next(this._identity);');
+        this.authenticationState.next(this._identity);
     }
 
     fakeUpdateProfile(user) {
-      this._identity = user;
-      return this._identity;
+        this._identity = user;
+        return this._identity;
     }
 
-    hasAnyAuthority (authorities) {
+    hasAnyAuthority(authorities) {
         if (!this.authenticated || !this._identity || !this._identity.authorities) {
             return false;
         }
@@ -48,9 +49,9 @@ export class PrincipalService {
         return false;
     }
 
-    hasAuthority (authority): Promise<any> {
+    hasAuthority(authority): Promise<any> {
         if (!this.authenticated) {
-           return Promise.resolve(false);
+            return Promise.resolve(false);
         }
 
         return this.identity().then(id => {
@@ -60,41 +61,44 @@ export class PrincipalService {
         });
     }
 
-    identity (force?: boolean): Promise<any> {
-      if (force === true) {
-        this._identity = undefined;
-        this.authenticationState.next(this._identity);
-      }
-
-      console.log('===PRINCIPAL===');
-
-      if (this._identity) {
-        this.authenticationState.next(this._identity);
-        return Promise.resolve(this._identity);
-      }
-
-      return this.account.get().toPromise().then(account => {
-
-        account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
-
-        if (account) {
-          this._identity = account;
-          this.authenticated = true;
-          this.urlApi = account.createdBy;
-        } else {
-          this._identity = undefined;
-          this.authenticated = false;
-          this.urlApi = undefined;
+    identity(force?: boolean): Promise<any> {
+        console.log(`===PRINCIPAL=== ${force}`);
+        if (force === true) {
+            this._identity = undefined;
+            this.authenticationState.next(this._identity);
         }
-        this.authenticationState.next(this._identity);
-        return this._identity;
-      }).catch(err => {
-        this._identity = undefined;
-        this.authenticated = false;
-        this.urlApi = undefined;
-        this.authenticationState.next(this._identity);
-        return null;
-      });
+
+        
+
+        if (this._identity) {
+            this.authenticationState.next(this._identity);
+            return Promise.resolve(this._identity);
+        }
+        console.log('===PRINCIPAL GET PROFILE===');
+        return this.account.get().toPromise().then(account => {
+
+            account.imageUrl = 'https://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
+            account.autoReload = true;
+
+            if (account) {
+                this._identity = account;
+                this.authenticated = true;
+                console.log(`==== set authenticated : ${this.authenticated}`);
+                this.urlApi = account.createdBy;
+            } else {
+                this._identity = undefined;
+                this.authenticated = false;
+                this.urlApi = undefined;
+            }
+            this.authenticationState.next(this._identity);
+            return this._identity;
+        }).catch(err => {
+            this._identity = undefined;
+            this.authenticated = false;
+            this.urlApi = undefined;
+            this.authenticationState.next(this._identity);
+            return null;
+        });
     }
 
     getUrl(): string {
@@ -109,13 +113,13 @@ export class PrincipalService {
         }
     }
 
-    isAuthenticated (): boolean {
-      return this.authenticated;
+    isAuthenticated(): boolean {
+        return this.authenticated;
     }
 
 
-    isIdentityResolved (): boolean {
-        return this._identity !== undefined;
+    isIdentityResolved(): boolean {
+        return this._identity !== undefined && this._identity !== null;
     }
 
     getAuthenticationState(): Observable<any> {
@@ -123,20 +127,20 @@ export class PrincipalService {
     }
 
     getImageUrl(): String {
-        return this.isIdentityResolved () ? this._identity.imageUrl : null;
+        return this.isIdentityResolved() ? this._identity.imageUrl : null;
     }
 
     isAdmin(authorities: Array<string>): boolean {
-    let isAdmin = false;
-    authorities.forEach(
-      el => {
-        if (el === 'ROLE_ADMIN') {
-          isAdmin = true;
-        }
-      }
-    );
-    return isAdmin;
-  }
+        let isAdmin = false;
+        authorities.forEach(
+            el => {
+                if (el === 'ROLE_ADMIN') {
+                    isAdmin = true;
+                }
+            }
+        );
+        return isAdmin;
+    }
 
 
 }

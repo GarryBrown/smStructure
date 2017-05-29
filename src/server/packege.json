@@ -1,0 +1,17 @@
+{
+  "name": "Transasia B2B-Portal Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "connect": "^3.6.2",
+    "http-proxy-middleware": "^0.17.4",
+    "https": "^1.0.0",
+    "serve-static": "^1.12.3"
+  },
+  "scripts": {
+    "start": "node server.js &"
+  },
+  "author": "demyanyuk.iv",
+  "license": "ISC"
+}
