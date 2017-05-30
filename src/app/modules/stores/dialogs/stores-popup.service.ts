@@ -25,7 +25,6 @@ export class StoresPopupService {
           this.bindDialog(component, store);
         });
     } else {
-      console.log(new Store());
       this.bindDialog(component, new Store());
     }
   }
@@ -38,8 +37,12 @@ export class StoresPopupService {
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
-
     dialogRef.componentInstance.store = store;
+    if (store.id === undefined) {
+      dialogRef.componentInstance.isDisableForm = false;
+      dialogRef.componentInstance.stateCtrl.enable();
+      dialogRef.componentInstance.stateCtrl1.enable();
+    }
 
     dialogRef.afterClosed().subscribe(res => {
       console.log('closed');

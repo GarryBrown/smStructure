@@ -1,8 +1,8 @@
-import { NgModule, Injectable }             from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 
-import { PaginUtilService } from '../../shared/services/pagin-util.service';
-import { RouteAccessService } from '../../core/auth/route-access.service';
+import { PaginUtilService } from '../../shared';
+import { RouteAccessService } from '../../core';
 
 import { StoresComponent } from './stores.component';
 import { StoresPopupComponent } from './dialogs/stores-popup.component';

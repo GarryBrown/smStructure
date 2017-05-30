@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Store } from '../../../models';
 import { FormControl } from '@angular/forms';
 import { MdAutocompleteModule } from '@angular/material';
 
@@ -10,7 +9,8 @@ import 'rxjs/add/operator/map';
 
 import { StoresService } from '../../services/stores.service';
 import { DaDataService } from '../../services/da-data.service';
-
+import { Store, Customer } from '../../../models';
+import { CustomersDialogComponent } from '../customers-dialog/customers-dialog.component';
 
 @Component({
   selector: 'app-stores-dialog',
@@ -22,9 +22,9 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
   public store: Store;
   isDisableForm: boolean;
   customers = [
-    { id: 1, shortDescription: 'Nike' },
-    { id: 2, shortDescription: 'Jordan' },
-    { id: 3, shortDescription: 'Culture' }
+    { id: 1, shortDescription: 'Nike', description: 'Nike Official', inn: '123', kpp: '77777', address: 'Woooooowoow' },
+    { id: 2, shortDescription: 'Jordan',  description: 'Nike Official', inn: '123', kpp: '77777', address: 'Woooooowoow' },
+    { id: 3, shortDescription: 'Culture',  description: 'Nike Official', inn: '123', kpp: '77777', address: 'Woooooowoow' }
   ];
 
   stateCtrl: FormControl;
@@ -40,15 +40,17 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
     this.stateCtrl = new FormControl({ value: '', disabled: this.isDisableForm });
     this.stateCtrl1 = new FormControl({ value: '', disabled: this.isDisableForm });
     this.filteredStates = this.stateCtrl.valueChanges
+      .startWith('')
       .filter(val => val.length >= 1)
       .flatMap(inputString => this.daData.queryAddress({ query: inputString }));
 
-
+      
   }
 
 
   ngOnInit() {
     this.isSaving = false;
+    console.log(this.store);
   }
 
 
@@ -100,23 +102,25 @@ export class StoresDialogComponent implements OnInit, OnDestroy {
   ngOnDestroy() { }
 
 
-  openAddCustomer() {
-    let dialogRef = this.dialog.open(AddCustomerComponent);
+  openAddCustomer(customer?) {
+    if (!customer) {
+      customer = new Customer();
+    }
+    
+    let dialogRef = this.dialog.open(CustomersDialogComponent, {
+      height: '80%',
+      width: '70%',
+    });
+    
+    dialogRef.componentInstance.customer = customer;
     dialogRef.afterClosed().subscribe(result => {
-      //this.selectedOption = result;
+      if (result) {
+        console.log(`result ${result}`);
+      }
+
     });
   }
 
 }
 
 
-
-@Component({
-  selector: 'app-add-customer',
-  template: `
-  <h1> Woooow </h1>`
-})
-
-export class AddCustomerComponent {
-  constructor(public dialogRef: MdDialogRef<AddCustomerComponent>) { }
-}

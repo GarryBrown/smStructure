@@ -8,6 +8,7 @@ export class Store {
         public email?: string,
         public acceptanceStartTime?: string,
         public acceptanceEndTime?: string,
+        public customer?: any,
     ) {}
 }
 

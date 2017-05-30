@@ -7,6 +7,7 @@ export * from './interceptor/interceptable-http';
 export * from './pipes/pretty-count.pipe';
 
 export * from './components/stores-dialog/stores-dialog.component';
+export * from './components/customers-dialog/customers-dialog.component';
 
 export * from './services/da-data.service';
 export * from './services/pagin-util.service';

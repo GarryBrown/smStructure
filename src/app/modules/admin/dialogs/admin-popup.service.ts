@@ -36,11 +36,12 @@ export class AdminPopupService {
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
+    if (user.id === undefined || user.id === null) {
+      dialogRef.componentInstance.isDisableForm = false;
+    }
 
     user.shops = this.shopsMock;
     dialogRef.componentInstance.user = user;
-
-
 
     dialogRef.afterClosed().subscribe(res => {
       this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
@@ -48,8 +49,6 @@ export class AdminPopupService {
 
     return dialogRef;
   }
-
-
 
 
   setMock() {

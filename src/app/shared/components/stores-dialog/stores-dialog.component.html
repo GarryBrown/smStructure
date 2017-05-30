@@ -3,14 +3,17 @@
 <div class="wrapper">
   <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
-    <md-select placeholder="Юр. лицо" style="width: 50%; margin-right: 24px;" [disabled]="isDisableForm">
-      <md-option *ngFor="let customer of customers" [value]="customer.id">
+    <md-select placeholder="Юр. лицо" [(ngModel)]="store.customer" name="customer" style="width: 50%; margin-right: 24px;" [disabled]="isDisableForm">
+      <md-option *ngFor="let customer of customers" [value]="customer">
         {{ customer.shortDescription }}
       </md-option>
     </md-select>
-    <button *ngIf="!isDisableForm" type="button" md-raised-button color="accent" (click)="openAddCustomer()">
-            <md-icon>add</md-icon>
-        </button>
+    <button [disabled]="isDisableForm" type="button" md-raised-button color="accent" (click)="openAddCustomer()">
+      <md-icon>add</md-icon>
+    </button>
+    <button [disabled]="isDisableForm || !store.customer" type="button" md-raised-button color="accent" (click)="openAddCustomer(store.customer)">
+      <md-icon>edit</md-icon>
+    </button>
     <br>
     <br>
     <md-input-container class="input-block">
@@ -47,12 +50,6 @@
 
 
     <br>
-    <!--<label>Адрес юридический</label>
-    <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
-    <br>
-    <label>Адрес фактичский</label>
-    <app-autocomplite-address [placeholder]="'Введите адрес'" [isDisableForm]="isDisableForm"></app-autocomplite-address>
--->
 
     <md-input-container class="input-block">
       <input mdInput placeholder="Email" name="email" [(ngModel)]="store.email" required [disabled]="isDisableForm">

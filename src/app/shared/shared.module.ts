@@ -5,26 +5,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+/* directives */
 import { SortByDirective } from './directive/sort-by.directive';
 import { SortDirective } from './directive/sort.directive';
 import { HasAuthorityDirective } from './directive/has-authority.directive';
-
+/* service */
 import { PaginUtilService } from './services/pagin-util.service';
 import { DaDataService } from './services/da-data.service';
 import { DeleteUtilsService } from './services/delete-utils.service';
 import { StoresService } from './services/stores.service';
-
+/* pipes  */
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
-
-import { StoresDialogComponent, AddCustomerComponent } from './components/stores-dialog/stores-dialog.component';
-
+/* components */
+import { StoresDialogComponent } from './components/stores-dialog/stores-dialog.component';
+import { CustomersDialogComponent } from './components/customers-dialog/customers-dialog.component';
+/* interceptors */
 import { HttpInterceptor } from './interceptor/http.interceptor';
 import { InterceptableHttp } from './interceptor/interceptable-http';
 
 import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { Http } from '@angular/http';
+
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,7 +54,7 @@ export function HttpLoaderFactory(http: Http) {
     HasAuthorityDirective,
     PrettyCountPipe,
     StoresDialogComponent,
-    AddCustomerComponent
+    CustomersDialogComponent
     ],
   exports: [
     CommonModule,
@@ -66,7 +68,7 @@ export function HttpLoaderFactory(http: Http) {
     SortDirective,
     HasAuthorityDirective,
     StoresDialogComponent,
-    AddCustomerComponent,
+    CustomersDialogComponent,
     ],
   providers: [
      PaginUtilService,
