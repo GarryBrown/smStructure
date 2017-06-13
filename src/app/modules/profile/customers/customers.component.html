@@ -1,30 +1,27 @@
 <div class="wrapper">
   <div class="row">
     <div class="col-md-3 toolbar-action">
-       <button md-raised-button color="accent" [routerLink]="['/', { outlets : { popup : ['new-customer'] } } ]" class="btn-new">
+      <button md-raised-button color="accent" [routerLink]="['/', { outlets : { popup : ['new-customer'] } } ]" class="btn-new">
         <md-icon>add</md-icon>
         <span>Добавить юридическое лицо</span>
        </button>
     </div>
     <div class="col-md-3 toolbar-action">
       <md-select placeholder="Фильтр">
-        <md-option *ngFor="let food of foods" [value]="food.value">
+        <!--<md-option *ngFor="let food of foods" [value]="food.value">
           {{ food.viewValue }}
-        </md-option>
+        </md-option>-->
       </md-select>
     </div>
-    
-  </div>
- 
-  <md-list >
-  <md-list-item *ngFor="let store of stores; let i = index;">
-    <p md-line><strong>{{ i + 1 }}</strong> {{store.description}}</p>
-    <p md-line> {{ store.phoneNumber}} </p>
-    <button md-mini-fab mdTooltip="Просмотр деталей" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" 
-         [routerLink]="['/', { outlets: { popup: 'customer/' + store.id + '/detail' } }]"><md-icon>visibility</md-icon></button>
-    <button md-mini-fab mdTooltip="Редактировать точку" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" 
-         [routerLink]="['/', { outlets: { popup: 'customer/' + store.id + '/edit' } }]"><md-icon>create</md-icon></button>
-  </md-list-item>
-</md-list>
-</div>
 
+  </div>
+
+  <md-list>
+    <md-list-item *ngFor="let store of stores; let i = index;">
+      <p md-line><strong>{{ i + 1 }}</strong> {{store.description}}</p>
+      <p md-line> {{ store.phoneNumber}} </p>
+      <button md-mini-fab mdTooltip="Просмотр деталей" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" [routerLink]="['/', { outlets: { popup: 'customer/' + store.id + '/detail' } }]"><md-icon>visibility</md-icon></button>
+      <button md-mini-fab mdTooltip="Редактировать точку" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'" [routerLink]="['/', { outlets: { popup: 'customer/' + store.id + '/edit' } }]"><md-icon>create</md-icon></button>
+    </md-list-item>
+  </md-list>
+</div>

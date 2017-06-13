@@ -5,7 +5,6 @@ $ts-accent: mat-palette($mat-deep-orange);
 $ts-warn: mat-palette($mat-red);
 $ts-theme: mat-light-theme($ts-primary, $ts-accent, $ts-warn);
 @include angular-material-theme($ts-theme);
-
 $text-color: #000;
 $tsAccent: #E57373;
 $tsAccent300: #E57373;

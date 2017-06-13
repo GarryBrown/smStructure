@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { SidebarService } from '../sidebar/sidebar.service';
 import { SidebarToggleService } from '../../core/utils/sidebar-toggle.service';
 import { PrincipalService } from '../../core';
+
+import { GetHelpComponent } from '../get-help/get-help.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private account: SidebarService,
     private sidebartoggle: SidebarToggleService,
-    private principal: PrincipalService
+    private principal: PrincipalService,
+    public dialog: MdDialog
 
   ) {
     principal.userAuth$.subscribe(user => this.user = user);
@@ -28,8 +32,8 @@ export class HeaderComponent implements OnInit {
       this.user = user;
       this.resetToggle();
     });
-    sidebartoggle.missionConfirmed$.subscribe( show => this.show = show );
-   }
+    sidebartoggle.missionConfirmed$.subscribe(show => this.show = show);
+  }
 
   ngOnInit() {
   }
@@ -43,6 +47,14 @@ export class HeaderComponent implements OnInit {
   resetToggle() {
     this.show = this.user ? true : false;
     this.sidebartoggle.sidebarToggle(this.show);
+  }
+
+
+  openHelp() {
+    let dialogRef = this.dialog.open(GetHelpComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }

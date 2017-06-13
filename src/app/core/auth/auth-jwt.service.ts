@@ -61,11 +61,14 @@ export class AuthJwtService {
     }
 
     loginWithToken(jwt, rememberMe) {
-        if (jwt) {
+        let dataJwt = this.parseJwt(jwt);
+
+        if (this.checkAuthority(dataJwt)) {
+            this.storeUrlFromJWT(dataJwt);
             this.storeAuthenticationToken(jwt, rememberMe);
             return Promise.resolve(jwt);
         } else {
-            return Promise.reject('auth-jwt-service Promise reject'); // Put appropriate error message here
+            return Promise.reject('Hasn\'t role b2b: Promise reject'); // Put appropriate error message here
         }
     }
 

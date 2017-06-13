@@ -31,7 +31,6 @@ export class CoreModule {
         PrincipalService,
         DateUtilService,
         CSRFService,
-        //ElementRef,
         SidebarToggleService,
         UrlB2bService
       ]

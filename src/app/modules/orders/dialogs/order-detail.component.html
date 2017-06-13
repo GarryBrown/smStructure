@@ -1,0 +1,81 @@
+<div class="wrapper">
+
+  <h4 class="title">
+    <span>Заказ: {{order.numberOfDocument}}</span>
+    <span>Заказано: {{order.orderAmount | prettyCount }}</span>
+    <span> Выписано: {{order.saleAmount | prettyCount }}</span>
+  </h4>
+
+  <md-tab-group>
+    <md-tab label="Реквизиты заказа">
+      <div class="wrapper-tab">
+        <md-toolbar>{{order.route.code}}, {{order.deliveryPoint.description}}</md-toolbar>
+        <md-list>
+          <md-list-item><span> Тип цены :</span> {{order.typeOfPrice.description}} </md-list-item>
+          <md-list-item><span> Тип оплаты :</span> {{order.typeOfPayment.description}}</md-list-item>
+          <md-list-item><span> Кредитные условия :</span> {{order.typeOfCreditLine.description}}</md-list-item>
+          <md-list-item><span> Расчетные документы :</span> {{order.typeOfOrder.description}}</md-list-item>
+          <md-list-item><span> Расчетные документы :</span> {{order.stock.description}}</md-list-item>
+          <md-list-item><span> Тип единицы товара :</span> {{order.typeOfPayment.description}}</md-list-item>
+          <md-list-item><span> Дата доставки :</span> {{order.dateOfDelivery | date: 'dd.MM.y' }}</md-list-item>
+          <md-list-item><span> Масса :</span> 26,5 кг</md-list-item>
+          <md-list-item><span> Объем :</span> Большой </md-list-item>
+          <md-list-item><span> Коментарий :</span> {{order.comment}}</md-list-item>
+        </md-list>
+      </div>
+    </md-tab>
+    <md-tab label="Состав заказа">
+      <div class="wrapper-tab">
+        <div class="table-responsive">
+          <table class="table  table-hover table-striped  table-condensed dataTables-example">
+            <thead>
+              <tr class="first-table-header">
+                <th></th>
+                <th></th>
+                <th class="order" colspan="3"><span>Заказано</span></th>
+                <th colspan="3"><span>Отгружено</span></th>
+                <th></th>
+              </tr>
+              <tr class="second-table-header">
+                <th></th>
+                <th><span>Наименование</span></th>
+                <th class="order"><span>Шт.</span></th>
+                <th class="order"><span>Цена</span> </th>
+                <th class="order"><span>Сумма</span></th>
+                <th><span>Шт.</span></th>
+                <th><span>Цена</span></th>
+                <th><span>Сумма</span></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let orderSpec of order.orderSpecialities; let i = index;">
+                <td>{{i+1}}</td>
+                <td align="left">{{orderSpec.good.description}}</td>
+                <td align="right" align="left" class="order">{{orderSpec.orderQuantity}}</td>
+                <!--шт-->
+                <td align="right" class="order">{{orderSpec.orderPrice }}</td>
+                <!--цена-->
+                <td align="right" class="order">{{orderSpec.orderQuantity * orderSpec.orderPrice | prettyCount}}</td>
+                <!--сумма-->
+                <td align="right">{{orderSpec.saleQuantity }}</td>
+                <!--шт-->
+                <td align="right">{{orderSpec.salePrice | prettyCount}}</td>
+                <!--цена-->
+                <td align="right">{{orderSpec.salePrice * orderSpec.saleQuantity | prettyCount}}</td>
+                <!--сумма-->
+                <th>
+                  <button *ngIf="orderSpec.orderQuantity !== orderSpec.saleQuantity" (click)="openCouse()" md-mini-fab mdTooltip="Причина" [mdTooltipShowDelay]="300" [mdTooltipPosition]="'before'"><md-icon>feedback</md-icon></button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </md-tab>
+  </md-tab-group>
+
+
+  <!--<button type="button" md-raised-button (click)="dialogRef.close(true)">OK</button>-->
+  <button type="button" md-raised-button (click)="dialogRef.close()" class="btn-close" color="accent">Закрыть</button>
+</div>

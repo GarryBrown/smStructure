@@ -43,14 +43,11 @@ export class ActivateComponent implements OnInit {
     
     this.authServerProvider.loginWithToken(jwt, rememberMe).then(jwt => {
         this.principal.identity(true).then(account => {
-          console.log(account);
           if (account) {
             this.redirect(account);
           } else {
             console.log('account empty');
           }
-          
-
         });
         return cb();
       }, err => {
@@ -68,11 +65,12 @@ export class ActivateComponent implements OnInit {
   }
 
   checkUser() {
-    if (!this.principal.isAuthenticated()) {
-      this.checkCookie();
-    } else {
-      this.principal.identity().then(account => this.redirect(account)); 
-    }
+    console.log('checkUser');
+
+    this.principal.identity().then(
+      account => this.redirect(account),
+      err => this.checkCookie()
+      );
   }
 
 
