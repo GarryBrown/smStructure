@@ -1,11 +1,12 @@
 {
-  "name": "hermes-manager-frontend",
+  "name": "HermesManagerFrontend",
   "version": "0.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json",
+    "start": "ng serve --port 4202 --proxy-config proxy.config.json",
+    "external": "ng serve --host 192.168.210.36 --port 4202 --proxy-config proxy.config.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -46,8 +47,10 @@
   "devDependencies": {
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "^4.0.0",
+    "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "angular-in-memory-web-api": "^0.2.4",
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
@@ -61,8 +64,7 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0",
-    "@types/hammerjs": "^2.0.34",
-    "angular-in-memory-web-api": "^0.2.4",
-    "sw-precache": "^5.1.0"
+    "sw-precache": "^5.1.0",
+    "uglifyjs": "^2.4.11"
   }
 }

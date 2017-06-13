@@ -27,6 +27,12 @@ export class KPIComponent implements OnInit, OnDestroy {
     'Месяц'
   ];
 
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public kpiService: KPIService,
+  ) { }
+  
   predictionChange(event) {
     this.predictionEnabled = event.checked;
   }
@@ -35,7 +41,7 @@ export class KPIComponent implements OnInit, OnDestroy {
     this.planTypes = [];
     this.plansss = [];
     this.selectedAgents[0].plans.forEach((plan) => {
-      if (!this.planTypes.includes(plan.typeplanid)){
+      if (!this.planTypes.includes(plan.typeplanid)) {
         this.planTypes.push(plan.typeplanid);
       }
     });
@@ -53,11 +59,7 @@ export class KPIComponent implements OnInit, OnDestroy {
     console.log(this.plansss);
   }
 
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    public kpiService: KPIService,
-  ) { }
+
 
   ngOnInit() {
     this.loadData();

@@ -8,12 +8,14 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
 import { SidebarService } from './sidebar/sidebar.service';
+import { GetHelpComponent } from './get-help/get-help.component';
 
 
 @NgModule({
-    declarations: [SidebarComponent, FooterComponent, HeaderComponent],
+    declarations: [SidebarComponent, FooterComponent, HeaderComponent, GetHelpComponent],
     imports     : [BrowserModule, RouterModule,  SharedModule ],
     exports     : [SidebarComponent, FooterComponent, HeaderComponent],
+    entryComponents: [GetHelpComponent],
     providers: [
         SidebarService,
     ]

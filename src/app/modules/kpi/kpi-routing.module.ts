@@ -5,7 +5,6 @@ import { PaginUtilService } from '../../shared/services/pagin-util.service';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';
-import { OrderPopupComponent } from './dialogs/order-popup.component';
 import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 
 @Injectable()

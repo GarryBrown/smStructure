@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 
 import { AuthJwtService } from '../../core/auth/auth-jwt.service';
@@ -10,8 +11,8 @@ export class SidebarService {
     private auth: AuthJwtService,
     private principal: PrincipalService) { }
 
-  logout () {
-    this.auth.logout().subscribe();
+  logout (): Observable<any> {
+    return this.auth.logout();
   }
 
   getAccount(): any {

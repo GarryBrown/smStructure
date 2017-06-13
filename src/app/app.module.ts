@@ -15,8 +15,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LayoutrModule } from './components//layout.module';
 
-
-
 /* Modules */
 import { KPIModule } from './modules/kpi/kpi.module';
 import { AdminModule } from './modules/admin/admin.module';
@@ -28,13 +26,13 @@ import { AccountModule } from './modules/account/account.module';
 
 export class MyHammerConfig extends HammerGestureConfig  {
   overrides = <any>{
-      'swipe': {velocity: 0.4, threshold: 20} // override default settings
+      'swipe': {velocity: 0.4, threshold: 10} // override default settings
   }
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

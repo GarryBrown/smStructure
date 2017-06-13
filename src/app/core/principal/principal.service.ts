@@ -7,6 +7,7 @@ import { AuthJwtService } from '../auth/auth-jwt.service';
 
 @Injectable()
 export class PrincipalService {
+
   private _identity: any;
   private authenticated: boolean = false;
   private authenticationState = new Subject<any>();
@@ -25,6 +26,7 @@ export class PrincipalService {
   authenticate(_identity) {
     this._identity = _identity;
     this.authenticated = _identity !== null;
+    console.log(`==== set authenticated : ${this.authenticated}`);
     console.log('=====this.authenticationState.next(this._identity);');
     this.authenticationState.next(this._identity);
   }
@@ -72,7 +74,6 @@ export class PrincipalService {
       this.authenticationState.next(this._identity);
       return Promise.resolve(this._identity);
     }
-
 
     // return this.account.get().toPromise().then(account => {
 
@@ -130,28 +131,27 @@ export class PrincipalService {
 
 
   isIdentityResolved(): boolean {
-    return this._identity !== undefined;
+    return this._identity !== undefined && this._identity !== null;
   }
 
   getAuthenticationState(): Observable<any> {
     return this.authenticationState.asObservable();
   }
 
-  getImageUrl(): String {
-    return this.isIdentityResolved() ? this._identity.imageUrl : null;
-  }
+    getImageUrl(): String {
+        return this.isIdentityResolved() ? this._identity.imageUrl : null;
+    }
 
-  isAdmin(authorities: Array<string>): boolean {
-    let isAdmin = false;
-    authorities.forEach(
-      el => {
-        if (el === 'ROLE_ADMIN') {
-          isAdmin = true;
-        }
-      }
-    );
-    return isAdmin;
-  }
-
+    isAdmin(authorities: Array<string>): boolean {
+        let isAdmin = false;
+        authorities.forEach(
+            el => {
+                if (el === 'ROLE_ADMIN') {
+                    isAdmin = true;
+                }
+            }
+        );
+        return isAdmin;
+    }
 
 }

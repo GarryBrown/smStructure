@@ -9,9 +9,6 @@ md-toolbar {
         position: absolute;
         right: 40px;
     }
-    span {
-        //display: block;
-    }
 }
 
 button[md-mini-fab] {
@@ -61,6 +58,7 @@ ngb-pagination /deep/ {
         border: 1px solid mat-color($ts-accent);
     }
     .page-link {
+        color: mat-color($ts-accent);
         padding: .40rem .65rem;
     }
     .page-item:first-child .page-link,
