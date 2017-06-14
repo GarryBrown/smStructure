@@ -31,7 +31,7 @@ const KPIRoutes: Routes = [
     resolve: { 'pagingParams': UserResolvePagingParams }
   },
   {
-    path: 'kpi/detail/:id',
+    path: 'kpi/:id',
     component: PlanDetailTOComponent
   }
 ];
