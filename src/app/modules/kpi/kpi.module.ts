@@ -19,7 +19,7 @@ import { KPIComponent } from './kpi.component';
 import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
 import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-row/plan-detail-row.component";
-
+import { FilterbarComponent } from "./filterbar/filterbar.component";
 
 @NgModule({
   imports: [
@@ -29,8 +29,8 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
     SharedModule,
     InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
   ],
-  declarations: [KPIComponent, PlanDetailRowComponent, PlanDetailTOComponent, PlanChartComponent],
-  entryComponents: [PlanDetailRowComponent, PlanChartComponent, PlanDetailTOComponent],
+  declarations: [KPIComponent, FilterbarComponent, PlanDetailRowComponent, PlanDetailTOComponent, PlanChartComponent],
+  entryComponents: [PlanDetailRowComponent, PlanChartComponent, PlanDetailTOComponent, FilterbarComponent],
   providers: [KPIService, DateUtilService, UserResolvePagingParams, ]
 
 })

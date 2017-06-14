@@ -4,6 +4,12 @@
             {{agent.name}}
         </md-option>
     </md-select>
+
+    <button md-button></button>
+
+
+
+
 </md-card>
 
 <md-card>
@@ -16,3 +22,13 @@
         <tbody plan-detail-row [agent]="agent" *ngFor="let agent of selectedAgents"></tbody>
     </table>
 </md-card>
+
+<input type="checkbox" id="hmt" class="hidden-menu-ticker">
+<label class="btn-menu" for="hmt">
+  <span class="first"></span>
+  <span class="second"></span>
+  <span class="third"></span>
+</label>
+<div class="hidden-menu">
+    <app-filterbar></app-filterbar>
+</div>

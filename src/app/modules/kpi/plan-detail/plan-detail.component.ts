@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Agent } from "app/models/agent.model";
 import { KPIService } from "app/modules/kpi/kpi.service";
-
+import { FilterbarComponent } from "app/modules/kpi/filterbar/filterbar.component";
 @Component({
   selector: 'app-plan-detail',
   templateUrl: './plan-detail.component.html',
