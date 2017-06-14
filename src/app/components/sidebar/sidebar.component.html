@@ -26,19 +26,13 @@
       <md-icon>dashboard</md-icon>
       <span>Адм. панель</span>
     </a>
+    <!-- KPI -->
     <h3>KPI</h3>
-    <a [routerLink]="['/kpi/1']" routerLinkActive="active">
-      <md-icon>show_chart</md-icon>
-      <span>KPI</span>
+    <a [routerLink]="['/kpi', kpi.id]" routerLinkActive="active" *ngFor="let kpi of indicatorsKPI">
+      <md-icon>view_list</md-icon>
+      <span>{{kpi.name}}</span>
     </a>
-    <a [routerLink]="['/kpi/2']" routerLinkActive="active">
-      <md-icon>show_chart</md-icon>
-      <span>KPI</span>
-    </a>
-    <a [routerLink]="['/kpi/3']" routerLinkActive="active">
-      <md-icon>show_chart</md-icon>
-      <span>KPI</span>
-    </a>
+    <!-- EDUCATION -->
     <h3>Обучение</h3>
     <a [routerLink]="['/dashboard']" routerLinkActive="active">
       <md-icon>school</md-icon>

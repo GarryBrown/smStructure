@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { KPIService } from './kpi.service';
 import { Subscription } from "rxjs/Subscription";
+
+import { KPIService } from './kpi.service';
 import { Plan } from "app/models/plan.model";
 import { Agent } from "app/models/agent.model";
 
@@ -32,7 +33,7 @@ export class KPIComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public kpiService: KPIService,
   ) { }
-  
+
   predictionChange(event) {
     this.predictionEnabled = event.checked;
   }
@@ -58,7 +59,6 @@ export class KPIComponent implements OnInit, OnDestroy {
     });
     console.log(this.plansss);
   }
-
 
 
   ngOnInit() {

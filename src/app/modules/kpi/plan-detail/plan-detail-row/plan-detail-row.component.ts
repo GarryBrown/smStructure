@@ -8,12 +8,14 @@ import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angula
 })
 export class PlanDetailRowComponent implements OnInit {
   @Input() agent: any;
+  @Input() fields: Array<any>; //use fields[0] to get data
   isExpanded: boolean = false;
 
   constructor() {
   }
 
   ngOnInit() {
+
   }
 
   toggle(event) {

@@ -16,10 +16,11 @@ export class SidebarComponent implements OnInit {
   show: boolean;
   user: any;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  indicatorsKPI: Array<any>;
 
   constructor(
     private router: Router,
-    private account: SidebarService,
+    private sidebarService: SidebarService,
     private sidebartoggle: SidebarToggleService,
     // private translate: TranslateService,
     private principal: PrincipalService
@@ -49,10 +50,14 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sidebarService.getIndicators().subscribe(
+    (data: any) => this.indicatorsKPI = data.data,
+    err => console.error('No indicators for menu kpi')
+    )
   }
 
   logout() {
-    this.account.logout().subscribe(
+    this.sidebarService.logout().subscribe(
       s => console.log(s),
       er => console.log(er),
       () => {
@@ -72,7 +77,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getUser() {
-    this.account.getAccount()
+    this.sidebarService.getAccount()
       .then(user => {
         this.user = user;
         this.resetToggle();
