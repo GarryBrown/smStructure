@@ -16,7 +16,12 @@ table {
         margin-left: 8px;
         flex: 1 1 auto;
         align-self: center;
+        width: 250px;
     }
+}
+
+table td:nth-child(2n) {
+    display: block !important;
 }
 
 .hidden-menu {
@@ -25,7 +30,7 @@ table {
     list-style: none;
     margin: 0;
     box-sizing: border-box;
-    width: 300px;
+    width: 250px;
     background-color: #fff;
     top: 0;
     height: 100%;
@@ -47,7 +52,7 @@ table {
     background-color: #00897b;
     padding: 5px;
     position: fixed;
-    top: 12%;
+    top: 45%;
     right: 0;
     cursor: pointer;
     transition: right .23s;
@@ -71,7 +76,7 @@ table {
 }
 
 .hidden-menu-ticker:checked~.btn-menu {
-    right: 300px;
+    right: 250px;
 }
 
 .hidden-menu-ticker:checked~.hidden-menu {

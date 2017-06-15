@@ -11,5 +11,17 @@ md-icon {
 }
 
 md-select {
+    margin: 20px 10px;
     width: 200px;
+}
+
+md-list-item {
+    line-height: 30px;
+}
+
+.save {
+    margin: 30px 10px;
+    button {
+        margin-left: 5px;
+    }
 }

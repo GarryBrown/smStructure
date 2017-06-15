@@ -10,6 +10,8 @@ import { DateUtilService, PrincipalService } from '../../core';
 export class KPIService {
 
   private resourceUrl = '/api/plans';
+  private presetReportUrl = '/api/reports';
+  private allFieldstUrl = '/api/allFields';
 
   constructor(private http: Http,
               private  dateUtils: DateUtilService,
@@ -70,9 +72,34 @@ export class KPIService {
   loadPlanDetails(): Observable<Response> {
     return this.http.get('/api/planDetailsByPlanId');
   }
+  
+   getIndicators(): Observable<Response> {
+      return this.http.get('/api/indicators').map( (res: Response) => res.json());
+  }
+  
+  getRoutes(): Observable<Response> {
+    return this.http.get('/api/routes').map((res: Response ) => res.json());
+  } 
 
   delete(id: number): Observable<Response> {
     return this.http.delete(`${this.resourceUrl}/${id}`);
+  }
+
+  getPresetReport(): Observable<Response> {
+    return this.http.get(this.presetReportUrl)
+      .map((res: Response) => res.json())
+  }
+  getFilterFields(): Observable<Response> {
+    return this.http.get(this.allFieldstUrl)
+      .map((res: Response) => res.json())
+  }
+
+  toOnlyFields(data: Array<any>, propetry: string): Array<string> {
+    let arr: Array<string> = [];
+    data.map( item => {
+      arr.push(item[propetry]);
+    })
+    return arr;
   }
 
 }

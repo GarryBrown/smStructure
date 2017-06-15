@@ -4,7 +4,7 @@ export class InMemDataService implements InMemoryDbService {
 
 
   createDb() {
-    
+
     let plansKPI = [
       {
         id: 1, name: "PS101", plans: [
@@ -29,30 +29,141 @@ export class InMemDataService implements InMemoryDbService {
       }
     ];
 
+    let indicators = [
+      {
+        id: 1,
+        name: 'Товарооборот'
+      },
+      {
+        id: 2,
+        name: 'Покрытие'
+      },
+      {
+        id: 3,
+        name: 'Листинг'
+      }
+    ];
+
+    let allFields = [
+      {
+        id: 1,
+        field: 'sumplan',
+        description: 'Цель'
+      },
+      {
+        id: 2,
+        field: 'sumfact',
+        description: 'Факт'
+      },
+      {
+        id: 3,
+        field: 'sumpercent',
+        description: '%'
+      },
+      {
+        id: 4,
+        field: 'prediction',
+        description: 'Прогноз'
+      },
+      {
+        id: 5,
+        field: 'predicrion_percent',
+        description: 'Прогноз %'
+      },
+      {
+        id: 6,
+        field: 'gap',
+        description: 'GAP'
+      },
+      {
+        id: 5,
+        field: 'planforDay',
+        description: 'План на день'
+      }
+    ];
+
+
+    let reports = [
+      {
+        id: 1,
+        fields: [
+          'План на день', 'GAP', 'Прогноз'
+        ],
+        name: "Отчет продаж"
+      },
+      {
+        id: 2,
+        fields: [
+          // {
+          //   id: 2,
+          //   name: 'B',
+          // },
+          // {
+          //   id: 3,
+          //   name: 'A+B',
+          // }
+          'Прогноз', '%', 'GAP'
+        ],
+        name: "Отчет директорам"
+      },
+      {
+        id: 3,
+        fields: [
+          // {
+          //   id: 4,
+          //   name: '%',
+          // },
+          // {
+          //   id: 5,
+          //   name: 'GAP',
+          // }
+          'GAP', '%'
+        ],
+        name: "Отчет поставщикам"
+      }
+    ]
+
     let planDetailsByPlanId = [
       {
-        id: 1, name: "agent1PS101", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
-          { id: 1, name: "ИП Иванов", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
-          { id: 2, name: "ИП Сидоров", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
+        id: 1, name: "route 1", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
+          { id: 1, name: "ИП Иванов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
+          { id: 2, name: "ИП Сидоров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
         ]
       },
       {
-        id: 2, name: "agent2PS102", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
-          { id: 3, name: "ИП Смирнов", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
-          { id: 4, name: "ИП Комаров", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
+        id: 2, name: "route 2", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
+          { id: 3, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
+          { id: 4, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
         ]
       },
       {
-        id: 3, name: "agent3PS103", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
-          { id: 5, name: "ИП Смирнов", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
-          { id: 6, name: "ИП Комаров", plan: 500, fact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
+        id: 3, name: "route 3", sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
+          { id: 5, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
+          { id: 6, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
         ]
       },
     ]
 
-    
+    let routes = [
+      {
+        id: 1, name: "Маршрут 1"
+      },
+      {
+        id: 2, name: "Маршрут 2"
+      },
+      {
+        id: 3, name: "Маршрут 3"
+      },
 
+    ]
 
-    return { plans: plansKPI, planDetailsByPlanId: planDetailsByPlanId };
+    return {
+      plans: plansKPI,
+      planDetailsByPlanId: planDetailsByPlanId,
+      indicators: indicators,
+      reports: reports,
+      allFields: allFields,
+      routes: routes
+    };
   }
 }

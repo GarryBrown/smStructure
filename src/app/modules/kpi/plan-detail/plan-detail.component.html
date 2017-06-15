@@ -1,25 +1,30 @@
 <md-card class="top-menu">
-    <md-select placeholder="Выберите торговых представителей" [(ngModel)]="selectedAgents" [multiple]="true">
-        <md-option *ngFor="let agent of agents" [value]="agent">
-            {{agent.name}}
+    <md-select placeholder="Выберите маршруты" [(ngModel)]="selectedAgents" [multiple]="true">
+        <md-option *ngFor="let route of routes" [value]="route">
+            {{ route.name }}
         </md-option>
     </md-select>
 
-    <button md-button></button>
+    <md-select placeholder="Выберите показатели" [multiple]="true">
+        <md-option *ngFor="let kpi of indicatorsKPI">
+            {{ kpi.name }}
+        </md-option>
+    </md-select>
 
-
-
-
+    <button md-raised-button (click)="openConfig()"><md-icon>settings</md-icon></button>
 </md-card>
 
 <md-card>
+    <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
     <table class="table  table-hover table-condensed dataTables-example">
+
         <thead>
-            <td *ngFor="let column of headerColumns">
-                {{column}}
+            <td>Маршрут</td>
+            <td *ngFor="let column of allFields" [hidden]="hideElement">
+                {{column.description}}
             </td>
         </thead>
-        <tbody plan-detail-row [agent]="agent" *ngFor="let agent of selectedAgents"></tbody>
+        <tbody plan-detail-row [agent]="agent" [fields]=[allFields] *ngFor="let agent of selectedAgents"></tbody>
     </table>
 </md-card>
 
