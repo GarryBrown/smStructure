@@ -18,3 +18,12 @@ table {
         align-self: center;
     }
 }
+
+.indicator-header {
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    text-align: center;
+    &:last-of-type {
+        border-right: none;
+    }
+}

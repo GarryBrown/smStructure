@@ -14,6 +14,8 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
   encapsulation: ViewEncapsulation.None
 })
 export class PlanDetailTOComponent implements OnInit {
+  data: Array<any>;
+  quantityRoutes: Array<number>;
   agents: Array<any>;
   selectedAgents: Array<any>;
   presetReports: Array<any>;
@@ -27,16 +29,20 @@ export class PlanDetailTOComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.kpiService.loadPlanDetails()
-      .map(response => response.json().data)
-      .subscribe(data => {
-        this.agents = data;
-        // console.log(this.agents);
+    this.kpiService.getData()
+      .subscribe( (data: any) => {
+        this.data = data;
+        console.log('this.data');
+        console.log(this.data);
+        let N = this.data[0].gp.length;
+        this.quantityRoutes = Array.apply(null, {length: N}).map(Number.call, Number);
+        console.log(this.quantityRoutes);
+
       }, error => console.log(error));
     this.kpiService.getPresetReport().subscribe(
       (data: any) => {
         this.presetReports = data.data;
-        console.log(data);
+        // console.log(data);
       },
       err => console.error('Error getPresetReport')
     )
@@ -44,8 +50,8 @@ export class PlanDetailTOComponent implements OnInit {
       (data: any) => {
         this.allFields = data.data;
         this.allFieldsDesc = this.kpiService.toOnlyFields(this.allFields, 'description');
-        console.log('allFields:');
-        console.log(this.allFields);
+        // console.log('allFields:');
+        // console.log(this.allFields);
       },
       err => console.error('Error getPresetReport')
     )

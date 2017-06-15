@@ -64,13 +64,13 @@ export class KPIService {
   loadPlans(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: any) => {
-        console.log(res);
         return res
       });
   }
 
-  loadPlanDetails(): Observable<Response> {
-    return this.http.get('/api/planDetailsByPlanId');
+  getData(): Observable<Response> {
+    return this.http.get('/api/dataTable')
+    .map(response => response.json().data);
   }
 
   delete(id: number): Observable<Response> {
