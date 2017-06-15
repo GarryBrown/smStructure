@@ -16,18 +16,27 @@
 
 <md-card>
     <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
-    <table class="table  table-hover table-condensed dataTables-example">
-
+    <table class="table  table-hover table-condensed dataTables-example" *ngIf="data">
         <thead>
-            <td>Маршрут</td>
-            <td *ngFor="let column of allFields" [hidden]="hideElement">
-                {{column.description}}
-            </td>
+            <tr>
+                <td></td>
+                <td *ngFor="let indicator of data" colspan="7" class="indicator-header">
+                    {{indicator.name}}
+                </td>
+            </tr>
+            <tr>
+                <td>Маршрут</td>
+                <ng-template ngFor let-indicator [ngForOf]="data">
+                    <td *ngFor="let column of allFields" [hidden]="hideElement">
+                        {{column.description}}
+                    </td>
+                </ng-template>
+            </tr>
         </thead>
-        <tbody plan-detail-row [agent]="agent" [fields]=[allFields] *ngFor="let agent of selectedAgents"></tbody>
+
+        <tbody plan-detail-row [routeNumber]="route" [fullData]="data" [fields]=[allFields] *ngFor="let route of quantityRoutes"></tbody>
     </table>
 </md-card>
-
 <input type="checkbox" id="hmt" class="hidden-menu-ticker">
 <label class="btn-menu" for="hmt">
   <span class="first"></span>

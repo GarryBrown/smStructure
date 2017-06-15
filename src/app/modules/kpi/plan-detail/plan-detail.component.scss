@@ -96,3 +96,12 @@ table td:nth-child(2n) {
     -webkit-transform: rotate(-45deg);
     top: -10px;
 }
+
+.indicator-header {
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+    text-align: center;
+    &:last-of-type {
+        border-right: none;
+    }
+}

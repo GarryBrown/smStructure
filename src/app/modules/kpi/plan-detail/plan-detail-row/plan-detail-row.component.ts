@@ -7,8 +7,9 @@ import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angula
   encapsulation: ViewEncapsulation.None
 })
 export class PlanDetailRowComponent implements OnInit {
-  @Input() agent: any;
+  @Input() routeNumber: number;
   @Input() fields: Array<any>; //use fields[0] to get data
+  @Input() fullData: Array<any>;
   isExpanded: boolean = false;
 
   constructor() {
