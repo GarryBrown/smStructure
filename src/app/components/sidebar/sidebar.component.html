@@ -26,11 +26,9 @@
       <md-icon>dashboard</md-icon>
       <span>Адм. панель</span>
     </a>
-    <!-- KPI -->
-    <h3>KPI</h3>
-    <a [routerLink]="['/kpi', kpi.id]" routerLinkActive="active" *ngFor="let kpi of indicatorsKPI">
+    <a [routerLink]="['/kpi']" routerLinkActive="active">
       <md-icon>view_list</md-icon>
-      <span>{{kpi.name}}</span>
+      <span>KPI</span>
     </a>
     <!-- EDUCATION -->
     <h3>Обучение</h3>

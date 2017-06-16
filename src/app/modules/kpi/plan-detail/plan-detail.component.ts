@@ -13,35 +13,31 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
   styleUrls: ['./plan-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanDetailTOComponent implements OnInit { 
+export class PlanDetailComponent implements OnInit {
   routes: Array<any>;
+  indicators: Array<any>;
   indicatorsKPI: Array<any>;
-  data: Array<any>;
-  quantityRoutes: Array<number>;
-  agents: Array<any>;
+  listRoutes: Array<any>;
   selectedAgents: Array<any>;
   presetReports: Array<any>;
   allFields: Array<any>;
   allFieldsDesc: Array<any>;
   headerColumns: Array<string> = ["Маршрут", "Цель", "Факт", "%", "Прогноз", "Прогноз %", "GAP", "План на день"];
-  
+
   private hideElement: boolean = false;
-  
+
   constructor(
     private kpiService: KPIService,
     public dialog: MdDialog,
   ) { }
 
   ngOnInit() {
-    this.kpiService.getData()
-      .subscribe( (data: any) => {
-        this.data = data;
-        console.log('this.data');
-        console.log(this.data);
-        let N = this.data[0].gp.length;
-        this.quantityRoutes = Array.apply(null, {length: N}).map(Number.call, Number);
-        console.log(this.quantityRoutes);
-
+    this.kpiService.getRoutes()
+      .subscribe((data: any) => {
+        this.routes = data.data.routes;
+        this.indicators = data.data.indicators;
+        console.log('this.routes');
+        console.log(data.data);
       }, error => console.log(error));
     this.kpiService.getPresetReport().subscribe(
       (data: any) => {
@@ -51,22 +47,21 @@ export class PlanDetailTOComponent implements OnInit {
       err => console.error('Error getPresetReport')
     )
 
-     this.kpiService.getIndicators().subscribe(
-    (data: any) => this.indicatorsKPI = data.data,
-    err => console.error('No indicators for filter kpi')
+    this.kpiService.getIndicators().subscribe(
+      (data: any) => this.indicatorsKPI = data.data,
+      err => console.error('No indicators for filter kpi')
     )
-
-    this.kpiService.getRoutes().subscribe(
-    (data: any) => this.routes = data.data,
-    err => console.error('No routes for filter kpi')
+    this.kpiService.getListRoutes().subscribe(
+      (data: any) => this.listRoutes = data.data,
+      err => console.error('No getListRoutes for filter routes')
     )
 
     this.kpiService.getFilterFields().subscribe(
       (data: any) => {
         this.allFields = data.data;
         this.allFieldsDesc = this.kpiService.toOnlyFields(this.allFields, 'description');
-        // console.log('allFields:');
-        // console.log(this.allFields);
+        console.log('allFields:');
+        console.log(this.allFields);
       },
       err => console.error('Error getPresetReport')
     )
@@ -81,12 +76,13 @@ export class PlanDetailTOComponent implements OnInit {
       console.log(result);
     });
   }
-   toggleElement(){
-        if(this.hideElement){
-            this.hideElement = false;}
-        else {
-            this.hideElement = true;
-        }
+  toggleElement() {
+    if (this.hideElement) {
+      this.hideElement = false;
     }
+    else {
+      this.hideElement = true;
+    }
+  }
 
 }

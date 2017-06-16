@@ -17,7 +17,7 @@ import { KPIService } from './kpi.service';
 import { KPIComponent } from './kpi.component';
 
 import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
-import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
+import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-row/plan-detail-row.component";
 
 import { FilterbarComponent } from "./filterbar/filterbar.component";
@@ -35,14 +35,14 @@ import { ReportConfigComponent } from './report-config/report-config.component';
   declarations: [
     KPIComponent,
     PlanDetailRowComponent,
-    PlanDetailTOComponent,
+    PlanDetailComponent,
     PlanChartComponent,
     ReportConfigComponent,
     FilterbarComponent],
   entryComponents: [
     PlanDetailRowComponent,
     PlanChartComponent,
-    PlanDetailTOComponent,
+    PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent],
   providers: [KPIService, DateUtilService, UserResolvePagingParams,]

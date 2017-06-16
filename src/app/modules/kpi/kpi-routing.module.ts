@@ -5,7 +5,7 @@ import { PaginUtilService } from '../../shared/services/pagin-util.service';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';
-import { PlanDetailTOComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
+import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
@@ -25,14 +25,14 @@ export class UserResolvePagingParams implements Resolve<any> {
 
 const KPIRoutes: Routes = [
   {
-    path: 'kpi',
+    path: 'kpi.charts',
     component: KPIComponent,
     canActivate: [RouteAccessService],
     resolve: { 'pagingParams': UserResolvePagingParams }
   },
   {
-    path: 'kpi/:id',
-    component: PlanDetailTOComponent
+    path: 'kpi',
+    component: PlanDetailComponent
   }
 ];
 

@@ -1,25 +1,29 @@
 <tr>
   <td>
-    <button type="button" class="btn" (click)="toggle($e, routeNumber)">
+    <button type="button" class="btn" (click)="toggle($e)">
           <ng-template [ngIf]="isExpanded">-</ng-template>
           <ng-template [ngIf]="!isExpanded">+</ng-template>
-        </button> {{fullData[0].gp[routeNumber].name}}
+        </button> {{route.name}}
   </td>
-  <ng-template ngFor let-indicator [ngForOf]="fullData">
-    <td *ngFor="let field of fields[0]">{{indicator.gp[routeNumber][field.field]}}</td>
+
+  <ng-template ngFor let-indicator [ngForOf]="route.indicators">
+    <td *ngFor="let field of fields[0]">{{indicator[field.field]}}</td>
   </ng-template>
+
 </tr>
 
 
 
 <ng-template [ngIf]="isExpanded">
 
-  <!--<ng-template ngFor let-indicator [ngForOf]="fullData">
-    <ng-template ngFor let-deliveryPoint [ngForOf]="indicator.gp[routeNumber].deliveryPointsPlans">
-      <tr>
-        <td *ngFor="let field of fields[0]">{{deliveryPoint[field.field]}}</td>
-      </tr>
-    </ng-template>
-  </ng-template>-->
+  <ng-template ngFor let-dp [ngForOf]="route.indicatorsDP">
+    <tr>
+      <td>{{dp.name}}</td>
+      <ng-template ngFor let-indicator [ngForOf]="dp.indicators">
+        <td *ngFor="let field of fields[0]">{{indicator[field.field]/3 | number : '1.1-1'}}</td>
+      </ng-template>
+    </tr>
+
+  </ng-template>
 
 </ng-template>
