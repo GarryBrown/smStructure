@@ -1,41 +1,77 @@
 <md-card class="top-menu">
-    <md-select placeholder="Выберите маршруты" [(ngModel)]="selectedAgents" [multiple]="true">
-        <md-option *ngFor="let route of routes" [value]="route">
-            {{ route.name }}
-        </md-option>
-    </md-select>
+  <md-select placeholder="Выберите маршруты" [(ngModel)]="selectedAgents" [multiple]="true">
+    <md-option *ngFor="let route of routes" [value]="route">
+      {{ route.name }}
+    </md-option>
+  </md-select>
 
-    <md-select placeholder="Выберите показатели" [multiple]="true">
-        <md-option *ngFor="let kpi of indicatorsKPI">
-            {{ kpi.name }}
-        </md-option>
-    </md-select>
+  <md-select placeholder="Выберите показатели" [multiple]="true">
+    <md-option *ngFor="let kpi of indicatorsKPI">
+      {{ kpi.name }}
+    </md-option>
+  </md-select>
+  <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
+  <button md-raised-button (click)="openConfig()"><md-icon>settings</md-icon></button>
 
-    <button md-raised-button (click)="openConfig()"><md-icon>settings</md-icon></button>
 </md-card>
 
-<md-card>
-    <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
-    <table class="table  table-hover table-condensed dataTables-example" *ngIf="data">
-        <thead>
-            <tr>
-                <td></td>
-                <td *ngFor="let indicator of data" colspan="7" class="indicator-header">
-                    {{indicator.name}}
-                </td>
-            </tr>
-            <tr>
-                <td>Маршрут</td>
-                <ng-template ngFor let-indicator [ngForOf]="data">
-                    <td *ngFor="let column of allFields" [hidden]="hideElement">
-                        {{column.description}}
-                    </td>
-                </ng-template>
-            </tr>
-        </thead>
+<md-card class="" *ngIf="data">
 
-        <tbody plan-detail-row [routeNumber]="route" [fullData]="data" [fields]=[allFields] *ngFor="let route of quantityRoutes"></tbody>
-    </table>
+  <div class="wrapper-table main-content">
+    <!--first column-->
+    <div class="column first-column">
+      <div class="pre-header"></div>
+      <div class="header">
+        <span class="field">Маршруты</span>
+      </div>
+      <div class="body">
+        <div *ngFor="let route of data[0].gp">
+          <span class="field">{{route.name}}</span>
+        </div>
+      </div>
+    </div>
+    <!--indicators column-->
+    <ng-template ngFor let-indicator [ngForOf]="data">
+      <div class="column">
+        <div class="pre-header">{{indicator.name}}</div>
+        <div class="header">
+          <span class="field" *ngFor="let field of allFields">
+            {{field.description}}
+          </span>
+        </div>
+        <div class="body">
+          <div *ngFor="let route of indicator.gp">
+            <span class="field" *ngFor="let field of allFields">{{route[field.field]}}</span>
+          </div>
+
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+  <!--<table class="table  table-hover table-condensed dataTables-example" *ngIf="data">
+    <thead>
+      <tr>
+        <td></td>
+        <td *ngFor="let indicator of data" colspan="7" class="indicator-header">
+          {{indicator.name}}
+        </td>
+      </tr>
+      <tr>
+        <td>Маршрут</td>
+        <ng-template ngFor let-indicator [ngForOf]="data">
+          <td *ngFor="let column of allFields" [hidden]="hideElement">
+            {{column.description}}
+          </td>
+        </ng-template>
+      </tr>
+    </thead>
+
+    <tbody plan-detail-row [routeNumber]="route" [fullData]="data" [fields]=[allFields] *ngFor="let route of quantityRoutes"></tbody>
+  </table>-->
+
+
+
 </md-card>
 <input type="checkbox" id="hmt" class="hidden-menu-ticker">
 <label class="btn-menu" for="hmt">
@@ -44,5 +80,5 @@
   <span class="third"></span>
 </label>
 <div class="hidden-menu">
-    <app-filterbar></app-filterbar>
+  <app-filterbar></app-filterbar>
 </div>
