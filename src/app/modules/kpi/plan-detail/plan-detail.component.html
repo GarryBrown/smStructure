@@ -12,30 +12,28 @@
   </md-select>
   <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
   <button md-raised-button (click)="openConfig()"><md-icon>settings</md-icon></button>
-
 </md-card>
 
 <md-card>
-  <table class="table  table-hover table-condensed dataTables-example" *ngIf="routes && allFields">
+  <table class="table  table-hover table-condensed dataTables-example" *ngIf="routes && currentReports">
     <thead>
       <tr>
         <td></td>
-        <td *ngFor="let indicator of indicators" colspan="7" class="indicator-header">
+        <td *ngFor="let indicator of currentReports.indicators" [attr.colspan]="indicator.fields.length" class="indicator-header">
           {{indicator.name}}
         </td>
       </tr>
       <tr>
         <td>Маршрут</td>
-
-        <ng-template ngFor let-indicator [ngForOf]="routes[0].indicators">
-          <td *ngFor="let field of allFields" [hidden]="hideElement">
+        <ng-template ngFor let-indicator [ngForOf]="currentReports.indicators">
+          <td *ngFor="let field of indicator.fields" [hidden]="hideElement">
             {{field.description}}
           </td>
         </ng-template>
 
       </tr>
     </thead>
-    <tbody plan-detail-row [route]="route" [fields]=[allFields] *ngFor="let route of routes"></tbody>
+    <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routes"></tbody>
   </table>
 </md-card>
 
