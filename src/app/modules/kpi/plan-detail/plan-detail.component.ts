@@ -8,6 +8,8 @@ import { PlanDetailService } from './plan-detail.service';
 
 import { ReportConfigComponent } from '../report-config/report-config.component';
 
+import { Route, Report, Indicator } from '../../../models';
+
 @Component({
   selector: 'app-plan-detail',
   templateUrl: './plan-detail.component.html',
@@ -15,46 +17,68 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
   encapsulation: ViewEncapsulation.None
 })
 export class PlanDetailComponent implements OnInit {
-  routes: Array<any>;
-  indicators: Array<any>;
-  indicatorsKPI: Array<any>;
-  listRoutes: Array<any>;
-  selectedAgents: Array<any>;
-  reports: Array<any>;
-  currentReports: any;
-  listIndicators;
-  headerColumns: Array<string> = ["Маршрут", "Цель", "Факт", "%", "Прогноз", "Прогноз %", "GAP", "План на день"];
+  routesData: Array<any>;
 
-  private hideElement: boolean = false;
+  indicators: Array<any>;
+  currentIndicators: Array<any>;
+
+  listRoutes: Array<Route>;
+  currentdRoutes: Array<Route>;
+
+  reports: Array<any>;
+  currentReport: Report;
+
+  listIndicators;
 
   constructor(
     private kpiService: KPIService,
     private pdService: PlanDetailService,
     public dialog: MdDialog,
-  ) { }
+  ) {
+    this.currentIndicators = [];
+    this.reports = [];
+    this.currentReport = null;
+
+  }
 
   ngOnInit() {
-    this.pdService.getRoutes()
-      .subscribe((data: any) => {
-        this.routes = data.data.routes;
-        this.indicators = data.data.indicators;
-      }, error => console.log(error));
-
-    this.pdService.getReports().subscribe(
-      (data: any) => {
-        this.reports = data.data;
-        this.currentReports = data.data[0];
-        this.listIndicators = this.pdService.getPropsObj(this.currentReports);
-        console.log(this.reports);
-        console.log(this.listIndicators);
-
-      },
-      err => console.error('Error getPresetReport'));
+    this.pdService.getReports()
+      .subscribe(
+      (data: any) => this.onSuccesReport(data),
+      err => console.error('Error getPresetReport')
+      );
 
     this.pdService.getListRoutes().subscribe(
       (data: any) => this.listRoutes = data.data,
       err => console.error('No getListRoutes for filter routes'));
+
+    this.pdService.getIndicators().subscribe(
+      (data: any) => { this.indicators = data.data; },
+      err => console.error('No getListRoutes for filter routes'));
   }
+
+
+  changeReports(report) {
+    this.currentdRoutes = report.routes;
+    this.currentIndicators = report.indicators;
+    this.changeIndicators(report.indicators);
+  }
+
+  changeIndicators(indicators) {
+    this.listIndicators = this.pdService.getPropsObj1(indicators);
+  }
+
+  getSelected(selectedVals: Array<any>, option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
+  }
+
 
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
@@ -65,13 +89,21 @@ export class PlanDetailComponent implements OnInit {
     });
   }
 
-  toggleElement() {
-    if (this.hideElement) {
-      this.hideElement = false;
+  applyFilter() {
+    this.pdService.getRoutes()
+      .subscribe((data: any) => {
+        this.routesData = data.data.routes;
+      },
+      error => console.log(error)
+      );
+  }
+
+  onSuccesReport(reports) {
+    this.reports = reports.data;
+    if (!this.reports.length) {
+      this.currentReport = new Report();
     }
-    else {
-      this.hideElement = true;
-    }
+
   }
 
 }

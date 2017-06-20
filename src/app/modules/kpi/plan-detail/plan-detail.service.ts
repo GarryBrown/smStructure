@@ -17,6 +17,11 @@ export class PlanDetailService {
     return this.http.get('/api/routes').map((res: Response) => res.json());
   }
 
+  
+  getIndicators(): Observable<Response> {
+    return this.http.get('/api/indicators').map((res: Response) => res.json());
+  }
+
 
   getReports(): Observable<Response> {
     return this.http.get('/api/reports')
@@ -48,6 +53,20 @@ export class PlanDetailService {
       indicators[indicator.nameP] = fields;
     });
     return indicators;
+  }
+
+  getPropsObj1(indicators: any) {
+    let strictIndicators = new Object();
+    indicators.map(indicator => {
+      let fields = [];
+      let indObj;
+      indicator.fields.map(field => {
+        fields.push(field.nameP);
+      });
+      strictIndicators[indicator.id] = fields;
+    });
+    console.log(strictIndicators);
+    return strictIndicators;
   }
 
 }

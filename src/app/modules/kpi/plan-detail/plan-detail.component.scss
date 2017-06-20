@@ -1,18 +1,21 @@
-.top-menu {
+.top-filter {
     margin-bottom: 16px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    md-slide-toggle {
-        margin-right: 32px;
-        flex: 1 1 auto;
-        align-self: center;
-    }
-    md-select {
-        margin-left: 8px;
-        flex: 1 1 auto;
-        align-self: center;
-        width: 250px;
+    // flex-wrap: no-wrap;
+    // md-slide-toggle {
+    //     margin-right: 32px;
+    //     flex: 1 1 auto;
+    //     align-self: center;
+    // }
+    // md-select {
+    //     margin-left: 8px;
+    //     flex: 1 1 auto;
+    //     align-self: center;
+    //     width: 250px;
+    // }
+    .report-config {
+        margin-right: auto;
     }
 }
 
@@ -26,53 +29,6 @@
     text-align: center;
     &:last-of-type {
         border-right: none;
-    }
-}
-
-@mixin flex-parent {
-    display: flex;
-    direction: row;
-    align-items: stretch;
-}
-
-.wrapper-table {
-    display: flex;
-    direction: row;
-    justify-content: flex-start;
-    align-items: stretch;
-    .column {
-        outline: 1px solid palevioletred;
-        .pre-header {
-            height: 30px;
-            text-align: center;
-        }
-        .header {
-            @include flex-parent;
-            justify-content: center;
-            height: 25px;
-            .field {
-                width: 70px;
-                height: 25px;
-                outline: 1px solid black;
-            }
-        }
-        .body {
-            outline: 1px solid red;
-            div {
-                @include flex-parent;
-                justify-content: center;
-            }
-            .field {
-                width: 70px;
-                height: 25px;
-                outline: 1px solid black;
-            }
-        }
-    }
-    .first-column {
-        .field {
-            // flex: 1 0.5 100px;
-        }
     }
 }
 
@@ -120,10 +76,10 @@
 
 .btn-menu span {
     display: block;
-    height: 5px;
+    height: 3px;
     background-color: #fff;
-    margin: 5px 0 0;
-    transition: all .1s linear .23s;
+    margin: 7px 0 0;
+    transition: all .1s linear .15s;
     position: relative;
 }
 

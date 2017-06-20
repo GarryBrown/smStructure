@@ -2,6 +2,16 @@
     margin-top: 100px;
 }
 
+.header {
+    // text-align: right;
+    button {
+        width: 130px;
+        &:last-child {
+            margin: 3px auto;
+        }
+    }
+}
+
 .choose_fields {
     height: 100px;
 }
@@ -17,11 +27,4 @@ md-select {
 
 md-list-item {
     line-height: 30px;
-}
-
-.save {
-    margin: 30px 10px;
-    button {
-        margin-left: 5px;
-    }
 }

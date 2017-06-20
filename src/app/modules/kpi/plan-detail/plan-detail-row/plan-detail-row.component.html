@@ -6,7 +6,7 @@
     </button> {{route.name}}
   </td>
   <ng-template ngFor let-indicator [ngForOf]="route.indicators">
-    <td *ngFor="let field of indicators[0][indicator.nameP]">{{indicator[field]}}</td>
+    <td *ngFor="let field of indicators[0][indicator.id]">{{indicator[field]}}</td>
   </ng-template>
 </tr>
 
@@ -15,7 +15,7 @@
     <tr>
       <td>{{dp.name}}</td>
       <ng-template ngFor let-indicator [ngForOf]="dp.indicators">
-        <td *ngFor="let field of indicators[0][indicator.nameP]">{{indicator[field]/3 | number : '1.1-1'}}</td>
+        <td *ngFor="let field of indicators[0][indicator.id]">{{indicator[field]/3 | number : '1.1-1'}}</td>
       </ng-template>
     </tr>
   </ng-template>

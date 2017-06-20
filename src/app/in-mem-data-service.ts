@@ -35,19 +35,19 @@ export class InMemDataService implements InMemoryDbService {
         {
           id: 1, name: "route 1",
           indicators: [
-            {
+            {  
+              id: 1,
               name: 'Товарооборот',
-              nameP: 'turnover',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
             {
+              id: 2,
               name: 'Покрытие',
-              nameP: 'cover',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
             {
+              id: 3,
               name: 'Листинг',
-              nameP: 'listing',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
           ],
@@ -56,18 +56,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Смирнов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 3,
                   name: 'Листинг',
-                  nameP: 'listing',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -76,18 +76,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Иванов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 3,
                   name: 'Листинг',
-                  nameP: 'listing',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -96,18 +96,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Куликов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 3,
                   name: 'Листинг',
-                  nameP: 'listing',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -118,24 +118,24 @@ export class InMemDataService implements InMemoryDbService {
           id: 1, name: "route 2",
           indicators: [
             {
+              id: 1,
               name: 'Товарооборот',
-              nameP: 'turnover',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 1, name: "ИП Иванов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 2, name: "ИП Сидоров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
               ]
             },
             {
+              id: 2,
               name: 'Покрытие',
-              nameP: 'cover',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 3, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 4, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
               ]
             },
             {
+              id: 3,
               name: 'Листинг',
-              nameP: 'listing',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 5, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 6, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
@@ -147,18 +147,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Смирнов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 3,
                   name: 'Листинг',
-                  nameP: 'listing',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -167,18 +167,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Иванов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
-                  name: 'Листинг',
-                  nameP: 'listing',
+                  id: 3,
+                  name: 'Листинг',   
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -187,18 +187,18 @@ export class InMemDataService implements InMemoryDbService {
               id: 3, name: "ИП Куликов",
               indicators: [
                 {
+                  id: 1,
                   name: 'Товарооборот',
-                  nameP: 'turnover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 2,
                   name: 'Покрытие',
-                  nameP: 'cover',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
                 {
+                  id: 3,
                   name: 'Листинг',
-                  nameP: 'listing',
                   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
                 },
               ]
@@ -207,15 +207,19 @@ export class InMemDataService implements InMemoryDbService {
         },
       ]
     };
-
-    let reports = [
+    let reports = [];
+    let reports1 = [
       {
         id: 1,
         name: 'Отчет 1',
+        routes: [
+          { id: 1, name: "route 1" },
+          { id: 2, name: "route 2" },
+        ],
         indicators: [
-          {
+          { 
+            id: 1,
             name: 'Товарооборот',
-            nameP: 'turnover',
             fields: [
               {
                 nameP: 'sumfact',
@@ -242,9 +246,9 @@ export class InMemDataService implements InMemoryDbService {
               }
             ]
           },
-          {
+          { 
+            id: 2,
             name: 'Покрытие',
-            nameP: 'cover',
             fields: [
               {
                 id: 2,
@@ -263,9 +267,8 @@ export class InMemDataService implements InMemoryDbService {
               },
             ]
           },
-          {
-            name: 'Листинг',
-            nameP: 'listing',
+          { 
+            id: 3,
             fields: [
               {
                 id: 5,
@@ -286,6 +289,63 @@ export class InMemDataService implements InMemoryDbService {
           }
         ]
       },
+      {
+        id: 1,
+        name: 'Отчет 2',
+        routes: [
+          { id: 1, name: "route 1" }
+        ],
+        indicators: [
+          {  id: 1,
+            name: 'Товарооборот',
+            fields: [
+              {
+                nameP: 'sumfact',
+                description: 'Факт'
+              },
+              {
+                nameP: 'sumpercent',
+                description: '%'
+              },
+              {
+                id: 5,
+                nameP: 'predicrion_percent',
+                description: 'Прогноз %'
+              },
+              {
+                id: 6,
+                nameP: 'gap',
+                description: 'GAP'
+              },
+              {
+                id: 5,
+                nameP: 'planforDay',
+                description: 'План на день'
+              }
+            ]
+          },
+          { id: 3,
+            name: 'Листинг',
+            fields: [
+              {
+                id: 5,
+                nameP: 'predicrion_percent',
+                description: 'Прогноз %'
+              },
+              {
+                id: 6,
+                nameP: 'gap',
+                description: 'GAP'
+              },
+              {
+                id: 5,
+                nameP: 'planforDay',
+                description: 'План на день'
+              }
+            ]
+          }
+        ]
+      }
     ];
 
 
@@ -304,9 +364,9 @@ export class InMemDataService implements InMemoryDbService {
 
 
     let indicators = [
-      {
+      { 
+        id: 1,
         name: 'Товарооборот',
-        nameP: 'turnover',
         fields: [
           {
             nameP: 'sumfact',
@@ -334,8 +394,8 @@ export class InMemDataService implements InMemoryDbService {
         ]
       },
       {
+        id: 2,
         name: 'Покрытие',
-        nameP: 'cover',
         fields: [
           {
             id: 2,
@@ -355,8 +415,8 @@ export class InMemDataService implements InMemoryDbService {
         ]
       },
       {
+        id: 3,
         name: 'Листинг',
-        nameP: 'listing',
         fields: [
           {
             id: 5,
@@ -374,7 +434,8 @@ export class InMemDataService implements InMemoryDbService {
             description: 'План на день'
           }
         ]
-      }
+      },
+      
     ]
 
     return {
