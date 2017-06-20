@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { SharedModule } from '../../shared';
@@ -23,14 +22,13 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,
-    InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
+    // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
   ],
   declarations: [
     KPIComponent,
@@ -45,7 +43,7 @@ import { ReportConfigComponent } from './report-config/report-config.component';
     PlanDetailTOComponent,
     ReportConfigComponent,
     FilterbarComponent],
-  providers: [KPIService, DateUtilService, UserResolvePagingParams,]
+  providers: [KPIService, DateUtilService, UserResolvePagingParams]
 
 })
 export class KPIModule { }

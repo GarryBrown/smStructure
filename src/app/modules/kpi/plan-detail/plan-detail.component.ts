@@ -13,7 +13,7 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
   styleUrls: ['./plan-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanDetailTOComponent implements OnInit { 
+export class PlanDetailTOComponent implements OnInit {
   routes: Array<any>;
   indicatorsKPI: Array<any>;
   data: Array<any>;
@@ -24,9 +24,9 @@ export class PlanDetailTOComponent implements OnInit {
   allFields: Array<any>;
   allFieldsDesc: Array<any>;
   headerColumns: Array<string> = ["Маршрут", "Цель", "Факт", "%", "Прогноз", "Прогноз %", "GAP", "План на день"];
-  
+
   private hideElement: boolean = false;
-  
+
   constructor(
     private kpiService: KPIService,
     public dialog: MdDialog,
@@ -34,12 +34,12 @@ export class PlanDetailTOComponent implements OnInit {
 
   ngOnInit() {
     this.kpiService.getData()
-      .subscribe( (data: any) => {
+      .subscribe((data: any) => {
         this.data = data;
         console.log('this.data');
         console.log(this.data);
         let N = this.data[0].gp.length;
-        this.quantityRoutes = Array.apply(null, {length: N}).map(Number.call, Number);
+        this.quantityRoutes = Array.apply(null, { length: N }).map(Number.call, Number);
         console.log(this.quantityRoutes);
 
       }, error => console.log(error));
@@ -51,14 +51,14 @@ export class PlanDetailTOComponent implements OnInit {
       err => console.error('Error getPresetReport')
     )
 
-     this.kpiService.getIndicators().subscribe(
-    (data: any) => this.indicatorsKPI = data.data,
-    err => console.error('No indicators for filter kpi')
+    this.kpiService.getIndicators().subscribe(
+      (data: any) => this.indicatorsKPI = data.data,
+      err => console.error('No indicators for filter kpi')
     )
 
     this.kpiService.getRoutes().subscribe(
-    (data: any) => this.routes = data.data,
-    err => console.error('No routes for filter kpi')
+      (data: any) => this.routes = data.data,
+      err => console.error('No routes for filter kpi')
     )
 
     this.kpiService.getFilterFields().subscribe(
@@ -81,12 +81,13 @@ export class PlanDetailTOComponent implements OnInit {
       console.log(result);
     });
   }
-   toggleElement(){
-        if(this.hideElement){
-            this.hideElement = false;}
-        else {
-            this.hideElement = true;
-        }
+  toggleElement() {
+    if (this.hideElement) {
+      this.hideElement = false;
     }
+    else {
+      this.hideElement = true;
+    }
+  }
 
 }

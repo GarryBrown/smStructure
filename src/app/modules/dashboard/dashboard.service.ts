@@ -9,13 +9,13 @@ import { DateUtilService, PrincipalService } from '../../core';
 @Injectable()
 export class DashboardService {
 
-  private resourceUrl = '/api/dashboard';
+  private resourceUrl = 'api/dashboard';
 
   constructor(private http: Http,
               private  dateUtils: DateUtilService,
               private principal: PrincipalService,
   ) {
-    this.resourceUrl = principal.getUrl() + this.resourceUrl;
+    // this.resourceUrl = principal.getUrl() + this.resourceUrl;
   }
 
   create(order: any): Observable<any> {

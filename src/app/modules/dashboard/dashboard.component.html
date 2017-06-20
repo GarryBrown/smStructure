@@ -1,13 +1,17 @@
 <md-card>
 
-  <md-toolbar>Dashboard</md-toolbar>
-  <br>
-  <br>
-  <h2>Тут будет главная страница:</h2>
-  <md-list>
-    <md-list-item>Приветствие</md-list-item>
-    <md-list-item>Оповещения</md-list-item>
-    <md-list-item>Быстрый доступ и важная информация...</md-list-item>
-  </md-list>
+    <md-toolbar>Dashboard</md-toolbar>
+    <br>
+    <br>
+    <h2>Тут будет главная страница:</h2>
+    <md-list>
+        <md-list-item>Приветствие</md-list-item>
+        <md-list-item>Оповещения</md-list-item>
+        <md-list-item>Быстрый доступ и важная информация...</md-list-item>
+    </md-list>
 
 </md-card>
+
+<div *ngFor="let user of users">
+    {{user.firstName}}
+</div>

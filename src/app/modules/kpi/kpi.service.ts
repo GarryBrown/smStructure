@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
+import { Http, HttpModule, RequestOptions, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 
@@ -74,7 +74,7 @@ export class KPIService {
   }
   
    getIndicators(): Observable<Response> {
-      return this.http.get('/api/indicators').map( (res: Response) => res.json());
+      return this.http.get('api/indicators').map( (res: Response) => res.json());
   }
   
   getRoutes(): Observable<Response> {
@@ -101,6 +101,6 @@ export class KPIService {
     })
     return arr;
   }
-
+  
 }
 
