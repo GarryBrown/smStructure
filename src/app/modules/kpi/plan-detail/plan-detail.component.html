@@ -6,15 +6,15 @@
     </md-option>
   </md-select>
 
-  <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true">
+  <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
     <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentdRoutes, route)">
-      {{ route.name }}
+      {{ route.description }}
     </md-option>
   </md-select>
 
   <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)">
     <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
-      {{ indicator.name }}
+      {{ indicator.description }}
     </md-option>
   </md-select>
   <button md-mini-fab (click)="applyFilter()"><md-icon>filter_list</md-icon></button>

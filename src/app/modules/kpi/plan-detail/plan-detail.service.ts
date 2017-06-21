@@ -13,7 +13,7 @@ export class PlanDetailService {
   ) {
   }
 
-  getRoutes(): Observable<Response> {
+  getRoutesData(): Observable<Response> {
     return this.http.get('/api/routes').map((res: Response) => res.json());
   }
 
@@ -23,16 +23,29 @@ export class PlanDetailService {
   }
 
 
+  getIndicatorsByRoutes(routes: Array<any>): Observable<any> {
+    let params: URLSearchParams = new URLSearchParams();
+    routes.map( route => {
+      params.append('routeId', route.id);
+    })
+
+    return this.http.get('/api/plan-indicators', {
+      search: params
+    }).map((res: Response) => res.json());
+  }
+
+
   getReports(): Observable<Response> {
     return this.http.get('/api/reports')
       .map((res: Response) => res.json())
   }
 
 
-  getListRoutes(): Observable<Response> {
-    return this.http.get('/api/listRoutes')
+  getRoutes(): Observable<Response> {
+    return this.http.get('/api/routes')
       .map((res: Response) => res.json())
   }
+
 
   toOnlyFields(data: Array<any>, propetry: string): Array<string> {
     let arr: Array<string> = [];
@@ -42,30 +55,17 @@ export class PlanDetailService {
     return arr;
   }
 
-  getPropsObj(obj: any) {
-    let indicators = new Object();
-    obj.indicators.map(indicator => {
-      let fields = [];
-      let indObj;
-      indicator.fields.map(field => {
-        fields.push(field.nameP);
-      });
-      indicators[indicator.nameP] = fields;
-    });
-    return indicators;
-  }
 
-  getPropsObj1(indicators: any) {
+  getPropsObj(indicators: any) {
     let strictIndicators = new Object();
     indicators.map(indicator => {
-      let fields = [];
+      let planFields = [];
       let indObj;
-      indicator.fields.map(field => {
-        fields.push(field.nameP);
+      indicator.planFields.map(field => {
+        planFields.push(field.nameP);
       });
-      strictIndicators[indicator.id] = fields;
+      strictIndicators[indicator.id] = planFields;
     });
-    console.log(strictIndicators);
     return strictIndicators;
   }
 

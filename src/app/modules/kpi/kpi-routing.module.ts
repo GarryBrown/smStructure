@@ -32,6 +32,7 @@ const KPIRoutes: Routes = [
   },
   {
     path: 'kpi',
+    canActivate: [RouteAccessService],
     component: PlanDetailComponent
   }
 ];

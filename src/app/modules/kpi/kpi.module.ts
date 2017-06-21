@@ -31,7 +31,7 @@ import { ReportConfigComponent } from './report-config/report-config.component';
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,
-    InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
+    // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
   ],
   declarations: [
     KPIComponent,

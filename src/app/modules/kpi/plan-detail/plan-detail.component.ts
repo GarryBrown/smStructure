@@ -45,11 +45,14 @@ export class PlanDetailComponent implements OnInit {
     this.pdService.getReports()
       .subscribe(
       (data: any) => this.onSuccesReport(data),
-      err => console.error('Error getPresetReport')
+      err => this.currentReport = new Report()
       );
 
-    this.pdService.getListRoutes().subscribe(
-      (data: any) => this.listRoutes = data.data,
+    this.pdService.getRoutes().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.listRoutes = data;
+      },
       err => console.error('No getListRoutes for filter routes'));
 
     this.pdService.getIndicators().subscribe(
@@ -65,7 +68,14 @@ export class PlanDetailComponent implements OnInit {
   }
 
   changeIndicators(indicators) {
-    this.listIndicators = this.pdService.getPropsObj1(indicators);
+    this.listIndicators = this.pdService.getPropsObj(indicators);
+  }
+
+  changeRoutes(routes) {
+    this.pdService.getIndicatorsByRoutes(routes).subscribe(
+      (data: Array<Indicator>) => this.indicators = data,
+      err => this.onError('getIndicatorsByRoutes', err)
+    )
   }
 
   getSelected(selectedVals: Array<any>, option: any) {
@@ -90,7 +100,7 @@ export class PlanDetailComponent implements OnInit {
   }
 
   applyFilter() {
-    this.pdService.getRoutes()
+    this.pdService.getRoutesData()
       .subscribe((data: any) => {
         this.routesData = data.data.routes;
       },
@@ -103,7 +113,10 @@ export class PlanDetailComponent implements OnInit {
     if (!this.reports.length) {
       this.currentReport = new Report();
     }
+  }
 
+  onError(api: string, err: any) {
+    console.error(`error in ${api} => ${err}`);
   }
 
 }
