@@ -13,7 +13,9 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
   styleUrls: ['./plan-detail.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class PlanDetailComponent implements OnInit {
+
   routes: Array<any>;
   indicators: Array<any>;
   indicatorsKPI: Array<any>;
@@ -38,6 +40,7 @@ export class PlanDetailComponent implements OnInit {
         this.indicators = data.data.indicators;
         console.log('this.routes');
         console.log(data.data);
+
       }, error => console.log(error));
     this.kpiService.getPresetReport().subscribe(
       (data: any) => {
@@ -54,6 +57,7 @@ export class PlanDetailComponent implements OnInit {
     this.kpiService.getListRoutes().subscribe(
       (data: any) => this.listRoutes = data.data,
       err => console.error('No getListRoutes for filter routes')
+
     )
 
     this.kpiService.getFilterFields().subscribe(
@@ -83,6 +87,7 @@ export class PlanDetailComponent implements OnInit {
     else {
       this.hideElement = true;
     }
+
   }
 
 }

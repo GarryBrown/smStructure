@@ -1,10 +1,9 @@
 import { Injector } from '@angular/core';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
-import { InterceptableHttp } from '../../shared/interceptor/interceptable-http';
 
+import { InterceptableHttp } from '../../shared/interceptor/interceptable-http';
 import { AuthInterceptor } from './auth.interceptor';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
-
 
 export function interceptableFactory(
     backend: XHRBackend,
@@ -32,6 +31,6 @@ export function customHttpProvider() {
             RequestOptions,
             LocalStorageService,
             SessionStorageService,
-            Injector,        ]
+            Injector,]
     };
 };

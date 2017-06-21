@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-
+import { AppInMemModule } from './app.inMem.module';
 import { AppRoutingModule } from './app-routing.module';
 // import { InterceptorService } from './block/interceptor.service';
 
-import {Ng2Webstorage} from 'ng2-webstorage';
+import { Ng2Webstorage } from 'ng2-webstorage';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
-
+import { FormsModule } from '@angular/forms';
 /* Basic */
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -24,9 +25,10 @@ import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
 import { AccountModule } from './modules/account/account.module';
 
-export class MyHammerConfig extends HammerGestureConfig  {
+
+export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-      'swipe': {velocity: 0.4, threshold: 10} // override default settings
+    'swipe': { velocity: 0.4, threshold: 10 } // override default settings
   }
 }
 
@@ -36,6 +38,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    AppInMemModule,
     AppRoutingModule,
     CoreModule.forRoot(),
     Ng2Webstorage,
@@ -52,9 +56,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ProfileModule,
   ],
   providers: [
-      customHttpProvider(),
-       {provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
-     // provide(Http, { useClass: InterceptorService })
+    customHttpProvider(),
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
+    // provide(Http, { useClass: InterceptorService })
   ],
   bootstrap: [AppComponent]
 })

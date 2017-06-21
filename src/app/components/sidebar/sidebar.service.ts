@@ -8,7 +8,7 @@ import { PrincipalService } from '../../core/principal/principal.service';
 @Injectable()
 export class SidebarService {
 
-  private resourceUrl = '/api/indicators';
+  private resourceUrl = 'api/indicators';
 
   constructor(
     private http: Http,
