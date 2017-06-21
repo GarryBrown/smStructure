@@ -5,6 +5,8 @@ import { AccountService } from './account.service';
 
 import { AuthJwtService } from '../auth/auth-jwt.service';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class PrincipalService {
 
@@ -26,8 +28,8 @@ export class PrincipalService {
   authenticate(_identity) {
     this._identity = _identity;
     this.authenticated = _identity !== null;
-    console.log(`==== set authenticated : ${this.authenticated}`);
-    console.log('=====this.authenticationState.next(this._identity);');
+    // console.log(`==== set authenticated : ${this.authenticated}`);
+    // console.log('=====this.authenticationState.next(this._identity);');
     this.authenticationState.next(this._identity);
   }
 
@@ -75,42 +77,47 @@ export class PrincipalService {
       return Promise.resolve(this._identity);
     }
 
-    return this.account.get().toPromise().then(account => {
 
-      account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
 
-      if (account) {
-        this._identity = account;
-        this.authenticated = true;
-        this.urlApi = account.createdBy;
-      } else {
+    if (environment.production) {
+      return this.account.get().toPromise().then(account => {
+
+        account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
+
+        if (account) {
+          this._identity = account;
+          this.authenticated = true;
+          this.urlApi = account.createdBy;
+        } else {
+          this._identity = undefined;
+          this.authenticated = false;
+          this.urlApi = undefined;
+        }
+        this.authenticationState.next(this._identity);
+        return this._identity;
+      }).catch(err => {
         this._identity = undefined;
         this.authenticated = false;
         this.urlApi = undefined;
-      }
-      this.authenticationState.next(this._identity);
-      return this._identity;
-    }).catch(err => {
-      this._identity = undefined;
-      this.authenticated = false;
-      this.urlApi = undefined;
-      this.authenticationState.next(this._identity);
-      return null;
-    });
-    // return new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     this._identity = {
-    //       login: 'ElonMusk1971',
-    //       firstname: 'Elon',
-    //       lastname: 'Musk',
-    //       hobby: 'Murder',
-    //       imageUrl: 'https://www.aivanet.com/wp-content/uploads/2015/10/elonmusk3.jpg',
-    //     };
-    //     this.authenticated = true;
-    //     this.authenticationState.next(this._identity);
-    //     resolve(this._identity);
-    //   }, 500);
-    // });
+        this.authenticationState.next(this._identity);
+        return null;
+      });
+    } else {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          this._identity = {
+            login: 'ElonMusk1971',
+            firstname: 'Elon',
+            lastname: 'Musk',
+            hobby: 'Murder',
+            imageUrl: 'https://www.aivanet.com/wp-content/uploads/2015/10/elonmusk3.jpg',
+          };
+          this.authenticated = true;
+          this.authenticationState.next(this._identity);
+          resolve(this._identity);
+        }, 500);
+      });
+    }
   }
 
   getUrl(): string {
@@ -138,20 +145,20 @@ export class PrincipalService {
     return this.authenticationState.asObservable();
   }
 
-    getImageUrl(): String {
-        return this.isIdentityResolved() ? this._identity.imageUrl : null;
-    }
+  getImageUrl(): String {
+    return this.isIdentityResolved() ? this._identity.imageUrl : null;
+  }
 
-    isAdmin(authorities: Array<string>): boolean {
-        let isAdmin = false;
-        authorities.forEach(
-            el => {
-                if (el === 'ROLE_ADMIN') {
-                    isAdmin = true;
-                }
-            }
-        );
-        return isAdmin;
-    }
+  isAdmin(authorities: Array<string>): boolean {
+    let isAdmin = false;
+    authorities.forEach(
+      el => {
+        if (el === 'ROLE_ADMIN') {
+          isAdmin = true;
+        }
+      }
+    );
+    return isAdmin;
+  }
 
 }

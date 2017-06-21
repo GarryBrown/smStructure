@@ -30,30 +30,30 @@ export class InMemDataService implements InMemoryDbService {
     ];
 
 
-    let routes = {
+    let routesData = {
       routes: [
         {
-          id: 1, name: "route 1",
+          id: 1, description: "route 1",
           indicators: [
             {  
               id: 1,
-              name: 'Товарооборот',
+              description: 'Товарооборот',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
             {
               id: 2,
-              name: 'Покрытие',
+              description: 'Покрытие',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
             {
               id: 3,
-              name: 'Листинг',
+              description: 'Листинг',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
           ],
           indicatorsDP: [
             {
-              id: 3, name: "ИП Смирнов",
+              id: 3, description: "ИП Смирнов",
               indicators: [
                 {
                   id: 1,
@@ -73,7 +73,7 @@ export class InMemDataService implements InMemoryDbService {
               ]
             },
             {
-              id: 3, name: "ИП Иванов",
+              id: 3, description: "ИП Иванов",
               indicators: [
                 {
                   id: 1,
@@ -93,7 +93,7 @@ export class InMemDataService implements InMemoryDbService {
               ]
             },
             {
-              id: 3, name: "ИП Куликов",
+              id: 3, description: "ИП Куликов",
               indicators: [
                 {
                   id: 1,
@@ -115,11 +115,11 @@ export class InMemDataService implements InMemoryDbService {
           ]
         },
         {
-          id: 1, name: "route 2",
+          id: 1, description: "route 2",
           indicators: [
             {
               id: 1,
-              name: 'Товарооборот',
+              description: 'Товарооборот',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 1, name: "ИП Иванов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 2, name: "ИП Сидоров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
@@ -127,7 +127,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 2,
-              name: 'Покрытие',
+              description: 'Покрытие',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 3, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 4, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
@@ -135,7 +135,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 3,
-              name: 'Листинг',
+              description: 'Листинг',
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
                 { id: 5, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
                 { id: 6, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
@@ -144,7 +144,7 @@ export class InMemDataService implements InMemoryDbService {
           ],
           indicatorsDP: [
             {
-              id: 3, name: "ИП Смирнов",
+              id: 3, description: "ИП Смирнов",
               indicators: [
                 {
                   id: 1,
@@ -164,7 +164,7 @@ export class InMemDataService implements InMemoryDbService {
               ]
             },
             {
-              id: 3, name: "ИП Иванов",
+              id: 3, description: "ИП Иванов",
               indicators: [
                 {
                   id: 1,
@@ -184,7 +184,7 @@ export class InMemDataService implements InMemoryDbService {
               ]
             },
             {
-              id: 3, name: "ИП Куликов",
+              id: 3, description: "ИП Куликов",
               indicators: [
                 {
                   id: 1,
@@ -213,14 +213,14 @@ export class InMemDataService implements InMemoryDbService {
         id: 1,
         name: 'Отчет 1',
         routes: [
-          { id: 1, name: "route 1" },
-          { id: 2, name: "route 2" },
+          { id: 1, description: "route 1" },
+          { id: 2, description: "route 2" },
         ],
         indicators: [
           { 
             id: 1,
-            name: 'Товарооборот',
-            fields: [
+            description: 'Товарооборот',
+            planFields: [
               {
                 nameP: 'sumfact',
                 description: 'Факт'
@@ -248,8 +248,8 @@ export class InMemDataService implements InMemoryDbService {
           },
           { 
             id: 2,
-            name: 'Покрытие',
-            fields: [
+            description: 'Покрытие',
+            planFields: [
               {
                 id: 2,
                 nameP: 'sumfact',
@@ -269,7 +269,7 @@ export class InMemDataService implements InMemoryDbService {
           },
           { 
             id: 3,
-            fields: [
+            planFields: [
               {
                 id: 5,
                 nameP: 'predicrion_percent',
@@ -293,12 +293,12 @@ export class InMemDataService implements InMemoryDbService {
         id: 1,
         name: 'Отчет 2',
         routes: [
-          { id: 1, name: "route 1" }
+          { id: 1, description: "route 1" }
         ],
         indicators: [
           {  id: 1,
-            name: 'Товарооборот',
-            fields: [
+            description: 'Товарооборот',
+            planFields: [
               {
                 nameP: 'sumfact',
                 description: 'Факт'
@@ -325,8 +325,8 @@ export class InMemDataService implements InMemoryDbService {
             ]
           },
           { id: 3,
-            name: 'Листинг',
-            fields: [
+            description: 'Листинг',
+            planFields: [
               {
                 id: 5,
                 nameP: 'predicrion_percent',
@@ -350,24 +350,24 @@ export class InMemDataService implements InMemoryDbService {
 
 
 
-    let listRoutes = [
+    let routes = [
       {
-        id: 1, name: "Маршрут 1"
+        id: 1, description: "Маршрут 1"
       },
       {
-        id: 2, name: "Маршрут 2"
+        id: 2, description: "Маршрут 2"
       },
       {
-        id: 3, name: "Маршрут 3"
+        id: 3, description: "Маршрут 3"
       },
     ];
 
 
-    let indicators = [
+    let planIndicators = [
       { 
         id: 1,
-        name: 'Товарооборот',
-        fields: [
+        description: 'Товарооборот',
+        planFields: [
           {
             nameP: 'sumfact',
             description: 'Факт'
@@ -395,8 +395,8 @@ export class InMemDataService implements InMemoryDbService {
       },
       {
         id: 2,
-        name: 'Покрытие',
-        fields: [
+        description: 'Покрытие',
+        planFields: [
           {
             id: 2,
             nameP: 'sumfact',
@@ -416,8 +416,8 @@ export class InMemDataService implements InMemoryDbService {
       },
       {
         id: 3,
-        name: 'Листинг',
-        fields: [
+        description: 'Листинг',
+        planFields: [
           {
             id: 5,
             nameP: 'predicrion_percent',
@@ -440,10 +440,10 @@ export class InMemDataService implements InMemoryDbService {
 
     return {
       plans: plansKPI,
-      listRoutes: listRoutes,
+      routesData: routesData,
       reports: reports,
       routes: routes,
-      indicators: indicators
+      planIndicators: planIndicators
     };
   }
 }

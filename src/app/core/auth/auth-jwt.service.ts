@@ -4,6 +4,7 @@ import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { Observable } from 'rxjs/Rx';
 import { UrlB2bService } from '../utils/url-b2b.service';
 
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AuthJwtService {
@@ -27,15 +28,24 @@ export class AuthJwtService {
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-    //     return new Observable(observer => {
-    //      observer.next(5);
-    //      observer.complete();
-    //    }).map(authenticateSuccess.bind(this));
-        return this.http.post('api/authenticate', data).map(authenticateSuccess.bind(this));
+        if (environment.production) {
+            return this.http.post('api/authenticate', data).map(authenticateSuccess.bind(this));
+        } else {
+            return new Observable(observer => {
+                observer.next(5);
+                observer.complete();
+            }).map(authenticateSuccess.bind(this));
+        }
+
+
 
         function authenticateSuccess(resp) {
-            let bearerToken = resp.headers.get('Authorization');
-            //let bearerToken = "Bearer fdsfjewpfjpwijr543209ur09243rjek;fj9320jr82094jrskdfj2930r902jreis;jarkl49t43htj3jkht;asd";
+            let bearerToken;
+            if (environment.production) {
+                bearerToken = resp.headers.get('Authorization');
+            } else {
+                bearerToken = "Bearer fdsfjewpfjpwijr543209ur09243rjek;fj9320jr82094jrskdfj2930r902jreis;jarkl49t43htj3jkht;asd";
+            }
             if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
                 let jwt = bearerToken.slice(7, bearerToken.length);
                 let dataJwt = this.parseJwt(jwt);
