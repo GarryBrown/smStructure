@@ -4,8 +4,11 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
 import { Agent } from "app/models/agent.model";
 import { KPIService } from "app/modules/kpi/kpi.service";
+import { PlanDetailService } from './plan-detail.service';
 
 import { ReportConfigComponent } from '../report-config/report-config.component';
+
+import { Route, Report, Indicator } from '../../../models';
 
 @Component({
   selector: 'app-plan-detail',
@@ -16,78 +19,107 @@ import { ReportConfigComponent } from '../report-config/report-config.component'
 
 export class PlanDetailComponent implements OnInit {
 
-  routes: Array<any>;
+  routesData: Array<any>;
+  
   indicators: Array<any>;
-  indicatorsKPI: Array<any>;
-  listRoutes: Array<any>;
-  selectedAgents: Array<any>;
-  presetReports: Array<any>;
-  allFields: Array<any>;
-  allFieldsDesc: Array<any>;
-  headerColumns: Array<string> = ["Маршрут", "Цель", "Факт", "%", "Прогноз", "Прогноз %", "GAP", "План на день"];
+  currentIndicators: Array<any>;
 
-  private hideElement: boolean = false;
+  listRoutes: Array<Route>;
+  currentdRoutes: Array<Route>;
+
+  reports: Array<any>;
+  currentReport: Report;
+
+  listIndicators;
 
   constructor(
     private kpiService: KPIService,
+    private pdService: PlanDetailService,
     public dialog: MdDialog,
-  ) { }
-
-  ngOnInit() {
-    this.kpiService.getRoutes()
-      .subscribe((data: any) => {
-        this.routes = data.data.routes;
-        this.indicators = data.data.indicators;
-        console.log('this.routes');
-        console.log(data.data);
-
-      }, error => console.log(error));
-    this.kpiService.getPresetReport().subscribe(
-      (data: any) => {
-        this.presetReports = data.data;
-        // console.log(data);
-      },
-      err => console.error('Error getPresetReport')
-    )
-
-    this.kpiService.getIndicators().subscribe(
-      (data: any) => this.indicatorsKPI = data.data,
-      err => console.error('No indicators for filter kpi')
-    )
-    this.kpiService.getListRoutes().subscribe(
-      (data: any) => this.listRoutes = data.data,
-      err => console.error('No getListRoutes for filter routes')
-
-    )
-
-    this.kpiService.getFilterFields().subscribe(
-      (data: any) => {
-        this.allFields = data.data;
-        this.allFieldsDesc = this.kpiService.toOnlyFields(this.allFields, 'description');
-        console.log('allFields:');
-        console.log(this.allFields);
-      },
-      err => console.error('Error getPresetReport')
-    )
+  ) {
+    this.currentIndicators = [];
+    this.reports = [];
+    this.currentReport = null;
 
   }
 
+  ngOnInit() {
+    this.pdService.getReports()
+      .subscribe(
+      (data: any) => this.onSuccesReport(data),
+      err => this.currentReport = new Report()
+      );
+
+    this.pdService.getRoutes().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.listRoutes = data;
+      },
+      err => console.error('No getListRoutes for filter routes'));
+
+    this.pdService.getIndicators().subscribe(
+      (data: any) => { this.indicators = data.data; },
+      err => console.error('No getListRoutes for filter routes'));
+  }
+
+
+  changeReports(report) {
+    this.currentdRoutes = report.routes;
+    this.currentIndicators = report.indicators;
+    this.changeIndicators(report.indicators);
+  }
+
+  changeIndicators(indicators) {
+    this.listIndicators = this.pdService.getPropsObj(indicators);
+  }
+
+  changeRoutes(routes) {
+    this.pdService.getIndicatorsByRoutes(routes).subscribe(
+      (data: Array<Indicator>) => this.indicators = data,
+      err => this.onError('getIndicatorsByRoutes', err)
+    )
+  }
+
+  getSelected(selectedVals: Array<any>, option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
+  }
+
+
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      data: [this.presetReports, this.allFieldsDesc]
+      // data: [this.reports, this.allFieldsDesc]
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
   }
-  toggleElement() {
-    if (this.hideElement) {
-      this.hideElement = false;
-    }
-    else {
-      this.hideElement = true;
+
+  applyFilter() {
+    this.pdService.getRoutesData()
+      .subscribe((data: any) => {
+        this.routesData = data.data.routes;
+      },
+      error => console.log(error)
+      );
+  }
+
+  onSuccesReport(reports) {
+    this.reports = reports.data;
+    if (!this.reports.length) {
+      this.currentReport = new Report();
     }
 
+  }
+
+  onError(api: string, err: any) {
+    console.error(`error in ${api} => ${err}`);
   }
 
 }

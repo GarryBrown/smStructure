@@ -8,7 +8,7 @@ import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angula
 })
 export class PlanDetailRowComponent implements OnInit {
   @Input() route: any;
-  @Input() fields: Array<any>; //use fields[0] to get data
+  @Input() indicators: Array<any>; //use fields[0] to get data
 
   isExpanded: boolean = false;
 
@@ -16,7 +16,8 @@ export class PlanDetailRowComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    // console.log(this.indicators[0]);
+    // console.log(this.route.indicators);
   }
 
   toggle(event) {

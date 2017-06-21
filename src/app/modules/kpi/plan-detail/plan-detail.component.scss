@@ -1,25 +1,13 @@
-.top-menu {
+.top-filter {
     margin-bottom: 16px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    md-slide-toggle {
-        margin-right: 32px;
-        flex: 1 1 auto;
-        align-self: center;
-    }
-    md-select {
-        margin-left: 8px;
-        flex: 1 1 auto;
-        align-self: center;
-        width: 250px;
+    .report-config {
+        margin-right: auto;
     }
 }
 
-.main-content {
-    overflow-x: scroll;
-}
-
+// for table
 .indicator-header {
     border-bottom: 1px solid gray;
     border-right: 1px solid gray;

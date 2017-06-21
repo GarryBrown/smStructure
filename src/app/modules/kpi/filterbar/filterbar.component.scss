@@ -2,6 +2,16 @@
     margin-top: 100px;
 }
 
+.header {
+    // text-align: right;
+    button {
+        width: 130px;
+        &:last-child {
+            margin: 3px auto;
+        }
+    }
+}
+
 .choose_fields {
     height: 100px;
 }
@@ -64,10 +74,10 @@ md-list-item {
     -webkit-backface-visibility: hidden;
     span {
         display: block;
-        height: 5px;
+        height: 4px;
         background-color: #fff;
-        margin: 5px 0 0;
-        transition: all .1s linear .23s;
+        margin: 6px 0 0;
+        transition: all .1s linear .15s;
         position: relative;
     }
     span.first {

@@ -11,6 +11,7 @@ import { DateUtilService } from '../../core';
 import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.module';
 /*service */
 import { KPIService } from './kpi.service';
+import { PlanDetailService } from './plan-detail/plan-detail.service';
 /* components */
 import { KPIComponent } from './kpi.component';
 
@@ -41,7 +42,10 @@ import { ReportConfigComponent } from './report-config/report-config.component';
     PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent],
-  providers: [KPIService, DateUtilService, UserResolvePagingParams]
-
+  providers: [KPIService,
+  PlanDetailService,
+  DateUtilService,
+  UserResolvePagingParams,
+  ]
 })
 export class KPIModule { }

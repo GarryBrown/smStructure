@@ -1,42 +1,47 @@
-<md-card class="top-menu">
-    <md-select placeholder="Выберите маршруты" [(ngModel)]="selectedAgents" [multiple]="true">
-        <md-option *ngFor="let route of listRoutes" [value]="route">
-            {{ route.name }}
-        </md-option>
-    </md-select>
+<md-card class="top-filter">
 
-    <md-select placeholder="Выберите показатели" [multiple]="true">
-        <md-option *ngFor="let kpi of indicatorsKPI">
-            {{ kpi.name }}
-        </md-option>
-    </md-select>
-    <button md-mini-fab (click)="toggleElement()"><md-icon>check</md-icon></button>
-    <button md-raised-button (click)="openConfig()"><md-icon>settings</md-icon></button>
+  <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
+    <md-option *ngFor="let report of reports" [value]="report">
+      {{ report.name }}
+    </md-option>
+  </md-select>
 
+  <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
+    <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentdRoutes, route)">
+      {{ route.description }}
+    </md-option>
+  </md-select>
+
+  <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)">
+    <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
+      {{ indicator.description }}
+    </md-option>
+  </md-select>
+  <button md-mini-fab (click)="applyFilter()"><md-icon>filter_list</md-icon></button>
+  <md-icon class="report-config" (click)="openConfig()">settings</md-icon>
 </md-card>
 
-<md-card>
-    <table class="table  table-hover table-condensed dataTables-example" *ngIf="routes && allFields">
-        <thead>
-            <tr>
-                <td></td>
-                <td *ngFor="let indicator of indicators" colspan="7" class="indicator-header">
-                    {{indicator.name}}
-                </td>
-            </tr>
-            <tr>
-                <td>Маршрут</td>
+<md-card *ngIf="routesData && currentReport && listIndicators">
+  <table class="table  table-hover table-condensed table-responsive dataTables-example">
+    <thead>
+      <tr>
+        <td></td>
+        <td *ngFor="let indicator of currentIndicators" [attr.colspan]="indicator.fields.length" class="indicator-header">
+          {{indicator.name}}
+        </td>
+      </tr>
+      <tr>
+        <td>Маршрут</td>
+        <ng-template ngFor let-indicator [ngForOf]="currentIndicators">
+          <td *ngFor="let field of indicator.fields" [hidden]="hideElement">
+            {{field.description}}
+          </td>
+        </ng-template>
 
-                <ng-template ngFor let-indicator [ngForOf]="routes[0].indicators">
-                    <td *ngFor="let field of allFields" [hidden]="hideElement">
-                        {{field.description}}
-                    </td>
-                </ng-template>
-
-            </tr>
-        </thead>
-        <tbody plan-detail-row [route]="route" [fields]=[allFields] *ngFor="let route of routes"></tbody>
-    </table>
+      </tr>
+    </thead>
+    <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
+  </table>
 </md-card>
 
-<app-filterbar></app-filterbar>
+<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentIndicators]="currentIndicators"></app-filterbar>

@@ -5,61 +5,55 @@
   <span class="third"></span>
 </label>
 <div class="hidden-menu">
-    <div class="wrapper">
-        <div class="reports">
 
-            <md-select placeholder="Favorite food" name="food">
-                <md-option>
-                    Один
-                </md-option>
-                <md-option>
-                    Два
-                </md-option>
-                <md-option>
-                    Три
-                </md-option>
-            </md-select>
+  <div class="wrapper">
+    <div class="header">
+      <md-input-container>
+        <input mdInput placeholder="Название отчета" [(ngModel)]="currentReport.description">
+      </md-input-container>
 
+      <button md-raised-button color="primary">
+        <span>Обновить</span>
+        <md-icon>restore_page</md-icon>
+      </button>
 
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" type="button" color="warn" [disabled]="isDisableForm">
-                <i class="material-icons">close</i>
-          </button>
-
-
-
-        </div>
-        <md-list>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-            <md-list-item>
-                <md-checkbox>Check me!</md-checkbox>
-            </md-list-item>
-
-        </md-list>
-
-        <div class="save">
-            <md-input-container>
-                <input mdInput placeholder="Favorite food" value="Sushi">
-            </md-input-container>
-            <button md-mini-fab><md-icon>save</md-icon></button>
-        </div>
-
-
+      <button md-raised-button color="primary">
+        <span>Сохранить</span>
+        <md-icon>save</md-icon>
+      </button>
     </div>
+
+    <hr>
+    <md-list>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+      <md-list-item>
+        <md-checkbox>Check me!</md-checkbox>
+      </md-list-item>
+    </md-list>
+
+    <div class="save">
+      <md-input-container>
+        <input mdInput placeholder="Favorite food" value="Sushi">
+      </md-input-container>
+      <button md-mini-fab><md-icon>save</md-icon></button>
+    </div>
+
+  </div>
 </div>

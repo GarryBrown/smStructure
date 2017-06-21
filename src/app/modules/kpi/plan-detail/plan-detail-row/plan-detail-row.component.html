@@ -1,29 +1,22 @@
 <tr>
   <td>
     <button type="button" class="btn" (click)="toggle($e)">
-          <ng-template [ngIf]="isExpanded">-</ng-template>
-          <ng-template [ngIf]="!isExpanded">+</ng-template>
-        </button> {{route.name}}
+      <ng-template [ngIf]="isExpanded">-</ng-template>
+      <ng-template [ngIf]="!isExpanded">+</ng-template>
+    </button> {{route.name}}
   </td>
-
   <ng-template ngFor let-indicator [ngForOf]="route.indicators">
-    <td *ngFor="let field of fields[0]">{{indicator[field.field]}}</td>
+    <td *ngFor="let field of indicators[0][indicator.id]">{{indicator[field]}}</td>
   </ng-template>
-
 </tr>
 
-
-
 <ng-template [ngIf]="isExpanded">
-
   <ng-template ngFor let-dp [ngForOf]="route.indicatorsDP">
     <tr>
       <td>{{dp.name}}</td>
       <ng-template ngFor let-indicator [ngForOf]="dp.indicators">
-        <td *ngFor="let field of fields[0]">{{indicator[field.field]/3 | number : '1.1-1'}}</td>
+        <td *ngFor="let field of indicators[0][indicator.id]">{{indicator[field]/3 | number : '1.1-1'}}</td>
       </ng-template>
     </tr>
-
   </ng-template>
-
 </ng-template>

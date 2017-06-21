@@ -8,8 +8,6 @@ import { PrincipalService } from '../../core/principal/principal.service';
 @Injectable()
 export class SidebarService {
 
-  private resourceUrl = 'api/indicators';
-
   constructor(
     private http: Http,
     private auth: AuthJwtService,
@@ -27,9 +25,6 @@ export class SidebarService {
     }
   }
 
-  getIndicators(): Observable<Response> {
-      return this.http.get(this.resourceUrl).map( (res: Response) => res.json());
-  }
 
 
 }
