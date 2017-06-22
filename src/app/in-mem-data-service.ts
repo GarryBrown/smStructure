@@ -30,11 +30,10 @@ export class InMemDataService implements InMemoryDbService {
     ];
 
 
-    let routesData = {
-      routes: [
-        {
+    let routesData = [
+      {
           id: 1, description: "route 1",
-          indicators: [
+          planValuesSet: [
             {  
               id: 1,
               description: 'Товарооборот',
@@ -51,10 +50,10 @@ export class InMemDataService implements InMemoryDbService {
               sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
             },
           ],
-          indicatorsDP: [
+          planDeliveryPointSet: [
             {
               id: 3, description: "ИП Смирнов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -74,7 +73,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 3, description: "ИП Иванов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -94,7 +93,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 3, description: "ИП Куликов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -116,7 +115,7 @@ export class InMemDataService implements InMemoryDbService {
         },
         {
           id: 1, description: "route 2",
-          indicators: [
+          planValuesSet: [
             {
               id: 1,
               description: 'Товарооборот',
@@ -142,10 +141,10 @@ export class InMemDataService implements InMemoryDbService {
               ]
             },
           ],
-          indicatorsDP: [
+          planDeliveryPointSet: [
             {
               id: 3, description: "ИП Смирнов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -165,7 +164,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 3, description: "ИП Иванов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -185,7 +184,7 @@ export class InMemDataService implements InMemoryDbService {
             },
             {
               id: 3, description: "ИП Куликов",
-              indicators: [
+              planValuesSet: [
                 {
                   id: 1,
                   name: 'Товарооборот',
@@ -204,9 +203,8 @@ export class InMemDataService implements InMemoryDbService {
               ]
             }
           ]
-        },
-      ]
-    };
+        }
+    ];
     let reports = [];
     let reports1 = [
       {
@@ -216,7 +214,7 @@ export class InMemDataService implements InMemoryDbService {
           { id: 1, description: "route 1" },
           { id: 2, description: "route 2" },
         ],
-        indicators: [
+        planValuesSet: [
           { 
             id: 1,
             description: 'Товарооборот',
@@ -295,7 +293,7 @@ export class InMemDataService implements InMemoryDbService {
         routes: [
           { id: 1, description: "route 1" }
         ],
-        indicators: [
+        planValuesSet: [
           {  id: 1,
             description: 'Товарооборот',
             planFields: [

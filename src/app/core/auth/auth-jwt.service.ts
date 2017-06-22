@@ -4,7 +4,7 @@ import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { Observable } from 'rxjs/Rx';
 import { UrlB2bService } from '../utils/url-b2b.service';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../app.constants';
 
 @Injectable()
 export class AuthJwtService {

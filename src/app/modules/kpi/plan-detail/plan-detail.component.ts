@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
@@ -17,7 +17,7 @@ import { Route, Report, Indicator } from '../../../models';
   encapsulation: ViewEncapsulation.None
 })
 
-export class PlanDetailComponent implements OnInit {
+export class PlanDetailComponent implements OnInit, AfterViewInit {
 
   routesData: Array<any>;
   
@@ -31,6 +31,7 @@ export class PlanDetailComponent implements OnInit {
   currentReport: Report;
 
   listIndicators;
+  @ViewChild('video') video:any;
 
   constructor(
     private kpiService: KPIService,
@@ -44,6 +45,7 @@ export class PlanDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.test();
     this.pdService.getReports()
       .subscribe(
       (data: any) => this.onSuccesReport(data),
@@ -52,11 +54,24 @@ export class PlanDetailComponent implements OnInit {
 
     this.pdService.getRoutes().subscribe(
       (data: any) => {
+        console.log('rooouttteee');
         console.log(data.data);
         this.listRoutes = data.data;
       },
       err => console.error('No getListRoutes for filter routes'));
   }
+
+  ngAfterViewInit() {
+  // let _video=this.video.nativeElement;
+  // if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  //   navigator.mediaDevices
+  //     .getUserMedia({ video: true })
+  //       .then(stream => {
+  //         _video.src = window.URL.createObjectURL(stream);
+  //         _video.play();
+  //       })
+  // }
+}
 
 
   changeReports(report) {
@@ -66,6 +81,7 @@ export class PlanDetailComponent implements OnInit {
   }
 
   changeIndicators(indicators) {
+    console.log(this.currentIndicators)
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
 
@@ -103,7 +119,7 @@ export class PlanDetailComponent implements OnInit {
   applyFilter() {
     this.pdService.getRoutesData()
       .subscribe((data: any) => {
-        this.routesData = data.data.routes;
+        this.routesData = data.data;
       },
       error => console.log(error)
       );
@@ -119,6 +135,22 @@ export class PlanDetailComponent implements OnInit {
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
+  }
+
+
+  test() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.warn('Geolocation is not supported by this browser');
+    }
+
+    
+  }
+
+  showPosition(position) {
+      console.log(`Your position : `);
+      console.log(position);
   }
 
 }

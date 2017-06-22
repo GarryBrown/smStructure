@@ -17,9 +17,6 @@ import { DeleteUtilsService } from './services/delete-utils.service';
 import { StoresService } from './services/stores.service';
 /* pipes  */
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
-/* components */
-import { StoresDialogComponent } from './components/stores-dialog/stores-dialog.component';
-import { CustomersDialogComponent } from './components/customers-dialog/customers-dialog.component';
 /* interceptors */
 import { HttpInterceptor } from './interceptor/http.interceptor';
 import { InterceptableHttp } from './interceptor/interceptable-http';
@@ -56,8 +53,6 @@ export function HttpLoaderFactory(http: Http) {
     SortDirective,
     HasAuthorityDirective,
     PrettyCountPipe,
-    StoresDialogComponent,
-    CustomersDialogComponent
     ],
   exports: [
     CommonModule,
@@ -72,8 +67,6 @@ export function HttpLoaderFactory(http: Http) {
     SortDirective,
     HasAuthorityDirective,
     CustomChartModule,
-    StoresDialogComponent,
-    CustomersDialogComponent,
     ],
   providers: [
      PaginUtilService,

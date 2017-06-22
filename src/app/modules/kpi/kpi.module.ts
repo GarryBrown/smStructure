@@ -6,7 +6,8 @@ import { DatepickerModule } from 'angular2-material-datepicker';
 import { SharedModule } from '../../shared';
 import { DateUtilService } from '../../core';
 /* test api */
-
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.module';
 /*service */
@@ -22,12 +23,21 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
 
+import { environment } from '../../app.constants';
+
+let myTestApiModule = [];
+if (!environment.production) {
+  myTestApiModule.push( InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }) );
+}
+
+
 @NgModule({
   imports: [
     CommonModule,
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,
+     ...myTestApiModule,
   ],
   declarations: [
     KPIComponent,

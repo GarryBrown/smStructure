@@ -4,9 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { AppInMemModule } from './app.inMem.module';
 import { AppRoutingModule } from './app-routing.module';
-// import { InterceptorService } from './block/interceptor.service';
+
 
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
@@ -18,13 +17,10 @@ import { LayoutrModule } from './components//layout.module';
 
 /* Modules */
 import { KPIModule } from './modules/kpi/kpi.module';
-import { AdminModule } from './modules/admin/admin.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { StoresModule } from './modules/stores/stores.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
 import { AccountModule } from './modules/account/account.module';
-
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -39,7 +35,6 @@ export class MyHammerConfig extends HammerGestureConfig {
   imports: [
     BrowserModule,
     FormsModule,
-    AppInMemModule,
     AppRoutingModule,
     CoreModule.forRoot(),
     Ng2Webstorage,
@@ -50,9 +45,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     AccountModule,
     LandingModule,
     KPIModule,
-    AdminModule,
     DashboardModule,
-    StoresModule,
     ProfileModule,
   ],
   providers: [

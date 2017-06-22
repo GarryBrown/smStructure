@@ -14,7 +14,6 @@ export class FilterbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.indicators);
     console.log(this.currentIndicators);
   }
 

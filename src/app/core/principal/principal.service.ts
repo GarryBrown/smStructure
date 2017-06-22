@@ -5,7 +5,7 @@ import { AccountService } from './account.service';
 
 import { AuthJwtService } from '../auth/auth-jwt.service';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../app.constants';
 
 @Injectable()
 export class PrincipalService {

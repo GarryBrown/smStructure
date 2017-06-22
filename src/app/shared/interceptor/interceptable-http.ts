@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, ConnectionBackend, RequestOptions, RequestOptionsArgs, Request, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from "environments/environment";
+import { environment } from '../../app.constants';
 
 @Injectable()
 export class InterceptableHttp extends Http {

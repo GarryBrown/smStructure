@@ -26,18 +26,17 @@
     <thead>
       <tr>
         <td></td>
-        <td *ngFor="let indicator of currentIndicators" [attr.colspan]="indicator.fields.length" class="indicator-header">
+        <td *ngFor="let indicator of currentIndicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
           {{indicator.description}}
         </td>
       </tr>
       <tr>
         <td>Маршрут</td>
         <ng-template ngFor let-indicator [ngForOf]="currentIndicators">
-          <td *ngFor="let field of indicator.fields" [hidden]="hideElement">
+          <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
             {{field.description}}
           </td>
         </ng-template>
-
       </tr>
     </thead>
     <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
@@ -45,3 +44,9 @@
 </md-card>
 
 <app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentIndicators]="currentIndicators"></app-filterbar>
+
+<md-card>
+  <input type="file" accept="video/*" capture>
+  <canvas></canvas>
+
+</md-card>

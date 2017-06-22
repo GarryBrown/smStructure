@@ -16,3 +16,22 @@
         border-right: none;
     }
 }
+
+#myOnlineCamera video {
+    width: 320px;
+    height: 240px;
+    margin: 15px;
+    float: left;
+}
+
+#myOnlineCamera canvas {
+    width: 320px;
+    height: 240px;
+    margin: 15px;
+    float: left;
+}
+
+#myOnlineCamera button {
+    clear: both;
+    margin: 30px;
+}

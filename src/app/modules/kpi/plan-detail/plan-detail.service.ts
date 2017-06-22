@@ -14,7 +14,7 @@ export class PlanDetailService {
   }
 
   getRoutesData(): Observable<Response> {
-    return this.http.get('/api/routes').map((res: Response) => res.json());
+    return this.http.get('/api/routesData').map((res: Response) => res.json());
   }
 
 
