@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ElementRef, OnChanges } from '@angular/core';
 
 @Component({
   selector: '[plan-detail-row]',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angula
   styleUrls: ['./plan-detail-row.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlanDetailRowComponent implements OnInit {
+export class PlanDetailRowComponent implements OnInit, OnChanges {
   @Input() route: any;
   @Input() indicators: Array<any>; //use fields[0] to get data
 
@@ -17,6 +17,11 @@ export class PlanDetailRowComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.indicators[0]);
+    // console.log(this.route.indicators);
+  }
+  ngOnChanges() {
+    console.log('CHANGE IN THE ROOOOOOOW');
+    console.log(this.indicators[0]);
     // console.log(this.route.indicators);
   }
 

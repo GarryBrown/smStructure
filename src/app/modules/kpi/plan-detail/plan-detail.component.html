@@ -1,27 +1,37 @@
-<md-card class="top-filter">
+<md-card>
 
-  <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
-    <md-option *ngFor="let report of reports" [value]="report">
-      {{ report.name }}
-    </md-option>
-  </md-select>
+  <div class="top-filter">
+    <div class="filter-item">
+      <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
+        <md-option *ngFor="let report of reports" [value]="report">
+          {{ report.name }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="filter-item">
+      <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
+        <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentdRoutes, route)">
+          {{ route.description }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="filter-item">
+      <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)" [disabled]="!indicators">
+        <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
+          {{ indicator.description }}
+        </md-option>
+      </md-select>
+    </div>
 
-  <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
-    <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentdRoutes, route)">
-      {{ route.description }}
-    </md-option>
-  </md-select>
+    <button md-mini-fab (click)="applyFilter()"><md-icon>filter_list</md-icon></button>
 
-  <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)">
-    <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
-      {{ indicator.description }}
-    </md-option>
-  </md-select>
-  <button md-mini-fab (click)="applyFilter()"><md-icon>filter_list</md-icon></button>
-  <md-icon class="report-config" (click)="openConfig()">settings</md-icon>
+    <div class="filter-item report-config">
+      <md-icon (click)="openConfig()">settings</md-icon>
+    </div>
+  </div>
 </md-card>
 
-<md-card *ngIf="routesData && currentReport && listIndicators">
+<md-card *ngIf="routesData && currentReport && listIndicators && routesData.length">
   <table class="table  table-hover table-condensed table-responsive dataTables-example">
     <thead>
       <tr>
@@ -43,10 +53,4 @@
   </table>
 </md-card>
 
-<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentIndicators]="currentIndicators"></app-filterbar>
-
-<md-card>
-  <input type="file" accept="video/*" capture>
-  <canvas></canvas>
-
-</md-card>
+<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentIndicators]="currentIndicators" (updateCurrentIndicators)="changeFields($event)"></app-filterbar>

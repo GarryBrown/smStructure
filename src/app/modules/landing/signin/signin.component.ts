@@ -56,9 +56,9 @@ export class SigninComponent implements OnInit {
       console.log("=====AUTH SIDEBAR NEXT");
       this.sidebartoggle.auth(account);
       if (this.principal.isAdmin(account.authorities)) {
-        this.router.navigate(['admin']);
+        this.router.navigate(['kpi']);
       } else {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['kpi']);
       }
     }).catch(() => {
       console.log('some error of promise auth!');
@@ -68,7 +68,7 @@ export class SigninComponent implements OnInit {
 
 
   redirect() {
-    this.router.navigate(['/orders']);
+    this.router.navigate(['/kpi']);
   }
 
 }

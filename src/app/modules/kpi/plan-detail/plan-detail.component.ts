@@ -29,6 +29,7 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
 
   reports: Array<any>;
   currentReport: Report;
+  getSelected;
 
   listIndicators;
   @ViewChild('video') video:any;
@@ -38,10 +39,12 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
     private pdService: PlanDetailService,
     public dialog: MdDialog,
   ) {
-    this.currentIndicators = [];
     this.reports = [];
+    // this.indicators = [];
+    this.currentIndicators = [];
     this.currentReport = null;
 
+    this.getSelected = pdService.getSelected;
   }
 
   ngOnInit() {
@@ -55,23 +58,15 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
     this.pdService.getRoutes().subscribe(
       (data: any) => {
         console.log('rooouttteee');
-        console.log(data.data);
-        this.listRoutes = data.data;
+        console.log(data);
+        this.listRoutes = data;
       },
       err => console.error('No getListRoutes for filter routes'));
   }
 
   ngAfterViewInit() {
-  // let _video=this.video.nativeElement;
-  // if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  //   navigator.mediaDevices
-  //     .getUserMedia({ video: true })
-  //       .then(stream => {
-  //         _video.src = window.URL.createObjectURL(stream);
-  //         _video.play();
-  //       })
-  // }
-}
+
+  }
 
 
   changeReports(report) {
@@ -80,31 +75,33 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
     this.changeIndicators(report.indicators);
   }
 
+
   changeIndicators(indicators) {
-    console.log(this.currentIndicators)
+    console.log(this.currentIndicators);
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
+
 
   changeRoutes(routes) {
     this.pdService.getIndicatorsByRoutes(routes).subscribe(
       (data) => {
-        console.log(data.data);
-        this.indicators = data.data
+        console.log(data);
+        this.indicators = data
       },
       err => this.onError('getIndicatorsByRoutes', err)
     )
   }
 
-  getSelected(selectedVals: Array<any>, option: any) {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
+  // getSelected(selectedVals: Array<any>, option: any) {
+  //   if (selectedVals) {
+  //     for (let i = 0; i < selectedVals.length; i++) {
+  //       if (option.id === selectedVals[i].id) {
+  //         return selectedVals[i];
+  //       }
+  //     }
+  //   }
+  //   return option;
+  // }
 
 
   openConfig() {
@@ -117,9 +114,11 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter() {
-    this.pdService.getRoutesData()
+    this.pdService.getRoutesData(this.currentIndicators, this.currentdRoutes)
       .subscribe((data: any) => {
-        this.routesData = data.data;
+        console.log(data);
+        console.log(this.listIndicators);
+        this.routesData = data;
       },
       error => console.log(error)
       );
@@ -131,6 +130,12 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
       this.currentReport = new Report();
     }
 
+  }
+
+  changeFields(newCurrentIndicators) {
+    console.log('YAEEEEH');
+    this.listIndicators = this.pdService.getPropsObj(newCurrentIndicators);
+    console.log(this.listIndicators);
   }
 
   onError(api: string, err: any) {

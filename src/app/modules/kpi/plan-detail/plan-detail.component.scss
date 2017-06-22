@@ -2,8 +2,15 @@
     margin-bottom: 16px;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    .filter-item,
+    button {
+        margin-left: 20px;
+    }
     .report-config {
-        margin-right: auto;
+        margin-left: auto;
     }
 }
 

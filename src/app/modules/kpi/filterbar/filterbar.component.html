@@ -27,8 +27,8 @@
     <md-list>
       <md-list-item *ngFor="let indicator of currentIndicators">
         <span>{{indicator.description}}</span>
-        <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true">
-          <md-option *ngFor="let field of indicator.planFields" [value]="field">
+        <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true" (ngModelChange)="changeFields($event)">
+          <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
             {{ field.description }}
           </md-option>
         </md-select>

@@ -13,21 +13,48 @@ export class PlanDetailService {
   ) {
   }
 
-  getRoutesData(): Observable<Response> {
-    return this.http.get('/api/routesData').map((res: Response) => res.json());
+  getRoutesData(indicators, routes): Observable<Response> {
+    // api/plan-routes?typeOfPlanId=1,5&routeId=213,214
+    let params: URLSearchParams = new URLSearchParams();
+    let indicatorsIds: Array<any> = [];
+    let routesIds: Array<any> = [];
+    indicators.map(indicator => {
+      indicatorsIds.push(indicator.id)
+    });
+    routes.map(route => {
+      routesIds.push(route.id)
+    });
+    params.set('typeOfPlanId', indicatorsIds.join());
+    params.set('routeId', routesIds.join());
+
+    return this.http.get('/api/plan-routes', {
+      search: params
+    }).map((res: Response) => res.json());
   }
 
 
   getIndicatorsByRoutes(routes: Array<any>): Observable<any> {
+    if (routes.length) {
+      let routesIds: Array<any> = [];
+      routes.map(route => {
+        routesIds.push(route.id)
+      });
+      let routesIdsSrt = routesIds.join();
+
+      return this.getIndicators(routesIdsSrt);
+    } else {
+      return new Observable(observer => {
+        observer.next([]);
+      })
+    }
+  }
+
+  getIndicators(routes: string): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
-    routes.map( route => {
-      params.append('routeId', route.id);
-    })
-
-    return this.http.get('/api/planIndicators', {
-      //search: params
+    params.set('routeId', routes);
+    return this.http.get('/api/plan-indicators', {
+      search: params
     }).map((res: Response) => res.json());
-
   }
 
 
@@ -53,16 +80,31 @@ export class PlanDetailService {
 
 
   getPropsObj(indicators: any) {
-    let strictIndicators = new Object();
+    let strictIndicators: Array<any> = [];
     indicators.map(indicator => {
       let planFields = [];
-      let indObj;
+      let indObj = new Object();
       indicator.planFields.map(field => {
-        planFields.push(field.nameP);
+        planFields.push(field.code);
       });
-      strictIndicators[indicator.id] = planFields;
+      indObj['id'] = indicator.id;
+      indObj['planFields'] = planFields;
+      strictIndicators.push(indObj);
     });
+    console.log('strictIndicators');
+    console.log(strictIndicators);
     return strictIndicators;
+  }
+
+  getSelected(selectedVals: Array<any>, option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 
 }
