@@ -13,6 +13,7 @@ import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.modu
 /*service */
 import { KPIService } from './kpi.service';
 import { PlanDetailService } from './plan-detail/plan-detail.service';
+import { ReportConfigService } from './report-config/report-config.service';
 /* components */
 import { KPIComponent } from './kpi.component';
 
@@ -27,7 +28,7 @@ import { environment } from '../../app.constants';
 
 let myTestApiModule = [];
 if (!environment.production) {
-  myTestApiModule.push( InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }) );
+  myTestApiModule.push(InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }));
 }
 
 
@@ -37,7 +38,7 @@ if (!environment.production) {
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,
-     ...myTestApiModule,
+    ...myTestApiModule,
   ],
   declarations: [
     KPIComponent,
@@ -52,10 +53,12 @@ if (!environment.production) {
     PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent],
-  providers: [KPIService,
-  PlanDetailService,
-  DateUtilService,
-  UserResolvePagingParams,
+  providers: [
+    KPIService,
+    ReportConfigService,
+    PlanDetailService,
+    DateUtilService,
+    UserResolvePagingParams,
   ]
 })
 export class KPIModule { }

@@ -5,8 +5,14 @@
       <ng-template [ngIf]="!isExpanded">+</ng-template>
     </button> {{route.description}}
   </td>
-  <ng-template ngFor let-indicator [ngForOf]="route.planValuesSet">
-    <td *ngFor="let field of indicators[0][indicator.id]">{{indicator[field]}}</td>
+  <ng-template ngFor let-indicator [ngForOf]="indicators[0]">
+    <div *ngIf="route.planValues[indicator.id];then exist else empty"></div>
+    <ng-template #exist>
+      <td *ngFor="let field of indicator.planFields">{{route.planValues[indicator.id][field]}}</td>
+    </ng-template>
+    <ng-template #empty>
+      <td *ngFor="let field of indicator.planFields" class="empty-field"></td>
+    </ng-template>
   </ng-template>
 </tr>
 
@@ -14,8 +20,14 @@
   <ng-template ngFor let-dp [ngForOf]="route.planDeliveryPointSet">
     <tr>
       <td>{{dp.description}}</td>
-      <ng-template ngFor let-indicator [ngForOf]="dp.planValuesSet ">
-        <td *ngFor="let field of indicators[0][indicator.id] ">{{indicator[field]/3 | number : '1.1-1'}}</td>
+      <ng-template ngFor let-indicator [ngForOf]="indicators[0]">
+        <div *ngIf="dp.planValues[indicator.id];then existDP else emptyDP"></div>
+        <ng-template #existDP>
+          <td *ngFor="let field of indicator.planFields">{{dp.planValues[indicator.id][field]/3 | number : '1.1-1'}}</td>
+        </ng-template>
+        <ng-template #emptyDP>
+          <td *ngFor="let field of indicator.planFields" class="empty-field"></td>
+        </ng-template>
       </ng-template>
     </tr>
   </ng-template>
