@@ -99,7 +99,7 @@ export class AuthJwtService {
 
     checkAuthority(dataJwt) {
         return dataJwt.gateway.some(authority =>
-            authority.authority === 'ROLE_B2B');
+            authority.authority === 'ROLE_ADMIN');
     }
 
     storeUrlFromJWT(dataJwt) {
