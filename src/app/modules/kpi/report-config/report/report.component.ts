@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
+import { PlanDetailService } from '../../plan-detail/plan-detail.service';
+import { ReportConfigService } from '../report-config.service';
+import { Route, Report, Indicator } from '../../../../models';
 
 @Component({
   selector: 'app-report',
@@ -8,52 +11,53 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
   @Input() report: Report;
-  infoReport = false;
-  field = false;
-  selectedValue: string;
-  routes = [
-    "Route 1",
-    "Route 2",
-    "Route 3"
-  ]
-  indicators = [
-    "Показатель 1",
-    "Показатель 2",
-    "Показатель 3"
-    // { name: "Показатель 1" },
-    // { name: "Показатель 2" },
-    // { name: "Показатель 3" },
+  @Input() routes: Array<Route>;
 
-  ]
-  fields = [
-    "первое",
-    "второе",
-    "третье"
-  ]
+  indicators: Array<Indicator>;
+  allFields: Array<any>;
+  details = false;
+  getSelected: any;
 
-
-
-  constructor() { }
+  constructor(
+    private pdSerivce: PlanDetailService,
+    private reportService: ReportConfigService,
+  ) {
+    this.getSelected = pdSerivce.getSelected;
+  }
 
   ngOnInit() {
+    if (this.report) {
+      this.pdSerivce.getIndicatorsByRoutes(this.report.routes).subscribe(
+        (data: any) => {
+          this.indicators = data.data;
+          this.allFields = this.indicators[0].planFields;
+        },
+        err => console.log('error')
+      )
+    }
   }
 
   toggleInfo() {
-    this.infoReport = !this.infoReport;
+    this.details = !this.details;
+  }
+
+  save() {
+    // this.isSaving = true;
+    console.log(this.report);
+    this.reportService.update(this.report).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+  }
+
+  private onSaveSuccess(result) {
+    // this.isSaving = false;
+  }
+
+  private onSaveError() {
+    // this.isSaving = false;
+  }
+
+  private delete(report) {
+    console.warn("ATTENTION! IT'S DELETING");
+    this.reportService.delete(report.id).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
   }
 
 }
-
-
-
-export class Report {
-  name: string;
-}
-
-export const REPORTS = [
-  { name: 'Отчёт 1' },
-
-  { name: 'Отчёт 2' },
-
-  { name: 'Отчёт 3' }
-]

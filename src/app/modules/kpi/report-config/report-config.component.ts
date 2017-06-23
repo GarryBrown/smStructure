@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
-import { REPORTS } from './report/report.component';
+import { Route, Report } from '../../../models';
 
 @Component({
   selector: 'app-report-config',
@@ -10,23 +10,19 @@ import { REPORTS } from './report/report.component';
 })
 export class ReportConfigComponent implements OnInit {
 
-  reports = REPORTS;
-  presetReports: Array<any>;
-  public allFields: Array<any>;
+  routes: Array<Route>;
+  reports: Array<Report>;
 
   constructor(
     @Inject(MD_DIALOG_DATA) public data: any,
     public dialogRef: MdDialogRef<ReportConfigComponent>
   ) {
-    this.presetReports = data[0];
-    this.allFields = data[1];
+    this.reports = data[0];
+    this.routes = data[1];
   }
 
   ngOnInit() {
-    // console.log('report config');
-    // console.log(this.data[0][0].fields[0]);
-    // console.log(this.data[1]);
-    // console.log(this.data[1].includes(this.data[0][0].fields[0]));
+
   }
 
   close() {

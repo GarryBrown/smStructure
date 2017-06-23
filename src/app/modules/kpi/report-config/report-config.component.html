@@ -1,31 +1,12 @@
-<div class="header">
+<div class="wrapper">
+  <div class="header">
     <h3 md-subheader>Отчеты</h3>
     <span class="close">
     <md-icon (click)="close()">close</md-icon>
   </span>
+  </div>
+  <br>
+
+  <app-report *ngFor="let report of reports" [report]="report" [routes]="routes"></app-report>
 
 </div>
-
-<!--<md-list>
-    <md-list-item *ngFor="let report of presetReports">
-        <span>{{report.name}}</span>
-        <md-select multiple [(ngModel)]="report.fields">
-            <md-option *ngFor="let field of allFields" [value]="field">
-                {{field}}
-            </md-option>
-        </md-select>
-        <span class="remove" (click)="removeShop(report.id)">
-        <md-icon>close</md-icon>
-    </span>
-    </md-list-item>
-</md-list>-->
-<br>
-<form action="">
-    <md-input-container>
-        <input mdInput placeholder="Новый отчет">
-    </md-input-container>
-    <button md-mini-fab color="primary"><md-icon>save</md-icon></button>
-
-
-    <app-report *ngFor="let report of reports" [report]="report"></app-report>
-</form>

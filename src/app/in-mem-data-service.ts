@@ -214,8 +214,9 @@ export class InMemDataService implements InMemoryDbService {
         ]
       }
     ];
-    let reports = [];
-    let reports1 = [
+    
+    let reports1 = [];
+    let reports = [
       {
         id: 1,
         name: 'Отчет 1',
@@ -223,7 +224,7 @@ export class InMemDataService implements InMemoryDbService {
           { id: 1, description: "route 1" },
           { id: 2, description: "route 2" },
         ],
-        planValuesSet: [
+        planValues: [
           {
             id: 1,
             description: 'Товарооборот',
@@ -276,6 +277,7 @@ export class InMemDataService implements InMemoryDbService {
           },
           {
             id: 3,
+            description: 'Листинг',
             planFields: [
               {
                 id: 5,
@@ -297,12 +299,12 @@ export class InMemDataService implements InMemoryDbService {
         ]
       },
       {
-        id: 1,
+        id: 2,
         name: 'Отчет 2',
         routes: [
           { id: 1, description: "route 1" }
         ],
-        planValuesSet: [
+        planValues: [
           {
             id: 1,
             description: 'Товарооборот',

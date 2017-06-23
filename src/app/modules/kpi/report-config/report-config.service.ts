@@ -21,6 +21,10 @@ export class ReportConfigService {
     return this.http.put(this.resourceUrl, report);
   }
 
+  delete(id: number): Observable<Response> {
+    return this.http.delete(`${this.resourceUrl}/${id}`);
+  }
+
   getReports(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: Response) => res.json())

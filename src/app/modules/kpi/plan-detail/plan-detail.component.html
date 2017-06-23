@@ -2,14 +2,14 @@
   <div class="top-filter">
     <div class="filter-item">
       <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
-        <md-option *ngFor="let report of reports" [value]="report">
+        <md-option *ngFor="let report of reports" [value]="getSelected(currentReport, report)">
           {{ report.name }}
         </md-option>
       </md-select>
     </div>
     <div class="filter-item">
       <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
-        <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentRoutes, route)">
+        <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
           {{ route.description }}
         </md-option>
       </md-select>
@@ -30,11 +30,6 @@
     </div>
   </div>
 </md-card>
-
-
-
-<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentRoutes]="currentRoutes" [currentIndicators]="currentIndicators" (updateCurrentIndicators)="changeFields($event)"></app-filterbar>
-
 
 <md-card *ngIf="routesData && currentReport && listIndicators && routesData.length">
   <table class="table  table-hover table-condensed table-responsive dataTables-example">
@@ -57,3 +52,5 @@
     <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
   </table>
 </md-card>
+
+<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentRoutes]="currentRoutes" [currentIndicators]="currentIndicators" (updateCurrentIndicators)="changeFields($event)"></app-filterbar>

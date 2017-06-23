@@ -27,7 +27,7 @@ export class PlanDetailComponent implements OnInit {
   indicators: Array<any>;
   currentIndicators: Array<any>;
 
-  listRoutes: Array<Route>;
+  routes: Array<Route>;
 
   currentRoutes: Array<Route>;
   allFieldsDesc: Array<any>;
@@ -40,13 +40,6 @@ export class PlanDetailComponent implements OnInit {
 
   currentdRoutes: Array<Route>;
 
-  // reports: Array<any>;
-  // currentReport: Report;
-
-  // listIndicators;
-  // @ViewChild('video') video: any;
-
-
   constructor(
     private kpiService: KPIService,
     private pdService: PlanDetailService,
@@ -54,30 +47,31 @@ export class PlanDetailComponent implements OnInit {
     public dialog: MdDialog,
   ) {
     this.reports = [];
-    // this.indicators = [];
     this.currentIndicators = [];
-    this.currentReport = null;
     this.getSelected = pdService.getSelected;
+    this.currentReport = new Report();
   }
 
   ngOnInit() {
     this.reportService.getReports().subscribe(
       data => this.onSucces(data, this.onSuccesReport),
-      err => this.currentReport = new Report()
+      err => this.onError('getReports', err)
     );
     this.pdService.getRoutes().subscribe(
       (data: any) => {
-        // this.listRoutes = data;
         this.onSucces(data, this.onSuccesRoutes)
       },
-      err => console.error('No getListRoutes for filter routes'));
+      err => console.error('No getroutes for filter routes'));
   }
 
+  // changes selects
 
   changeReports(report) {
     this.currentRoutes = report.routes;
-    this.currentIndicators = report.indicators;
-    this.changeIndicators(report.indicators);
+    this.changeRoutes(this.currentRoutes);
+    this.currentIndicators = report.planValues;
+    this.changeIndicators(report.planValues);
+    this.applyFilter();
   }
 
   changeIndicators(indicators) {
@@ -86,10 +80,7 @@ export class PlanDetailComponent implements OnInit {
 
   changeRoutes(routes) {
     this.pdService.getIndicatorsByRoutes(routes).subscribe(
-      (data) => {
-        console.log(data);
-        this.indicators = data
-      },
+      data => this.onSucces(data, this.onSuccesIndicators),
       err => this.onError('getIndicatorsByRoutes', err)
     )
   }
@@ -97,7 +88,7 @@ export class PlanDetailComponent implements OnInit {
 
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      data: [this.reports, this.allFieldsDesc], width: '600px', height: '800px'
+      data: [this.reports, this.routes], width: '600px', height: '800px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
@@ -118,24 +109,26 @@ export class PlanDetailComponent implements OnInit {
     this.routesData = data;
   }
 
+  onSuccesIndicators(data) {
+    this.indicators = data;
+  }
+
   onSuccesReport(reports) {
-    this.reports = reports.data;
+    this.reports = reports;
     if (!this.reports.length) {
       this.currentReport = new Report();
     }
   }
 
-
   onSuccesRoutes(routes: Array<Route>) {
-    this.listRoutes = routes;
+    this.routes = routes;
   }
-
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    cb.bind(this)(data);
+    console.log(data.data);
+    cb.bind(this)(data.data);
   }
-
 
   changeFields(newCurrentIndicators) {
     console.log('changeFields');
