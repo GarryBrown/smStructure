@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
 import { Agent } from "app/models/agent.model";
 import { KPIService } from "app/modules/kpi/kpi.service";
 import { PlanDetailService } from './plan-detail.service';
+import { ReportConfigService } from '../report-config/report-config.service';
 
 import { ReportConfigComponent } from '../report-config/report-config.component';
 
@@ -17,70 +18,59 @@ import { Route, Report, Indicator } from '../../../models';
   encapsulation: ViewEncapsulation.None
 })
 
-export class PlanDetailComponent implements OnInit, AfterViewInit {
+export class PlanDetailComponent implements OnInit {
 
   routesData: Array<any>;
-  
+  isSaving: boolean;
+
   indicators: Array<any>;
   currentIndicators: Array<any>;
 
   listRoutes: Array<Route>;
-  currentdRoutes: Array<Route>;
+  currentRoutes: Array<Route>;
 
   reports: Array<any>;
   currentReport: Report;
-  getSelected;
-
-  listIndicators;
-  @ViewChild('video') video:any;
+  // transformed array for iterate
+  listIndicators: Array<any>;
+  // func for light selected in md-select
+  getSelected: any;
 
   constructor(
     private kpiService: KPIService,
     private pdService: PlanDetailService,
+    private reportService: ReportConfigService,
     public dialog: MdDialog,
   ) {
     this.reports = [];
     // this.indicators = [];
     this.currentIndicators = [];
     this.currentReport = null;
-
     this.getSelected = pdService.getSelected;
   }
 
   ngOnInit() {
-    this.test();
-    this.pdService.getReports()
-      .subscribe(
-      (data: any) => this.onSuccesReport(data),
+    this.reportService.getReports().subscribe(
+      data => this.onSucces(data, this.onSuccesReport),
       err => this.currentReport = new Report()
-      );
-
+    );
     this.pdService.getRoutes().subscribe(
       (data: any) => {
-        console.log('rooouttteee');
-        console.log(data);
-        this.listRoutes = data;
+        // this.listRoutes = data;
+        this.onSucces(data, this.onSuccesRoutes)
       },
       err => console.error('No getListRoutes for filter routes'));
   }
 
-  ngAfterViewInit() {
-
-  }
-
-
   changeReports(report) {
-    this.currentdRoutes = report.routes;
+    this.currentRoutes = report.routes;
     this.currentIndicators = report.indicators;
     this.changeIndicators(report.indicators);
   }
 
-
   changeIndicators(indicators) {
-    console.log(this.currentIndicators);
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
-
 
   changeRoutes(routes) {
     this.pdService.getIndicatorsByRoutes(routes).subscribe(
@@ -91,17 +81,6 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
       err => this.onError('getIndicatorsByRoutes', err)
     )
   }
-
-  // getSelected(selectedVals: Array<any>, option: any) {
-  //   if (selectedVals) {
-  //     for (let i = 0; i < selectedVals.length; i++) {
-  //       if (option.id === selectedVals[i].id) {
-  //         return selectedVals[i];
-  //       }
-  //     }
-  //   }
-  //   return option;
-  // }
 
 
   openConfig() {
@@ -114,14 +93,17 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter() {
-    this.pdService.getRoutesData(this.currentIndicators, this.currentdRoutes)
-      .subscribe((data: any) => {
-        console.log(data);
-        console.log(this.listIndicators);
-        this.routesData = data;
-      },
+    this.isSaving = true;
+    this.pdService.getRoutesData(this.currentIndicators, this.currentRoutes).subscribe(
+      data => this.onSucces(data, this.onSuccesRouteData),
       error => console.log(error)
-      );
+    );
+  }
+
+  onSuccesRouteData(data) {
+    console.log(data);
+    console.log(this.listIndicators);
+    this.routesData = data;
   }
 
   onSuccesReport(reports) {
@@ -129,33 +111,27 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
     if (!this.reports.length) {
       this.currentReport = new Report();
     }
+  }
 
+
+  onSuccesRoutes(routes: Array<Route>) {
+    this.listRoutes = routes;
+  }
+
+
+  onSucces(data: any, cb: any) {
+    this.isSaving = false;
+    cb.bind(this)(data);
   }
 
   changeFields(newCurrentIndicators) {
-    console.log('YAEEEEH');
+    console.log('changeFields');
     this.listIndicators = this.pdService.getPropsObj(newCurrentIndicators);
     console.log(this.listIndicators);
   }
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-  }
-
-
-  test() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else {
-      console.warn('Geolocation is not supported by this browser');
-    }
-
-    
-  }
-
-  showPosition(position) {
-      console.log(`Your position : `);
-      console.log(position);
   }
 
 }

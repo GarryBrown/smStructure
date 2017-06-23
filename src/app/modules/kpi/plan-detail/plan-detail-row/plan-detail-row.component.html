@@ -11,7 +11,7 @@
       <td *ngFor="let field of indicator.planFields">{{route.planValues[indicator.id][field]}}</td>
     </ng-template>
     <ng-template #empty>
-      <td *ngFor="let field of indicator.planFields">no</td>
+      <td *ngFor="let field of indicator.planFields" class="empty-field"></td>
     </ng-template>
   </ng-template>
 </tr>
@@ -26,7 +26,7 @@
           <td *ngFor="let field of indicator.planFields">{{dp.planValues[indicator.id][field]/3 | number : '1.1-1'}}</td>
         </ng-template>
         <ng-template #emptyDP>
-          <td *ngFor="let field of indicator.planFields">no</td>
+          <td *ngFor="let field of indicator.planFields" class="empty-field"></td>
         </ng-template>
       </ng-template>
     </tr>

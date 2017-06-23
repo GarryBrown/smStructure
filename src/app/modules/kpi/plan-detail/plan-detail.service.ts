@@ -57,13 +57,6 @@ export class PlanDetailService {
     }).map((res: Response) => res.json());
   }
 
-
-  getReports(): Observable<Response> {
-    return this.http.get('/api/reports')
-      .map((res: Response) => res.json())
-  }
-
-
   getRoutes(): Observable<Response> {
     return this.http.get('/api/routes')
       .map((res: Response) => res.json())

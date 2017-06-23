@@ -1,5 +1,4 @@
 <md-card>
-
   <div class="top-filter">
     <div class="filter-item">
       <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
@@ -9,8 +8,8 @@
       </md-select>
     </div>
     <div class="filter-item">
-      <md-select placeholder="Маршруты" [(ngModel)]="currentdRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
-        <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentdRoutes, route)">
+      <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
+        <md-option *ngFor="let route of listRoutes" [value]="getSelected(currentRoutes, route)">
           {{ route.description }}
         </md-option>
       </md-select>
@@ -24,12 +23,18 @@
     </div>
 
     <button md-mini-fab (click)="applyFilter()"><md-icon>filter_list</md-icon></button>
+    <md-progress-bar mode="indeterminate" color="primary" *ngIf="isSaving"></md-progress-bar>
 
     <div class="filter-item report-config">
       <md-icon (click)="openConfig()">settings</md-icon>
     </div>
   </div>
 </md-card>
+
+
+
+<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentRoutes]="currentRoutes" [currentIndicators]="currentIndicators" (updateCurrentIndicators)="changeFields($event)"></app-filterbar>
+
 
 <md-card *ngIf="routesData && currentReport && listIndicators && routesData.length">
   <table class="table  table-hover table-condensed table-responsive dataTables-example">
@@ -52,5 +57,3 @@
     <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
   </table>
 </md-card>
-
-<app-filterbar *ngIf="indicators && currentIndicators" [indicators]="indicators" [currentReport]="currentReport" [currentIndicators]="currentIndicators" (updateCurrentIndicators)="changeFields($event)"></app-filterbar>

@@ -13,21 +13,22 @@ import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.modu
 /*service */
 import { KPIService } from './kpi.service';
 import { PlanDetailService } from './plan-detail/plan-detail.service';
+import { ReportConfigService } from './report-config/report-config.service';
 /* components */
 import { KPIComponent } from './kpi.component';
-
 import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
 import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
 import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-row/plan-detail-row.component";
-
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
+
+
 
 import { environment } from '../../app.constants';
 
 let myTestApiModule = [];
 if (!environment.production) {
-  myTestApiModule.push( InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }) );
+  myTestApiModule.push(InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }));
 }
 
 
@@ -37,7 +38,7 @@ if (!environment.production) {
     DatepickerModule,
     OrdersRoutingModule,
     SharedModule,
-     ...myTestApiModule,
+    ...myTestApiModule,
   ],
   declarations: [
     KPIComponent,
@@ -52,10 +53,12 @@ if (!environment.production) {
     PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent],
-  providers: [KPIService,
-  PlanDetailService,
-  DateUtilService,
-  UserResolvePagingParams,
+  providers: [
+    KPIService,
+    PlanDetailService,
+    ReportConfigService,
+    DateUtilService,
+    UserResolvePagingParams,
   ]
 })
 export class KPIModule { }

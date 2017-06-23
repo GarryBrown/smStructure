@@ -83,11 +83,11 @@ export class InMemDataService implements InMemoryDbService {
           {
             id: 3, description: "ИП Иванов",
             planValues: {
-              1: {
-                id: 1,
-                name: 'Товарооборот',
-                sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
-              },
+              // 1: {
+              //   id: 1,
+              //   name: 'Товарооборот',
+              //   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
+              // },
               2: {
                 id: 2,
                 name: 'Покрытие',

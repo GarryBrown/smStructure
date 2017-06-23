@@ -18,11 +18,20 @@
     .wrapper {
         margin-top: 100px;
         .header {
-            // text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-start;
+            md-spinner {
+                width: 30px;
+                position: absolute;
+                top: 84px;
+                right: 24px;
+            }
             button {
                 width: 130px;
                 &:last-child {
-                    margin: 3px auto;
+                    margin-top: 5px;
                 }
             }
         }

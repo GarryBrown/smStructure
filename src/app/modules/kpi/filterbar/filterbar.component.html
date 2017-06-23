@@ -8,6 +8,7 @@
 <div class="hidden-menu">
   <div class="wrapper">
     <div class="header">
+      <md-spinner color="primary" *ngIf="isSaving"></md-spinner>
       <md-input-container>
         <input mdInput placeholder="Название отчета" [(ngModel)]="currentReport.description">
       </md-input-container>
@@ -17,7 +18,7 @@
         <md-icon>restore_page</md-icon>
       </button>
 
-      <button md-raised-button color="primary">
+      <button md-raised-button color="primary" (click)="save()">
         <span>Сохранить</span>
         <md-icon>save</md-icon>
       </button>
