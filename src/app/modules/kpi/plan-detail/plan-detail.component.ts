@@ -23,18 +23,29 @@ export class PlanDetailComponent implements OnInit {
   routesData: Array<any>;
   isSaving: boolean;
 
+
   indicators: Array<any>;
   currentIndicators: Array<any>;
 
   listRoutes: Array<Route>;
-  currentRoutes: Array<Route>;
 
+  currentRoutes: Array<Route>;
+  allFieldsDesc: Array<any>;
   reports: Array<any>;
   currentReport: Report;
   // transformed array for iterate
   listIndicators: Array<any>;
   // func for light selected in md-select
   getSelected: any;
+
+  currentdRoutes: Array<Route>;
+
+  // reports: Array<any>;
+  // currentReport: Report;
+
+  // listIndicators;
+  // @ViewChild('video') video: any;
+
 
   constructor(
     private kpiService: KPIService,
@@ -62,6 +73,7 @@ export class PlanDetailComponent implements OnInit {
       err => console.error('No getListRoutes for filter routes'));
   }
 
+
   changeReports(report) {
     this.currentRoutes = report.routes;
     this.currentIndicators = report.indicators;
@@ -85,7 +97,7 @@ export class PlanDetailComponent implements OnInit {
 
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      // data: [this.reports, this.allFieldsDesc]
+      data: [this.reports, this.allFieldsDesc], width: '600px', height: '800px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
@@ -124,6 +136,7 @@ export class PlanDetailComponent implements OnInit {
     cb.bind(this)(data);
   }
 
+
   changeFields(newCurrentIndicators) {
     console.log('changeFields');
     this.listIndicators = this.pdService.getPropsObj(newCurrentIndicators);
@@ -132,6 +145,7 @@ export class PlanDetailComponent implements OnInit {
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
+
   }
 
 }
