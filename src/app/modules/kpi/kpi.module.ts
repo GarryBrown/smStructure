@@ -22,6 +22,7 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
+import { ReportComponent } from './report-config/report/report.component';
 
 import { environment } from '../../app.constants';
 
@@ -45,6 +46,7 @@ if (!environment.production) {
     PlanDetailComponent,
     PlanChartComponent,
     ReportConfigComponent,
+    ReportComponent,
     FilterbarComponent],
   entryComponents: [
     PlanDetailRowComponent,

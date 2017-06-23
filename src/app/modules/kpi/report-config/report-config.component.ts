@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
+import { REPORTS } from './report/report.component';
 
 @Component({
   selector: 'app-report-config',
@@ -8,12 +9,15 @@ import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
   styleUrls: ['./report-config.component.scss']
 })
 export class ReportConfigComponent implements OnInit {
+
+  reports = REPORTS;
   presetReports: Array<any>;
-  allFields: Array<any>;
+  public allFields: Array<any>;
+
   constructor(
     @Inject(MD_DIALOG_DATA) public data: any,
     public dialogRef: MdDialogRef<ReportConfigComponent>
-  ) { 
+  ) {
     this.presetReports = data[0];
     this.allFields = data[1];
   }

@@ -1,0 +1,34 @@
+<div>
+    <div class="row-info">
+
+        <h4 md-line>{{report.name}}</h4>
+        <span class="example-spacer"></span>
+
+        <md-icon (click)="toggleInfo()">mode_edit</md-icon>
+        <md-icon>close</md-icon>
+
+
+    </div>
+    <div class="details" *ngIf="infoReport">
+        <md-select multiple placeholder="Routes" name="route">
+            <md-option *ngFor="let route of routes ">
+                {{route}}
+            </md-option>
+        </md-select>
+
+        <md-select multiple placeholder="Indicators" name="indicator" [(ngModel)]="selectedValue">
+            <md-option *ngFor="let indicator of indicators" [value]="indicator">
+                {{indicator}}
+            </md-option>
+        </md-select>
+
+        <label> Показатель - {{selectedValue}}</label>
+        <md-select multiple placeholder="Fields" name="field">
+            <md-option *ngFor="let field of fields">
+                {{field}}
+            </md-option>
+        </md-select>
+
+    </div>
+    <hr>
+</div>

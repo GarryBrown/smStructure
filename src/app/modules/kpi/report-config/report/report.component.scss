@@ -1,0 +1,31 @@
+md-icon {
+    padding: 20px;
+}
+
+.row-info {
+    // outline: 1px solid #ccc;
+    display: flex;
+}
+
+md-icon {
+    // outline: 1px solid #ccc;
+    text-align: center;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+hr {
+    margin-top: -5px;
+}
+
+.details {
+    margin: 10px;
+    padding: 10px;
+}
+
+
+/* анимация при появлении скрытых блоков */

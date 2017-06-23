@@ -20,18 +20,18 @@ import { Route, Report, Indicator } from '../../../models';
 export class PlanDetailComponent implements OnInit, AfterViewInit {
 
   routesData: Array<any>;
-  
+
   indicators: Array<any>;
   currentIndicators: Array<any>;
 
   listRoutes: Array<Route>;
   currentdRoutes: Array<Route>;
-
+  allFieldsDesc: Array<any>;
   reports: Array<any>;
   currentReport: Report;
 
   listIndicators;
-  @ViewChild('video') video:any;
+  @ViewChild('video') video: any;
 
   constructor(
     private kpiService: KPIService,
@@ -62,16 +62,16 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-  // let _video=this.video.nativeElement;
-  // if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  //   navigator.mediaDevices
-  //     .getUserMedia({ video: true })
-  //       .then(stream => {
-  //         _video.src = window.URL.createObjectURL(stream);
-  //         _video.play();
-  //       })
-  // }
-}
+    // let _video=this.video.nativeElement;
+    // if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    //   navigator.mediaDevices
+    //     .getUserMedia({ video: true })
+    //       .then(stream => {
+    //         _video.src = window.URL.createObjectURL(stream);
+    //         _video.play();
+    //       })
+    // }
+  }
 
 
   changeReports(report) {
@@ -109,7 +109,7 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
 
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      // data: [this.reports, this.allFieldsDesc]
+      data: [this.reports, this.allFieldsDesc], width: '600px', height: '800px'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
@@ -145,12 +145,12 @@ export class PlanDetailComponent implements OnInit, AfterViewInit {
       console.warn('Geolocation is not supported by this browser');
     }
 
-    
+
   }
 
   showPosition(position) {
-      console.log(`Your position : `);
-      console.log(position);
+    console.log(`Your position : `);
+    console.log(position);
   }
 
 }
