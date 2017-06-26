@@ -50,15 +50,15 @@
 }
 
 .wrap {
-    width: 250px;
+    width: 230px;
     margin: 0 auto;
     height: 700px;
     overflow-y: auto;
-    margin-left: -25px;
     overflow-x: hidden;
 }
 
 .indicators {
+    margin-left: 15px;
     margin: 24px auto;
     // margin-left: 45px;
     p {
