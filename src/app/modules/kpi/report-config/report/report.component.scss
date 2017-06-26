@@ -1,19 +1,12 @@
 .row-info {
-    // outline: 1px solid #ccc;
     display: flex;
+    .example-spacer {
+        flex: 1 1 auto;
+    }
 }
 
 md-icon {
-    // outline: 1px solid #ccc;
     text-align: center;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
-}
-
-hr {
-    margin-top: -5px;
 }
 
 .details {
@@ -25,5 +18,38 @@ button {
     margin-top: 20px;
 }
 
+.header-details {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    md-select {
+        min-width: 130px;
+        width: 35%;
+        margin-right: 10px;
+        margin-bottom: 24px;
+    }
+}
 
-/* анимация при появлении скрытых блоков */
+.label-for-list {
+    margin-left: 15%;
+    font-weight: bolder;
+}
+
+.indicators-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .indicator-item {
+        margin-top: 24px;
+        width: 240px;
+        md-select {
+            margin-top: 24px;
+            width: 240px;
+        }
+        span {
+            font-weight: bold;
+        }
+    }
+}

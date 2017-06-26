@@ -1,33 +1,54 @@
 <div>
     <div class="row-info">
 
-        <h4 md-line>{{report.name}}</h4>
+        <h5 md-line>{{report.name}}</h5>
         <span class="example-spacer"></span>
+        <button md-icon-button *ngIf="!details">
+          <md-icon (click)="toggleInfo()">mode_edit</md-icon>
+        </button>
+        <button md-icon-button *ngIf="details">
+          <md-icon (click)="save()">save</md-icon>
+        </button>
+        <button md-icon-button *ngIf="details">
+          <md-icon (click)="toggleInfo()">keyboard_arrow_up</md-icon>
+        </button>
+        <button md-icon-button *ngIf="!details">
+          <md-icon (click)="delete(report)">close</md-icon>
+        </button>
 
-        <button md-icon-button> <md-icon (click)="toggleInfo()">mode_edit</md-icon></button>
-        <button md-icon-button><md-icon>close</md-icon></button>
 
 
     </div>
-    <div class="details" *ngIf="infoReport">
-        <md-select multiple placeholder="Routes" name="route">
-            <md-option *ngFor="let route of routes ">
-                {{route}}
-            </md-option>
-        </md-select>
+    <div class="details" *ngIf="details">
 
-        <md-select multiple placeholder="Indicators" name="indicator" [(ngModel)]="selectedValue">
-            <md-option *ngFor="let indicator of indicators" [value]="indicator">
-                {{indicator}}
-            </md-option>
-        </md-select>
+        <div class="header-details">
 
-        <label> Показатель - {{selectedValue}}</label>
-        <md-select multiple placeholder="Fields" name="field">
-            <md-option *ngFor="let field of fields">
-                {{field}}
-            </md-option>
-        </md-select>
+            <md-select multiple placeholder="Маршруты" name="route" [(ngModel)]="report.routes">
+                <md-option *ngFor="let route of routes " [value]="getSelected(report.routes, route)">
+                    {{route.description}}
+                </md-option>
+            </md-select>
+
+            <md-select multiple placeholder="Показатели" name="indicator" [(ngModel)]="report.planValues">
+                <md-option *ngFor="let indicator of indicators" [value]="getSelected(report.planValues, indicator)">
+                    {{indicator.description}}
+                </md-option>
+            </md-select>
+
+        </div>
+
+        <br>
+        <span class="label-for-list">Реквизиты показателей:</span>
+        <div class="indicators-list">
+            <div class="indicator-item" *ngFor="let indicator of report.planValues">
+                <span>{{indicator.description}}</span>
+                <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true">
+                    <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
+                        {{ field.description }}
+                    </md-option>
+                </md-select>
+            </div>
+        </div>
 
     </div>
     <hr>
