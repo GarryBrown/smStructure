@@ -38,6 +38,11 @@
                 &:last-child {
                     margin-top: 5px;
                 }
+                &:first-of-type {
+                    md-icon {
+                        margin-left: 27px;
+                    }
+                }
             }
         }
     }
@@ -49,24 +54,20 @@
 }
 
 .indicators {
-    margin: 20px auto;
-    margin-left: 45px;
+    margin: 24px auto;
+    // margin-left: 45px;
     p {
         margin: 5px auto;
         font-weight: bold;
     }
     md-select {
         margin-top: 12px;
+        width: 200px;
     }
 }
 
 md-icon {
     color: #000;
-}
-
-button md-icon {
-    float: right;
-    margin-top: 5px;
 }
 
 .hidden-menu-ticker {

@@ -25,7 +25,7 @@ export class UserResolvePagingParams implements Resolve<any> {
 
 const KPIRoutes: Routes = [
   {
-    path: 'kpi.charts',
+    path: 'kpi/charts',
     component: KPIComponent,
     canActivate: [RouteAccessService],
     resolve: { 'pagingParams': UserResolvePagingParams }
