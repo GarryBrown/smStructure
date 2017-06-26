@@ -27,8 +27,8 @@ export class PlanDetailService {
     params.set('typeOfPlanId', indicatorsIds.join());
     params.set('routeId', routesIds.join());
 
-    return this.http.get('/api/planRoutes', {
-      // search: params
+    return this.http.get('/api/plan-routes', {
+      search: params
     }).map((res: Response) => res.json());
   }
 
@@ -52,8 +52,8 @@ export class PlanDetailService {
   getIndicators(routes: string): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('routeId', routes);
-    return this.http.get('/api/planIndicators', {
-      // search: params
+    return this.http.get('/api/plan-indicators', {
+      search: params
     }).map((res: Response) => res.json());
   }
 
@@ -73,6 +73,9 @@ export class PlanDetailService {
 
 
   getPropsObj(indicators: any) {
+    console.log('getPropsObj');
+    console.log(indicators);
+    
     let strictIndicators: Array<any> = [];
     indicators.map(indicator => {
       let planFields = [];

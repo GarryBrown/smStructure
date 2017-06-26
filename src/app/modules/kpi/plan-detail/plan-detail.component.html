@@ -3,7 +3,7 @@
         <div class="filter-item" id="first">
             <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
                 <md-option *ngFor="let report of reports" [value]="getSelected(currentReport, report)">
-                    {{ report.name }}
+                    {{ report.description }}
                 </md-option>
             </md-select>
         </div>

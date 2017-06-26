@@ -54,12 +54,7 @@ export class PlanDetailComponent implements OnInit {
 
   ngOnInit() {
     this.reportService.getReports().subscribe(
-      data => 
-      // {
-      //     console.log('sssssssssssssss');
-      //     console.log(data);
-      // },
-      this.onSucces(data, this.onSuccesReport),
+      data => this.onSucces(data, this.onSuccesReport),
       err => this.onError('getReports', err)
     );
     this.pdService.getRoutes().subscribe(
@@ -72,10 +67,11 @@ export class PlanDetailComponent implements OnInit {
   // changes selects
 
   changeReports(report) {
+    console.log(report);
     this.currentRoutes = report.routes;
     this.changeRoutes(this.currentRoutes);
-    this.currentIndicators = report.planValues;
-    this.changeIndicators(report.planValues);
+    this.currentIndicators = report.indicatorsSet;
+    this.changeIndicators(report.indicatorsSet);
     this.applyFilter();
   }
 
@@ -131,8 +127,8 @@ export class PlanDetailComponent implements OnInit {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    console.log(data.data);
-    cb.bind(this)(data.data);
+    console.log(data);
+    cb.bind(this)(data);
   }
 
   changeFields(newCurrentIndicators) {

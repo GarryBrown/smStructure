@@ -1,6 +1,6 @@
 let _environment = {
-  production: false,
-  origin: 'http://mocker.egen.io'
+  production: true,
+  origin: 'http://192.168.209.136'
 };
 
 

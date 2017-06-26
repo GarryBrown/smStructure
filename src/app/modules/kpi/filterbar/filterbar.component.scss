@@ -22,6 +22,7 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
+            margin-top: -35px;
             md-input-container {
                 margin: 0 auto;
             }
@@ -32,7 +33,7 @@
                 right: 24px;
             }
             button {
-                margin: 20px auto;
+                margin: auto;
                 width: 130px;
                 height: 35px;
                 &:last-child {
@@ -46,6 +47,10 @@
 .wrap {
     width: 250px;
     margin: 0 auto;
+    height: 700px;
+    overflow-y: auto;
+    margin-left: -25px;
+    overflow-x: hidden;
 }
 
 .indicators {
@@ -62,11 +67,6 @@
 
 md-icon {
     color: #000;
-}
-
-button md-icon {
-    float: right;
-    margin-top: 5px;
 }
 
 .hidden-menu-ticker {
