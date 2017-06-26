@@ -136,3 +136,12 @@
         opacity: 0;
     }
 }
+
+button:active,
+button:focus {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}

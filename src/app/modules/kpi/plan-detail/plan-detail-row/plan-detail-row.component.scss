@@ -11,6 +11,11 @@ td:first-child {
 }
 
 .empty-field {
-    background-color: #ECEFF1;
+    background-color: rgba(248, 248, 248, 1.0); //  #ECEFF1;216
+    border-bottom: 3px solid #fff;
     // border-right: 1px solid #CFD8DC;
+}
+
+tr {
+    text-align: center;
 }

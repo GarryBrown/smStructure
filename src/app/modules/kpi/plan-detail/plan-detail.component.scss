@@ -21,15 +21,25 @@
     }
 }
 
+md-card {
+    margin-top: 24px;
+}
+
 // for table
 .indicator-header {
-    border-bottom: 1px solid gray;
-    border-right: 1px solid gray;
+    border-bottom: 3px solid #eceeef;
+    // border-right: 1px solid gray;
     text-align: center;
     &:last-of-type {
         border-right: none;
     }
 }
+
+.indicator-header:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.indicator-header {}
 
 #myOnlineCamera video {
     width: 320px;
@@ -48,4 +58,43 @@
 #myOnlineCamera button {
     clear: both;
     margin: 30px;
+}
+
+td#first {
+    border-bottom: 3px solid #eceeef;
+}
+
+@media (max-width: 525px) {
+    .top-filter {
+        #first,
+        #second,
+        #third {
+            padding: 10px 0;
+            md-select {
+                min-width: 200px;
+            }
+            button {
+                margin-left: auto;
+                padding: 5px;
+            }
+        }
+        .check-item {
+            margin-left: auto;
+        }
+    }
+}
+
+@media (max-width: 491px) {
+    #first,
+    #second {
+        md-select {
+            width: 280px;
+        }
+    }
+}
+
+@media (max-width: 742px) {
+    .check-item {
+        float: right
+    }
 }

@@ -68,7 +68,7 @@ export class PlanDetailComponent implements OnInit {
     this.pdService.getRoutes().subscribe(
       (data: any) => {
         // this.listRoutes = data;
-        this.onSucces(data, this.onSuccesRoutes)
+        this.onSucces(data.data, this.onSuccesRoutes)
       },
       err => console.error('No getListRoutes for filter routes'));
   }
@@ -88,7 +88,7 @@ export class PlanDetailComponent implements OnInit {
     this.pdService.getIndicatorsByRoutes(routes).subscribe(
       (data) => {
         console.log(data);
-        this.indicators = data
+        this.indicators = data.data
       },
       err => this.onError('getIndicatorsByRoutes', err)
     )
@@ -107,7 +107,7 @@ export class PlanDetailComponent implements OnInit {
   applyFilter() {
     this.isSaving = true;
     this.pdService.getRoutesData(this.currentIndicators, this.currentRoutes).subscribe(
-      data => this.onSucces(data, this.onSuccesRouteData),
+      (data: any) => this.onSucces(data.data, this.onSuccesRouteData),
       error => console.log(error)
     );
   }

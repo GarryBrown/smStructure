@@ -22,6 +22,9 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: flex-start;
+            md-input-container {
+                margin: 0 auto;
+            }
             md-spinner {
                 width: 30px;
                 position: absolute;
@@ -29,7 +32,9 @@
                 right: 24px;
             }
             button {
+                margin: 20px auto;
                 width: 130px;
+                height: 35px;
                 &:last-child {
                     margin-top: 5px;
                 }
@@ -38,18 +43,30 @@
     }
 }
 
+.wrap {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.indicators {
+    margin: 20px auto;
+    margin-left: 45px;
+    p {
+        margin: 5px auto;
+        font-weight: bold;
+    }
+    md-select {
+        margin-top: 12px;
+    }
+}
+
 md-icon {
     color: #000;
 }
 
-md-list-item {
-    .mat-list-item-content {
-        padding: 0;
-    }
-    span {
-        width: 75px;
-        overflow: hidden;
-    }
+button md-icon {
+    float: right;
+    margin-top: 5px;
 }
 
 .hidden-menu-ticker {
