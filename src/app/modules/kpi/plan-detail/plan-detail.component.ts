@@ -88,7 +88,7 @@ export class PlanDetailComponent implements OnInit {
 
   openConfig() {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      data: [this.reports, this.routes], width: '600px', height: '800px'
+      data: [this.reports, this.routes], width: '75%', height: '85%'
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

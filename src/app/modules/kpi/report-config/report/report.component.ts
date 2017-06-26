@@ -49,10 +49,12 @@ export class ReportComponent implements OnInit {
 
   private onSaveSuccess(result) {
     // this.isSaving = false;
+    this.toggleInfo();
   }
 
   private onSaveError() {
     // this.isSaving = false;
+    this.toggleInfo();
   }
 
   private delete(report) {

@@ -1,10 +1,5 @@
-.remove {
+.close {
     position: absolute;
-    right: 0;
-}
-
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    right: 36px;
+    top: 42px;
 }

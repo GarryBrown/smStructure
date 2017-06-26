@@ -17,9 +17,41 @@ md-icon {
     padding: 10px;
 }
 
+.header-details {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    md-select {
+        min-width: 130px;
+        width: 35%;
+        margin-right: 10px;
+        margin-bottom: 24px;
+    }
+}
+
+.label-for-list {
+    margin-left: 15%;
+    font-weight: bolder;
+}
+
 .indicators-list {
-    margin-top: 24px;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    flex-wrap: wrap;
+    // border-left: 1px solid gray;
+    // border-right: 1px solid gray;
+    // border-bottom: 1px solid gray;
+    .indicator-item {
+        margin-top: 24px;
+        width: 240px;
+        md-select {
+            margin-top: 24px;
+            width: 240px;
+        }
+        span {
+            font-weight: bold;
+        }
+    }
 }
