@@ -2,6 +2,7 @@
     <div class="row-info">
 
         <h5 md-line>{{report.description}}</h5>
+
         <span class="example-spacer"></span>
         <button md-icon-button *ngIf="!details">
           <md-icon (click)="toggleInfo()">mode_edit</md-icon>
@@ -23,7 +24,7 @@
 
         <div class="header-details">
 
-            <md-select multiple placeholder="Маршруты" name="route" [(ngModel)]="report.routes">
+            <md-select multiple placeholder="Маршруты" name="route" [(ngModel)]="report.routes" (ngModelChange)="changeRoutes($event)">
                 <md-option *ngFor="let route of routes " [value]="getSelected(report.routes, route)">
                     {{route.description}}
                 </md-option>

@@ -6,3 +6,14 @@ md-toolbar {
         margin-left: auto;
     }
 }
+
+.input_report {
+    button {
+        float: right;
+        margin: 5px;
+    }
+}
+
+.filter-item {
+    display: inline-flex;
+}

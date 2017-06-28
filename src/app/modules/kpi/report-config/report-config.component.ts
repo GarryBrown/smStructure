@@ -12,6 +12,9 @@ export class ReportConfigComponent implements OnInit {
 
   routes: Array<Route>;
   reports: Array<Report>;
+  newReport: Report;
+
+   details = false;
 
   constructor(
     @Inject(MD_DIALOG_DATA) public data: any,
@@ -27,6 +30,20 @@ export class ReportConfigComponent implements OnInit {
 
   close() {
     this.dialogRef.close('Cancel');
+  }
+  toggleInfo() {
+    this.details = !this.details;
+  }
+
+  create() {
+    this.newReport = new Report();
+  }
+
+  onSave(report) {
+    if (report) {
+      this.newReport = null;
+      this.reports.push(report);
+    }
   }
 
 }
