@@ -105,6 +105,12 @@ md-icon {
     }
 }
 
+button {
+    margin-top: 24px;
+    height: 35px;
+    width: 100%;
+}
+
 .hidden-menu-ticker:checked~.btn-menu {
     right: 250px;
 }
