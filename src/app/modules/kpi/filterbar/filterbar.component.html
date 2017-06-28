@@ -7,37 +7,34 @@
 
 <div class="hidden-menu">
   <div class="wrapper">
-    <div class="header">
-      <md-spinner color="primary" *ngIf="isSaving"></md-spinner>
-      <md-input-container>
-        <input mdInput placeholder="Название отчета" [(ngModel)]="currentReport.description">
-      </md-input-container>
-
-      <button md-raised-button color="primary">
-        <span>Копия</span>
-        <md-icon>content_copy</md-icon>
-      </button>
-
-      <button md-raised-button color="primary" (click)="save()">
-        <span>Сохранить</span>
-        <md-icon>save</md-icon>
-      </button>
-    </div>
-
-    <hr>
     <div class="wrap">
+      <div class="indicators">
+        <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
+          <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
+            {{ route.description }}
+          </md-option>
+        </md-select>
+      </div>
+      <div class="indicators">
+        <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="!indicators">
+          <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
+            {{ indicator.description }}
+          </md-option>
+        </md-select>
+      </div>
+      <hr>
       <div class="indicators" *ngFor="let indicator of currentIndicators">
         <p> <span>{{indicator.description}}</span> </p>
-
-
         <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true" (ngModelChange)="changeFields($event)">
           <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
             {{ field.description }}
           </md-option>
-
         </md-select>
       </div>
     </div>
+
+
+    <button md-raised-button (click)="getDataFilter()" color="accent">Получить данные</button>
 
   </div>
 </div>

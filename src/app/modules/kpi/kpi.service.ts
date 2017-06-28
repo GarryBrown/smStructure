@@ -14,12 +14,12 @@ export class KPIService {
   private allFieldstUrl = '/api/allFields';
 
   constructor(private http: Http,
-              private  dateUtils: DateUtilService,
-              private principal: PrincipalService,
+    private dateUtils: DateUtilService,
+    private principal: PrincipalService,
   ) {
   }
 
- 
+
 
   loadPlans(): Observable<Response> {
     return this.http.get(this.resourceUrl)

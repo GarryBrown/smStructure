@@ -1,16 +1,17 @@
 <div class="wrapper">
-    <div class="header">
-        <md-toolbar>
-            <h3> Отчеты </h3>
-            <span class="close">
+  <div class="header">
+    <md-toolbar>
+      <h3> Отчеты </h3>
+      <span class="close">
               <button md-icon-button>
                 <md-icon (click)="close()">close</md-icon>
               </button>
         </span>
-        </md-toolbar>
-    </div>
-    <br>
+    </md-toolbar>
+  </div>
+  <br>
 
-    <app-report *ngFor="let report of reports" [report]="report" [routes]="routes"></app-report>
+  <app-report *ngIf="currentReport" [report]="currentReport" [routes]="routes"></app-report>
+  <app-report *ngFor="let report of reports" [report]="report" [routes]="routes"></app-report>
 
 </div>

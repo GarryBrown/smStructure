@@ -13,8 +13,11 @@ export class FilterbarComponent implements OnInit, OnChanges {
   @Input() indicators: Array<any>;
   @Input() currentIndicators: Array<any>;
   @Input() currentReport: Report;
+  @Input() routes: Array<Route>;
   @Input() currentRoutes: Array<Route>;
   @Output() updateCurrentIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+  @Output() getData: EventEmitter<Report> = new EventEmitter<Report>();
+  @Output() changeIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
   isSaving: boolean;
   getSelected;
   allFields: Array<any>;
@@ -26,42 +29,59 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.allFields = this.indicators[0].planFields;
+    this.getIndicators();
   }
 
 
   ngOnChanges() {
-    // console.log(this.currentIndicators);
-    // console.log(this.indicators);
-    console.log('this.currentRoutes');
-    console.log(this.currentRoutes);
+    this.getIndicators();
   }
 
-
-  changeFields() {
-    console.log('change in filterbar');
-    console.log(this.currentIndicators);
-    this.updateCurrentIndicators.emit(this.currentIndicators);
+  changeRoutes(routes) {
+    this.pdService.getIndicatorsByRoutes(routes).subscribe(
+      data => this.onSucces(data, this.onSuccesIndicators),
+      err => this.onError('getIndicatorsByRoutes', err)
+    )
   }
 
-  save() {
-    this.isSaving = true;
-    this.currentReport.routes = this.currentRoutes;
-    this.currentReport.indicators = this.currentIndicators;
-    console.log(this.currentReport);
-    if (this.currentReport.id === undefined) {
-      this.reportService.create(this.currentReport).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
-    } else {
-      this.reportService.update(this.currentReport).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+  onSuccesIndicators(data) {
+    this.indicators = data;
+  }
+
+  onSucces(data: any, cb: any) {
+    this.isSaving = false;
+    console.log(data);
+    cb.bind(this)(data);
+  }
+
+  onError(api: string, err: any) {
+    console.error(`error in ${api} => ${err}`);
+
+  }
+  
+  getIndicators() {
+    if (this.indicators[0].planFields) {
+      this.allFields = this.indicators[0].planFields;
     }
   }
 
-  private onSaveSuccess(result) {
-    this.isSaving = false;
+  changeFields() {
+    this.updateCurrentIndicators.emit(this.currentIndicators);
+  }
+  
+  changeIndicatorsSet() {
+    this.changeIndicators.emit(this.currentIndicators);
   }
 
-  private onSaveError() {
-    this.isSaving = false;
+
+  getDataFilter() {
+    let report = new Report();
+    report.indicatorsSet = this.currentIndicators;
+    report.routes = this.currentRoutes;
+    this.getData.emit(report);
   }
+
+
+
 
 }

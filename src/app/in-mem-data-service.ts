@@ -219,7 +219,7 @@ export class InMemDataService implements InMemoryDbService {
     let reports = [
       {
         id: 1,
-        name: 'Отчет 1',
+        description: 'Отчет 1',
         routes: [
           { id: 1, description: "route 1" },
           { id: 2, description: "route 2" },
@@ -300,7 +300,7 @@ export class InMemDataService implements InMemoryDbService {
       },
       {
         id: 2,
-        name: 'Отчет 2',
+        description: 'Отчет 2',
         routes: [
           { id: 1, description: "route 1" }
         ],
@@ -452,7 +452,7 @@ export class InMemDataService implements InMemoryDbService {
     return {
       plans: plansKPI,
       planRoutes: planRoutes,
-      reports: reports,
+      planReports: reports,
       routes: routes,
       planIndicators: planIndicators
     };

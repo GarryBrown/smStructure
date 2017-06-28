@@ -8,6 +8,7 @@ import { Report } from '../../../models';
 export class ReportConfigService {
 
   private resourceUrl = '/api/plan-reports';
+  //private resourceUrl = '/api/reports';
 
   constructor(
     private http: Http,

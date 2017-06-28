@@ -26,6 +26,7 @@ import { ReportComponent } from './report-config/report/report.component';
 
 
 import { environment } from '../../app.constants';
+import { KpiChartComponent } from './kpi-chart/kpi-chart.component';
 
 let myTestApiModule = [];
 if (!environment.production) {
@@ -48,7 +49,8 @@ if (!environment.production) {
     PlanChartComponent,
     ReportConfigComponent,
     ReportComponent,
-    FilterbarComponent],
+    FilterbarComponent,
+    KpiChartComponent],
   entryComponents: [
     PlanDetailRowComponent,
     PlanChartComponent,

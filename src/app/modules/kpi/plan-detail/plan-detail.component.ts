@@ -2,8 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-import { Agent } from "app/models/agent.model";
-import { KPIService } from "app/modules/kpi/kpi.service";
 import { PlanDetailService } from './plan-detail.service';
 import { ReportConfigService } from '../report-config/report-config.service';
 
@@ -41,7 +39,6 @@ export class PlanDetailComponent implements OnInit {
   currentdRoutes: Array<Route>;
 
   constructor(
-    private kpiService: KPIService,
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
     public dialog: MdDialog,
@@ -54,7 +51,7 @@ export class PlanDetailComponent implements OnInit {
 
   ngOnInit() {
     this.reportService.getReports().subscribe(
-      data => this.onSucces(data, this.onSuccesReport),
+      data => { this.isSaving = true; this.onSucces(data, this.onSuccesReport) },
       err => this.onError('getReports', err)
     );
     this.pdService.getRoutes().subscribe(
@@ -74,7 +71,11 @@ export class PlanDetailComponent implements OnInit {
     this.changeIndicators(report.indicatorsSet);
     this.applyFilter();
   }
-
+  
+  changeIndicatorsSet(indicators) {
+    this.currentIndicators = indicators;
+    this.changeIndicators(indicators);
+  }
   changeIndicators(indicators) {
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
@@ -104,9 +105,16 @@ export class PlanDetailComponent implements OnInit {
     );
   }
 
+  getData(report: Report) {
+    this.isSaving = true;
+    console.log(report);
+    this.pdService.getRoutesData(report.indicatorsSet, report.routes).subscribe(
+      (data: any) => this.onSucces(data, this.onSuccesRouteData),
+      error => console.log(error)
+    );
+  }
+
   onSuccesRouteData(data) {
-    console.log(data);
-    console.log(this.listIndicators);
     this.routesData = data;
   }
 
@@ -115,6 +123,7 @@ export class PlanDetailComponent implements OnInit {
   }
 
   onSuccesReport(reports) {
+    console.log(reports);
     this.reports = reports;
     if (!this.reports.length) {
       this.currentReport = new Report();
@@ -127,14 +136,11 @@ export class PlanDetailComponent implements OnInit {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    console.log(data);
     cb.bind(this)(data);
   }
 
   changeFields(newCurrentIndicators) {
-    console.log('changeFields');
     this.listIndicators = this.pdService.getPropsObj(newCurrentIndicators);
-    console.log(this.listIndicators);
   }
 
   onError(api: string, err: any) {

@@ -5,7 +5,7 @@ export class Report {
         public id?: number,
         public description?: string,
         public routes?: Array<Route>,
-        public indicators?: Array<any>,
+        public indicatorsSet?: Array<any>,
     ) {
         this.description = description ? description : 'Новый отчет';
     }

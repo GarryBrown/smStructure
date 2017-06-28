@@ -6,6 +6,7 @@ import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';
 import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
+import { KpiChartComponent } from './kpi-chart/kpi-chart.component';
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
@@ -34,6 +35,11 @@ const KPIRoutes: Routes = [
     path: 'kpi',
     canActivate: [RouteAccessService],
     component: PlanDetailComponent
+  },
+  {
+    path: 'chart',
+    canActivate: [RouteAccessService],
+    component: KpiChartComponent
   }
 ];
 
