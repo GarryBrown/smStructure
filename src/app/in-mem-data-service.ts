@@ -224,7 +224,7 @@ export class InMemDataService implements InMemoryDbService {
           { id: 1, description: "route 1" },
           { id: 2, description: "route 2" },
         ],
-        planValues: [
+        indicators: [
           {
             id: 1,
             description: 'Товарооборот',
@@ -304,7 +304,7 @@ export class InMemDataService implements InMemoryDbService {
         routes: [
           { id: 1, description: "route 1" }
         ],
-        planValues: [
+        indicators: [
           {
             id: 1,
             description: 'Товарооборот',

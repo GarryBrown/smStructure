@@ -28,12 +28,10 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.report);
     if (this.report && this.report.routes) {
       this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
         (data: any) => {
           this.indicators = data;
-          console.log(data[0]);
           this.allFields = this.indicators[0].planFields;
         },
         err => console.log('error')
@@ -48,9 +46,9 @@ export class ReportComponent implements OnInit {
   save() {
     this.isSaving = true;
     if (this.report.id === undefined) {
-      this.reportService.create(this.report).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+      this.reportService.create(this.report).subscribe(response => this.onSaveSuccess(response, 1), () => this.onSaveError());
     } else {
-      this.reportService.update(this.report).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+      this.reportService.update(this.report).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
     }
   }
 
@@ -64,10 +62,12 @@ export class ReportComponent implements OnInit {
     )
   }
 
-  private onSaveSuccess(result) {
+  private onSaveSuccess(result, isNew) {
     this.isSaving = false;
     this.toggleInfo();
-    this.onSave.emit(result);
+    if (isNew) {
+      this.onSave.emit(result);
+    }
   }
 
   private onSaveError() {
@@ -77,7 +77,7 @@ export class ReportComponent implements OnInit {
 
   private delete(report) {
     console.warn("ATTENTION! IT'S DELETING");
-    this.reportService.delete(report.id).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
+    this.reportService.delete(report.id).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
   }
 
   onError(api: string, err: any) {
