@@ -3,6 +3,7 @@ import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/ht
 import { Observable } from 'rxjs/Rx';
 
 import { DateUtilService, PrincipalService } from '../../../core';
+import { Report, Indicator, Route } from '../../../models';
 
 @Injectable()
 export class PlanDetailService {
@@ -13,7 +14,7 @@ export class PlanDetailService {
   ) {
   }
 
-  getRoutesData(indicators, routes): Observable<Response> {
+  getRoutesData(indicators: Array<Indicator>, routes: Array<Route>): Observable<Response> {
     // api/plan-routes?typeOfPlanId=1,5&routeId=213,214
     let params: URLSearchParams = new URLSearchParams();
     let indicatorsIds: Array<any> = [];
@@ -33,7 +34,7 @@ export class PlanDetailService {
   }
 
 
-  getIndicatorsByRoutes(routes: Array<any>): Observable<any> {
+  getIndicatorsByRoutes(routes: Array<Route>): Observable<any> {
     if (routes.length) {
       let routesIds: Array<any> = [];
       routes.map(route => {
@@ -72,10 +73,10 @@ export class PlanDetailService {
   }
 
 
-  getPropsObj(indicators: any) {
+  getPropsObj(indicators: Array<Indicator>) {
     console.log('getPropsObj');
     console.log(indicators);
-    
+
     let strictIndicators: Array<any> = [];
     indicators.map(indicator => {
       let planFields = [];

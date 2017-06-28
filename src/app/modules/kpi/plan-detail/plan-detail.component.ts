@@ -63,12 +63,12 @@ export class PlanDetailComponent implements OnInit {
 
   // changes selects
 
-  changeReports(report) {
+  changeReports(report: Report) {
     console.log(report);
     this.currentRoutes = report.routes;
     this.changeRoutes(this.currentRoutes);
-    this.currentIndicators = report.indicatorsSet;
-    this.changeIndicators(report.indicatorsSet);
+    this.currentIndicators = report.indicators;
+    this.changeIndicators(report.indicators);
     this.applyFilter();
   }
   
@@ -76,11 +76,12 @@ export class PlanDetailComponent implements OnInit {
     this.currentIndicators = indicators;
     this.changeIndicators(indicators);
   }
-  changeIndicators(indicators) {
+  
+  changeIndicators(indicators: Array<Indicator>) {
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
 
-  changeRoutes(routes) {
+  changeRoutes(routes: Array<Route>) {
     this.pdService.getIndicatorsByRoutes(routes).subscribe(
       data => this.onSucces(data, this.onSuccesIndicators),
       err => this.onError('getIndicatorsByRoutes', err)
