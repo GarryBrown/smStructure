@@ -41,8 +41,8 @@ button {
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
+    margin-top: 10px;
     .indicator-item {
-        margin-top: 24px;
         width: 240px;
         md-select {
             margin-top: 24px;
@@ -53,3 +53,5 @@ button {
         }
     }
 }
+
+.indicators {}

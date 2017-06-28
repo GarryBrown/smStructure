@@ -22,7 +22,7 @@
                     </md-option>
                 </md-select>
             </div>
-            <hr>
+
             <div class="indicators" *ngFor="let indicator of currentIndicators">
                 <p> <span>{{indicator.description}}</span> </p>
                 <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true" (ngModelChange)="changeFields($event)">

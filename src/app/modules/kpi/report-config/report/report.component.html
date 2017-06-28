@@ -44,9 +44,8 @@
 
         </div>
 
-        <br>
+
         <div *ngIf="report.indicators">
-            <span class="label-for-list">Реквизиты показателей:</span>
             <div class="indicators-list">
                 <div class="indicator-item" *ngFor="let indicator of report.indicators">
                     <span>{{indicator.description}}</span>
