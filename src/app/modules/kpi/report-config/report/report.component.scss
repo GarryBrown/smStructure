@@ -41,9 +41,10 @@ button {
     justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-top: 10px;
     .indicator-item {
         width: 240px;
+        height: 94px;
+        margin: auto 5px;
         md-select {
             margin-top: 24px;
             width: 240px;
@@ -54,4 +55,6 @@ button {
     }
 }
 
-.indicators {}
+md-checkbox {
+    margin: 5px;
+}

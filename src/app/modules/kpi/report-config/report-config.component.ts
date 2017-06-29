@@ -42,7 +42,7 @@ export class ReportConfigComponent implements OnInit {
   onSave(report) {
     if (report) {
       this.newReport = null;
-      this.reports.push(report);
+      this.reports.unshift(report);
     }
   }
 

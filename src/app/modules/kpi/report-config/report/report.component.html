@@ -30,14 +30,17 @@
 
         <div class="header-details">
 
-            <md-select multiple placeholder="Маршруты" name="route" [(ngModel)]="report.routes" (ngModelChange)="changeRoutes($event)">
+            <md-checkbox (change)="allChecked($event, 'routes', 'routes')" color="primary"></md-checkbox>
+
+            <md-select [multiple]="true" placeholder="Маршруты " name="route " [(ngModel)]="report.routes" (ngModelChange)="changeRoutes($event)">
                 <md-option *ngFor="let route of routes " [value]="getSelected(report.routes, route)">
                     {{route.description}}
                 </md-option>
             </md-select>
 
-            <md-select multiple placeholder="Показатели" name="indicator" [(ngModel)]="report.indicators">
-                <md-option *ngFor="let indicator of indicators" [value]="getSelected(report.indicators, indicator)">
+            <md-checkbox (change)="allChecked($event, 'indicators', 'indicators')" color="primary"></md-checkbox>
+            <md-select [multiple]="true" placeholder="Показатели " name="indicator " [(ngModel)]="report.indicators ">
+                <md-option *ngFor="let indicator of indicators " [value]="getSelected(report.indicators, indicator) ">
                     {{indicator.description}}
                 </md-option>
             </md-select>
@@ -45,12 +48,12 @@
         </div>
 
 
-        <div *ngIf="report.indicators">
-            <div class="indicators-list">
-                <div class="indicator-item" *ngFor="let indicator of report.indicators">
+        <div *ngIf="report.indicators ">
+            <div class="indicators-list ">
+                <div class="indicator-item " *ngFor="let indicator of report.indicators ">
                     <span>{{indicator.description}}</span>
-                    <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true">
-                        <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
+                    <md-select placeholder="Поля " [(ngModel)]="indicator.planFields " [multiple]="true ">
+                        <md-option *ngFor="let field of allFields " [value]="getSelected(indicator.planFields, field) ">
                             {{ field.description }}
                         </md-option>
                     </md-select>

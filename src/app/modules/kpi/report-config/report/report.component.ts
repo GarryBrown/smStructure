@@ -11,7 +11,7 @@ import { Route, Report, Indicator } from '../../../../models';
 })
 export class ReportComponent implements OnInit {
   @Input() report: Report;
-  @Input() routes: Array<Route>;
+  @Input() routes: Array<any>;
   @Output() onSave: EventEmitter<Report> = new EventEmitter<Report>();
 
   indicators: Array<Indicator>;
@@ -19,6 +19,10 @@ export class ReportComponent implements OnInit {
   details = false;
   getSelected: any;
   isSaving: boolean;
+  
+  isAllChecked: boolean;
+ 
+  
 
   constructor(
     private pdService: PlanDetailService,
@@ -85,4 +89,16 @@ export class ReportComponent implements OnInit {
 
   }
 
+  allChecked(event, modelName, allOption,) {
+
+    if(event.checked) {
+      this.report[modelName] = this[allOption];      
+    }
+    else {
+      this.report[modelName] = [];
+    }
+  }
+ 
+ 
+  
 }
