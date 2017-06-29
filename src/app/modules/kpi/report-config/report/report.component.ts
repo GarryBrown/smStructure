@@ -19,10 +19,10 @@ export class ReportComponent implements OnInit {
   details = false;
   getSelected: any;
   isSaving: boolean;
-  
+
   isAllChecked: boolean;
- 
-  
+
+
 
   constructor(
     private pdService: PlanDetailService,
@@ -89,16 +89,35 @@ export class ReportComponent implements OnInit {
 
   }
 
-  allChecked(event, modelName, allOption,) {
+  allChecked(event, modelName, allOption, ) {
 
-    if(event.checked) {
-      this.report[modelName] = this[allOption];      
+    if (event.checked) {
+      this.report[modelName] = this[allOption];
+      console.log(this.report);
     }
     else {
       this.report[modelName] = [];
     }
   }
- 
- 
-  
-}
+
+  allSelected(event, id) {
+    this.indicators.map(function(indicator) { 
+      if(indicator.id === id)  {
+        if(event.checked) {
+          indicator.planFields = this.allFields;
+          console.log(indicator.planFields)
+        }
+        else {
+          indicator.planFields = [];
+        }
+        
+      }
+    }
+    );
+  }
+
+
+
+
+
+} 

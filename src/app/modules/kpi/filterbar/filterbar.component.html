@@ -9,6 +9,8 @@
     <div class="wrapper">
         <div class="wrap">
             <div class="indicators">
+                <md-checkbox (change)="allChecked($event, 'currentRoutes', 'routes')" color="primary"></md-checkbox>
+
                 <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
                     <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
                         {{ route.description }}
@@ -16,6 +18,7 @@
                 </md-select>
             </div>
             <div class="indicators">
+                <md-checkbox (change)="allChecked($event, 'currentIndicators', 'indicators')" color="primary"></md-checkbox>
                 <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="!indicators">
                     <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
                         {{ indicator.description }}

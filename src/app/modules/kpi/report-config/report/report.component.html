@@ -39,6 +39,7 @@
             </md-select>
 
             <md-checkbox (change)="allChecked($event, 'indicators', 'indicators')" color="primary"></md-checkbox>
+
             <md-select [multiple]="true" placeholder="Показатели " name="indicator " [(ngModel)]="report.indicators ">
                 <md-option *ngFor="let indicator of indicators " [value]="getSelected(report.indicators, indicator) ">
                     {{indicator.description}}
@@ -50,13 +51,21 @@
 
         <div *ngIf="report.indicators ">
             <div class="indicators-list ">
+
+
                 <div class="indicator-item " *ngFor="let indicator of report.indicators ">
+
+                    <md-checkbox (change)="allSelected($event, 'indicator.planFields', 'allFields')" color="primary"></md-checkbox>
+
                     <span>{{indicator.description}}</span>
-                    <md-select placeholder="Поля " [(ngModel)]="indicator.planFields " [multiple]="true ">
+
+                    <md-select [multiple]="true" placeholder="Поля " [(ngModel)]="indicator.planFields ">
+
                         <md-option *ngFor="let field of allFields " [value]="getSelected(indicator.planFields, field) ">
                             {{ field.description }}
                         </md-option>
                     </md-select>
+
                 </div>
             </div>
         </div>
