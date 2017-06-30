@@ -24,12 +24,12 @@ export class ReportConfigComponent implements OnInit {
     private reportService: ReportConfigService,
   ) {
     this.isChanged = false;
-    this.reports = data[0];
+    this.reports = data[0].slice(0, data[0].length);
     this.routes = data[1];
   }
 
   ngOnInit() {
-
+    
   }
 
   toggleInfo() {
@@ -77,7 +77,7 @@ export class ReportConfigComponent implements OnInit {
     } else {
       this.dialogRef.close(false);
     }
-    
+
   }
 
 }

@@ -1,66 +1,58 @@
 <div>
-    <div class="row-info">
+  <div class="row-info">
 
-        <h5 md-line *ngIf="!details">{{report.description}}</h5>
-        <div *ngIf="details">
-            <md-input-container>
-                <input mdInput name="description" placeholder="Название" [(ngModel)]="report.description">
-            </md-input-container>
-        </div>
+    <h5 md-line *ngIf="!details">{{report.description}}</h5>
+    <div *ngIf="details">
+      <md-input-container>
+        <input mdInput name="description" placeholder="Название" [(ngModel)]="report.description">
+      </md-input-container>
+    </div>
 
 
-        <span class="example-spacer"></span>
-        <button md-icon-button *ngIf="!details">
+    <span class="example-spacer"></span>
+    <button md-icon-button *ngIf="!details">
           <md-icon (click)="toggleInfo()">mode_edit</md-icon>
         </button>
-        <button md-icon-button *ngIf="details">
+    <button md-icon-button *ngIf="details">
           <md-icon (click)="save()">save</md-icon>
         </button>
-        <button md-icon-button *ngIf="details">
+    <button md-icon-button *ngIf="details">
           <md-icon (click)="toggleInfo()">keyboard_arrow_up</md-icon>
         </button>
-        <button md-icon-button *ngIf="!details">
+    <button md-icon-button *ngIf="!details">
           <md-icon (click)="delete(report)">close</md-icon>
         </button>
 
 
 
+  </div>
+  <div class="details" *ngIf="details">
+
+    <div class="header-details">
+
+      <md-checkbox (change)="allChecked($event, 'routes', 'routes')" color="primary"></md-checkbox>
+
+      <md-select [multiple]="true" placeholder="Маршруты " name="route " [(ngModel)]="report.routes" (ngModelChange)="changeRoutes($event)">
+        <md-option *ngFor="let route of routes " [value]="getSelected(report.routes, route)">
+          {{route.description}}
+        </md-option>
+      </md-select>
+
+      <md-checkbox (change)="allChecked($event, 'indicators', 'indicators')" color="primary"></md-checkbox>
+
+      <md-select [multiple]="true" placeholder="Показатели " name="indicator " [(ngModel)]="report.indicators ">
+        <md-option *ngFor="let indicator of indicators " [value]="getSelected(report.indicators, indicator) ">
+          {{indicator.description}}
+        </md-option>
+      </md-select>
+
     </div>
-    <div class="details" *ngIf="details">
 
-        <div class="header-details">
-
-            <md-checkbox (change)="allChecked($event, 'routes', 'routes')" color="primary"></md-checkbox>
-
-            <md-select [multiple]="true" placeholder="Маршруты " name="route " [(ngModel)]="report.routes" (ngModelChange)="changeRoutes($event)">
-                <md-option *ngFor="let route of routes " [value]="getSelected(report.routes, route)">
-                    {{route.description}}
-                </md-option>
-            </md-select>
-
-            <md-checkbox (change)="allChecked($event, 'indicators', 'indicators')" color="primary"></md-checkbox>
-            <md-select [multiple]="true" placeholder="Показатели " name="indicator " [(ngModel)]="report.indicators ">
-                <md-option *ngFor="let indicator of indicators " [value]="getSelected(report.indicators, indicator) ">
-                    {{indicator.description}}
-                </md-option>
-            </md-select>
-
-        </div>
-
-
-        <div *ngIf="report.indicators ">
-            <div class="indicators-list ">
-                <div class="indicator-item " *ngFor="let indicator of report.indicators ">
-                    <span>{{indicator.description}}</span>
-                    <md-select placeholder="Поля " [(ngModel)]="indicator.planFields " [multiple]="true ">
-                        <md-option *ngFor="let field of allFields " [value]="getSelected(indicator.planFields, field) ">
-                            {{ field.description }}
-                        </md-option>
-                    </md-select>
-                </div>
-            </div>
-        </div>
+    <div *ngIf="report.indicators ">
+      <div class="indicators-list ">
+        <app-list-fields *ngFor="let indicator of report.indicators" [indicator]="indicator" [allFields]="allFields"></app-list-fields>
+      </div>
 
     </div>
     <hr>
-</div>
+  </div>

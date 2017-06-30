@@ -88,19 +88,27 @@ export class PlanDetailComponent implements OnInit {
 
 
   openConfig() {
+    let reportsCopy: Array<Report> = new Array();
+    this.reports.map(report =>
+      reportsCopy.push(Object.assign({}, report))
+    );
+
     let dialogRef = this.dialog.open(ReportConfigComponent, {
-      data: [this.reports, this.routes], width: '75%', height: '85%'
+      data: [reportsCopy, this.routes], width: '75%', height: '85%'
     });
     dialogRef.afterClosed().subscribe((result: Array<Report>) => {
       if (result) {
         this.reports = result;
         if (this.currentReport) {
+          console.log('CHANGE!')
           this.currentReport = this.reports.filter(report => report.id === this.currentReport.id)[0];
           this.changeReports(this.currentReport);
         }
 
       }
     });
+
+
   }
 
   applyFilter() {

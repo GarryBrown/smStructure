@@ -14,7 +14,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
   @Input() currentIndicators: Array<any>;
   @Input() currentReport: Report;
   @Input() routes: Array<Route>;
-  @Input() currentRoutes: Array<Route>;
+  @Input() currentRoutes: Array<any>;
   @Output() updateCurrentIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
   @Output() getData: EventEmitter<Report> = new EventEmitter<Report>();
   @Output() changeIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
@@ -58,17 +58,18 @@ export class FilterbarComponent implements OnInit, OnChanges {
     console.error(`error in ${api} => ${err}`);
 
   }
-  
+
   getIndicators() {
     if (this.indicators[0].planFields) {
       this.allFields = this.indicators[0].planFields;
     }
   }
 
-  changeFields() {
+
+  changeFields(event) {
     this.updateCurrentIndicators.emit(this.currentIndicators);
   }
-  
+
   changeIndicatorsSet() {
     this.changeIndicators.emit(this.currentIndicators);
   }
@@ -79,6 +80,18 @@ export class FilterbarComponent implements OnInit, OnChanges {
     report.indicators = this.currentIndicators;
     report.routes = this.currentRoutes;
     this.getData.emit(report);
+  }
+
+
+  allChecked(event, modelName, allOption, ) {
+
+    if (event.checked) {
+      this[modelName] = this[allOption];
+      console.log(this.currentRoutes);
+    }
+    else {
+      this[modelName] = [];
+    }
   }
 
 

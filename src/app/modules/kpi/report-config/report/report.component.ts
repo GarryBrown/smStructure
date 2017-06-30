@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 
 import { PlanDetailService } from '../../plan-detail/plan-detail.service';
 import { ReportConfigService } from '../report-config.service';
-import { Route, Report, Indicator } from '../../../../models';
+import { Route, Report, Indicator, Field } from '../../../../models';
 
 @Component({
   selector: 'app-report',
@@ -16,7 +16,7 @@ export class ReportComponent implements OnInit {
   @Output() onDelete: EventEmitter<Report> = new EventEmitter<Report>();
 
   indicators: Array<Indicator>;
-  allFields: Array<any>;
+  allFields: Array<Field>;
   details = false;
   getSelected: any;
   isSaving: boolean;
@@ -70,7 +70,6 @@ export class ReportComponent implements OnInit {
   }
 
   allChecked(event, modelName, allOption, ) {
-
     if (event.checked) {
       this.report[modelName] = this[allOption];
     }
@@ -79,6 +78,4 @@ export class ReportComponent implements OnInit {
     }
   }
 
-
-
-}
+} 
