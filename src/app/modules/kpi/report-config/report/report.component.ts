@@ -13,16 +13,15 @@ export class ReportComponent implements OnInit {
   @Input() report: Report;
   @Input() routes: Array<any>;
   @Output() onSave: EventEmitter<Report> = new EventEmitter<Report>();
+  @Output() onDelete: EventEmitter<Report> = new EventEmitter<Report>();
 
   indicators: Array<Indicator>;
   allFields: Array<any>;
   details = false;
   getSelected: any;
   isSaving: boolean;
-  
+
   isAllChecked: boolean;
- 
-  
 
   constructor(
     private pdService: PlanDetailService,
@@ -48,12 +47,8 @@ export class ReportComponent implements OnInit {
   }
 
   save() {
-    this.isSaving = true;
-    if (this.report.id === undefined) {
-      this.reportService.create(this.report).subscribe(response => this.onSaveSuccess(response, 1), () => this.onSaveError());
-    } else {
-      this.reportService.update(this.report).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
-    }
+    this.onSave.emit(this.report);
+    this.toggleInfo();
   }
 
   changeRoutes(routes) {
@@ -66,39 +61,24 @@ export class ReportComponent implements OnInit {
     )
   }
 
-  private onSaveSuccess(result, isNew) {
-    this.isSaving = false;
-    this.toggleInfo();
-    if (isNew) {
-      this.onSave.emit(result);
-    }
-  }
-
-  private onSaveError() {
-    this.isSaving = false;
-    console.error('FAAAAAALEEEEEN');
-  }
-
-  private delete(report) {
-    console.warn("ATTENTION! IT'S DELETING");
-    this.reportService.delete(report.id).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
+  delete(report) {
+    this.onDelete.emit(report);
   }
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-
   }
 
-  allChecked(event, modelName, allOption,) {
+  allChecked(event, modelName, allOption, ) {
 
-    if(event.checked) {
-      this.report[modelName] = this[allOption];      
+    if (event.checked) {
+      this.report[modelName] = this[allOption];
     }
     else {
       this.report[modelName] = [];
     }
   }
- 
- 
-  
+
+
+
 }

@@ -7,22 +7,7 @@
         </md-option>
       </md-select>
     </div>
-    <!--<div class="filter-item" id="second">
-      <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
-        <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
-          {{ route.description }}
-        </md-option>
-      </md-select>
-    </div>
-    <div class="filter-item" id="third">
-      <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)" [disabled]="!indicators">
-        <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
-          {{ indicator.description }}
-        </md-option>
-      </md-select>
-    </div>-->
     <div class="check-item">
-      <!--<button md-mini-fab (click)="applyFilter()"><md-icon>check</md-icon></button>-->
       <md-progress-bar mode="indeterminate" color="primary" *ngIf="isSaving"></md-progress-bar>
     </div>
 

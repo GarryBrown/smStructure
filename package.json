@@ -27,6 +27,8 @@
     "@angular/platform-server": "^4.0.3",
     "@angular/router": "^4.0.3",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.23",
+    "@ngrx/core": "^1.2.0",
+    "@ngrx/store": "^2.2.2",
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
     "@swimlane/ngx-charts": "^5.1.2",

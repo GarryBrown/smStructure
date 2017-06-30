@@ -28,7 +28,6 @@ export class PlanDetailComponent implements OnInit {
   routes: Array<Route>;
 
   currentRoutes: Array<Route>;
-  allFieldsDesc: Array<any>;
   reports: Array<any>;
   currentReport: Report;
   // transformed array for iterate
@@ -43,6 +42,7 @@ export class PlanDetailComponent implements OnInit {
     private reportService: ReportConfigService,
     public dialog: MdDialog,
   ) {
+    this.isSaving = true;
     this.reports = [];
     this.currentIndicators = [];
     this.getSelected = pdService.getSelected;
@@ -62,21 +62,19 @@ export class PlanDetailComponent implements OnInit {
   }
 
   // changes selects
-
   changeReports(report: Report) {
-    console.log(report);
     this.currentRoutes = report.routes;
     this.changeRoutes(this.currentRoutes);
     this.currentIndicators = report.indicators;
     this.changeIndicators(report.indicators);
     this.applyFilter();
   }
-  
+
   changeIndicatorsSet(indicators) {
     this.currentIndicators = indicators;
     this.changeIndicators(indicators);
   }
-  
+
   changeIndicators(indicators: Array<Indicator>) {
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
@@ -93,8 +91,15 @@ export class PlanDetailComponent implements OnInit {
     let dialogRef = this.dialog.open(ReportConfigComponent, {
       data: [this.reports, this.routes], width: '75%', height: '85%'
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe((result: Array<Report>) => {
+      if (result) {
+        this.reports = result;
+        if (this.currentReport) {
+          this.currentReport = this.reports.filter(report => report.id === this.currentReport.id)[0];
+          this.changeReports(this.currentReport);
+        }
+
+      }
     });
   }
 
@@ -102,16 +107,15 @@ export class PlanDetailComponent implements OnInit {
     this.isSaving = true;
     this.pdService.getRoutesData(this.currentIndicators, this.currentRoutes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
   getData(report: Report) {
     this.isSaving = true;
-    console.log(report);
     this.pdService.getRoutesData(report.indicators, report.routes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
@@ -124,7 +128,6 @@ export class PlanDetailComponent implements OnInit {
   }
 
   onSuccesReport(reports) {
-    console.log(reports);
     this.reports = reports;
     if (!this.reports.length) {
       this.currentReport = new Report();
