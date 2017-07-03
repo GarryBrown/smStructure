@@ -12,13 +12,13 @@
         <span class="example-spacer"></span>
         <button md-icon-button *ngIf="!details">
           <md-icon (click)="toggleInfo()">mode_edit</md-icon>
+        </button> <button md-icon-button *ngIf="details">
+          <md-icon (click)="toggleInfo()">keyboard_arrow_up</md-icon>
         </button>
         <button md-icon-button *ngIf="details">
           <md-icon (click)="save()">save</md-icon>
         </button>
-        <button md-icon-button *ngIf="details">
-          <md-icon (click)="toggleInfo()">keyboard_arrow_up</md-icon>
-        </button>
+
         <button md-icon-button *ngIf="!details">
           <md-icon (click)="delete(report)">close</md-icon>
         </button>

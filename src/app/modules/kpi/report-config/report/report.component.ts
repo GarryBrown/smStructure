@@ -104,7 +104,7 @@ export class ReportComponent implements OnInit {
     this.indicators.map(function(indicator) { 
       if(indicator.id === id)  {
         if(event.checked) {
-          indicator.planFields = this.allFields;
+          // indicator.planFields = this.allFields;
           console.log(indicator.planFields)
         }
         else {

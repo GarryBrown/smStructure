@@ -71,12 +71,12 @@ export class PlanDetailComponent implements OnInit {
     this.changeIndicators(report.indicators);
     this.applyFilter();
   }
-  
+
   changeIndicatorsSet(indicators) {
     this.currentIndicators = indicators;
     this.changeIndicators(indicators);
   }
-  
+
   changeIndicators(indicators: Array<Indicator>) {
     this.listIndicators = this.pdService.getPropsObj(indicators);
   }
@@ -147,6 +147,12 @@ export class PlanDetailComponent implements OnInit {
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
 
+  }
+  swipe(event) {
+
+      
+    console.log(event);
+    
   }
 
 }
