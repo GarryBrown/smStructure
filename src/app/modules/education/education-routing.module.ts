@@ -4,12 +4,17 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { RouteAccessService } from '../../core';
 
 import { EducationComponent } from './education.component';
-import { EduCalendarComponent } from './edu-calendar/edu-calendar.component';
+import { StepsComponent } from './steps/steps.component';
 
 const EducationRoutes: Routes = [
   {
     path: 'edu',
     component: EducationComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'edu/theme/:id',
+    component: StepsComponent,
     canActivate: [RouteAccessService],
   },
 

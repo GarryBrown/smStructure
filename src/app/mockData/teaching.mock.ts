@@ -8,7 +8,7 @@ let _teaching = [
     staff: {
       description: 'Джун Маркетов'
     },
-    dateOfStart: '04.07.2017'
+    dateOfStart: '07.04.2017'
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ let _teaching = [
     staff: {
       description: 'Молл Мидлов'
     },
-    dateOfStart: '05.07.2017'
+    dateOfStart: '07.05.2017'
   }
 ];
 

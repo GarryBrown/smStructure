@@ -2,7 +2,7 @@ let _edu = [
   {
     id: 1,
     description: 'Продажи lvl 1',
-    textBody: '<strong>Важная</strong> тема',
+    textBody: '## Важная *тема* ',
     typeOfTeachingAgrRes: {
       id: 1,
       description: 'Агрегация результатов',

@@ -1,0 +1,16 @@
+<md-select placeholder="Маршрут">
+  <md-option *ngFor="let food of [1,2,3]" [value]="food">
+    {{ food }}
+  </md-option>
+</md-select>
+
+<md-select placeholder="Тема">
+  <md-option *ngFor="let food of [1,2,3]" [value]="food">
+    {{ food }}
+  </md-option>
+</md-select>
+
+<div class="footer">
+  <button md-raised-button color="accent">Начать</button>
+  <button md-raised-button>Отмена</button>
+</div>

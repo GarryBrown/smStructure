@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Subscription } from "rxjs/Subscription";
@@ -11,6 +11,7 @@ import { EduCalendarService } from './edu-calendar.service';
   styleUrls: ['./edu-calendar.component.scss']
 })
 export class EduCalendarComponent implements OnInit {
+  @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
   model: NgbDateStruct;
   subscription: Subscription;
   eventsData: Array<any>;
@@ -32,6 +33,10 @@ export class EduCalendarComponent implements OnInit {
 
   isDisabled(date: NgbDateStruct, current: { month: number }) {
     return date.month !== current.month;
+  }
+
+  onSelectDay(events) {
+    this.selectDay.emit(events);
   }
 
   loadData() {
