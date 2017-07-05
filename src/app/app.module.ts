@@ -17,6 +17,7 @@ import { LayoutrModule } from './components//layout.module';
 
 /* Modules */
 import { KPIModule } from './modules/kpi/kpi.module';
+import { EducationModule } from './modules/education/education.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
@@ -45,6 +46,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     AccountModule,
     LandingModule,
     KPIModule,
+    EducationModule,
     DashboardModule,
     ProfileModule,
   ],

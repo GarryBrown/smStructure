@@ -1,5 +1,5 @@
 let _environment = {
-  production: true,
+  production: false,
   origin: 'http://192.168.209.136'
 };
 
