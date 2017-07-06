@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 
 import { PlanDetailService } from '../../plan-detail/plan-detail.service';
 import { ReportConfigService } from '../report-config.service';
-import { Route, Report, Indicator } from '../../../../models';
+import { Route, Report, Indicator, Field } from '../../../../models';
+import { CheckboxComponent } from '../../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-report',
@@ -13,9 +14,10 @@ export class ReportComponent implements OnInit {
   @Input() report: Report;
   @Input() routes: Array<any>;
   @Output() onSave: EventEmitter<Report> = new EventEmitter<Report>();
+  @Output() onDelete: EventEmitter<Report> = new EventEmitter<Report>();
 
   indicators: Array<Indicator>;
-  allFields: Array<any>;
+  allFields: Array<Field>;
   details = false;
   getSelected: any;
   isSaving: boolean;
@@ -23,37 +25,53 @@ export class ReportComponent implements OnInit {
   isAllChecked: boolean;
 
 
-
   constructor(
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
   ) {
+
     this.getSelected = pdService.getSelected;
   }
 
   ngOnInit() {
+
+    
+
     if (this.report && this.report.routes) {
       this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
         (data: any) => {
-          this.indicators = data;
+          this.report.indicators = this.copyObj(this.report.indicators);
+          this.indicators = data.sort((a, b) => {
+            if (a.description < b.description) {
+              return -1;
+            } else if (a.description > b.description) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+
           this.allFields = this.indicators[0].planFields;
         },
         err => console.log('error')
       )
     }
+    
+
+
   }
 
+
+  copyObj(indicators) {
+    return indicators.map(indicator => Object.assign({}, indicator));
+  }
   toggleInfo() {
     this.details = !this.details;
   }
 
   save() {
-    this.isSaving = true;
-    if (this.report.id === undefined) {
-      this.reportService.create(this.report).subscribe(response => this.onSaveSuccess(response, 1), () => this.onSaveError());
-    } else {
-      this.reportService.update(this.report).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
-    }
+    this.onSave.emit(this.report);
+    this.toggleInfo();
   }
 
   changeRoutes(routes) {
@@ -66,58 +84,20 @@ export class ReportComponent implements OnInit {
     )
   }
 
-  private onSaveSuccess(result, isNew) {
-    this.isSaving = false;
-    this.toggleInfo();
-    if (isNew) {
-      this.onSave.emit(result);
-    }
-  }
-
-  private onSaveError() {
-    this.isSaving = false;
-    console.error('FAAAAAALEEEEEN');
-  }
-
-  private delete(report) {
-    console.warn("ATTENTION! IT'S DELETING");
-    this.reportService.delete(report.id).subscribe(response => this.onSaveSuccess(response, 0), () => this.onSaveError());
+  delete(report) {
+    this.onDelete.emit(report);
   }
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-
   }
 
-  allChecked(event, modelName, allOption, ) {
-
-    if (event.checked) {
-      this.report[modelName] = this[allOption];
-      console.log(this.report);
-    }
-    else {
-      this.report[modelName] = [];
-    }
+  onCheckRoutes(routes) {
+    this.report.routes = routes;
   }
-
-  allSelected(event, id) {
-    this.indicators.map(function(indicator) { 
-      if(indicator.id === id)  {
-        if(event.checked) {
-          // indicator.planFields = this.allFields;
-          console.log(indicator.planFields)
-        }
-        else {
-          indicator.planFields = [];
-        }
-        
-      }
-    }
-    );
+  onCheckIndicators(indicators) {
+    this.report.indicators = indicators;
   }
-
-
-
 
 
 } 

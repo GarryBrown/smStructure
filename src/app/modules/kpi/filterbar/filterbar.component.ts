@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angu
 import { PlanDetailService } from '../plan-detail/plan-detail.service';
 import { ReportConfigService } from '../report-config/report-config.service';
 import { Report, Route } from '../../../models';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-filterbar',
@@ -18,9 +19,14 @@ export class FilterbarComponent implements OnInit, OnChanges {
   @Output() updateCurrentIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
   @Output() getData: EventEmitter<Report> = new EventEmitter<Report>();
   @Output() changeIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+  copyIndicators: Array<any>;
   isSaving: boolean;
   getSelected;
   allFields: Array<any>;
+  disabled = false;
+  hide = false;
+  listIndicator: Array<any> = [];
+
   constructor(
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
@@ -29,12 +35,17 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+
     this.getIndicators();
+    
+     this.listIndicator = this.copyObj(this.currentIndicators);
   }
 
 
   ngOnChanges() {
+
     this.getIndicators();
+    
   }
 
   changeRoutes(routes) {
@@ -50,7 +61,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    console.log(data);
+    // console.log(data);
     cb.bind(this)(data);
   }
 
@@ -65,7 +76,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
     }
   }
 
-  changeFields() {
+  changeFields(event) {
     this.updateCurrentIndicators.emit(this.currentIndicators);
   }
 
@@ -76,24 +87,23 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   getDataFilter() {
     let report = new Report();
-    report.indicators = this.currentIndicators;
     report.routes = this.currentRoutes;
+    report.indicators = this.currentIndicators;
     this.getData.emit(report);
   }
 
-
-  allChecked(event, modelName, allOption, ) {
-
-    if (event.checked) {
-      this[modelName] = this[allOption];
-      console.log(this.currentRoutes);
-    }
-    else {
-      this[modelName] = [];
-    }
+  copyObj(indicators) {
+    return indicators.map(indicator => this.listIndicator.push(Object.assign({}, indicator)));
   }
 
+  onCheckRoutes(routes) {
+    console.log(routes);
+      this.currentRoutes = routes;
+  }
+  onCheckIndicators(indicators) {
+    this.currentIndicators = indicators;
+  }
 
-
+  
 
 }

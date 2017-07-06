@@ -28,8 +28,6 @@ export class PrincipalService {
   authenticate(_identity) {
     this._identity = _identity;
     this.authenticated = _identity !== null;
-    // console.log(`==== set authenticated : ${this.authenticated}`);
-    // console.log('=====this.authenticationState.next(this._identity);');
     this.authenticationState.next(this._identity);
   }
 
@@ -70,8 +68,6 @@ export class PrincipalService {
       this.authenticationState.next(this._identity);
     }
 
-    console.log('===PRINCIPAL===');
-
     if (this._identity) {
       this.authenticationState.next(this._identity);
       return Promise.resolve(this._identity);
@@ -82,7 +78,7 @@ export class PrincipalService {
     if (environment.production) {
       return this.account.get().toPromise().then(account => {
 
-        account.imageUrl = 'http://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg';
+        account.imageUrl = '../../../assets//images/default-user-avatar.png';
 
         if (account) {
           this._identity = account;

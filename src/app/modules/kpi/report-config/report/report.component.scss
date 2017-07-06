@@ -20,9 +20,12 @@ button {
 
 .header-details {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: baseline;
+    app-checkbox {
+        margin-right: 10px;
+    }
     md-select {
         min-width: 130px;
         width: 35%;
@@ -38,23 +41,14 @@ button {
 
 .indicators-list {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
     flex-wrap: wrap;
-    .indicator-item {
-        width: 262px;
-        height: 94px;
-        margin: auto 5px;
-        md-select {
-            margin-top: 24px;
-            width: 240px;
-        }
-        span {
-            font-weight: bold;
-        }
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 md-checkbox {
     margin: 5px;
 }
+
+.label {}

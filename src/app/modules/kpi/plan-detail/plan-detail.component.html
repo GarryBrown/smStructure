@@ -1,33 +1,17 @@
 <md-card>
-  <div class="top-filter">
-    <div class="filter-item" id="first">
-      <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
-        <md-option *ngFor="let report of reports" [value]="getSelected(currentReport, report)">
-          {{ report.description }}
-        </md-option>
-      </md-select>
-    </div>
-    <!--<div class="filter-item" id="second">
-      <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
-        <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
-          {{ route.description }}
-        </md-option>
-      </md-select>
-    </div>
-    <div class="filter-item" id="third">
-      <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicators($event)" [disabled]="!indicators">
-        <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
-          {{ indicator.description }}
-        </md-option>
-      </md-select>
-    </div>-->
+    <div class="top-filter">
+        <div class="filter-item" id="first">
+            <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
+                <md-option *ngFor="let report of reports" [value]="getSelected(currentReport, report)">
+                    {{ report.description }}
+                </md-option>
+            </md-select>
+        </div>
         <div class="check-item">
-            <!--<button md-mini-fab (click)="applyFilter()"><md-icon>check</md-icon></button>-->
             <md-progress-bar mode="indeterminate" color="primary" *ngIf="isSaving"></md-progress-bar>
         </div>
-
         <div class="filter-item report-config">
-            <button md-icon-button><md-icon (click)="openConfig()">settings</md-icon></button>
+            <button md-icon-button (click)="openConfig()"><md-icon >settings</md-icon></button>
         </div>
     </div>
 </md-card>

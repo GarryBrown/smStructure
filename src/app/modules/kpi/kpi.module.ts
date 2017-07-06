@@ -22,11 +22,12 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
 import { ReportComponent } from './report-config/report/report.component';
-
+import { CheckboxComponent } from './filterbar/checkbox/checkbox.component';
 
 
 import { environment } from '../../app.constants';
 import { KpiChartComponent } from './kpi-chart/kpi-chart.component';
+import { ListFieldsComponent } from './list-fields/list-fields.component';
 
 let myTestApiModule = [];
 if (!environment.production) {
@@ -50,13 +51,16 @@ if (!environment.production) {
     ReportConfigComponent,
     ReportComponent,
     FilterbarComponent,
-    KpiChartComponent],
+    KpiChartComponent,
+    ListFieldsComponent,
+    CheckboxComponent],
   entryComponents: [
     PlanDetailRowComponent,
     PlanChartComponent,
     PlanDetailComponent,
     ReportConfigComponent,
-    FilterbarComponent],
+    FilterbarComponent,
+    CheckboxComponent],
   providers: [
     KPIService,
     ReportConfigService,

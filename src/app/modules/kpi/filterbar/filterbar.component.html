@@ -9,35 +9,40 @@
     <div class="wrapper">
         <div class="wrap">
             <div class="indicators">
-                <md-checkbox (change)="allChecked($event, 'currentRoutes', 'routes')" color="primary"></md-checkbox>
+                <!--<md-checkbox color="primary" [checked]="getSelected"></md-checkbox>-->
 
-                <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)">
+
+                <app-checkbox [allList]="routes" [currentList]="currentRoutes" (onCheckChange)="onCheckRoutes($event)"></app-checkbox>
+
+                <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)" required>
                     <md-option *ngFor="let route of routes" [value]="getSelected(currentRoutes, route)">
                         {{ route.description }}
                     </md-option>
                 </md-select>
             </div>
             <div class="indicators">
-                <md-checkbox (change)="allChecked($event, 'currentIndicators', 'indicators')" color="primary"></md-checkbox>
-                <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="!indicators">
+                <app-checkbox [allList]="indicators" [currentList]="currentIndicators" (onCheckChange)="onCheckIndicators($event)"></app-checkbox>
+                <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="!indicators" required>
                     <md-option *ngFor="let indicator of indicators" [value]="getSelected(currentIndicators, indicator)">
                         {{ indicator.description }}
                     </md-option>
                 </md-select>
             </div>
 
-            <div class="indicators" *ngFor="let indicator of currentIndicators">
-                <p> <span>{{indicator.description}}</span> </p>
-                <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true" (ngModelChange)="changeFields($event)">
-                    <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
-                        {{ field.description }}
-                    </md-option>
-                </md-select>
-            </div>
+            <app-list-fields class="indicators" *ngFor="let indicator of currentIndicators" [indicator]="indicator" [allFields]="allFields" (fieldsChange)="changeFields($event)"></app-list-fields>
+
+            <!--<div class="indicators" *ngFor="let indicator of currentIndicators">
+        <p> <span>{{indicator.description}}</span> </p>
+        <md-select placeholder="Поля" [(ngModel)]="indicator.planFields" [multiple]="true" (ngModelChange)="changeFields($event)">
+          <md-option *ngFor="let field of allFields" [value]="getSelected(indicator.planFields, field)">
+            {{ field.description }}
+          </md-option>
+        </md-select>
+      </div>-->
         </div>
 
 
-        <button md-raised-button (click)="getDataFilter()" color="accent">Получить данные</button>
+        <button md-raised-button (click)="getDataFilter()" color="accent" [disabled]="currentRoutes.length === 0 || currentIndicators.length === 0">Получить данные</button>
 
     </div>
 </div>
