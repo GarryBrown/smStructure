@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 /*share*/
-import { DatepickerModule } from 'angular2-material-datepicker';
-import { SharedModule } from '../../shared';
+import { SharedModule, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
 /* test api */
@@ -40,7 +39,6 @@ if (!environment.production) {
 @NgModule({
   imports: [
     CommonModule,
-    DatepickerModule,
     EducationRoutingModule,
     SharedModule,
     ...myTestApiModule,
@@ -63,6 +61,7 @@ if (!environment.production) {
     EducationService,
     EduCalendarService,
     StepsService,
+    UtilsService
   ]
 })
 export class EducationModule { }

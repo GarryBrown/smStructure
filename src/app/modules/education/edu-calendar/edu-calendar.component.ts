@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input,  Output, EventEmitter } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Subscription } from "rxjs/Subscription";
@@ -12,6 +12,7 @@ import { EduCalendarService } from './edu-calendar.service';
 })
 export class EduCalendarComponent implements OnInit {
   @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
+  @Input() access: string;
   model: NgbDateStruct;
   subscription: Subscription;
   eventsData: Array<any>;

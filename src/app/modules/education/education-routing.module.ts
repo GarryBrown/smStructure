@@ -13,6 +13,16 @@ const EducationRoutes: Routes = [
     canActivate: [RouteAccessService],
   },
   {
+    path: 'planning',
+    component: EducationComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'store-check',
+    component: EducationComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
     path: 'edu/theme/:id',
     component: StepsComponent,
     canActivate: [RouteAccessService],

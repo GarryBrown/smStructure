@@ -1,3 +1,8 @@
-<p>
-  step works!
-</p>
+<div *ngIf="step">
+  <md-toolbar>
+    <h3>{{ step.typeOfTeachingStep.description}}</h3>
+  </md-toolbar>
+
+  <button *ngIf="!isFinish" md-raised-button (click)="next()">Далее</button>
+  <button *ngIf="isFinish" md-raised-button>Завершить</button>
+</div>

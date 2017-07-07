@@ -2,5 +2,5 @@
 </ngb-datepicker>
 
 <ng-template #customDay1 let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
-  <app-edu-day-calendar [date]="date" [eventsData]="eventsData" (selectDay)="onSelectDay($event)"></app-edu-day-calendar>
+  <app-edu-day-calendar [date]="date" [eventsData]="eventsData" [access]="access" (selectDay)="onSelectDay($event)"></app-edu-day-calendar>
 </ng-template>

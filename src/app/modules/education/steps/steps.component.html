@@ -1,2 +1,4 @@
-<app-introduction *ngIf="theme" [theme]="theme"></app-introduction>
-<app-step></app-step>
+<md-card *ngIf="theme">
+  <app-introduction *ngIf="theme" [theme]="theme"></app-introduction>
+  <app-step [class.visible]="step.orderBy === stepsIndex[currentStepIndex]" *ngFor="let step of theme.steps" [theme]="theme" [step]="step" (nextStep)="nextStep($event)"></app-step>
+</md-card>

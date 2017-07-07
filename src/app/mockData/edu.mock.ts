@@ -2,7 +2,11 @@ let _edu = [
   {
     id: 1,
     description: 'Продажи lvl 1',
-    textBody: '## Важная *тема* ',
+    textBody: `## Важный *заголовок* 
+    - item
+    - item
+    - item 
+    **label**`,
     typeOfTeachingAgrRes: {
       id: 1,
       description: 'Агрегация результатов',
@@ -43,18 +47,18 @@ let _edu = [
     steps: [
       {
         id: 1,
-        orderBy: 1,
+        orderBy: 2,
         typeOfTeachingStep: {
-          description: 'Шаг 1',
+          description: 'Step 2',
           isNeedSelectDP: false,
           isNeedAnswer: false
         }
       },
       {
         id: 2,
-        orderBy: 2,
+        orderBy: 1,
         typeOfTeachingStep: {
-          description: 'Название шага 2',
+          description: 'Step 1',
           isNeedSelectDP: false,
           isNeedAnswer: false
         }
