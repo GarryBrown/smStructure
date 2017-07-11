@@ -1,24 +1,35 @@
-.question_row {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: baseline;
-    margin-bottom: 10px;
-}
-
-.flex-question {
-    flex: 1 1 150px;
-}
-
-.flex-answer {
-    flex: 1 1 150px;
-}
-
-.flex-rating {
-    flex: 1 1 50px;
-}
-
-.flex-comment {
-    flex: 1 1 50px;
-}
+ // flex variant but comment is not beauty
+ .question_row {
+     display: flex;
+     flex-wrap: nowrap;
+     flex-direction: row;
+     justify-content: flex-start;
+     align-items: baseline;
+     margin-bottom: 10px;
+     min-width: 600px;
+     overflow-x: auto;
+ }
+ 
+ .flex-question {
+     flex: 1 1 150px;
+ }
+ 
+ .flex-answer {
+     flex: 1 1 150px;
+ }
+ 
+ .flex-rating {
+     flex: 1 1 50px;
+ }
+ 
+ .flex-comment {
+     flex: 1 1 50px;
+ }
+ 
+ // .question_row {
+ //     margin-bottom: 10px;
+ //     overflow-x: auto;
+ //     & * {
+ //         display: inline;
+ //     }
+ // }

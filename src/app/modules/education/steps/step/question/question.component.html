@@ -1,5 +1,19 @@
 <div class="question_row">
   <div class="flex-question"> {{ question.description}} </div>
+
+  <ng-template ngFor let-prevStep [ngForOf]="prevStepsId">
+    <div class="flex-answer">
+      <md-select name="answer" [(ngModel)]="answeredQuestions[prevStep][question.id]" [disabled]="true">
+        <md-option *ngFor="let answer of question.answers" [value]="answer">
+          {{ answer.typeOfAnswer.description }}
+        </md-option>
+      </md-select>
+    </div>
+    <div class="flex-rating">
+      <span>{{ answeredQuestions[prevStep][question.id].value}}</span>
+    </div>
+  </ng-template>
+
   <div class="flex-answer">
     <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
       <md-option *ngFor="let answer of question.answers" [value]="answer">
