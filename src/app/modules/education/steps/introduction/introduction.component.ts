@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-introduction',
@@ -7,9 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class IntroductionComponent implements OnInit {
   @Input() theme;
+  @Output() beginSteps: EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  begin() {
+    this.beginSteps.emit(true);
   }
 
 }

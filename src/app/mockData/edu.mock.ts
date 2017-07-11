@@ -42,21 +42,60 @@ let _edu = [
             }
           },
         ]
+      },
+      {
+        id: 2,
+        description: 'Сколько пальцах на руках?',
+        answers: [
+          {
+            id: 4,
+            value: 1,
+            orderBy: 2,
+            typeOfAnswer: {
+              description: 'Половина'
+            }
+          },
+          {
+            id: 5,
+            value: 2,
+            orderBy: 1,
+            typeOfAnswer: {
+              description: 'Немного'
+            }
+          },
+          {
+            id: 6,
+            value: 3,
+            orderBy: 3,
+            typeOfAnswer: {
+              description: 'Некоторое количество'
+            }
+          },
+        ]
       }
     ],
     steps: [
       {
         id: 1,
-        orderBy: 2,
+        orderBy: 7,
         typeOfTeachingStep: {
           description: 'Step 2',
-          isNeedSelectDP: false,
+          isNeedSelectDP: true,
+          isNeedAnswer: false
+        }
+      },
+      {
+        id: 3,
+        orderBy: 10,
+        typeOfTeachingStep: {
+          description: 'Step 3',
+          isNeedSelectDP: true,
           isNeedAnswer: false
         }
       },
       {
         id: 2,
-        orderBy: 1,
+        orderBy: 5,
         typeOfTeachingStep: {
           description: 'Step 1',
           isNeedSelectDP: false,

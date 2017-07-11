@@ -25,4 +25,21 @@ export class UtilsService {
     return option;
   }
 
+  rangeArray(n: number) {
+    return Array.apply(null, { length: n }).map(Number.call, Number);
+  }
+
+
+  sortNumber(a, b) {
+    return a - b;
+  }
+
+  sortByOrderBy(a, b) {
+    if (a.orderBy < b.orderBy)
+      return -1;
+    if (a.orderBy > b.orderBy)
+      return 1;
+    return 0;
+  }
+
 }

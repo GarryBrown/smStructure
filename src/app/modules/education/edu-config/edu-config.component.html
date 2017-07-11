@@ -17,9 +17,9 @@
   </md-select>
   <br>
 
-  <md-select placeholder="Маршрут">
-    <md-option *ngFor="let item of ['PS101','PS102']" [value]="item">
-      {{ item }}
+  <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
+    <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
+      {{ route.description }}
     </md-option>
   </md-select>
   <br>

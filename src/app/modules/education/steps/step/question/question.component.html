@@ -1,0 +1,18 @@
+<div class="question_row">
+  <div class="flex-question"> {{ question.description}} </div>
+  <div class="flex-answer">
+    <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
+      <md-option *ngFor="let answer of question.answers" [value]="answer">
+        {{ answer.typeOfAnswer.description }}
+      </md-option>
+    </md-select>
+  </div>
+  <div class="flex-rating">
+    <span *ngIf="answer.value">{{ answer.value}}</span>
+  </div>
+  <div class="flex-comment">
+    <md-input-container>
+      <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий"></textarea>
+    </md-input-container>
+  </div>
+</div>

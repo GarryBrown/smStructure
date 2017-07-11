@@ -14,6 +14,7 @@ import { EducationRoutingModule } from './education-routing.module';
 import { EducationService } from './education.service';
 import { EduCalendarService } from './edu-calendar/edu-calendar.service';
 import { StepsService } from './steps/steps.service';
+import { EduConfigService } from './edu-config/edu-config.service';
 /* components */
 import { EducationComponent } from './education.component';
 import { EduCalendarComponent } from './edu-calendar/edu-calendar.component';
@@ -25,6 +26,7 @@ import { StepComponent } from './steps/step/step.component';
 import { EduConfigComponent } from './edu-config/edu-config.component';
 
 import { environment } from '../../app.constants';
+import { QuestionComponent } from './steps/step/question/question.component';
 
 
 
@@ -53,6 +55,7 @@ if (!environment.production) {
     IntroductionComponent,
     StepComponent,
     EduConfigComponent,
+    QuestionComponent,
     ],
   entryComponents: [
     EduConfigComponent,
@@ -60,6 +63,7 @@ if (!environment.production) {
   providers: [
     EducationService,
     EduCalendarService,
+    EduConfigService,
     StepsService,
     UtilsService
   ]
