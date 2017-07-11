@@ -10,12 +10,10 @@ import { Route, Report } from '../../../models';
   styleUrls: ['./report-config.component.scss']
 })
 export class ReportConfigComponent implements OnInit {
-
   routes: Array<Route>;
   reports: Array<Report>;
   newReport: Report;
   isChanged: boolean;
-
   details = false;
 
   constructor(
@@ -37,7 +35,7 @@ export class ReportConfigComponent implements OnInit {
   }
 
   create() {
-    console.log("ggg");
+   
     this.newReport = new Report();
   }
 

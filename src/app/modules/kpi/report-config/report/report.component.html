@@ -32,8 +32,8 @@
             </md-select>
             <app-checkbox [allList]="indicators" [currentList]="report.indicators" (onCheckChange)="onCheckIndicators($event)"></app-checkbox>
             <md-select [multiple]="true" placeholder="Показатели " name="indicator " [(ngModel)]="report.indicators" required>
-                <md-option *ngFor="let indicator of indicators " [value]="getSelected(report.indicators, indicator) ">
-                    {{indicator.description}}
+                <md-option *ngFor="let indicator of indicators | orderBy: 'id'" [value]="getSelected(report.indicators, indicator) ">
+                    {{indicator.description }}
                 </md-option>
             </md-select>
         </div>

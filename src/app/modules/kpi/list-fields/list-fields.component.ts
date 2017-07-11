@@ -13,7 +13,7 @@ export class ListFieldsComponent implements OnInit {
   @Input() indicator: Indicator;
   @Input() allFields: Array<Field>;
   @Output() fieldsChange: EventEmitter<Array<Field>> = new EventEmitter();
-
+  disabled = false;
   getSelected: any;
 
   constructor(
@@ -23,21 +23,20 @@ export class ListFieldsComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  allSelected(event, indicator) {
-    if (event.checked) {
-      indicator.planFields = this.allFields;
-    } else {
-      indicator.planFields = [];
-    }
+    console.log(this.indicator.planFields);
+    console.log(this.allFields);
   }
 
   onChangeFields(fields) {
     this.fieldsChange.emit(fields);
   }
+
   onCheckPlanFields(fields) {
     this.indicator.planFields = fields;
+    this.onChangeFields(fields);
+    // this.disabled = this.allFields.some(indicator => this.indicator.planFields.length === 0);
+    // console.log(this.disabled);
+    // console.log(fields);
   }
 
 }

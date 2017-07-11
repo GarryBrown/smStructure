@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { SharedModule } from '../../shared';
 import { DateUtilService } from '../../core';
+import { OrderBy } from '../../shared';
+import { ConfirmComponent } from '../../shared';
 /* test api */
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '../../in-mem-data-service';
@@ -22,7 +24,7 @@ import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-
 import { FilterbarComponent } from "./filterbar/filterbar.component";
 import { ReportConfigComponent } from './report-config/report-config.component';
 import { ReportComponent } from './report-config/report/report.component';
-import { CheckboxComponent } from './filterbar/checkbox/checkbox.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 
 import { environment } from '../../app.constants';
@@ -53,20 +55,23 @@ if (!environment.production) {
     FilterbarComponent,
     KpiChartComponent,
     ListFieldsComponent,
-    CheckboxComponent],
+    CheckboxComponent,
+    OrderBy,
+    ConfirmComponent],
   entryComponents: [
     PlanDetailRowComponent,
     PlanChartComponent,
     PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent,
-    CheckboxComponent],
+    CheckboxComponent,
+    ConfirmComponent],
   providers: [
     KPIService,
     ReportConfigService,
     PlanDetailService,
     DateUtilService,
     UserResolvePagingParams,
-  ]
+  ],
 })
 export class KPIModule { }

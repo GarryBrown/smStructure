@@ -8,5 +8,7 @@ export class Report {
         public indicators?: Array<any>,
     ) {
         this.description = description ? description : 'Новый отчет';
+        this.indicators = indicators ? indicators : [];
+        this.routes = routes ? routes : [];
     }
 }

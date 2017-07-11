@@ -1,0 +1,31 @@
+.custom-day {
+    text-align: center;
+    background-color: #E0F2F1;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    outline: 1px solid #fff;
+    justify-content: center;
+    .text,
+    .icons {
+        min-width: 30px;
+        height: 50px;
+        outline: 0px solid red;
+    }
+    .icons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .text {
+        // padding-bottom: 5px;
+        // padding-top: 5px;
+        // height: 40px;
+        padding-top: 15px;
+    }
+    .material-icons {
+        font-size: 16px;
+    }
+}

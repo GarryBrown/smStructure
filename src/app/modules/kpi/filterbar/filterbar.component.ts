@@ -26,7 +26,8 @@ export class FilterbarComponent implements OnInit, OnChanges {
   disabled = false;
   hide = false;
   listIndicator: Array<any> = [];
-
+  listRoute: Array<any> = [];
+  isDisabled = true;
   constructor(
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
@@ -35,17 +36,14 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
     this.getIndicators();
-    
-     this.listIndicator = this.copyObj(this.currentIndicators);
+    this.listIndicator = this.copyObj(this.currentIndicators);
+    this.listRoute = this.copyObj(this.currentRoutes);
   }
 
 
   ngOnChanges() {
-
     this.getIndicators();
-    
   }
 
   changeRoutes(routes) {
@@ -61,7 +59,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    // console.log(data);
     cb.bind(this)(data);
   }
 
@@ -77,7 +74,11 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   changeFields(event) {
+    this.disabled = this.currentIndicators.some( indicator => indicator.planFields.length === 0);
+    
     this.updateCurrentIndicators.emit(this.currentIndicators);
+    console.log('********************************************');
+    console.log(this.disabled);
   }
 
   changeIndicatorsSet() {
@@ -93,17 +94,19 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   copyObj(indicators) {
-    return indicators.map(indicator => this.listIndicator.push(Object.assign({}, indicator)));
+    let copyIndicators = [];
+    indicators.map(indicator => copyIndicators.push(Object.assign({}, indicator)));
+    return copyIndicators;
   }
 
   onCheckRoutes(routes) {
     console.log(routes);
-      this.currentRoutes = routes;
+    this.currentRoutes = routes;
   }
   onCheckIndicators(indicators) {
     this.currentIndicators = indicators;
   }
 
-  
+
 
 }

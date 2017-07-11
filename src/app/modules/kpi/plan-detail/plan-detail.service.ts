@@ -74,9 +74,6 @@ export class PlanDetailService {
 
 
   getPropsObj(indicators: Array<Indicator>) {
-    console.log('getPropsObj');
-    console.log(indicators);
-
     let strictIndicators: Array<any> = [];
     indicators.map(indicator => {
       let planFields = [];
@@ -88,8 +85,6 @@ export class PlanDetailService {
       indObj['planFields'] = planFields;
       strictIndicators.push(indObj);
     });
-    console.log('strictIndicators');
-    console.log(strictIndicators);
     return strictIndicators;
   }
 

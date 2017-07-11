@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Subscription } from "rxjs/Subscription";
+import {} from '@types/googlemaps';
 
 import { KPIService } from './kpi.service';
 import { Plan } from "app/models/plan.model";
@@ -27,12 +28,32 @@ export class KPIComponent implements OnInit, OnDestroy {
     'День',
     'Месяц'
   ];
+  obj = document.getElementById('example');
+  @ViewChild('example') example;
+  map;
+  googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCYFMTJ_5Be9n1PNTmzJskZqRWusvEngaM';
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public kpiService: KPIService,
-  ) { }
+  ) {}
+
+
+  initMap() {
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8
+    });
+  }
+
+  addMap() {
+    document.body.appendChild(Object.assign(document.createElement('script'), {
+        type: 'text/javascript',
+        src: this.googleMapsUrl,
+        onload: () => this.initMap()
+      }))
+  }
 
   predictionChange(event) {
     this.predictionEnabled = event.checked;
@@ -63,6 +84,7 @@ export class KPIComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadData();
+    this.addMap();
   }
 
   ngOnDestroy() {

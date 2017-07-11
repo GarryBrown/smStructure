@@ -31,19 +31,6 @@
                 top: 84px;
                 right: 24px;
             }
-            button {
-                margin: auto;
-                width: 130px;
-                height: 35px;
-                &:last-child {
-                    margin-top: 5px;
-                }
-                &:first-of-type {
-                    md-icon {
-                        margin-left: 27px;
-                    }
-                }
-            }
         }
     }
 }

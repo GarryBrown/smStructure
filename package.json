@@ -1,12 +1,13 @@
 {
-    "name": "HermesManagerFrontend",
+    "name": "hermes-manager-frontend",
     "version": "0.0.1",
     "license": "MIT",
     "angular-cli": {},
     "scripts": {
         "ng": "ng",
         "start": "ng serve --port 4200 --proxy-config proxy.config.json",
-        "external": "ng serve --host 192.168.210.154 --port 4200 --proxy-config proxy.config.json",
+        "externalS": "ng serve --host 192.168.210.154 --port 4201 --proxy-config proxy.config.json",
+        "external": "ng serve --host 192.168.210.36 --port 4201 --proxy-config proxy.config.json",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
@@ -32,6 +33,7 @@
         "@ngx-translate/core": "^6.0.1",
         "@ngx-translate/http-loader": "0.0.3",
         "@swimlane/ngx-charts": "^5.1.2",
+        "@types/googlemaps": "^3.26.14",
         "angular2-cookie": "1.2.6",
         "angular2-material-datepicker": "^0.5.0",
         "core-js": "^2.4.1",

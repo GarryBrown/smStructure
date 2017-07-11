@@ -1,9 +1,12 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
+import { eduMock, teachingMock } from './mockData';
+
 export class InMemDataService implements InMemoryDbService {
 
-
   createDb() {
+    let edu = eduMock;
+    let teaching = teachingMock;
 
     let plansKPI = [
       {
@@ -42,14 +45,14 @@ export class InMemDataService implements InMemoryDbService {
               { id: 2, name: "ИП Сидоров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
             ]
           },
-          // 2: {
-          //   id: 2,
-          //   description: 'Покрытие',
-          //   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
-          //     { id: 3, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
-          //     { id: 4, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
-          //   ]
-          // },
+          2: {
+            id: 2,
+            description: 'Покрытие',
+            sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100, deliveryPointsPlans: [
+              { id: 3, name: "ИП Смирнов", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 },
+              { id: 4, name: "ИП Комаров", sumplan: 500, sumfact: 200, sumpercent: 47, prediction: 943, predicrion_percent: 77, gap: 300, planforDay: 30 }
+            ]
+          },
           3: {
             id: 3,
             description: 'Листинг',
@@ -83,11 +86,11 @@ export class InMemDataService implements InMemoryDbService {
           {
             id: 3, description: "ИП Иванов",
             planValues: {
-              // 1: {
-              //   id: 1,
-              //   name: 'Товарооборот',
-              //   sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
-              // },
+              1: {
+                id: 1,
+                name: 'Товарооборот',
+                sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
+              },
               2: {
                 id: 2,
                 name: 'Покрытие',
@@ -153,18 +156,18 @@ export class InMemDataService implements InMemoryDbService {
         planDeliveryPointSet: [
           {
             id: 3, description: "ИП Смирнов",
-            planValues:{
-              1:{
+            planValues: {
+              1: {
                 id: 1,
                 name: 'Товарооборот',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
               },
-              2:{
+              2: {
                 id: 2,
                 name: 'Покрытие',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
               },
-              3:{
+              3: {
                 id: 3,
                 name: 'Листинг',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
@@ -174,17 +177,17 @@ export class InMemDataService implements InMemoryDbService {
           {
             id: 3, description: "ИП Иванов",
             planValues: {
-              1:{
+              1: {
                 id: 1,
                 name: 'Товарооборот',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
               },
-              2:{
+              2: {
                 id: 2,
                 name: 'Покрытие',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
               },
-              3:{
+              3: {
                 id: 3,
                 name: 'Листинг',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 354, planforDay: 100
@@ -194,17 +197,17 @@ export class InMemDataService implements InMemoryDbService {
           {
             id: 3, description: "ИП Куликов",
             planValues: {
-              2:{
+              2: {
                 id: 2,
                 name: 'Покрытие',
                 sumplan: 2000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 666, planforDay: 100
               },
-              3:{
+              3: {
                 id: 3,
                 name: 'Листинг',
                 sumplan: 3000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 999, planforDay: 100
               },
-              1:{
+              1: {
                 id: 1,
                 name: 'Товарооборот',
                 sumplan: 1000, sumfact: 500, sumpercent: 40, prediction: 555, predicrion_percent: 60, gap: 333, planforDay: 100
@@ -214,7 +217,7 @@ export class InMemDataService implements InMemoryDbService {
         ]
       }
     ];
-    
+
     let reports1 = [];
     let reports = [
       {
@@ -230,20 +233,22 @@ export class InMemDataService implements InMemoryDbService {
             description: 'Товарооборот',
             planFields: [
               {
+                id: 1,
                 code: 'sumfact',
                 description: 'Факт'
               },
               {
+                id: 2,
                 code: 'sumpercent',
                 description: '%'
               },
               {
-                id: 5,
+                id: 3,
                 code: 'predicrion_percent',
                 description: 'Прогноз %'
               },
               {
-                id: 6,
+                id: 4,
                 code: 'gap',
                 description: 'GAP'
               },
@@ -259,17 +264,17 @@ export class InMemDataService implements InMemoryDbService {
             description: 'Покрытие',
             planFields: [
               {
-                id: 2,
+                id: 1,
                 code: 'sumfact',
                 description: 'Факт'
               },
               {
-                id: 3,
+                id: 2,
                 code: 'sumpercent',
                 description: '%'
               },
               {
-                id: 4,
+                id: 6,
                 code: 'prediction',
                 description: 'Прогноз'
               },
@@ -280,12 +285,12 @@ export class InMemDataService implements InMemoryDbService {
             description: 'Листинг',
             planFields: [
               {
-                id: 5,
+                id: 3,
                 code: 'predicrion_percent',
                 description: 'Прогноз %'
               },
               {
-                id: 6,
+                id: 4,
                 code: 'gap',
                 description: 'GAP'
               },
@@ -380,34 +385,10 @@ export class InMemDataService implements InMemoryDbService {
         description: 'Товарооборот',
         planFields: [
           {
-            code: 'sumfact',
-            description: 'Факт'
+            id: 1,
+            code: 'sumplan',
+            description: 'План'
           },
-          {
-            code: 'sumpercent',
-            description: '%'
-          },
-          {
-            id: 5,
-            code: 'predicrion_percent',
-            description: 'Прогноз %'
-          },
-          {
-            id: 6,
-            code: 'gap',
-            description: 'GAP'
-          },
-          {
-            id: 5,
-            code: 'planforDay',
-            description: 'План на день'
-          }
-        ]
-      },
-      {
-        id: 2,
-        description: 'Покрытие',
-        planFields: [
           {
             id: 2,
             code: 'sumfact',
@@ -420,6 +401,62 @@ export class InMemDataService implements InMemoryDbService {
           },
           {
             id: 4,
+            code: 'predicrion_percent',
+            description: 'Прогноз %'
+          },
+          {
+            id: 5,
+            code: 'gap',
+            description: 'GAP'
+          },
+          {
+            id: 6,
+            code: 'planforDay',
+            description: 'План на день'
+          },
+          {
+            id: 7,
+            code: 'prediction',
+            description: 'Прогноз'
+          },
+        ]
+      },
+      {
+        id: 2,
+        description: 'Покрытие',
+        planFields: [
+          {
+            id: 1,
+            code: 'sumplan',
+            description: 'План'
+          },
+          {
+            id: 2,
+            code: 'sumfact',
+            description: 'Факт'
+          },
+          {
+            id: 3,
+            code: 'sumpercent',
+            description: '%'
+          },
+          {
+            id: 4,
+            code: 'predicrion_percent',
+            description: 'Прогноз %'
+          },
+          {
+            id: 5,
+            code: 'gap',
+            description: 'GAP'
+          },
+          {
+            id: 6,
+            code: 'planforDay',
+            description: 'План на день'
+          },
+          {
+            id: 7,
             code: 'prediction',
             description: 'Прогноз'
           },
@@ -430,26 +467,48 @@ export class InMemDataService implements InMemoryDbService {
         description: 'Листинг',
         planFields: [
           {
-            id: 5,
+            id: 1,
+            code: 'sumplan',
+            description: 'План'
+          },
+          {
+            id: 2,
+            code: 'sumfact',
+            description: 'Факт'
+          },
+          {
+            id: 3,
+            code: 'sumpercent',
+            description: '%'
+          },
+          {
+            id: 4,
             code: 'predicrion_percent',
             description: 'Прогноз %'
           },
           {
-            id: 6,
+            id: 5,
             code: 'gap',
             description: 'GAP'
           },
           {
-            id: 5,
+            id: 6,
             code: 'planforDay',
             description: 'План на день'
-          }
+          },
+          {
+            id: 7,
+            code: 'prediction',
+            description: 'Прогноз'
+          },
         ]
       },
 
     ]
 
     return {
+      edu: edu,
+      teaching: teaching,
       plans: plansKPI,
       planRoutes: planRoutes,
       planReports: reports,
