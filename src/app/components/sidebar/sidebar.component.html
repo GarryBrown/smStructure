@@ -4,20 +4,20 @@
       <div class="avatar" [ngStyle]="{'background-image' : 'url(' + user.imageUrl + ')'}"></div>
       <button md-button [mdMenuTriggerFor]="menu">
               {{user.login}}<md-icon>arrow_drop_down</md-icon>
-    </button>
+            </button>
       <md-menu #menu="mdMenu">
         <button md-menu-item [routerLink]="['/account/profile']">
-          <md-icon>perm_identity</md-icon>
-          <span>Profile</span>
-      </button>
+                    <md-icon>perm_identity</md-icon>
+                    <span>Profile</span>
+                </button>
         <button md-menu-item [routerLink]="['/account/profile']">
-        <md-icon>settings</md-icon>
-        <span>Setting</span>
-      </button>
+                    <md-icon>settings</md-icon>
+                    <span>Setting</span>
+                </button>
         <button md-menu-item (click)="logout()">
-        <md-icon>exit_to_app</md-icon>
-        <span>Logout</span>
-      </button>
+                    <md-icon>exit_to_app</md-icon>
+                    <span>Logout</span>
+                </button>
       </md-menu>
     </div>
   </div>

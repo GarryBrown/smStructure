@@ -1,10 +1,11 @@
 <div class="indicator-item">
-  <md-checkbox (change)="allSelected($event, indicator)" color="primary"></md-checkbox>
-  <span>{{indicator.description}}</span>
-  <md-select [multiple]="true" placeholder="Поля " [(ngModel)]="indicator.planFields" (ngModelChange)="onChangeFields($event)">
-    <md-option *ngFor="let field of allFields " [value]="getSelected(indicator.planFields, field) ">
-      {{ field.description }}
-    </md-option>
-  </md-select>
-
+    <span>{{indicator.description}}</span>
+    <div class="wrap">
+        <app-checkbox [allList]="listFields" [currentList]="indicator.planFields" (onCheckChange)="onCheckPlanFields($event)"></app-checkbox>
+        <md-select [multiple]="true" placeholder="Поля " [(ngModel)]="indicator.planFields" (ngModelChange)="onChangeFields($event)">
+            <md-option *ngFor="let field of listFields" [value]="getSelected(indicator.planFields, field) ">
+                {{ field.description }}
+            </md-option>
+        </md-select>
+    </div>
 </div>

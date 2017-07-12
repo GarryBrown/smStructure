@@ -22,6 +22,8 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
 import { AccountModule } from './modules/account/account.module';
+// import { SnackBarComponent } from './snack-bar/snack-bar.component';
+
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{

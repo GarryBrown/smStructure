@@ -6,8 +6,10 @@ let _events = [
       description: 'store-check'
     },
     route: {
-      id: 1,
-      description: 'PS101',
+      id: 213,
+      isActive: true,
+      code: "00000000891",
+      description: "PS108"
     },
     staff: {
       id: 1,
@@ -26,8 +28,10 @@ let _events = [
       description: 'Обучение'
     },
     route: {
-      id: 2,
-      description: 'PS102',
+      id: 214,
+      isActive: true,
+      code: "00000000828",
+      description: "PS101"
     },
     staff: {
       id: 2,
@@ -46,8 +50,10 @@ let _events = [
       description: 'Обучение'
     },
     route: {
-      id: 2,
-      description: 'PS102',
+      id: 214,
+      isActive: true,
+      code: "00000000828",
+      description: "PS101"
     },
     staff: {
       id: 2,
@@ -66,8 +72,10 @@ let _events = [
       description: 'store-check'
     },
     route: {
-      id: 2,
-      description: 'PS102',
+      id: 215,
+      isActive: true,
+      code: "00000000831",
+      description: "PS106"
     },
     staff: {
       id: 2,

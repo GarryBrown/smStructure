@@ -29,8 +29,13 @@ md-card {
     margin-top: 24px;
 }
 
+td.indicator-header {
+    vertical-align: middle;
+}
+
 // for table
 .indicator-header {
+    height: 82px;
     border-bottom: 3px solid #eceeef;
     // border-right: 1px solid gray;
     text-align: center;

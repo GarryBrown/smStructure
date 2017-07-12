@@ -8,12 +8,13 @@ import { ReportConfigService } from '../report-config/report-config.service';
 import { ReportConfigComponent } from '../report-config/report-config.component';
 
 import { Route, Report, Indicator } from '../../../models';
-
+import { AlertBarComponent } from '../../../shared/components/alert-bar/alert-bar.component';
 @Component({
   selector: 'app-plan-detail',
   templateUrl: './plan-detail.component.html',
   styleUrls: ['./plan-detail.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [ AlertBarComponent ]
 })
 
 export class PlanDetailComponent implements OnInit {
@@ -41,6 +42,7 @@ export class PlanDetailComponent implements OnInit {
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
     public dialog: MdDialog,
+    public alert: AlertBarComponent
   ) {
     this.isSaving = true;
     this.reports = [];
@@ -148,7 +150,7 @@ export class PlanDetailComponent implements OnInit {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    cb.bind(this)(data);
+    cb.bind(this)(data.data);
   }
 
   changeFields(newCurrentIndicators) {
@@ -157,7 +159,6 @@ export class PlanDetailComponent implements OnInit {
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-
+    this.alert.open("Не удалось получить данные :(");
   }
-
 }

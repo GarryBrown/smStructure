@@ -7,6 +7,11 @@ import { Report, Indicator, Route } from '../../../models';
 
 @Injectable()
 export class PlanDetailService {
+  // private resourceUrlPlanRoutes = '/api/plan-routes';
+  private resourceUrlPlanRoutes = '/api/planRoutes';
+  // private resourceUrlPlanIndicators = '/api/plan-indicators';
+  private resourceUrlPlanIndicators = '/api/planIndicators';
+
 
   constructor(private http: Http,
     private dateUtils: DateUtilService,
@@ -28,8 +33,8 @@ export class PlanDetailService {
     params.set('typeOfPlanId', indicatorsIds.join());
     params.set('routeId', routesIds.join());
 
-    return this.http.get('/api/plan-routes', {
-      search: params
+    return this.http.get(this.resourceUrlPlanRoutes, {
+      // search: params
     }).map((res: Response) => res.json());
   }
 
@@ -53,8 +58,8 @@ export class PlanDetailService {
   getIndicators(routes: string): Observable<any> {
     let params: URLSearchParams = new URLSearchParams();
     params.set('routeId', routes);
-    return this.http.get('/api/plan-indicators', {
-      search: params
+    return this.http.get(this.resourceUrlPlanIndicators, {
+      // search: params
     }).map((res: Response) => res.json());
   }
 
@@ -74,9 +79,6 @@ export class PlanDetailService {
 
 
   getPropsObj(indicators: Array<Indicator>) {
-    console.log('getPropsObj');
-    console.log(indicators);
-
     let strictIndicators: Array<any> = [];
     indicators.map(indicator => {
       let planFields = [];
@@ -88,8 +90,6 @@ export class PlanDetailService {
       indObj['planFields'] = planFields;
       strictIndicators.push(indObj);
     });
-    console.log('strictIndicators');
-    console.log(strictIndicators);
     return strictIndicators;
   }
 

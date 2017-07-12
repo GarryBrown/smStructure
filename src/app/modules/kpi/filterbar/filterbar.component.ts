@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angu
 import { PlanDetailService } from '../plan-detail/plan-detail.service';
 import { ReportConfigService } from '../report-config/report-config.service';
 import { Report, Route } from '../../../models';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'app-filterbar',
@@ -18,9 +19,15 @@ export class FilterbarComponent implements OnInit, OnChanges {
   @Output() updateCurrentIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
   @Output() getData: EventEmitter<Report> = new EventEmitter<Report>();
   @Output() changeIndicators: EventEmitter<Array<any>> = new EventEmitter<Array<any>>();
+  copyIndicators: Array<any>;
   isSaving: boolean;
   getSelected;
   allFields: Array<any>;
+  disabled = false;
+  hide = false;
+  listIndicator: Array<any> = [];
+  listRoute: Array<any> = [];
+  isDisabled = true;
   constructor(
     private pdService: PlanDetailService,
     private reportService: ReportConfigService,
@@ -30,6 +37,8 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getIndicators();
+    this.listIndicator = this.copyObj(this.currentIndicators);
+    this.listRoute = this.copyObj(this.currentRoutes);
   }
 
 
@@ -50,7 +59,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    console.log(data);
     cb.bind(this)(data);
   }
 
@@ -65,9 +73,12 @@ export class FilterbarComponent implements OnInit, OnChanges {
     }
   }
 
-
   changeFields(event) {
+    this.disabled = this.currentIndicators.some( indicator => indicator.planFields.length === 0);
+    
     this.updateCurrentIndicators.emit(this.currentIndicators);
+    console.log('********************************************');
+    console.log(this.disabled);
   }
 
   changeIndicatorsSet() {
@@ -77,23 +88,24 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   getDataFilter() {
     let report = new Report();
-    report.indicators = this.currentIndicators;
     report.routes = this.currentRoutes;
+    report.indicators = this.currentIndicators;
     this.getData.emit(report);
   }
 
-
-  allChecked(event, modelName, allOption, ) {
-
-    if (event.checked) {
-      this[modelName] = this[allOption];
-      console.log(this.currentRoutes);
-    }
-    else {
-      this[modelName] = [];
-    }
+  copyObj(indicators) {
+    let copyIndicators = [];
+    indicators.map(indicator => copyIndicators.push(Object.assign({}, indicator)));
+    return copyIndicators;
   }
 
+  onCheckRoutes(routes) {
+    console.log(routes);
+    this.currentRoutes = routes;
+  }
+  onCheckIndicators(indicators) {
+    this.currentIndicators = indicators;
+  }
 
 
 

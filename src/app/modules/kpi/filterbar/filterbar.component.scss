@@ -4,13 +4,12 @@
     list-style: none;
     margin: 0;
     box-sizing: border-box;
-    width: 250px;
+    width: 300px;
     background-color: #fff;
     top: 0;
     height: 100%;
     outline: 1px solid #e2e2e2;
-    padding: 16px;
-    right: -300px;
+    right: -320px;
     transition: right .2s;
     z-index: 2;
     -webkit-transform: translateZ(0);
@@ -32,25 +31,12 @@
                 top: 84px;
                 right: 24px;
             }
-            button {
-                margin: auto;
-                width: 130px;
-                height: 35px;
-                &:last-child {
-                    margin-top: 5px;
-                }
-                &:first-of-type {
-                    md-icon {
-                        margin-left: 27px;
-                    }
-                }
-            }
         }
     }
 }
 
 .wrap {
-    width: 230px;
+    width: 270px;
     margin: 0 auto;
     height: 700px;
     overflow-y: auto;
@@ -58,6 +44,7 @@
 }
 
 .indicators {
+    text-align: center;
     margin-left: 15px;
     margin: 24px auto;
     // margin-left: 45px;
@@ -108,11 +95,12 @@ md-icon {
 button {
     margin-top: 24px;
     height: 35px;
-    width: 100%;
+    width: 60%;
+    margin-left: 60px;
 }
 
 .hidden-menu-ticker:checked~.btn-menu {
-    right: 250px;
+    right: 300px;
 }
 
 .hidden-menu-ticker:checked~.hidden-menu {
