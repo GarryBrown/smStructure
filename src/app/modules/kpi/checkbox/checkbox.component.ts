@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter, AfterViewInit, OnChanges, DoCh
 export class CheckboxComponent implements OnInit, OnChanges {
   @Input() allList;
   @Input() currentList;
+  @Output() allListChange = new EventEmitter();
   @Output() onCheckChange = new EventEmitter<any>();
   vm: any;
   checkModel: any;
@@ -71,4 +72,8 @@ export class CheckboxComponent implements OnInit, OnChanges {
       this.onCheckChange.emit([])
     }
   }
+  onChangeAllList(allList) {
+    this.allListChange.emit(allList);
+  }
+
 }

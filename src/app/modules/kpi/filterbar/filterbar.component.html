@@ -28,10 +28,6 @@
                 <app-list-fields class="indicators" *ngFor="let indicator of currentIndicators" [indicator]="indicator" [allFields]="allFields" (fieldsChange)="changeFields($event)"></app-list-fields>
             </div>
         </div>
-
-
-        <!--<button md-raised-button (click)="getDataFilter()" color="accent" [disabled]="disabled">Получить данные</button>-->
         <button md-raised-button (click)="getDataFilter()" color="accent" [disabled]="currentRoutes.length === 0 || currentIndicators.length === 0 || disabled">Получить данные</button>
-
     </div>
 </div>
