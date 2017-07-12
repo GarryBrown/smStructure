@@ -1,12 +1,13 @@
 let _edu = [
   {
     id: 1,
-    description: 'Продажи lvl 1',
-    textBody: `## Важный *заголовок* 
-    - item
-    - item
-    - item 
-    **label**`,
+    description: 'Продажи: уровень 1',
+    textBody: `## Понимание  *дистрибьюции* компании
+    - Обучение
+    - Практика
+    - Закрепление 
+    
+     **Успех**`,
     typeOfTeachingAgrRes: {
       id: 1,
       description: 'Агрегация результатов',
@@ -15,14 +16,14 @@ let _edu = [
     questions: [
       {
         id: 1,
-        description: 'Какого цвета крокодил?',
+        description: 'Пропорция товара на полке?',
         answers: [
           {
             id: 1,
             value: 1,
             orderBy: 2,
             typeOfAnswer: {
-              description: 'Мокрый'
+              description: '70/30'
             }
           },
           {
@@ -30,7 +31,7 @@ let _edu = [
             value: 2,
             orderBy: 1,
             typeOfAnswer: {
-              description: 'Злой'
+              description: '40/60'
             }
           },
           {
@@ -38,21 +39,21 @@ let _edu = [
             value: 3,
             orderBy: 3,
             typeOfAnswer: {
-              description: 'Пушистый'
+              description: '60/40'
             }
           },
         ]
       },
       {
         id: 2,
-        description: 'Сколько пальцах на руках?',
+        description: 'Условия для выполнения условий?',
         answers: [
           {
             id: 4,
             value: 1,
             orderBy: 2,
             typeOfAnswer: {
-              description: 'Половина'
+              description: '11'
             }
           },
           {
@@ -60,7 +61,7 @@ let _edu = [
             value: 2,
             orderBy: 1,
             typeOfAnswer: {
-              description: 'Немного'
+              description: '21'
             }
           },
           {
@@ -68,7 +69,7 @@ let _edu = [
             value: 3,
             orderBy: 3,
             typeOfAnswer: {
-              description: 'Некоторое количество'
+              description: 'Нет правильного ответа'
             }
           },
         ]

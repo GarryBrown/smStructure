@@ -1,32 +1,30 @@
-<div class="question_row">
-  <div class="flex-question"> {{ question.description}} </div>
+<td>{{ question.description}}</td>
 
-  <ng-template ngFor let-prevStep [ngForOf]="prevStepsId">
-    <div class="flex-answer">
-      <md-select name="answer" [(ngModel)]="answeredQuestions[prevStep][question.id]" [disabled]="true">
-        <md-option *ngFor="let answer of question.answers" [value]="answer">
-          {{ answer.typeOfAnswer.description }}
-        </md-option>
-      </md-select>
-    </div>
-    <div class="flex-rating">
-      <span>{{ answeredQuestions[prevStep][question.id].value}}</span>
-    </div>
-  </ng-template>
-
-  <div class="flex-answer">
-    <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
+<ng-template ngFor let-prevStep [ngForOf]="prevStepsId">
+  <td>
+    <md-select name="answer" [(ngModel)]="answeredQuestions[prevStep][question.id].answer" [disabled]="true">
       <md-option *ngFor="let answer of question.answers" [value]="answer">
         {{ answer.typeOfAnswer.description }}
       </md-option>
     </md-select>
-  </div>
-  <div class="flex-rating">
-    <span *ngIf="answer.value">{{ answer.value}}</span>
-  </div>
-  <div class="flex-comment">
-    <md-input-container>
-      <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий"></textarea>
-    </md-input-container>
-  </div>
-</div>
+  </td>
+  <td>
+    <span>{{ answeredQuestions[prevStep][question.id].answer.value}}</span>
+  </td>
+</ng-template>
+
+<td>
+  <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
+    <md-option *ngFor="let answer of question.answers" [value]="answer">
+      {{ answer.typeOfAnswer.description }}
+    </md-option>
+  </md-select>
+</td>
+<td>
+  <span *ngIf="answer.value">{{ answer.value}}</span>
+</td>
+<td>
+  <md-input-container>
+    <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)"></textarea>
+  </md-input-container>
+</td>

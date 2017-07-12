@@ -4,6 +4,5 @@
     <ng-template ngFor let-step [ngForOf]="theme.steps">
       <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="theme" [step]="step" [answeredQuestions]="answeredQuestions" (nextStep)="nextStep($event)"></app-step>
     </ng-template>
-    <!--<app-step [class.visible]="step.orderBy === stepsIndex[currentStepIndex]" *ngFor="let step of theme.steps" [theme]="theme" [step]="step" [answeredQuestions]="answeredQuestions" (nextStep)="nextStep($event)"></app-step>-->
   </ng-template>
 </md-card>

@@ -5,6 +5,7 @@ import { RouteAccessService } from '../../core';
 
 import { EducationComponent } from './education.component';
 import { StepsComponent } from './steps/steps.component';
+import { EduResultComponent } from './edu-result/edu-result.component';
 
 const EducationRoutes: Routes = [
   {
@@ -27,8 +28,13 @@ const EducationRoutes: Routes = [
     component: StepsComponent,
     canActivate: [RouteAccessService],
   },
-
+  {
+    path: 'edu/result',
+    component: EduResultComponent,
+    canActivate: [RouteAccessService],
+  },
 ];
+
 
 @NgModule({
   imports: [

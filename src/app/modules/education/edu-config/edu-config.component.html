@@ -16,6 +16,7 @@
     </md-option>
   </md-select>
   <br>
+  <br>
 
   <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
     <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
@@ -23,9 +24,10 @@
     </md-option>
   </md-select>
   <br>
+  <br>
 
   <md-select placeholder="Тема">
-    <md-option *ngFor="let item of [1,2,3]" [value]="item">
+    <md-option *ngFor="let item of ['Продажи','Консультации','Удержание']" [value]="item">
       {{ item }}
     </md-option>
   </md-select>

@@ -2,29 +2,32 @@
   <md-toolbar>
     <h3>{{ step.typeOfTeachingStep.description}}</h3>
   </md-toolbar>
-
+  <br>
   <md-select *ngIf="listDP.length" placeholder="Торговая точка" name="dp">
     <md-option *ngFor="let dp of listDP" [value]="dp">
       {{ dp.description }}
     </md-option>
   </md-select>
-
+  <br>
   <div>
-    <h3>Вопросы</h3>
-
-    <div class="header">
-      <div class="flex-question">Вопрос</div>
-      <ng-template ngFor let-qty [ngForOf]="getRange(1)">
-        <div class="flex-answer">Ответ</div>
-        <div class="flex-rating">Оценка</div>
-      </ng-template>
-      <div class="flex-comment">Комментарий</div>
-    </div>
-
-    <app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step"></app-question>
+    <table class="table table-condensed table-responsive">
+      <thead>
+        <th>Вопрос</th>
+        <ng-template ngFor let-qty [ngForOf]="prevStepsId">
+          <th>Ответ</th>
+          <th>Оценка</th>
+        </ng-template>
+        <th>Вариант</th>
+        <th>Оценка</th>
+        <th>Комментарий</th>
+      </thead>
+      <tbody>
+        <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
+      </tbody>
+    </table>
   </div>
 
   <br>
   <button *ngIf="!isFinish" md-raised-button (click)="next()">Далее</button>
-  <button *ngIf="isFinish" md-raised-button>Завершить</button>
+  <button *ngIf="isFinish" md-raised-button (click)="goToResult()">Завершить</button>
 </div>

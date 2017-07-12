@@ -11,7 +11,7 @@ let _events = [
     },
     staff: {
       id: 1,
-      description: 'Джун Маркетов'
+      description: 'Стив Маркелов'
     },
     dp: {
       id: 1,
@@ -31,7 +31,7 @@ let _events = [
     },
     staff: {
       id: 2,
-      description: 'Молл Мидлов'
+      description: 'Алиса Сергеева'
     },
     dp: {
       id: 2,
@@ -51,7 +51,7 @@ let _events = [
     },
     staff: {
       id: 2,
-      description: 'Lil Peep'
+      description: 'Константин Мусикин'
     },
     dp: {
       id: 2,
@@ -71,7 +71,7 @@ let _events = [
     },
     staff: {
       id: 2,
-      description: 'Staff name'
+      description: 'Линус Каферов'
     },
     dp: {
       id: 2,

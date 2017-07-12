@@ -12,13 +12,13 @@ export class teachSpeciality {
 
     constructor(
         id?: number,
-        theme?: any;
-        deliveryPoint?: any;
-        step?: any;
-        question?: any;
-        answer?: any;
-        comment?: string;
-        result?: any;
+        theme?: any,
+        deliveryPoint?: any,
+        step?: any,
+        question?: any,
+        answer?: any,
+        comment?: string,
+        result?: any
     ) {
         this.id = id ? id : null;
         this.theme = theme ? theme : {};
