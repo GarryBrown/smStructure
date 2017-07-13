@@ -39,19 +39,19 @@ export class AppComponent implements OnInit {
     this.sidebartoggle.missionConfirmed$.subscribe(show => { this.show = show; });
   }
 
-  swipe(action = this.SWIPE_ACTION.RIGHT) {
-    console.log('swipe');
-    console.log(this.user);
-    console.log(action);
-    if (this.user && action === 'swipeleft') {
-      this.show = false;
-      this.sidebartoggle.sidebarToggle(this.show);
-    }
-    if (this.user && action === 'swiperight') {
-      this.show = true;
-      this.sidebartoggle.sidebarToggle(this.show);
-    }
-  }
+  // swipe(action = this.SWIPE_ACTION.RIGHT) {
+  //   console.log('swipe');
+  //   console.log(this.user);
+  //   console.log(action);
+  //   if (this.user && action === 'swipeleft') {
+  //     this.show = false;
+  //     this.sidebartoggle.sidebarToggle(this.show);
+  //   }
+  //   if (this.user && action === 'swiperight') {
+  //     this.show = true;
+  //     this.sidebartoggle.sidebarToggle(this.show);
+  //   }
+  // }
 
 
 }

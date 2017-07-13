@@ -5,6 +5,7 @@ $heightSidebar: calc(100% - 64px);
 .wrapper {
     position: fixed;
     top: $heightHeader;
+    bottom: 0;
     left: 0;
     height: calc(100% - #{$heightHeader});
     z-index: 10;
@@ -22,15 +23,12 @@ $heightSidebar: calc(100% - 64px);
 }
 
 .profile {
-    outline: 0px solid red;
     .profile-background {
         margin-top: 0px;
         padding: 16px;
         width: 100%;
         background-color: mat-color($ts-primary);
-        outline: 0px solid green;
         .avatar {
-            outline: 0px solid yellow;
             width: 64px;
             height: 64px;
             margin-left: 16px;
@@ -56,7 +54,7 @@ $navHeight: calc(#{$heightSidebar} - 86px);
 nav {
     position: relative;
     margin-top: 0px;
-    overflow-y: hidden;
+    overflow-y: scroll;
     min-height: 250px;
     height: $navHeight;
     h3 {
@@ -133,6 +131,10 @@ md-icon-button {
     md-icon {
         color: #fff;
     }
+}
+
+.overlay {
+    position: fixed;
 }
 
 // Mobile
