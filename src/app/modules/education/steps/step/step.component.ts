@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EduResultService } from '../../edu-result/edu-result.service';
 import { EduConfigService } from '../../edu-config/edu-config.service';
 import { UtilsService } from '../../../../shared';
+import { Report } from '../../../../models';
 
 @Component({
     selector: 'app-step',
@@ -14,6 +15,7 @@ export class StepComponent implements OnInit, OnChanges {
     @Input() theme: any;
     @Input() step: any;
     @Input() answeredQuestions: any;
+    @Input() report: Report;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;
     listDP: Array<any>;
@@ -40,7 +42,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-        console.log(this.step);
+        console.log(this.report);
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.setDP();
         this.isFinish = this.setIsFinish();
@@ -68,10 +70,8 @@ export class StepComponent implements OnInit, OnChanges {
     setPrevSteps(steps) {
         let stepsIds = [];
         steps.map(step => stepsIds.push(step.id));
-        console.log(stepsIds);
         let index: number = stepsIds.indexOf(this.step.id);
         if (index > 0) {
-            console.log(stepsIds.indexOf(this.step.id))
             stepsIds = stepsIds.slice(0, stepsIds.indexOf(this.step.id));
         } else {
             stepsIds = [];
@@ -80,27 +80,18 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     goToResult() {
-        console.log(this.answeredQuestions);
         this.eduResultService.setCurrentAnswer(this.answeredQuestions);
         this.router.navigate(['edu/result']);
     }
 
     changeDelivetyPoint(dp) {
-        console.log(this.answeredQuestions[this.step.id]);
         this.answeredQuestions[this.step.id].deliveryPoint = dp;
-        console.log(this.answeredQuestions[this.step.id]);
     }
 
 
     setDP() {
-        console.log('setDP');
-        console.log(this.answeredQuestions);
         if (this.prevStepsId && this.prevStepsId.length !== 0) {
-            console.log('first if');
-            console.log(this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]]);
             if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
-                console.log('i set the');
-                console.log(this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint);
                 this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
         }

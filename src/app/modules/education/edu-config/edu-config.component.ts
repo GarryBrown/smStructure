@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { EduConfigService } from './edu-config.service';
 import { UtilsService } from '../../../shared';
-import { Event, TypeOfEvent, Route } from '../../../models';
+import { Event, TypeOfEvent, Route, Report } from '../../../models';
 
 @Component({
   selector: 'app-edu-config',
@@ -19,6 +19,8 @@ export class EduConfigComponent implements OnInit {
   public event: Event;
   public access;
   private routes: Array<Route>;
+  private reports: Array<Report>;
+  private report: Report;
   getSelected: any;
   types: Array<TypeOfEvent> = [
     { id: 2, description: 'store-check' },
@@ -44,10 +46,19 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccess(data, this.onSuccessRoutes),
       (error) => this.onError('getRoutes', error)
     )
+    this.eduConfigService.getReports().subscribe(
+      (data: any) => this.onSuccess(data, this.onSuccessReports),
+      (error) => this.onError('getRoutes', error)
+    )
   }
 
   startEvent() {
     console.log(this.event);
+    let obj = {
+      event: this.event,
+      report: this.report,
+    };
+    this.eduConfigService.setCurrentEdu(obj);
     this.router.navigate(['edu/theme', 1]).then(
       (result) => this.dialogRef.close(false),
       (reason) => console.error('navigate error')
@@ -64,6 +75,10 @@ export class EduConfigComponent implements OnInit {
 
   onSuccessRoutes(data) {
     this.routes = data;
+  }
+
+  onSuccessReports(data) {
+    this.reports = data;
   }
 
   onError(api: string, err: any) {

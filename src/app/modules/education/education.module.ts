@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 /*share*/
-import { SharedModule, UtilsService } from '../../shared';
+import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
 import { AlertBarComponent } from '../../shared';

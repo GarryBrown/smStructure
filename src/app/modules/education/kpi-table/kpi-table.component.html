@@ -1,14 +1,14 @@
-<table *ngIf="report" class="table  table-hover table-condensed table-responsive dataTables-example">
+<table *ngIf="report && report[0]" class="table  table-hover table-condensed table-responsive dataTables-example">
   <thead>
     <tr>
       <td id="first"></td>
-      <td *ngFor="let indicator of report.indicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
+      <td *ngFor="let indicator of report[0].indicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
         {{indicator.description}}
       </td>
     </tr>
     <tr>
       <td>Маршрут</td>
-      <ng-template ngFor let-indicator [ngForOf]="report.indicators">
+      <ng-template ngFor let-indicator [ngForOf]="report[0].indicators">
         <td *ngIf="!indicator.planFields[0]"></td>
         <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
           {{field.description}}

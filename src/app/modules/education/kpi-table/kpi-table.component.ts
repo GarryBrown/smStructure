@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlertBarComponent } from '../../../shared';
 
 import { Report } from '../../../models';
@@ -9,7 +9,7 @@ import { KpiTableService } from './kpi-table.service';
   templateUrl: './kpi-table.component.html',
   styleUrls: ['./kpi-table.component.scss']
 })
-export class KpiTableComponent implements OnInit {
+export class KpiTableComponent implements OnInit, OnChanges {
   @Input() report: Report;
 
   routesData: Array<any>;
@@ -28,6 +28,15 @@ export class KpiTableComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges() {
+    if (this.report) {
+      this.getData(this.report[0]);
+      this.listIndicators = this.kpiTableService.getPropsObj(this.report[0].indicators);
+    }
+
   }
 
 
@@ -40,6 +49,8 @@ export class KpiTableComponent implements OnInit {
   }
 
   onSuccesRouteData(data) {
+    console.log(data);
+    
     this.routesData = data;
   }
 

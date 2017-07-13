@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
 import { StepsService } from './steps.service';
+import { EduConfigService } from '../edu-config/edu-config.service'
 import { UtilsService } from '../../../shared';
+import { Report } from '../../../models';
 
 @Component({
   selector: 'app-steps',
@@ -18,11 +20,13 @@ export class StepsComponent implements OnInit {
   currentStepIndex: number;
   showIntro: boolean;
   answeredQuestions: any;
+  report: Report;
 
   constructor(
     private route: ActivatedRoute,
     private stepsService: StepsService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private eduConfigService: EduConfigService
   ) {
     this.currentStepIndex = 0;
     this.showIntro = true;
@@ -33,6 +37,7 @@ export class StepsComponent implements OnInit {
     this.subscription = this.route.params.subscribe((params) => {
       this.load(params['id']);
     });
+    this.getReport();
     this.getLocation();
   }
 
@@ -86,6 +91,12 @@ export class StepsComponent implements OnInit {
 
   getCurrentTime() {
     return new Date();
+  }
+
+  getReport() {
+    this.eduConfigService.getCurrentEdu().subscribe(
+      (obj: any) => this.report = obj.report
+    )
   }
 
 
