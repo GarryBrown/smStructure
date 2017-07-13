@@ -15,7 +15,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   answer: any = new Object();
   comment: string;
 
-  constructor() { 
+  constructor() {
     this.comment = '';
   }
 
@@ -23,8 +23,6 @@ export class QuestionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.answeredQuestions);
-    console.log(this.prevStepsId.length - 1);
     if (this.prevStepsId.length !== 0) {
       if (this.question && this.answeredQuestions && this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
         this.comment = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment;
@@ -33,7 +31,6 @@ export class QuestionComponent implements OnInit, OnChanges {
   }
 
   getAnswer(answer) {
-    console.log(answer);
     this.answer = answer;
     if (!this.answeredQuestions[this.step.id][this.question.id]) {
       this.answeredQuestions[this.step.id][this.question.id] = new Object();
@@ -45,10 +42,8 @@ export class QuestionComponent implements OnInit, OnChanges {
   setPrevSteps(steps) {
     let stepsIds = [];
     steps.map(step => stepsIds.push(step.id));
-    console.log(stepsIds);
     let index: number = stepsIds.indexOf(this.step.id);
     if (index > 0) {
-      console.log(stepsIds.indexOf(this.step.id))
       stepsIds = stepsIds.slice(0, stepsIds.indexOf(this.step.id));
     } else {
       stepsIds = [];

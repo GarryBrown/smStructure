@@ -2,7 +2,7 @@
   <app-introduction *ngIf="theme && showIntro" [theme]="theme" (beginSteps)="beginSteps($event)"></app-introduction>
   <ng-template [ngIf]="!showIntro">
     <ng-template ngFor let-step [ngForOf]="theme.steps">
-      <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="theme" [step]="step" [answeredQuestions]="answeredQuestions" (nextStep)="nextStep($event)"></app-step>
+      <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="theme" [step]="step" [answeredQuestions]="answeredQuestions" [report]="report" (nextStep)="nextStep($event)"></app-step>
     </ng-template>
   </ng-template>
 </md-card>

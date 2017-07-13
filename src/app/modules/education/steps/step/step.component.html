@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="kpi-block">
+  <div *ngIf="report" class="kpi-block">
     <app-kpi-table [report]=[report]></app-kpi-table>
   </div>
 

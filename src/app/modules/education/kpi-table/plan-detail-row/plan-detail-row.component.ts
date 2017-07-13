@@ -19,6 +19,8 @@ export class PlanDetailRowComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges() {
+    console.log(this.route);
+    console.log(this.indicators[0]);
 
   }
 
