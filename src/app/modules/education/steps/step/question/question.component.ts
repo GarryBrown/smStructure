@@ -16,6 +16,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   comment: string;
 
   constructor() { 
+    this.comment = '';
   }
 
   ngOnInit() {
@@ -25,7 +26,7 @@ export class QuestionComponent implements OnInit, OnChanges {
     console.log(this.answeredQuestions);
     console.log(this.prevStepsId.length - 1);
     if (this.prevStepsId.length !== 0) {
-      if (this.question && this.answeredQuestions && this.prevStepsId && this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
+      if (this.question && this.answeredQuestions && this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
         this.comment = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment;
       }
     }

@@ -17,8 +17,10 @@ export class StepComponent implements OnInit, OnChanges {
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;
     listDP: Array<any>;
+    deliveryPoint: any;
     getRange: any;
     prevStepsId: Array<number>;
+    getSelected: any;
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -29,6 +31,7 @@ export class StepComponent implements OnInit, OnChanges {
         this.isFinish = false;
         this.listDP = [];
         this.getRange = this.utilsService.rangeArray;
+        this.getSelected = this.utilsService.getSelectedSingle;
     }
 
     ngOnInit(
@@ -38,14 +41,16 @@ export class StepComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         console.log(this.step);
-        this.isFinish = this.setIsFinish();
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
+        this.setDP();
+        this.isFinish = this.setIsFinish();
         if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
             this.eduConfigService.getRoutes().subscribe(
                 (data: any) => this.listDP = data.data,
                 (error) => console.log(error)
             )
         }
+
     }
 
     setIsFinish(): boolean {
@@ -55,6 +60,9 @@ export class StepComponent implements OnInit, OnChanges {
 
     next() {
         this.nextStep.emit(this.step);
+        if (!this.answeredQuestions[this.step.id].deliveryPoint) {
+            this.changeDelivetyPoint(this.deliveryPoint);
+        }
     }
 
     setPrevSteps(steps) {
@@ -75,6 +83,29 @@ export class StepComponent implements OnInit, OnChanges {
         console.log(this.answeredQuestions);
         this.eduResultService.setCurrentAnswer(this.answeredQuestions);
         this.router.navigate(['edu/result']);
+    }
+
+    changeDelivetyPoint(dp) {
+        console.log(this.answeredQuestions[this.step.id]);
+        this.answeredQuestions[this.step.id].deliveryPoint = dp;
+        console.log(this.answeredQuestions[this.step.id]);
+    }
+
+
+    setDP() {
+        console.log('setDP');
+        console.log(this.answeredQuestions);
+        if (this.prevStepsId && this.prevStepsId.length !== 0) {
+            console.log('first if');
+            console.log(this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]]);
+            if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
+                console.log('i set the');
+                console.log(this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint);
+                this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
+            }
+        }
+
+
     }
 
 

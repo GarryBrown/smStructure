@@ -1,5 +1,85 @@
 let _reports = [
   {
+    id: 1,
+    description: 'KPI отчет',
+    routes: [
+      {
+        id: 213,
+        isActive: true,
+        code: '00000000891',
+        description: 'PS108'
+      },
+      {
+        id: 214,
+        isActive: true,
+        code: '00000000828',
+        description: 'PS101'
+      }
+    ],
+    indicators: [
+      {
+        id: 50,
+        description: 'PAMP СлипПлэй4_14, sku',
+        planFields: [
+          {
+            id: 10,
+            isActive: true,
+            code: 'predictionIndex',
+            description: 'Индекс прогноз'
+          },
+          {
+            id: 11,
+            isActive: true,
+            code: 'predictionGap',
+            description: 'GAP прогноз'
+          }
+        ]
+      },
+      {
+        id: 38,
+        description: 'TIDE Авт2.4кгЧувстДет, sku',
+        planFields: [
+          {
+            id: 1,
+            isActive: true,
+            code: 'dayPlan',
+            description: 'Цель день'
+          },
+          {
+            id: 2,
+            isActive: true,
+            code: 'dayFact',
+            description: 'Факт день'
+          }
+        ]
+      },
+      {
+        id: 42,
+        description: 'LENOR Конц1лМиндальноеМасло, sku',
+        planFields: [
+          {
+            id: 1,
+            isActive: true,
+            code: 'dayPlan',
+            description: 'Цель день'
+          },
+          {
+            id: 4,
+            isActive: true,
+            code: 'dayGap',
+            description: 'GAP день'
+          },
+          {
+            id: 5,
+            isActive: true,
+            code: 'periodPlan',
+            description: 'Цель месяц'
+          },
+        ]
+      }
+    ]
+  },
+  {
     id: 10041,
     description: 'Новый отчет',
     routes: [

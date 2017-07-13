@@ -12,7 +12,7 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { EducationRoutingModule } from './education-routing.module';
 /*service */
-
+import { KpiTableService } from './kpi-table/kpi-table.service';
 import { EducationService } from './education.service';
 import { EduCalendarService } from './edu-calendar/edu-calendar.service';
 import { StepsService } from './steps/steps.service';
@@ -29,6 +29,8 @@ import { StepComponent } from './steps/step/step.component';
 import { EduConfigComponent } from './edu-config/edu-config.component';
 import { QuestionComponent } from './steps/step/question/question.component';
 import { EduResultComponent } from './edu-result/edu-result.component';
+import { KpiTableComponent } from './kpi-table/kpi-table.component';
+import { PlanDetailRowComponent } from './kpi-table/plan-detail-row/plan-detail-row.component'
 
 
 
@@ -58,12 +60,15 @@ if (!environment.production) {
     EduConfigComponent,
     QuestionComponent,
     EduResultComponent,
-    ],
+    KpiTableComponent,
+    PlanDetailRowComponent
+  ],
   entryComponents: [
     EduConfigComponent,
-    ],
+  ],
   providers: [
     EducationService,
+    KpiTableService,
     EduCalendarService,
     EduConfigService,
     StepsService,

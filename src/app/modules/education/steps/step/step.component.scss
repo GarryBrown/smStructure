@@ -1,24 +1,4 @@
-.header {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: baseline;
-    margin-bottom: 5px;
-}
-
-.flex-question {
-    flex: 1 1 150px;
-}
-
-.flex-answer {
-    flex: 1 1 150px;
-}
-
-.flex-rating {
-    flex: 1 1 50px;
-}
-
-.flex-comment {
-    flex: 1 1 50px;
+.delivery-point-select {
+    margin-top: 14px;
+    margin-bottom: 14px;
 }

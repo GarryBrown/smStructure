@@ -3,28 +3,57 @@
     <h3>{{ step.typeOfTeachingStep.description}}</h3>
   </md-toolbar>
   <br>
-  <md-select *ngIf="listDP.length" placeholder="Торговая точка" name="dp">
-    <md-option *ngFor="let dp of listDP" [value]="dp">
-      {{ dp.description }}
-    </md-option>
-  </md-select>
-  <br>
-  <div>
-    <table class="table table-condensed table-responsive">
-      <thead>
-        <th>Вопрос</th>
-        <ng-template ngFor let-qty [ngForOf]="prevStepsId">
-          <th>Ответ</th>
-          <th>Оценка</th>
+  <div class="delivery-point-select">
+    <md-select *ngIf="listDP.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
+      <md-option *ngFor="let dp of listDP" [value]="this.getSelected(deliveryPoint, dp)">
+        {{ dp.description }}
+      </md-option>
+    </md-select>
+  </div>
+
+  <div class="wrapper-block">
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-condensed table-responsive">
+          <thead>
+            <th>Вопрос</th>
+            <ng-template ngFor let-qty [ngForOf]="prevStepsId">
+              <th>Ответ</th>
+              <th>Оценка</th>
+            </ng-template>
+            <th>Вариант</th>
+            <th>Оценка</th>
+            <th>Комментарий</th>
+          </thead>
+          <tbody>
+            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-4">
+        <ng-template [ngIf]="step.typeOfTeachingStep.isNeedEduComment">
+          <md-input-container>
+            <textarea mdInput mdAutosize minRows="5" placeholder="Сильные стороны"></textarea>
+          </md-input-container>
+          <md-input-container>
+            <textarea mdInput mdAutosize minRows="5" placeholder="Зоны развития"></textarea>
+          </md-input-container>
         </ng-template>
-        <th>Вариант</th>
-        <th>Оценка</th>
-        <th>Комментарий</th>
-      </thead>
-      <tbody>
-        <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
-      </tbody>
-    </table>
+        <ng-template [ngIf]="step.typeOfTeachingStep.isNeedTaskComment">
+          <md-input-container>
+            <textarea mdInput mdAutosize minRows="5" placeholder="Задачи по развитию знаний и навыков"></textarea>
+          </md-input-container>
+          <md-input-container>
+            <textarea mdInput mdAutosize minRows="5" placeholder="Задачи по KPI"></textarea>
+          </md-input-container>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-block">
+    <app-kpi-table [report]=[report]></app-kpi-table>
   </div>
 
   <br>

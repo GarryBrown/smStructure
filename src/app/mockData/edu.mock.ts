@@ -82,7 +82,9 @@ let _edu = [
         typeOfTeachingStep: {
           description: 'Step 2',
           isNeedSelectDP: true,
-          isNeedAnswer: false
+          isNeedAnswer: false,
+          isNeedEduComment: true,
+          isNeedTaskComment: false,
         }
       },
       {
@@ -91,7 +93,9 @@ let _edu = [
         typeOfTeachingStep: {
           description: 'Step 3',
           isNeedSelectDP: true,
-          isNeedAnswer: false
+          isNeedAnswer: false,
+          isNeedEduComment: true,
+          isNeedTaskComment: true,
         }
       },
       {
@@ -99,8 +103,10 @@ let _edu = [
         orderBy: 5,
         typeOfTeachingStep: {
           description: 'Step 1',
-          isNeedSelectDP: false,
-          isNeedAnswer: false
+          isNeedSelectDP: true,
+          isNeedAnswer: false,
+          isNeedEduComment: false,
+          isNeedTaskComment: false,
         }
       }
     ]
