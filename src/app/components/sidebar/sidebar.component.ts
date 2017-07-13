@@ -15,7 +15,7 @@ import { PrincipalService } from '../../core';
 export class SidebarComponent implements OnInit {
   show: boolean;
   user: any;
-  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  // SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(
     private router: Router,
@@ -41,11 +41,11 @@ export class SidebarComponent implements OnInit {
     this.sidebartoggle.sidebarToggle(this.show);
   }
 
-  swipe(action = this.SWIPE_ACTION.RIGHT) {
-    if (this.user && action === 'swipeleft') {
-      this.toggle();
-    }
-  }
+  // swipe(action = this.SWIPE_ACTION.RIGHT) {
+  //   if (this.user && action === 'swipeleft') {
+  //     this.toggle();
+  //   }
+  // }
 
   ngOnInit() {
   }

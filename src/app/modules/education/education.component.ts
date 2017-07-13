@@ -47,8 +47,8 @@ export class EducationComponent implements OnInit, OnDestroy {
 
   openDialog(event?: any) {
     let config = new MdDialogConfig();
-    config.height = '80%';
-    config.width = '70%';
+    config.height = '440px';
+    config.width = '310px';
     let dialogRef = this.dialog.open(EduConfigComponent, config);
     dialogRef.componentInstance.event = event ? event : new Event();
     dialogRef.componentInstance.access = this.access;
