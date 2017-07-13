@@ -8,3 +8,4 @@ export * from './routes.mock';
 export * from './indicators.mock';
 export * from './orders.mock';
 export * from './deliveryPoints.mock';
+export * from './qualities.mock';

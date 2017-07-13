@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+table {
+    outline: 1px solid #ccc;
+    width: 50%;
+}
+
+.selects {
+    width: 50%;
+    outline: 1px solid #ccc;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    md-select {
+        margin: 10px;
+    }
+}

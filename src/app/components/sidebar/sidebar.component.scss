@@ -54,7 +54,7 @@ $navHeight: calc(#{$heightSidebar} - 86px);
 nav {
     position: relative;
     margin-top: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
     min-height: 250px;
     height: $navHeight;
     h3 {
@@ -91,7 +91,7 @@ nav {
             width: 32px;
             height: 32px;
             margin-right: 8px;
-            margin-left: 16px;
+            margin-left: 8px;
             // font-size: 32px;
         }
     }

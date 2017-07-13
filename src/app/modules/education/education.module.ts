@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
+import { AlertBarComponent } from '../../shared';
 /* test api */
 import { environment } from '../../app.constants';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -31,7 +32,7 @@ import { QuestionComponent } from './steps/step/question/question.component';
 import { EduResultComponent } from './edu-result/edu-result.component';
 import { KpiTableComponent } from './kpi-table/kpi-table.component';
 import { PlanDetailRowComponent } from './kpi-table/plan-detail-row/plan-detail-row.component'
-
+import { ResultComponent } from './steps/result/result.component';
 
 
 
@@ -61,7 +62,8 @@ if (!environment.production) {
     QuestionComponent,
     EduResultComponent,
     KpiTableComponent,
-    PlanDetailRowComponent
+    PlanDetailRowComponent,
+    ResultComponent
   ],
   entryComponents: [
     EduConfigComponent,
@@ -74,6 +76,7 @@ if (!environment.production) {
     StepsService,
     EduResultService,
     UtilsService,
+    AlertBarComponent
   ]
 })
 export class EducationModule { }
