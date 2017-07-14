@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
-import { AlertBarComponent } from '../../shared';
 /* test api */
 import { environment } from '../../app.constants';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';

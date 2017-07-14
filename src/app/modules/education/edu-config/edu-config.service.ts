@@ -21,32 +21,17 @@ export class EduConfigService {
       .map((res: Response) => res.json())
   }
 
-
-  create(report: Report): Observable<Response> {
-    return this.http.post(this.resourceUrl, report).map((res: Response) => res.json());
-  }
-
-  update(report: Report): Observable<Response> {
-    return this.http.put(this.resourceUrl, report).map((res: Response) => res.json());
-  }
-
-  delete(id: number): Observable<Response> {
-    return this.http.delete(`${this.resourceUrl}/${id}`);
-  }
-
   getReports(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: Response) => res.json())
   }
 
   setCurrentEdu(obj) {
-    console.log('setCurrentEdu');
-    console.log(obj);
     this.edu.next(obj);
   }
 
   getCurrentEdu(): Observable<any> {
-    return this.edu.asObservable().filter( item => item !== undefined);
+    return this.edu.asObservable().filter(item => item !== undefined);
   }
 
 

@@ -18,10 +18,8 @@ export class PlanDetailRowComponent implements OnInit, OnChanges {
   ngOnInit() {
 
   }
+  
   ngOnChanges() {
-    console.log(this.route);
-    console.log(this.indicators[0]);
-
   }
 
   toggle(event) {

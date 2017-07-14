@@ -1,7 +1,7 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import {
-  eduMock, teachingMock, eventsMock, plansKPIMock, planRoutesMock,
+  eduMock, eventsMock, teachingMock, plansKPIMock, planRoutesMock,
   reportsMock, routesMock, indicatorsMock, deliveryPointsMock, ordersMock, qualitiesMock
 } from './mockData';
 
@@ -9,8 +9,8 @@ export class InMemDataService implements InMemoryDbService {
 
   createDb() {
     let edu = eduMock,
-      teaching = teachingMock,
       events = eventsMock,
+      teaching = teachingMock,
       plansKPI = plansKPIMock,
       planRoutes = planRoutesMock,
       reports = reportsMock,
