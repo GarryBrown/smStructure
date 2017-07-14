@@ -21,6 +21,7 @@ export class StepsComponent implements OnInit {
   showIntro: boolean;
   answeredQuestions: any;
   report: Report;
+  showFinish: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class StepsComponent implements OnInit {
     this.currentStepIndex = 0;
     this.showIntro = true;
     this.answeredQuestions = new Object();
+    this.showFinish = true;
   }
 
   ngOnInit() {

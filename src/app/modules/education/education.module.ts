@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
-import { AlertBarComponent } from '../../shared';
 /* test api */
 import { environment } from '../../app.constants';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -19,6 +18,7 @@ import { EduCalendarService } from './edu-calendar/edu-calendar.service';
 import { StepsService } from './steps/steps.service';
 import { EduConfigService } from './edu-config/edu-config.service';
 import { EduResultService } from './edu-result/edu-result.service';
+import { ResultService } from "app/modules/education/steps/result/result.service";
 /* components */
 import { EducationComponent } from './education.component';
 import { EduCalendarComponent } from './edu-calendar/edu-calendar.component';
@@ -35,12 +35,10 @@ import { PlanDetailRowComponent } from './kpi-table/plan-detail-row/plan-detail-
 import { ResultComponent } from './steps/result/result.component';
 
 
-
 let myTestApiModule = [];
 if (!environment.production) {
   myTestApiModule.push(InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }));
 }
-
 
 @NgModule({
   imports: [
@@ -76,7 +74,8 @@ if (!environment.production) {
     StepsService,
     EduResultService,
     UtilsService,
-    AlertBarComponent
+    AlertBarComponent,
+    ResultService
   ]
 })
 export class EducationModule { }

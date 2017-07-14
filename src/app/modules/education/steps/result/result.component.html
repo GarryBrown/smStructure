@@ -16,40 +16,47 @@
         <div class="label">
             <label>Сильные стороны</label>
 
-            <md-select placeholder="сильные стороны">
-                <md-option>
-                    Сильная сторона 1
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Сильные стороны"></textarea>
+            </md-input-container>
+            <!-- <md-select placeholder="Cильные стороны" [multiple]="true" [(ngModel)]="strengths" (change)="check(strengths)">
+                <md-option *ngFor="let quality of qualities" [value]="getSelected(strengths, quality)">
+                    {{ quality.description }}
                 </md-option>
-                <md-option>
-                    Сильная сторона 2
-                </md-option>
-                <md-option>
-                    Сильная сторона 3
-                </md-option>
-            </md-select>
+            </md-select> -->
         </div>
+
+        <!-- <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)" required>
+                    <md-option *ngFor="let route of listRoute" [value]="getSelected(currentRoutes, route)">
+                        {{ route.description }}
+                    </md-option>
+                </md-select> -->
 
 
         <div class="label">
             <label>Зоны развития</label>
 
-            <md-select placeholder="Зоны развития">
-                <md-option>
-                    Зона развития 1
-                </md-option>
-                <md-option>
-                    Зона развития 2
-                </md-option>
-                <md-option>
-                    Зона развития 3
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Зоны развития"></textarea>
+            </md-input-container>
+            <!-- 
+            <md-select placeholder="Зоны развития" [multiple]="true" [(ngModel)]="developmentZones">
+                <md-option *ngFor="let quality of qualities" [value]="getSelected(strengths, quality)" [disabled]="strengths && strengths[0] == quality">
+                    {{ quality.description }}
                 </md-option>
             </md-select>
+            <p> Value: {{ strengths }} </p> -->
         </div>
+
+
 
         <div class="label">
             <label>Задачи по развитию</label>
 
-            <md-select placeholder="Задачи по развитию">
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Задачи по развитию"></textarea>
+            </md-input-container>
+            <!-- <md-select placeholder="Задачи по развитию">
                 <md-option>
                     Задача по развитию 1
                 </md-option>
@@ -59,13 +66,17 @@
                 <md-option>
                     Задача по развитию 3
                 </md-option>
-            </md-select>
+            </md-select> -->
         </div>
 
         <div class="label">
             <label>Задачи по KPI</label>
 
-            <md-select placeholder="Задачи по KPI">
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Задачи по KPI"></textarea>
+            </md-input-container>
+
+            <!-- <md-select placeholder="Задачи по KPI">
                 <md-option>
                     Задача по KPI 1
                 </md-option>
@@ -75,7 +86,7 @@
                 <md-option>
                     Задача по KPI 3
                 </md-option>
-            </md-select>
+            </md-select> -->
         </div>
     </div>
 
