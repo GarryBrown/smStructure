@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarToggleService } from './core/utils/sidebar-toggle.service';
-import { PrincipalService } from './core';
 
+import { PrincipalService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -10,47 +9,61 @@ import { PrincipalService } from './core';
   providers: [PrincipalService],
 })
 export class AppComponent implements OnInit {
-  show: boolean;
+  opened: boolean;
   user: any;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
-  constructor(private sidebartoggle: SidebarToggleService,
+  constructor(
     private principal: PrincipalService) {
-  }
 
+  }
 
   ngOnInit() {
-    this.principal.identity(false).then(
-      user => this.user = user
+    this.principal.getUserState().subscribe(
+      (user) => {
+        this.checkUser(user);
+        this.user = user;
+      }
     );
-    // this.principal.userAuth$.subscribe(user => {
-    //   console.log(user);
-    //   this.user = user
-    // },
-    //   error => {
-    //     console.log('user is undefined');
-    //     this.user = null;
-    //   });
-    // this.sidebartoggle.userAuth$.subscribe(user => {
-    //   console.log(user);
-    //   this.user = user;
-    // });
-
-    this.sidebartoggle.missionConfirmed$.subscribe(show => { this.show = show; });
   }
 
-  swipe(action = this.SWIPE_ACTION.RIGHT) {
-    console.log('swipe');
-    console.log(this.user);
-    console.log(action);
-    if (this.user && action === 'swipeleft') {
-      this.show = false;
-      this.sidebartoggle.sidebarToggle(this.show);
+  // swipe(action = this.SWIPE_ACTION.RIGHT) {
+  //   console.log('swipe');
+  //   console.log(this.user);
+  //   console.log(action);
+  //   if (this.user && action === 'swipeleft') {
+  //     this.opened = false;
+  //   }
+  //   if (this.user && action === 'swiperight') {
+  //     this.opened = true;
+  //   }
+  // }
+
+  getUser() {
+    this.principal.identity()
+      .then(user => {
+        this.checkUser(user);
+        this.user = user;
+      }, error => {
+        this.opened = null;
+      });
+  }
+
+  checkUser(user) {
+    if (user) {
+      this.opened = true;
+    } else {
+      this.hideNav();
     }
-    if (this.user && action === 'swiperight') {
-      this.show = true;
-      this.sidebartoggle.sidebarToggle(this.show);
-    }
+  }
+
+  hideNav() {
+    this.opened = false;
+  }
+
+  toggleNav(opened) {
+    console.log(opened);
+    this.opened = opened;
   }
 
 

@@ -150,7 +150,7 @@ export class PlanDetailComponent implements OnInit {
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
-    cb.bind(this)(data);
+    cb.bind(this)(data.data);
   }
 
   changeFields(newCurrentIndicators) {

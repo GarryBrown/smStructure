@@ -2,12 +2,8 @@
 $width-sidebar: 240px;
 $heightHeader: 64px;
 $heightSidebar: calc(100% - 64px);
+$navHeight: calc(#{$heightSidebar} - 86px);
 .wrapper {
-    position: fixed;
-    top: $heightHeader;
-    left: 0;
-    height: calc(100% - #{$heightHeader});
-    z-index: 10;
     width: $width-sidebar;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     will-change: box-shadow;
@@ -17,20 +13,13 @@ $heightSidebar: calc(100% - 64px);
     background-color: white;
 }
 
-.hide {
-    left: -250px;
-}
-
 .profile {
-    outline: 0px solid red;
     .profile-background {
         margin-top: 0px;
         padding: 16px;
         width: 100%;
         background-color: mat-color($ts-primary);
-        outline: 0px solid green;
         .avatar {
-            outline: 0px solid yellow;
             width: 64px;
             height: 64px;
             margin-left: 16px;
@@ -52,11 +41,10 @@ $heightSidebar: calc(100% - 64px);
     }
 }
 
-$navHeight: calc(#{$heightSidebar} - 86px);
 nav {
     position: relative;
     margin-top: 0px;
-    overflow-y: hidden;
+    overflow-y: auto;
     min-height: 250px;
     height: $navHeight;
     h3 {
@@ -75,7 +63,6 @@ nav {
         display: flex;
         text-decoration: none;
         color: $text-color;
-        // height: 48px;
         border-bottom: 1px solid $divider-black;
         font-size: 14px;
         font-weight: 400;
@@ -93,52 +80,11 @@ nav {
             width: 32px;
             height: 32px;
             margin-right: 8px;
-            margin-left: 16px;
+            margin-left: 8px;
             // font-size: 32px;
         }
     }
     .active {
         background-color: $grey-light;
-    }
-}
-
-
-/* ******** TOGGLE ******** */
-
-md-icon-button {
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-    z-index: 9;
-}
-
-.open-menu {
-    top: 5px;
-    left: 255px;
-    &:focus {
-        outline: 0;
-    }
-    md-icon {
-        color: $text-color;
-    }
-}
-
-.close-menu {
-    top: 5px;
-    left: 190px;
-    &:focus {
-        outline: 0;
-    }
-    md-icon {
-        color: #fff;
-    }
-}
-
-// Mobile
-@media only screen and (max-width: 600px) {
-    .wrapper {
-        top: 54px;
-        height: calc(#{$heightSidebar} + 10px);
     }
 }

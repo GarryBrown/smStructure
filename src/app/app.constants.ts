@@ -1,6 +1,6 @@
 let _environment = {
-  production: true,
-  origin: 'http://192.168.209.136'
+  production: false,
+  origin: 'http://localhost'
 };
 
 

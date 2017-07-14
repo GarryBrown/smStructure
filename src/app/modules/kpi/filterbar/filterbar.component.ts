@@ -8,7 +8,7 @@ import { CheckboxComponent } from '../checkbox/checkbox.component';
 @Component({
   selector: 'app-filterbar',
   templateUrl: './filterbar.component.html',
-  styleUrls: ['./filterbar.component.scss']
+  styleUrls: ['./filterbar.component.scss', './media.component.scss' ]
 })
 export class FilterbarComponent implements OnInit, OnChanges {
   @Input() indicators: Array<any>;

@@ -4,7 +4,8 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { RouteAccessService } from '../../core';
 
 import { EducationComponent } from './education.component';
-import { EduCalendarComponent } from './edu-calendar/edu-calendar.component';
+import { StepsComponent } from './steps/steps.component';
+import { EduResultComponent } from './edu-result/edu-result.component';
 
 const EducationRoutes: Routes = [
   {
@@ -12,8 +13,28 @@ const EducationRoutes: Routes = [
     component: EducationComponent,
     canActivate: [RouteAccessService],
   },
-
+  {
+    path: 'planning',
+    component: EducationComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'store-check',
+    component: EducationComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'edu/theme/:id',
+    component: StepsComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'edu/result',
+    component: EduResultComponent,
+    canActivate: [RouteAccessService],
+  },
 ];
+
 
 @NgModule({
   imports: [

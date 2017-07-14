@@ -5,6 +5,7 @@ import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from '@angular/material';
 
 
 import { Ng2Webstorage } from 'ng2-webstorage';
@@ -26,9 +27,9 @@ import { AccountModule } from './modules/account/account.module';
 
 
 export class MyHammerConfig extends HammerGestureConfig {
-  overrides = <any>{
-    'swipe': { velocity: 0.4, threshold: 10 } // override default settings
-  }
+  // overrides = <any>{
+  //   'swipe': { velocity: 0.4, threshold: 10 } // override default settings
+  // }
 }
 
 @NgModule({
@@ -39,6 +40,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    MaterialModule,
     CoreModule.forRoot(),
     Ng2Webstorage,
     RouterModule,

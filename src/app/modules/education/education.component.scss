@@ -1,27 +1,24 @@
-.container {
-    margin-top: 32px;
+md-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+    button {
+        margin-left: auto;
+    }
 }
 
-.top-menu {
-    margin-bottom: 16px;
+.schedule {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    md-slide-toggle {
-        margin-right: 32px;
-        flex: 1 1 auto;
-        align-self: center;
-    }
-    md-select {
-        margin-left: 8px;
-        flex: 1 1 auto;
-        align-self: center;
+    justify-content: space-between;
+    & * {
+        flex: 1 1 50%;
     }
 }
 
-.day-month-group {
-    flex: 1 1 auto;
-    margin-right: 32px;
-    display: inline-flex;
-    flex-direction: column;
+@media (max-width: 500px) {
+    .schedule {
+        flex-direction: column
+    }
 }

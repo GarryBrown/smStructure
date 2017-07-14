@@ -15,6 +15,7 @@ import { PaginUtilService } from './services/pagin-util.service';
 import { DaDataService } from './services/da-data.service';
 import { DeleteUtilsService } from './services/delete-utils.service';
 import { StoresService } from './services/stores.service';
+import { UtilsService } from './services/utils.service';
 /* pipes  */
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
 /* interceptors */
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(http: Http) {
      DaDataService,
      DeleteUtilsService,
      StoresService,
+     UtilsService,
     ]
 })
 export class SharedModule { }

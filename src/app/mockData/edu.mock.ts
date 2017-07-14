@@ -1,8 +1,13 @@
 let _edu = [
   {
     id: 1,
-    description: 'Продажи lvl 1',
-    textBody: '<strong>Важная</strong> тема',
+    description: 'Продажи: уровень 1',
+    textBody: `## Понимание  *дистрибьюции* компании
+    - Обучение
+    - Практика
+    - Закрепление 
+    
+     **Успех**`,
     typeOfTeachingAgrRes: {
       id: 1,
       description: 'Агрегация результатов',
@@ -11,14 +16,14 @@ let _edu = [
     questions: [
       {
         id: 1,
-        description: 'Какого цвета крокодил?',
+        description: 'Пропорция товара на полке?',
         answers: [
           {
             id: 1,
             value: 1,
             orderBy: 2,
             typeOfAnswer: {
-              description: 'Мокрый'
+              description: '70/30'
             }
           },
           {
@@ -26,7 +31,7 @@ let _edu = [
             value: 2,
             orderBy: 1,
             typeOfAnswer: {
-              description: 'Злой'
+              description: '40/60'
             }
           },
           {
@@ -34,7 +39,37 @@ let _edu = [
             value: 3,
             orderBy: 3,
             typeOfAnswer: {
-              description: 'Пушистый'
+              description: '60/40'
+            }
+          },
+        ]
+      },
+      {
+        id: 2,
+        description: 'Условия для выполнения условий?',
+        answers: [
+          {
+            id: 4,
+            value: 1,
+            orderBy: 2,
+            typeOfAnswer: {
+              description: '11'
+            }
+          },
+          {
+            id: 5,
+            value: 2,
+            orderBy: 1,
+            typeOfAnswer: {
+              description: '21'
+            }
+          },
+          {
+            id: 6,
+            value: 3,
+            orderBy: 3,
+            typeOfAnswer: {
+              description: 'Нет правильного ответа'
             }
           },
         ]
@@ -43,20 +78,35 @@ let _edu = [
     steps: [
       {
         id: 1,
-        orderBy: 1,
+        orderBy: 7,
         typeOfTeachingStep: {
-          description: 'Шаг 1',
-          isNeedSelectDP: false,
-          isNeedAnswer: false
+          description: 'Step 2',
+          isNeedSelectDP: true,
+          isNeedAnswer: false,
+          isNeedEduComment: true,
+          isNeedTaskComment: false,
+        }
+      },
+      {
+        id: 3,
+        orderBy: 10,
+        typeOfTeachingStep: {
+          description: 'Step 3',
+          isNeedSelectDP: true,
+          isNeedAnswer: false,
+          isNeedEduComment: true,
+          isNeedTaskComment: true,
         }
       },
       {
         id: 2,
-        orderBy: 2,
+        orderBy: 5,
         typeOfTeachingStep: {
-          description: 'Название шага 2',
-          isNeedSelectDP: false,
-          isNeedAnswer: false
+          description: 'Step 1',
+          isNeedSelectDP: true,
+          isNeedAnswer: false,
+          isNeedEduComment: false,
+          isNeedTaskComment: false,
         }
       }
     ]

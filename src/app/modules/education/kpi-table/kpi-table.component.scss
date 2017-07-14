@@ -1,0 +1,45 @@
+md-select {
+    width: 200px;
+}
+
+md-card {
+    margin-top: 24px;
+}
+
+td.indicator-header {
+    vertical-align: middle;
+}
+
+// for table
+.indicator-header {
+    height: 82px;
+    border-bottom: 3px solid #eceeef;
+    // border-right: 1px solid gray;
+    text-align: center;
+    &:last-of-type {
+        border-right: none;
+    }
+}
+
+.indicator-header:nth-child(even) {
+    background: #f8f8f8;
+}
+
+td#first {
+    border-bottom: 3px solid #eceeef;
+}
+
+@media (max-width: 491px) {
+    #first,
+    #second {
+        md-select {
+            width: 200px;
+        }
+    }
+}
+
+@media (max-width: 742px) {
+    .check-item {
+        float: right
+    }
+}

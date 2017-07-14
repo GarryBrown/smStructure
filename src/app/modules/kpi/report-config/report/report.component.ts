@@ -49,7 +49,7 @@ export class ReportComponent implements OnInit, OnChanges {
             this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
                 (data: any) => {
                     this.report.indicators = this.copyObj(this.report.indicators);
-                    this.indicators = data;
+                    this.indicators = data.data;
 
                     this.allFields = this.indicators[0].planFields;
                 },
@@ -75,7 +75,7 @@ export class ReportComponent implements OnInit, OnChanges {
     changeRoutes(routes) {
         this.pdService.getIndicatorsByRoutes(routes).subscribe(
             data => {
-                this.indicators = data;
+                this.indicators = data.data;
                 this.allFields = this.indicators[0].planFields;
             },
             err => this.onError('getIndicatorsByRoutes', err)
