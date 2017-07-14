@@ -1,4 +1,4 @@
-let _teaching = [
+let _events1 = [
   {
     id: 1,
     typeOfTeaching: 1,
@@ -23,4 +23,4 @@ let _teaching = [
   }
 ];
 
-export const teachingMock = _teaching;
+export const eventsMock1 = _events1;

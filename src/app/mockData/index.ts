@@ -1,5 +1,5 @@
 export * from './edu.mock';
-export * from './teaching.mock';
+// export * from './teaching.mock';
 export * from './events.mock';
 export * from './planKPI.mock';
 export * from './planRoutes.mock';

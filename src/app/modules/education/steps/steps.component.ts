@@ -43,6 +43,13 @@ export class StepsComponent implements OnInit {
     this.getLocation();
   }
 
+  // Загрузить объект из сервиса
+  //   if (undefined)
+  //     загрузить с сервера
+  // Отсортировать
+  // Определить текущий
+  
+
   load(id) {
     this.stepsService.find(id).subscribe((data: any) => {
       console.log(data.data);

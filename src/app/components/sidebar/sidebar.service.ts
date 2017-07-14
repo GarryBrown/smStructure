@@ -17,14 +17,5 @@ export class SidebarService {
     return this.auth.logout();
   }
 
-  getAccount(): any {
-    if (this.principal.isAuthenticated()) {
-      return this.principal.identity();
-    } else {
-      return Promise.reject(new Error("401"));
-    }
-  }
-
-
 
 }
