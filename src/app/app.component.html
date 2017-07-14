@@ -1,12 +1,13 @@
-<div class="background" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)"></div>
+<app-header [opened]="opened" (toggleNav)="toggleNav($event)"></app-header>
+<md-sidenav-container class="container">
 
-<div [class.overlay]="show" (swipeleft)="swipe($event.type)"></div>
-
-<router-outlet name="sidebar"></router-outlet>
-<app-header></app-header>
-
-<div class="content" [class.full-content]="!show" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
-
+  <md-sidenav #sidenav mode="side" [opened]="opened">
+    <div class="scrolling-block">
+      <app-sidebar></app-sidebar>
+    </div>
+  </md-sidenav>
+  <div class="scrolling-block">
     <router-outlet></router-outlet>
     <router-outlet name="popup"></router-outlet>
-</div>
+  </div>
+</md-sidenav-container>

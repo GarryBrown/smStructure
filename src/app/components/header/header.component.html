@@ -1,10 +1,10 @@
 <md-toolbar color="primary">
   <nav>
     <div class="burger" *ngIf="user">
-      <button md-icon-button (click)="toggle()" *ngIf="!show" class="open-menu">
+      <button md-icon-button (click)="toggle()" *ngIf="!opened" class="open-menu">
             <md-icon>menu</md-icon>
           </button>
-      <button md-icon-button (click)="toggle()" *ngIf="show" class="close-menu">
+      <button md-icon-button (click)="toggle()" *ngIf="opened" class="close-menu">
             <md-icon>close</md-icon>
           </button>
     </div>

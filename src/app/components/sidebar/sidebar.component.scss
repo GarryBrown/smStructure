@@ -2,13 +2,8 @@
 $width-sidebar: 240px;
 $heightHeader: 64px;
 $heightSidebar: calc(100% - 64px);
+$navHeight: calc(#{$heightSidebar} - 86px);
 .wrapper {
-    position: fixed;
-    top: $heightHeader;
-    bottom: 0;
-    left: 0;
-    height: calc(100% - #{$heightHeader});
-    z-index: 10;
     width: $width-sidebar;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     will-change: box-shadow;
@@ -16,10 +11,6 @@ $heightSidebar: calc(100% - 64px);
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.5s ease-in-out;
     background-color: white;
-}
-
-.hide {
-    left: -250px;
 }
 
 .profile {
@@ -50,7 +41,6 @@ $heightSidebar: calc(100% - 64px);
     }
 }
 
-$navHeight: calc(#{$heightSidebar} - 86px);
 nav {
     position: relative;
     margin-top: 0px;
@@ -73,7 +63,6 @@ nav {
         display: flex;
         text-decoration: none;
         color: $text-color;
-        // height: 48px;
         border-bottom: 1px solid $divider-black;
         font-size: 14px;
         font-weight: 400;
@@ -97,50 +86,5 @@ nav {
     }
     .active {
         background-color: $grey-light;
-    }
-}
-
-
-/* ******** TOGGLE ******** */
-
-md-icon-button {
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-    padding: 0;
-    z-index: 9;
-}
-
-.open-menu {
-    top: 5px;
-    left: 255px;
-    &:focus {
-        outline: 0;
-    }
-    md-icon {
-        color: $text-color;
-    }
-}
-
-.close-menu {
-    top: 5px;
-    left: 190px;
-    &:focus {
-        outline: 0;
-    }
-    md-icon {
-        color: #fff;
-    }
-}
-
-.overlay {
-    position: fixed;
-}
-
-// Mobile
-@media only screen and (max-width: 600px) {
-    .wrapper {
-        top: 54px;
-        height: calc(#{$heightSidebar} + 10px);
     }
 }

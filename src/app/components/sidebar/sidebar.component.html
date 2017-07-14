@@ -1,72 +1,67 @@
-<div class="wrapper" *ngIf="user" [class.hide]="!show">
-    <!-- (swipeleft)="swipe($event.type)" -->
-    <div class="profile">
-        <div class="profile-background">
-            <div class="avatar" [ngStyle]="{'background-image' : 'url(' + user.imageUrl + ')'}"></div>
-            <button md-button [mdMenuTriggerFor]="menu">
+<div class="wrapper">
+  <div class="profile">
+    <div *ngIf="user" class="profile-background">
+      <div class="avatar" [ngStyle]="{'background-image' : 'url(' + user.imageUrl + ')'}"></div>
+      <button md-button [mdMenuTriggerFor]="menu">
               {{user.login}}<md-icon>arrow_drop_down</md-icon>
             </button>
-            <md-menu #menu="mdMenu">
-                <button md-menu-item [routerLink]="['/account/profile']">
+      <md-menu #menu="mdMenu">
+        <button md-menu-item [routerLink]="['/account/profile']">
                     <md-icon>perm_identity</md-icon>
                     <span>Profile</span>
                 </button>
-                <button md-menu-item [routerLink]="['/account/profile']">
+        <button md-menu-item [routerLink]="['/account/profile']">
                     <md-icon>settings</md-icon>
                     <span>Setting</span>
                 </button>
-                <button md-menu-item (click)="logout()">
+        <button md-menu-item (click)="logout()">
                     <md-icon>exit_to_app</md-icon>
                     <span>Logout</span>
                 </button>
-            </md-menu>
-        </div>
+      </md-menu>
     </div>
-    <nav>
-        <a [routerLink]="['/dashboard']" routerLinkActive="active" appHasAuthority="ROLE_ADMIN">
-            <md-icon>dashboard</md-icon>
-            <span>Адм. панель</span>
-        </a>
-        <a [routerLink]="['/kpi']" routerLinkActive="active">
-            <md-icon>view_list</md-icon>
-            <span>KPI</span>
-        </a>
-        <a href="http://v-reportserver/Reports/report/SMT/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%20%D0%BD%D0%B0%20%D0%BA%D0%B0%D1%80%D1%82%D0%B5"
-            style="font-size:12px">
-            <md-icon>view_list</md-icon>
-            <span>Мониторинг ТП на карте</span>
-        </a>
-        <a href="http://v-reportserver/Reports/report/SMT/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9"
-            style="font-size:12px">
-            <md-icon>view_list</md-icon>
-            <span>Мониторинг ТП списком</span>
-        </a>
-        <!-- EDUCATION -->
-        <a [routerLink]="['/planning']" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Планирование</span>
-        </a>
-        <h3>Обучение</h3>
-        <a [routerLink]="['/edu']" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Календарь</span>
-        </a>
-        <a [routerLink]="['/edu1']" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Результаты</span>
-        </a>
-        <h3>Задачи</h3>
-        <a [routerLink]="['/store-check']" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Календарь</span>
-        </a>
-        <a [routerLink]="['/edu1']" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Результаты</span>
-        </a>
-        <!--<a [routerLink]="['/dashboard']" routerLinkActive="active">
+  </div>
+  <nav>
+    <a [routerLink]="['/dashboard']" routerLinkActive="active" appHasAuthority="ROLE_ADMIN">
+      <md-icon>dashboard</md-icon>
+      <span>Адм. панель</span>
+    </a>
+    <a [routerLink]="['/kpi']" routerLinkActive="active">
+      <md-icon>view_list</md-icon>
+      <span>KPI</span>
+    </a>
+    <a href="http://v-reportserver/Reports/report/SMT/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%20%D0%BD%D0%B0%20%D0%BA%D0%B0%D1%80%D1%82%D0%B5"
+      style="font-size:12px">
+      <md-icon>view_list</md-icon>
+      <span>Мониторинг ТП на карте</span>
+    </a>
+    <a href="http://v-reportserver/Reports/report/SMT/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9"
+      style="font-size:12px">
+      <md-icon>view_list</md-icon>
+      <span>Мониторинг ТП списком</span>
+    </a>
+    <!-- EDUCATION -->
+    <a [routerLink]="['/planning']" routerLinkActive="active">
       <md-icon>school</md-icon>
-      <span>Спауны</span>
-    </a>-->
-    </nav>
+      <span>Планирование</span>
+    </a>
+    <h3>Обучение</h3>
+    <a [routerLink]="['/edu']" routerLinkActive="active">
+      <md-icon>school</md-icon>
+      <span>Календарь</span>
+    </a>
+    <a [routerLink]="['/edu1']" routerLinkActive="active">
+      <md-icon>school</md-icon>
+      <span>Результаты</span>
+    </a>
+    <h3>Задачи</h3>
+    <a [routerLink]="['/store-check']" routerLinkActive="active">
+      <md-icon>school</md-icon>
+      <span>Календарь</span>
+    </a>
+    <a [routerLink]="['/edu1']" routerLinkActive="active">
+      <md-icon>school</md-icon>
+      <span>Результаты</span>
+    </a>
+  </nav>
 </div>
