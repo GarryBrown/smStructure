@@ -1,5 +1,5 @@
 let _environment = {
-  production: true,
+  production: false,
   origin: 'http://localhost'
 };
 
