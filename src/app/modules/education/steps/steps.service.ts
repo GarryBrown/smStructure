@@ -5,7 +5,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class StepsService {
 
-  private resourceUrl = 'api/edu';
+  // private resourceUrl = 'api/edu';
+  private resourceUrl = 'api/teaching';
 
   constructor(
     private http: Http,
@@ -13,6 +14,12 @@ export class StepsService {
 
   find(id: number): Observable<any> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
+      return res.json();
+    });
+  }
+
+  getTeaching(): Observable<any> {
+    return this.http.get(this.resourceUrl).map((res: Response) => {
       return res.json();
     });
   }

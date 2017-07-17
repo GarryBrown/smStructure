@@ -42,12 +42,11 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-        console.log(this.report);
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.setDP();
         this.isFinish = this.setIsFinish();
         if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
-            this.eduConfigService.getRoutes().subscribe(
+            this.eduConfigService.getDelivetyPoints().subscribe(
                 (data: any) => this.listDP = data.data,
                 (error) => console.log(error)
             )
@@ -61,6 +60,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     next() {
+        console.log(this.answeredQuestions);
         this.nextStep.emit(this.step);
         if (!this.answeredQuestions[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
@@ -91,6 +91,7 @@ export class StepComponent implements OnInit, OnChanges {
 
     setDP() {
         if (this.prevStepsId && this.prevStepsId.length !== 0) {
+            console.log(this.answeredQuestions);
             if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
                 this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }

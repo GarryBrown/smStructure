@@ -14,8 +14,11 @@ import { Report } from '../../../models';
 })
 export class StepsComponent implements OnInit {
 
-  subscription: Subscription;
+  subscriptionServer: Subscription;
+  subscriptionRoute: Subscription;
+  subscriptionService: Subscription;
   theme: any;
+  results: any;
   stepsIndex: Array<number> = [];
   currentStepIndex: number;
   showIntro: boolean;
@@ -34,11 +37,9 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.route.params.subscribe((params) => {
-      this.load(params['id']);
-    });
-    this.getReport();
+    //this.getReport();
     this.getLocation();
+    this.getTeaching();
   }
 
   // Загрузить объект из сервиса
@@ -46,18 +47,46 @@ export class StepsComponent implements OnInit {
   //     загрузить с сервера
   // Отсортировать
   // Определить текущий
-  
+  getTeaching() {
+    console.log('getTeaching');
+    this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
+      (obj: any) => {
+        if (obj !== undefined) {
+          this.onSuccess(obj);
+        } else {
+          console.log("Loading from server");
+          this.loadFromRouteParam();
+        }
+      },
+      err => console.error(err)
+    );
+  }
+
+  loadFromRouteParam() {
+    this.subscriptionRoute = this.route.params.subscribe((params) => {
+      this.load(params['id']);
+    });
+  }
+
 
   load(id) {
-    this.stepsService.find(id).subscribe((data: any) => {
-      console.log(data.data);
-      this.theme = data.data;
-      this.theme.steps = this.sortStep(this.theme.steps);
-      this.stepsIndex = this.setSteps(this.theme.steps);
-      this.setAnsweredQuestions(this.theme.steps);
-      console.log(this.stepsIndex);
-      console.log(this.theme.steps);
+    this.stepsService.find(id).subscribe((teaching: any) => {
+      this.onSuccess(teaching.data);
     });
+  }
+
+  onSuccess(teaching) {
+    let data = teaching;
+    console.log(data);
+    this.theme = data.typeOfTeaching;
+    this.results = data.teachingSpecialities;
+    this.theme.steps = this.sortStep(this.theme.steps);
+    this.stepsIndex = this.setSteps(this.theme.steps);
+
+    console.log(this.results);
+    this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, this.results);
+    console.log(this.currentStepIndex);
+    this.setAnsweredQuestions(this.theme.steps);
   }
 
 
@@ -69,13 +98,11 @@ export class StepsComponent implements OnInit {
     return steps.map(step => step.id);//.sort(this.utilsService.sortNumber);
   }
 
-
   nextStep(curStep) {
     this.currentStepIndex++;
   }
 
   beginSteps(event: boolean) {
-    console.log('beginSteps');
     this.showIntro = false;
   }
 
@@ -83,13 +110,24 @@ export class StepsComponent implements OnInit {
     steps.map(step => {
       this.answeredQuestions[step.id] = new Object();
     });
-    console.log(this.answeredQuestions);
+  }
+
+  setCurrentStep(cb, data) {
+    let currentStepID = cb.bind(this)(data);
+    return currentStepID ? this.stepsIndex.indexOf(currentStepID) : 0;
+  }
+
+  setCurrentStepID(steps) {
+    return this.stepsIndex.find(id =>
+      this.theme.questions.find(question => {
+        if (steps[id][question.id] === undefined) return id;
+      })
+    )
   }
 
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
       });
     } else {
       console.log("Geolocation is not supported by this browser.");
@@ -100,11 +138,11 @@ export class StepsComponent implements OnInit {
     return new Date();
   }
 
-  getReport() {
-    this.eduConfigService.getCurrentEdu().subscribe(
-      (obj: any) => this.report = obj.report
-    )
-  }
+  // getReport() {
+  //   this.eduConfigService.getCurrentEdu().subscribe(
+  //     (obj: any) => this.report = obj.report
+  //   )
+  // }
 
 
 }

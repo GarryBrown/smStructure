@@ -9,7 +9,7 @@ import { Report } from '../../../models';
 export class EduConfigService {
   // private resourceUrl = '/api/plan-reports';
   private resourceUrl = '/api/planReports';
-  private edu = new BehaviorSubject(undefined);
+  private teaching = new BehaviorSubject(undefined);
 
   constructor(
     private http: Http,
@@ -21,17 +21,22 @@ export class EduConfigService {
       .map((res: Response) => res.json())
   }
 
+  getDelivetyPoints(): Observable<Response> {
+    return this.http.get('/api/deliveryPoints')
+      .map((res: Response) => res.json())
+  }
+
   getReports(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: Response) => res.json())
   }
 
-  setCurrentEdu(obj) {
-    this.edu.next(obj);
+  setCurrentTeaching(obj) {
+    this.teaching.next(obj);
   }
 
-  getCurrentEdu(): Observable<any> {
-    return this.edu.asObservable().filter(item => item !== undefined);
+  getCurrentTeaching(): Observable<any> {
+    return this.teaching.asObservable(); //.filter(item => item !== undefined);
   }
 
 

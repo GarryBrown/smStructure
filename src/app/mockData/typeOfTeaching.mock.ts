@@ -1,4 +1,4 @@
-let _edu = [
+let _typeOfTeaching = [
   {
     id: 1,
     description: 'Продажи: уровень 1',
@@ -83,8 +83,6 @@ let _edu = [
           description: 'Step 2',
           isNeedSelectDP: true,
           isNeedAnswer: false,
-          isNeedEduComment: true,
-          isNeedTaskComment: false,
         }
       },
       {
@@ -94,8 +92,6 @@ let _edu = [
           description: 'Step 3',
           isNeedSelectDP: true,
           isNeedAnswer: false,
-          isNeedEduComment: true,
-          isNeedTaskComment: true,
         }
       },
       {
@@ -105,8 +101,6 @@ let _edu = [
           description: 'Step 1',
           isNeedSelectDP: true,
           isNeedAnswer: false,
-          isNeedEduComment: false,
-          isNeedTaskComment: false,
         }
       }
     ]
@@ -175,4 +169,4 @@ let _edu = [
   },
 ];
 
-export const eduMock = _edu;
+export const typeOfTeachingMock = _typeOfTeaching;
