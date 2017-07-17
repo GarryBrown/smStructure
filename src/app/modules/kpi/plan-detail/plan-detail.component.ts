@@ -22,7 +22,6 @@ export class PlanDetailComponent implements OnInit {
   routesData: Array<any>;
   isSaving: boolean;
 
-
   indicators: Array<any>;
   currentIndicators: Array<any>;
 
@@ -88,7 +87,6 @@ export class PlanDetailComponent implements OnInit {
     )
   }
 
-
   openConfig() {
     let reportsCopy: Array<Report> = new Array();
     this.reports.map(report =>
@@ -109,8 +107,6 @@ export class PlanDetailComponent implements OnInit {
 
       }
     });
-
-
   }
 
   applyFilter() {

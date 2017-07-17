@@ -33,9 +33,7 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe(
       (data: any) => {
         this.qualities = data.data,
-
           console.log(this.qualities)
-
       },
       error => console.log("oops")
       )

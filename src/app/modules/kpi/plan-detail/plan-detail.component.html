@@ -29,20 +29,9 @@
                 <td>Маршрут</td>
                 <ng-template ngFor let-indicator [ngForOf]="currentIndicators">
                     <td *ngIf="!indicator.planFields[0]"></td>
-
-                    <!--<td *ngIf="!indicator.planFields[1]"></td>
-                    <td *ngIf="!indicator.planFields[2]"></td>
-                    <td *ngIf="!indicator.planFields[3]"></td>
-                    <td *ngIf="!indicator.planFields[4]"></td>
-                    <td *ngIf="!indicator.planFields[5]"></td>
-                    <td *ngIf="!indicator.planFields[6]"></td>
-                    <td *ngIf="!indicator.planFields[7]"></td>-->
-
-
                     <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
                         {{field.description}}
                     </td>
-
                 </ng-template>
             </tr>
         </thead>

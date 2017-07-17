@@ -7,24 +7,10 @@
     </td>
 
     <ng-template ngFor let-indicator [ngForOf]="indicators[0]">
-
         <div *ngIf="route.planValues[indicator.id];then exist else empty"></div>
-
         <ng-template #exist>
-
             <td *ngFor="let field of indicator.planFields" align="center">{{route.planValues[indicator.id][field]}}</td>
-
             <td *ngIf="!indicator.planFields[0]"></td>
-
-            <!--<td *ngIf="!indicator.planFields[1]"></td>
-            <td *ngIf="!indicator.planFields[2]"></td>
-            <td *ngIf="!indicator.planFields[3]"></td>
-            <td *ngIf="!indicator.planFields[4]"></td>
-            <td *ngIf="!indicator.planFields[5]"></td>
-            <td *ngIf="!indicator.planFields[6]"></td>
-            <td *ngIf="!indicator.planFields[7]"></td>-->
-
-
         </ng-template>
         <ng-template #empty>
             <td *ngIf="!indicator.planFields[0]"></td>

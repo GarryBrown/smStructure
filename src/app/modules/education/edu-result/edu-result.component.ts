@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { EduResultService} from './edu-result.service';
+import { EduResultService } from './edu-result.service';
 
 @Component({
   selector: 'app-edu-result',
@@ -12,6 +12,7 @@ export class EduResultComponent implements OnInit, OnDestroy {
   results: any;
   subscription: Subscription;
   isLoading: boolean;
+  eduResult: Array<any>;
 
   constructor(
     private eduResultService: EduResultService
@@ -24,6 +25,16 @@ export class EduResultComponent implements OnInit, OnDestroy {
       answer => this.onSucces(answer, this.onSuccessResult),
       err => console.error('Ouups')
     )
+    
+    this.subscription = this.eduResultService.getEduResult()
+      .subscribe((data: any) => {
+        this.eduResult = data.data,
+          console.log("------------------"),
+          console.log(this.eduResult),
+          console.log("------------------")
+      },
+      error => console.log("oops")
+      )
   }
 
   ngOnDestroy() {

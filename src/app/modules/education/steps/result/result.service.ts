@@ -16,6 +16,7 @@ export class ResultService {
         return res.json();
       });
   }
+    
   getSelected(selectedVals: Array<any>, option: any) {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
