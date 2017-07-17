@@ -14,11 +14,8 @@ export class KpiTableComponent implements OnInit, OnChanges {
 
   routesData: Array<any>;
   isSaving: boolean;
-
   // transformed array for iterate
   listIndicators: Array<any>;
-
-
 
   constructor(
     private kpiTableService: KpiTableService,
@@ -28,7 +25,6 @@ export class KpiTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
   }
 
   ngOnChanges() {
@@ -36,9 +32,7 @@ export class KpiTableComponent implements OnInit, OnChanges {
       this.getData(this.report[0]);
       this.listIndicators = this.kpiTableService.getPropsObj(this.report[0].indicators);
     }
-
   }
-
 
   getData(report: Report) {
     this.isSaving = true;
@@ -48,12 +42,9 @@ export class KpiTableComponent implements OnInit, OnChanges {
     );
   }
 
-  onSuccesRouteData(data) {
-    console.log(data);
-    
+  onSuccesRouteData(data) {   
     this.routesData = data;
   }
-
 
   onSucces(data: any, cb: any) {
     this.isSaving = false;
@@ -64,7 +55,5 @@ export class KpiTableComponent implements OnInit, OnChanges {
     console.error(`error in ${api} => ${err}`);
     this.alert.open("Не удалось получить данные :(");
   }
-
-
 
 }

@@ -16,7 +16,6 @@ export class PlanDetailRowComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
   }
   
   ngOnChanges() {

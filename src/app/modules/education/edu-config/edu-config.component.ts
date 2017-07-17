@@ -4,6 +4,7 @@ import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { EduConfigService } from './edu-config.service';
+import { StepsService } from '../steps/steps.service';
 import { UtilsService } from '../../../shared';
 import { Event, TypeOfEvent, Route, Report } from '../../../models';
 
@@ -31,6 +32,7 @@ export class EduConfigComponent implements OnInit {
     private utilsService: UtilsService,
     public dialogRef: MdDialogRef<EduConfigComponent>,
     private eduConfigService: EduConfigService,
+    private stepsService: StepsService,
     private router: Router
   ) {
     this.getSelected = utilsService.getSelectedSingle;
@@ -58,11 +60,8 @@ export class EduConfigComponent implements OnInit {
       event: this.event,
       report: this.report,
     };
-    this.eduConfigService.setCurrentEdu(obj);
-    this.router.navigate(['edu/theme', 1]).then(
-      (result) => this.dialogRef.close(false),
-      (reason) => console.error('navigate error')
-    );
+    this.loadTeaching();
+
   }
 
   close() {
@@ -84,6 +83,19 @@ export class EduConfigComponent implements OnInit {
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
 
+  }
+
+ loadTeaching() {
+    this.stepsService.getTeaching().subscribe((teaching: any) => {
+      let data = teaching.data;
+      // console.log(data);
+      // console.log(data[0].id);
+      this.eduConfigService.setCurrentTeaching(data[0]);
+      this.router.navigate(['edu/theme', 1]).then(
+        (result) => this.dialogRef.close(false),
+        (reason) => console.error(`navigate error ${reason}`)
+      );
+    });
   }
 
 

@@ -376,8 +376,27 @@ let _deliveryPoints = [
   }
 ];
 
+let _deliveryPointsNew = [
+  {
+    id: 2560,
+    description: 'Севанян Виген Гургени, ИП'
+  },
+  {
+    id: 7941,
+    description: '"Аком" -2 ООО'
+  },
+  {
+    id: 22024,
+    description: '"Аком-Юг" ООО - Достоевского'
+  },
+  {
+    id: 2312,
+    description: 'Челухин Евгений Владимирович, ИП - м-н Радуга - 2'
+  }
+]
 
 
 
 
-export const deliveryPointsMock = _deliveryPoints;
+
+export const deliveryPointsMock = _deliveryPointsNew;

@@ -13,7 +13,7 @@
 
   <div class="wrapper-block">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <table class="table table-condensed table-responsive">
           <thead>
             <th>Вопрос</th>
@@ -29,25 +29,6 @@
             <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="col-md-4">
-        <ng-template [ngIf]="step.typeOfTeachingStep.isNeedEduComment">
-          <md-input-container>
-            <textarea mdInput mdAutosize minRows="5" placeholder="Сильные стороны"></textarea>
-          </md-input-container>
-          <md-input-container>
-            <textarea mdInput mdAutosize minRows="5" placeholder="Зоны развития"></textarea>
-          </md-input-container>
-        </ng-template>
-        <ng-template [ngIf]="step.typeOfTeachingStep.isNeedTaskComment">
-          <md-input-container>
-            <textarea mdInput mdAutosize minRows="5" placeholder="Задачи по развитию знаний и навыков"></textarea>
-          </md-input-container>
-          <md-input-container>
-            <textarea mdInput mdAutosize minRows="5" placeholder="Задачи по KPI"></textarea>
-          </md-input-container>
-        </ng-template>
       </div>
     </div>
   </div>
