@@ -22,7 +22,7 @@ $heightHeader: 64px;
 }
 
 // header heigth will set less for 10px
-@media screen and (max-width: 542px) {
+@media screen and (max-width: 601px) {
     .container {
         height: calc(100% - 56px);
         top: 56px;

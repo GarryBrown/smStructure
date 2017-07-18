@@ -11,7 +11,7 @@ import { KpiTableService } from './kpi-table.service';
 })
 export class KpiTableComponent implements OnInit, OnChanges {
   @Input() report: Report;
-
+  @Input() deliveryPoint: any;
   routesData: Array<any>;
   isSaving: boolean;
   // transformed array for iterate
@@ -25,6 +25,8 @@ export class KpiTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log("KPI-table");
+    console.log(this.deliveryPoint);
   }
 
   ngOnChanges() {
@@ -36,14 +38,17 @@ export class KpiTableComponent implements OnInit, OnChanges {
 
   getData(report: Report) {
     this.isSaving = true;
+    console.log(this.report);
     this.kpiTableService.getRoutesData(report.indicators, report.routes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
       error => console.error(error)
     );
   }
 
-  onSuccesRouteData(data) {   
-    this.routesData = data;
+  onSuccesRouteData(data) { 
+    console.log(data);  
+    // this.routesData = data;
+    this.routesData = data.slice(1,data.length); // for inmemory
   }
 
   onSucces(data: any, cb: any) {

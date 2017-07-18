@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from "rxjs/Observable";
 
 import { PrincipalService } from './core';
 
@@ -9,13 +10,22 @@ import { PrincipalService } from './core';
   providers: [PrincipalService],
 })
 export class AppComponent implements OnInit {
+  mode: string;
   opened: boolean;
   user: any;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(
     private principal: PrincipalService) {
-
+    this.setInitMode();
+    Observable.fromEvent(window, 'resize')
+      .debounceTime(200).map((e: Event) => e.target)
+      .subscribe(
+      (w: Window) => {
+        console.log(w.innerWidth);
+        this.mode = this.updateMode(w.innerWidth);
+      }
+      );
   }
 
   ngOnInit() {
@@ -65,6 +75,19 @@ export class AppComponent implements OnInit {
     console.log(opened);
     this.opened = opened;
   }
+  setInitMode() {
+    this.mode = this.updateMode(window.innerWidth);
+  }
 
+  updateMode(width: number) {
+    if (width >= 888) {
+      return 'side';
+    }
+    return 'over';
+  }
 
+  closeNav() {
+    this.opened = false;
+    
+  }
 }

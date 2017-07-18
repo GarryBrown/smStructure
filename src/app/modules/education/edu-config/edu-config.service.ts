@@ -10,34 +10,40 @@ export class EduConfigService {
   // private resourceUrl = '/api/plan-reports';
   private resourceUrl = '/api/planReports';
   private teaching = new BehaviorSubject(undefined);
-
+  private reportUrl = '/api/reports';
   constructor(
     private http: Http,
   ) { }
 
-
-  getRoutes(): Observable<Response> {
-    return this.http.get('/api/routes')
-      .map((res: Response) => res.json())
+  findReport(id: number): Observable<any> {
+    return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
+      return res.json();
+    });
   }
 
-  getDelivetyPoints(): Observable<Response> {
-    return this.http.get('/api/deliveryPoints')
-      .map((res: Response) => res.json())
-  }
 
-  getReports(): Observable<Response> {
-    return this.http.get(this.resourceUrl)
-      .map((res: Response) => res.json())
-  }
+getRoutes(): Observable < Response > {
+  return this.http.get('/api/routes')
+    .map((res: Response) => res.json())
+}
 
-  setCurrentTeaching(obj) {
-    this.teaching.next(obj);
-  }
+getDelivetyPoints(): Observable < Response > {
+  return this.http.get('/api/deliveryPoints')
+    .map((res: Response) => res.json())
+}
 
-  getCurrentTeaching(): Observable<any> {
-    return this.teaching.asObservable(); //.filter(item => item !== undefined);
-  }
+getReports(): Observable < Response > {
+  return this.http.get(this.resourceUrl)
+    .map((res: Response) => res.json())
+}
+
+setCurrentTeaching(obj) {
+  this.teaching.next(obj);
+}
+
+getCurrentTeaching(): Observable < any > {
+  return this.teaching.asObservable(); //.filter(item => item !== undefined);
+}
 
 
 

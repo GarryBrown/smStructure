@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.opened) this.show = this.opened;
+    this.show = this.opened;
   }
 
   toggle() {

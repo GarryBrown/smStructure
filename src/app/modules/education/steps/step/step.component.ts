@@ -38,7 +38,8 @@ export class StepComponent implements OnInit, OnChanges {
 
     ngOnInit(
     ) {
-
+        console.log("00000000000000000");
+        console.log(this.deliveryPoint);
     }
 
     ngOnChanges() {
@@ -64,6 +65,7 @@ export class StepComponent implements OnInit, OnChanges {
         this.nextStep.emit(this.step);
         if (!this.answeredQuestions[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
+
         }
     }
 

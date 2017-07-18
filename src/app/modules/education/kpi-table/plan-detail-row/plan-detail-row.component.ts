@@ -9,16 +9,20 @@ import { Component, OnInit, Input, ViewEncapsulation, ElementRef, OnChanges } fr
 export class PlanDetailRowComponent implements OnInit, OnChanges {
   @Input() route: any;
   @Input() indicators: Array<any>; //use fields[0] to get data
-
+  @Input() deliveryPoint: any;
   isExpanded: boolean = false;
 
   constructor() {
   }
 
   ngOnInit() {
+   
   }
   
   ngOnChanges() {
+     console.log("plan-detail-row")
+     console.log(this.deliveryPoint);
+   
   }
 
   toggle(event) {

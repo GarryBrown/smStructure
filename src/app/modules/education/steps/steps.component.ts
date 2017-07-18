@@ -13,6 +13,7 @@ import { Report } from '../../../models';
   styleUrls: ['./steps.component.scss']
 })
 export class StepsComponent implements OnInit {
+  subscription: any;
 
   subscriptionServer: Subscription;
   subscriptionRoute: Subscription;
@@ -39,9 +40,11 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.getReport();
+    this.getReport(1);
     this.getLocation();
     this.getTeaching();
+
+    
   }
 
   // Загрузить объект из сервиса
@@ -140,11 +143,27 @@ export class StepsComponent implements OnInit {
     return new Date();
   }
 
-  // getReport() {
-  //   this.eduConfigService.getCurrentEdu().subscribe(
-  //     (obj: any) => this.report = obj.report
-  //   )
-  // }
+  getReport(id) {
+    this.subscription = this.eduConfigService.findReport(id)
+      .subscribe((data: any) => {
+        this.report = data.data,
+          console.log("------------------"),
+          console.log(this.report),
+          console.log("------------------")
+      },
+      error => console.log("oops")
+      )
+
+    // this.eduConfigService.findReport().subscribe(
+    //   (obj: any) => {
+    //     this.report = obj.report,
+    //       console.log("----------------------"),
+    //       console.log(this.report),
+    //       console.log("----------------------")
+    //   }
+    // )
+
+  }
 
 
 }

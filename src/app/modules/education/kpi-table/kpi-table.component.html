@@ -1,21 +1,23 @@
 <table *ngIf="report && report[0]" class="table  table-hover table-condensed table-responsive dataTables-example">
-  <thead>
-    <tr>
-      <td id="first"></td>
-      <td *ngFor="let indicator of report[0].indicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
-        {{indicator.description}}
-      </td>
-    </tr>
-    <tr>
-      <td>Маршрут</td>
-      <ng-template ngFor let-indicator [ngForOf]="report[0].indicators">
-        <td *ngIf="!indicator.planFields[0]"></td>
-        <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
-          {{field.description}}
-        </td>
+    <thead>
+        <tr>
+            <td id="first"></td>
+            <td *ngFor="let indicator of report[0].indicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
+                {{indicator.description}}
 
-      </ng-template>
-    </tr>
-  </thead>
-  <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
+            </td>
+        </tr>
+        <tr>
+
+            <td>Маршрут</td>
+            <ng-template ngFor let-indicator [ngForOf]="report[0].indicators">
+                <td *ngIf="!indicator.planFields[0]"></td>
+                <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
+                    {{field.description}}
+                </td>
+
+            </ng-template>
+        </tr>
+    </thead>
+    <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData" [deliveryPoint]="deliveryPoint"></tbody>
 </table>

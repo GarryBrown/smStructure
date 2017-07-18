@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from "rxjs/Observable";
 
 import { SidebarService } from './sidebar.service';
 import { SidebarToggleService } from '../../core/utils/sidebar-toggle.service';
@@ -24,15 +23,7 @@ export class SidebarComponent implements OnInit {
     private principal: PrincipalService
   ) {
     this.getUser();
-    this.setInitMode();
-    Observable.fromEvent(window, 'resize')
-      .debounceTime(200).map((e: Event) => e.target)
-      .subscribe(
-      (w: Window) => {
-        console.log(w.innerWidth);
-        this.mode = this.updateMode(w.innerWidth);
-      }
-      );
+    
   }
 
   ngOnInit() {
@@ -74,14 +65,5 @@ export class SidebarComponent implements OnInit {
   //   }
   // }
 
-  setInitMode() {
-    this.mode = this.updateMode(window.innerWidth);
-  }
-
-  updateMode(width: number) {
-    if (width >= 888) {
-      return 'side';
-    }
-    return 'over';
-  }
+ 
 }
