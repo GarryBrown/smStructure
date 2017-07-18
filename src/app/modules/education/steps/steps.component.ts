@@ -23,9 +23,10 @@ export class StepsComponent implements OnInit {
   stepsIndex: Array<number> = [];
   currentStepIndex: number;
   showIntro: boolean;
+  showResult: boolean;
   answeredQuestions: any;
   report: Report;
-  showFinish: boolean;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -34,9 +35,9 @@ export class StepsComponent implements OnInit {
     private eduConfigService: EduConfigService
   ) {
     this.currentStepIndex = 0;
-    this.showIntro = true;
+    this.showIntro = false;
+    this.showResult = false;
     this.answeredQuestions = new Object();
-    this.showFinish = true;
   }
 
   ngOnInit() {
@@ -89,7 +90,7 @@ export class StepsComponent implements OnInit {
     this.stepsIndex = this.setSteps(this.theme.steps);
 
     console.log(this.results);
-    this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, this.results);
+    this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, data);
     console.log(this.currentStepIndex);
     this.setAnsweredQuestions(this.theme.steps);
   }
@@ -111,6 +112,10 @@ export class StepsComponent implements OnInit {
     this.showIntro = false;
   }
 
+  setFinish(set: boolean) {
+    this.showResult = true;
+  }
+
   setAnsweredQuestions(steps) {
     steps.map(step => {
       this.answeredQuestions[step.id] = new Object();
@@ -118,8 +123,22 @@ export class StepsComponent implements OnInit {
   }
 
   setCurrentStep(cb, data) {
-    let currentStepID = cb.bind(this)(data);
-    return currentStepID ? this.stepsIndex.indexOf(currentStepID) : 0;
+    let currentStepID = cb.bind(this)(data.teachingSpecialities);
+    if (currentStepID) {
+      let currentStep = this.stepsIndex.indexOf(currentStepID);
+      if (currentStep === 0) {
+        this.showIntro = !this.isStepBegined(currentStepID, data.teachingSpecialities);
+      } else {
+        this.showIntro = false;
+      }
+      return currentStep;
+    } else if (data.commonComment) {
+      this.showResult = true;
+      return null;
+    } else {
+      this.showIntro = true;
+      return 0;
+    }
   }
 
   setCurrentStepID(steps) {
@@ -128,6 +147,10 @@ export class StepsComponent implements OnInit {
         if (steps[id][question.id] === undefined) return id;
       })
     )
+  }
+
+  isStepBegined(stepId: number, results: any): boolean {
+    return this.theme.questions.some(question => results[stepId][question.id] !== undefined)
   }
 
   getLocation() {

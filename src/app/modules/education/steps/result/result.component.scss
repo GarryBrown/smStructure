@@ -3,17 +3,17 @@
     flex-direction: row;
 }
 
-table {
+.block-table {
     outline: 1px solid #ccc;
-    width: 50%;
+    flex: 1 1 50%;
 }
 
-.selects {
-    width: 50%;
-    outline: 1px solid #ccc;
+.block-comments {
+    flex: 1 1 50%;
     align-items: center;
     display: flex;
     flex-direction: column;
+    outline: 1px solid #ccc;
     md-select {
         margin: 10px;
     }

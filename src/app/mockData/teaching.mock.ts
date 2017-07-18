@@ -5,16 +5,11 @@ let _teaching = [
       id: 1,
       description: 'Продажи: уровень 1',
       textBody: `## Понимание  *дистрибьюции* компании
-    - Обучение
-    - Практика
-    - Закрепление 
-    
-     **Успех**`,
-      typeOfTeachingAgrRes: {
-        id: 1,
-        description: 'Агрегация результатов',
-        code: '42'
-      },
+      - Обучение
+      - Практика
+      - Закрепление 
+      
+       **Успех**`,
       questions: [
         {
           id: 1,
@@ -115,7 +110,7 @@ let _teaching = [
     },
     teachingSpecialities: {
       //id step
-      1: {
+      2: {
         deliveryPoint: {
           id: 2560,
           description: 'Севанян Виген Гургени, ИП',
@@ -145,7 +140,7 @@ let _teaching = [
           }
         }
       },
-      2: {
+      1: {
         deliveryPoint: {
           id: 2312,
           description: 'Челухин Евгений Владимирович, ИП - м-н Радуга - 2'
@@ -175,8 +170,39 @@ let _teaching = [
           }
         }
       },
-      3: {}
-    }
+      3: {
+        deliveryPoint: {
+          id: 2312,
+          description: 'Челухин Евгений Владимирович, ИП - м-н Радуга - 2'
+        },
+        1: {
+          answer: {
+            comment: "Comment 123",
+            id: 2,
+            orderBy: 1,
+            value: 2,
+            typeOfAnswer: {
+              id: 2,
+              description: '40/60'
+            }
+          }
+        },
+        2: {
+          answer: {
+            comment: "Comment 2222",
+            id: 6,
+            value: 3,
+            orderBy: 3,
+            typeOfAnswer: {
+              id: 6,
+              description: 'Нет правильного ответа'
+            }
+          },
+        }
+      }
+    },
+    commonComment: 'Не плохой парень'
+
   }
 
 ];

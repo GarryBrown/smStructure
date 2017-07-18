@@ -17,6 +17,7 @@ export class StepComponent implements OnInit, OnChanges {
     @Input() answeredQuestions: any;
     @Input() report: Report;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
+    @Output() toFinish: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;
     listDP: Array<any>;
     deliveryPoint: any;
@@ -81,15 +82,9 @@ export class StepComponent implements OnInit, OnChanges {
         return stepsIds;
     }
 
-    goToResult() {
-        this.eduResultService.setCurrentAnswer(this.answeredQuestions);
-        this.router.navigate(['edu/result']);
-    }
-
     changeDelivetyPoint(dp) {
         this.answeredQuestions[this.step.id].deliveryPoint = dp;
     }
-
 
     setDP() {
         if (this.prevStepsId && this.prevStepsId.length !== 0) {
@@ -98,8 +93,12 @@ export class StepComponent implements OnInit, OnChanges {
                 this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
         }
+    }
 
-
+    goToResult() {
+        this.eduResultService.setCurrentAnswer(this.answeredQuestions);
+        this.toFinish.emit(true);
+        // this.router.navigate(['edu/result']);
     }
 
 

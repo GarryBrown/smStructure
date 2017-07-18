@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
+import { UtilsService } from '../../../../../shared';
+
 @Component({
   selector: '[app-question]',
   templateUrl: './question.component.html',
@@ -11,21 +13,35 @@ export class QuestionComponent implements OnInit, OnChanges {
   @Input() steps: Array<any>;
   @Input() answeredQuestions: any;
   @Input() prevStepsId: Array<number>;
+  @Input() onlyLast: boolean;
 
   answer: any = new Object();
   comment: string;
+  getSelected: any;
 
-  constructor() {
+  constructor(
+    private utilsService: UtilsService,
+  ) {
     this.comment = '';
+    this.getSelected = this.utilsService.getSelectedSingle;
   }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
-    if (this.prevStepsId.length !== 0) {
-      if (this.question && this.answeredQuestions && this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
-        this.comment = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment;
+    
+    if (!this.onlyLast && this.prevStepsId.length !== 0 && 
+      this.question && this.answeredQuestions &&
+      this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
+      this.comment = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment;
+    }
+
+    if (this.question && this.answeredQuestions && this.answeredQuestions[this.step.id][this.question.id] &&
+      this.answeredQuestions[this.step.id][this.question.id].answer) {
+      this.answer = this.answeredQuestions[this.step.id][this.question.id].answer;
+      if (this.comment === '' && this.answeredQuestions[this.step.id][this.question.id].answer.comment !== undefined) {
+        this.comment = this.answeredQuestions[this.step.id][this.question.id].answer.comment;
       }
     }
   }
@@ -37,6 +53,7 @@ export class QuestionComponent implements OnInit, OnChanges {
     }
     this.answeredQuestions[this.step.id][this.question.id].answer = answer;
     this.answeredQuestions[this.step.id][this.question.id].answer.comment = this.comment;
+    console.log(this.answeredQuestions);
   }
 
   setPrevSteps(steps) {
@@ -48,7 +65,6 @@ export class QuestionComponent implements OnInit, OnChanges {
     } else {
       stepsIds = [];
     }
-
     return stepsIds;
   }
 
@@ -62,8 +78,5 @@ export class QuestionComponent implements OnInit, OnChanges {
     this.answeredQuestions[this.step.id][this.question.id].answer.comment = comment;
   }
 
-  setComment() {
-
-  }
 
 }
