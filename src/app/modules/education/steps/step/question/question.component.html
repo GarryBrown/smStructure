@@ -2,8 +2,8 @@
 
 <ng-template ngFor let-prevStep [ngForOf]="prevStepsId">
   <td>
-    <md-select name="answer" [(ngModel)]="answeredQuestions[prevStep][question.id].answer" [disabled]="true">
-      <md-option *ngFor="let answer of question.answers" [value]="answer">
+    <md-select name="answer" [(ngModel)]="answeredQuestions[prevStep][question.id].answer.typeOfAnswer" [disabled]="true">
+      <md-option *ngFor="let answer of question.answers" [value]="getSelected(answeredQuestions[prevStep][question.id].answer.typeOfAnswer, answer)">
         {{ answer.typeOfAnswer.description }}
       </md-option>
     </md-select>
@@ -15,8 +15,8 @@
 
 <td>
   <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
-    <md-option *ngFor="let answer of question.answers" [value]="answer">
-      {{ answer.typeOfAnswer.description }}
+    <md-option *ngFor="let answerOption of question.answers" [value]="getSelected(answer, answerOption)">
+      {{ answerOption.typeOfAnswer.description }}
     </md-option>
   </md-select>
 </td>

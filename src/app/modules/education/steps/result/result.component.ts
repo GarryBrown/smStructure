@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ResultService } from './result.service';
 
@@ -9,8 +9,11 @@ import { ResultService } from './result.service';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() theme: any;
+  @Input() answeredQuestions: any;
 
   qualities;
+  lastStep;
   subscription;
 
   getSelected: any;
@@ -23,49 +26,23 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-
-    // this.resultService.getQualities() // note, removed this.countries = 
-    // .subscribe(
-    //     (data:any) => this.qualities = data,
-    //     error => console.error()
-    // );
-    this.subscription = this.resultService.getQualities()
-      .subscribe(
-      (data: any) => {
-        this.qualities = data.data,
-          console.log(this.qualities)
-      },
-      error => console.log("oops")
-      )
-
-    console.log("-------------------------------");
-
-
   }
 
   ngOnChanges() {
-    if (this.strengths) {
-
+    if (this.theme) {
+      this.lastStep = this.theme.steps[this.theme.steps.length - 1];
+      console.log(this.lastStep);
     }
 
   }
 
 
   ngOnDestroy() {
-    this.subscription.unsubscrube();
+    // this.subscription.unsubscrube();
   }
 
-  check(currentList) {
-      this.developmentZones = this.strengths;
-      console.log("eeee");
-  }
 
-  copyObj(quality) {
-    let copyQualities = [];
-    quality.map(indicator => copyQualities.push(Object.assign({}, quality)));
-    return copyQualities;
-  }
- 
+
 
 
 
