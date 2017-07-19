@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 
 import { PlanDetailService } from '../plan-detail/plan-detail.service';
-import { ReportConfigService } from '../report-config/report-config.service';
 import { Report, Route } from '../../../models';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 
@@ -30,7 +29,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
   isDisabled = true;
   constructor(
     private pdService: PlanDetailService,
-    private reportService: ReportConfigService,
   ) {
     this.getSelected = pdService.getSelected;
   }
@@ -64,7 +62,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-
   }
 
   getIndicators() {
@@ -75,11 +72,10 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   changeFields(event) {
     this.disabled = this.currentIndicators.some( indicator => indicator.planFields.length === 0);
-    
     this.updateCurrentIndicators.emit(this.currentIndicators);
   }
 
-  changeIndicatorsSet() {
+  changeIndicatorsSet(indicator) {
     this.changeIndicators.emit(this.currentIndicators);
   }
 

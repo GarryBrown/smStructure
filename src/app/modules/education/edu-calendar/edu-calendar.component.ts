@@ -16,6 +16,7 @@ export class EduCalendarComponent implements OnInit {
   model: NgbDateStruct;
   subscription: Subscription;
   eventsData: Array<any>;
+  date: any;
 
   constructor(
     private http: Http,

@@ -5,7 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Http } from '@angular/http';
 /* directives */
 import { SortByDirective } from './directive/sort-by.directive';
 import { SortDirective } from './directive/sort.directive';
@@ -21,18 +23,12 @@ import { PrettyCountPipe } from './pipes/pretty-count.pipe';
 /* interceptors */
 import { HttpInterceptor } from './interceptor/http.interceptor';
 import { InterceptableHttp } from './interceptor/interceptable-http';
-
-import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { Http } from '@angular/http';
-import { CustomChartComponent } from "app/components/customChart/custom-chart.component";
-import { CustomChartModule } from "app/components/customChart/custom-chart.module";
-
+/* components */
+import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
 
 export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 
 @NgModule({
   imports: [
@@ -54,7 +50,8 @@ export function HttpLoaderFactory(http: Http) {
     SortDirective,
     HasAuthorityDirective,
     PrettyCountPipe,
-    ],
+    AlertBarComponent,
+  ],
   exports: [
     CommonModule,
     MaterialModule,
@@ -67,14 +64,14 @@ export function HttpLoaderFactory(http: Http) {
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,
-    CustomChartModule,
-    ],
+    AlertBarComponent,
+  ],
   providers: [
-     PaginUtilService,
-     DaDataService,
-     DeleteUtilsService,
-     StoresService,
-     UtilsService,
-    ]
+    PaginUtilService,
+    DaDataService,
+    DeleteUtilsService,
+    StoresService,
+    UtilsService,
+  ]
 })
 export class SharedModule { }

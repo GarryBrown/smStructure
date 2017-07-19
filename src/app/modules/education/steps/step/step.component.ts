@@ -21,7 +21,6 @@ export class StepComponent implements OnInit, OnChanges {
     isFinish: boolean;
     listDP: Array<any>;
     deliveryPoint: any;
-    getRange: any;
     prevStepsId: Array<number>;
     getSelected: any;
 
@@ -33,7 +32,6 @@ export class StepComponent implements OnInit, OnChanges {
     ) {
         this.isFinish = false;
         this.listDP = [];
-        this.getRange = this.utilsService.rangeArray;
         this.getSelected = this.utilsService.getSelectedSingle;
     }
 
@@ -58,12 +56,10 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     next() {
-        console.log(this.answeredQuestions);
-        this.nextStep.emit(this.step);
         if (!this.answeredQuestions[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
-
         }
+        this.nextStep.emit(this.step);
     }
 
     setPrevSteps(steps) {
@@ -84,7 +80,6 @@ export class StepComponent implements OnInit, OnChanges {
 
     setDP() {
         if (this.prevStepsId && this.prevStepsId.length !== 0) {
-            console.log(this.answeredQuestions);
             if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
                 this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
@@ -94,7 +89,10 @@ export class StepComponent implements OnInit, OnChanges {
     goToResult() {
         this.eduResultService.setCurrentAnswer(this.answeredQuestions);
         this.toFinish.emit(true);
-        // this.router.navigate(['edu/result']);
+    }
+
+    disableNext(): boolean {
+        return false
     }
 
 

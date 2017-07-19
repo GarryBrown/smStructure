@@ -1,13 +1,8 @@
 <div class="wrapper">
-
     <div class="block-table">
         <table class="table table-condensed table-responsive">
             <thead>
                 <th>Вопрос</th>
-                <ng-template ngFor let-qty [ngForOf]="prevStepsId">
-                    <th>Ответ</th>
-                    <th>Оценка</th>
-                </ng-template>
                 <th>Вариант</th>
                 <th>Оценка</th>
                 <th>Комментарий</th>
@@ -17,8 +12,6 @@
             </tbody>
         </table>
     </div>
-
-
     <div class="block-comments">
         <div class="item-comment">
             <label>Сильные стороны</label>

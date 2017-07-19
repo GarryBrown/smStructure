@@ -14,14 +14,14 @@ import { Event, TypeOfEvent, Route, Report } from '../../../models';
   styleUrls: ['./edu-config.component.scss']
 })
 export class EduConfigComponent implements OnInit {
-  private all;
-  private sch;
-  private edu;
+  all;
+  sch;
+  edu;
   public event: Event;
   public access;
-  private routes: Array<Route>;
-  private reports: Array<Report>;
-  private report: Report;
+  routes: Array<Route>;
+  reports: Array<Report>;
+  report: Report;
   getSelected: any;
   types: Array<TypeOfEvent> = [
     { id: 2, description: 'store-check' },
