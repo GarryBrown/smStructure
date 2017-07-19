@@ -6,28 +6,28 @@
 </label>
 
 <div class="hidden-menu">
-    <div class="wrapper">
-        <div class="wrap">
-            <div class="indicators">
-                <app-checkbox [allList]="listRoute" [currentList]="currentRoutes" (onCheckChange)="onCheckRoutes($event)"></app-checkbox>
-                <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)" required>
-                    <md-option *ngFor="let route of listRoute" [value]="getSelected(currentRoutes, route)">
-                        {{ route.description }}
-                    </md-option>
-                </md-select>
-            </div>
-            <div class="indicators">
-                <app-checkbox [allList]="listIndicator" [currentList]="currentIndicators" (onCheckChange)="onCheckIndicators($event)" *ngIf="!currentRoutes.length == 0"></app-checkbox>
-                <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="currentRoutes.length === 0" required>
-                    <md-option *ngFor="let indicator of listIndicator" [value]="getSelected(currentIndicators, indicator)">
-                        {{ indicator.description }}
-                    </md-option>
-                </md-select>
-            </div>
-            <div *ngIf="!currentRoutes.length == 0">
-                <app-list-fields class="indicators" *ngFor="let indicator of currentIndicators" [indicator]="indicator" [allFields]="allFields" (fieldsChange)="changeFields($event)"></app-list-fields>
-            </div>
-        </div>
-        <button md-raised-button (click)="getDataFilter()" color="accent" [disabled]="currentRoutes.length === 0 || currentIndicators.length === 0 || disabled">Получить данные</button>
+  <div class="wrapper">
+    <div class="wrap">
+      <div class="indicators">
+        <app-checkbox [allList]="listRoute" [currentList]="currentRoutes" (onCheckChange)="onCheckRoutes($event)"></app-checkbox>
+        <md-select placeholder="Маршруты" [(ngModel)]="currentRoutes" [multiple]="true" (ngModelChange)="changeRoutes($event)" required>
+          <md-option *ngFor="let route of listRoute" [value]="getSelected(currentRoutes, route)">
+            {{ route.description }}
+          </md-option>
+        </md-select>
+      </div>
+      <div class="indicators">
+        <app-checkbox [allList]="listIndicator" [currentList]="currentIndicators" (onCheckChange)="onCheckIndicators($event)" *ngIf="currentRoutes && currentRoutes.length !== 0"></app-checkbox>
+        <md-select placeholder="Показатели" [(ngModel)]="currentIndicators" [multiple]="true" (ngModelChange)="changeIndicatorsSet($event)" [disabled]="currentRoutes.length === 0" required>
+          <md-option *ngFor="let indicator of listIndicator" [value]="getSelected(currentIndicators, indicator)">
+            {{ indicator.description }}
+          </md-option>
+        </md-select>
+      </div>
+      <div *ngIf="currentRoutes && currentRoutes.length !== 0">
+        <app-list-fields class="indicators" *ngFor="let indicator of currentIndicators" [indicator]="indicator" [allFields]="allFields" (fieldsChange)="changeFields($event)"></app-list-fields>
+      </div>
     </div>
+    <button md-raised-button (click)="getDataFilter()" color="accent" [disabled]="currentRoutes.length === 0 || currentIndicators.length === 0 || disabled">Получить данные</button>
+  </div>
 </div>
