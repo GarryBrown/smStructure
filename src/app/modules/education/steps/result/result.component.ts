@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+import { StepsService } from '../steps.service';
 import { ResultService } from './result.service';
+import { AlertBarComponent } from '../../../../shared';
+
 
 
 @Component({
@@ -9,19 +13,16 @@ import { ResultService } from './result.service';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() theme: any;
-  @Input() answeredQuestions: any;
-
-  qualities;
+  @Input() teaching: any;
   lastStep;
   subscription;
-
   getSelected: any;
-  developmentZones: Array<any>;
-  strengths: Array<any>;
-  listQuality: Array<any> = [];
 
-  constructor(private resultService: ResultService) {
+  constructor(
+    private resultService: ResultService,
+    private stepsService: StepsService,
+    private alertService: AlertBarComponent
+  ) {
     this.getSelected = resultService.getSelected;
   }
 
@@ -29,21 +30,22 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.theme) {
-      this.lastStep = this.theme.steps[this.theme.steps.length - 1];
-      console.log(this.lastStep);
+    if (this.teaching) {
+      this.lastStep = this.teaching.typeOfTeaching.steps[this.teaching.typeOfTeaching.steps.length - 1];
     }
 
   }
-
 
   ngOnDestroy() {
     // this.subscription.unsubscrube();
   }
 
+  save() {
+    this.stepsService.update(this.teaching).subscribe(
+      (success) => this.alertService.open('Обучение успешно завершено!'),
+      (error) => this.alertService.open('Ошибка при сохранении обучения!')
+      // реализовать алерт сервис
+    )
 
-
-
-
-
+  }
 }

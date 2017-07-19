@@ -40,6 +40,7 @@ export class StepComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.setDP();
+
         this.isFinish = this.setIsFinish();
         if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
             this.eduConfigService.getDelivetyPoints().subscribe(
@@ -83,6 +84,12 @@ export class StepComponent implements OnInit, OnChanges {
             if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
                 this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
+        }
+        if (this.deliveryPoint === undefined &&
+            this.answeredQuestions &&
+            this.answeredQuestions[this.step.id] &&
+            this.answeredQuestions[this.step.id].deliveryPoint) {
+            this.deliveryPoint = this.answeredQuestions[this.step.id].deliveryPoint;
         }
     }
 

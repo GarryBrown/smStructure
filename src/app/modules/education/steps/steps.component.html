@@ -1,9 +1,9 @@
-<md-card *ngIf="theme">
-    <app-introduction *ngIf="theme && showIntro" [theme]="theme" (beginSteps)="beginSteps($event)"></app-introduction>
-    <ng-template [ngIf]="!showIntro && !showResult">
-        <ng-template ngFor let-step [ngForOf]="theme.steps">
-            <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="theme" [step]="step" [answeredQuestions]="results" [report]="report" (nextStep)="nextStep($event)" (toFinish)="setFinish($event)"></app-step>
-        </ng-template>
+<md-card *ngIf="teaching">
+  <app-introduction *ngIf="showIntro" [theme]="teaching.typeOfTeaching" (beginSteps)="beginSteps($event)"></app-introduction>
+  <ng-template [ngIf]="!showIntro && !showResult">
+    <ng-template ngFor let-step [ngForOf]="teaching.typeOfTeaching.steps">
+      <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="teaching.typeOfTeaching" [step]="step" [answeredQuestions]="teaching.teachingSpecialities" [report]="report" (nextStep)="nextStep($event)" (toFinish)="setFinish($event)"></app-step>
     </ng-template>
-    <app-result *ngIf="showResult" [theme]="theme" [answeredQuestions]="results"></app-result>
+  </ng-template>
+  <app-result *ngIf="showResult" [teaching]="teaching"></app-result>
 </md-card>
