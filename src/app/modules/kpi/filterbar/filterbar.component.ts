@@ -77,8 +77,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
     this.disabled = this.currentIndicators.some( indicator => indicator.planFields.length === 0);
     
     this.updateCurrentIndicators.emit(this.currentIndicators);
-    console.log('********************************************');
-    console.log(this.disabled);
   }
 
   changeIndicatorsSet() {

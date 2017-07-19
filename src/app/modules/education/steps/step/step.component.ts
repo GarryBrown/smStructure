@@ -37,11 +37,7 @@ export class StepComponent implements OnInit, OnChanges {
         this.getSelected = this.utilsService.getSelectedSingle;
     }
 
-    ngOnInit(
-    ) {
-        console.log("00000000000000000");
-        console.log(this.deliveryPoint);
-    }
+    ngOnInit() { }
 
     ngOnChanges() {
         this.prevStepsId = this.setPrevSteps(this.theme.steps);

@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
     return 'over';
   }
 
-  closeNav() {
+  closeSideNav() {
     this.opened = false;
     
   }

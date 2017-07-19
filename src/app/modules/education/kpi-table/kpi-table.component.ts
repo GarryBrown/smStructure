@@ -25,8 +25,6 @@ export class KpiTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log("KPI-table");
-    console.log(this.deliveryPoint);
   }
 
   ngOnChanges() {

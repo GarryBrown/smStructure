@@ -27,12 +27,8 @@ export class EduResultComponent implements OnInit, OnDestroy {
     )
     
     this.subscription = this.eduResultService.getEduResult()
-      .subscribe((data: any) => {
+      .subscribe((data: any) => 
         this.eduResult = data.data,
-          console.log("------------------"),
-          console.log(this.eduResult),
-          console.log("------------------")
-      },
       error => console.log("oops")
       )
   }

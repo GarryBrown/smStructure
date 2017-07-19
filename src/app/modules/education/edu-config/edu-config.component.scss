@@ -9,10 +9,8 @@ md-toolbar {
 }
 
 .footer {
-    // position: absolute;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 22px;
+    display: flex;
+    justify-content: center;
     button {
         height: 36px;
         margin: 10px;

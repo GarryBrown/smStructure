@@ -1,50 +1,51 @@
 <div class="wrapper">
 
-  <div class="block-table">
-    <table class="table table-condensed table-responsive">
-      <thead>
-        <th>Вопрос</th>
-        <ng-template ngFor let-qty [ngForOf]="prevStepsId">
-          <th>Ответ</th>
-          <th>Оценка</th>
-        </ng-template>
-        <th>Вариант</th>
-        <th>Оценка</th>
-        <th>Комментарий</th>
-      </thead>
-      <tbody *ngIf="lastStep">
-        <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="lastStep" [steps]="theme.steps" [onlyLast]="true"></tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="block-table">
+        <table class="table table-condensed table-responsive">
+            <thead>
+                <th>Вопрос</th>
+                <ng-template ngFor let-qty [ngForOf]="prevStepsId">
+                    <th>Ответ</th>
+                    <th>Оценка</th>
+                </ng-template>
+                <th>Вариант</th>
+                <th>Оценка</th>
+                <th>Комментарий</th>
+            </thead>
+            <tbody *ngIf="lastStep">
+                <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="lastStep" [steps]="theme.steps" [onlyLast]="true"></tr>
+            </tbody>
+        </table>
+    </div>
 
 
-  <div class="block-comments">
-    <div class="label">
-      <label>Сильные стороны</label>
-      <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Сильные стороны"></textarea>
-      </md-input-container>
-    </div>
-    <div class="label">
-      <label>Зоны развития</label>
-      <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Зоны развития"></textarea>
-      </md-input-container>
-    </div>
-    <div class="label">
-      <label>Задачи по развитию</label>
+    <div class="block-comments">
+        <div class="item-comment">
+            <label>Сильные стороны</label>
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Сильные стороны"></textarea>
+            </md-input-container>
+        </div>
+        <div class="item-comment">
+            <label>Зоны развития</label>
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Зоны развития"></textarea>
+            </md-input-container>
+        </div>
+        <div class="item-comment">
+            <label>Задачи по развитию</label>
 
-      <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Задачи по развитию"></textarea>
-      </md-input-container>
-    </div>
-    <div class="label">
-      <label>Задачи по KPI</label>
-      <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Задачи по KPI"></textarea>
-      </md-input-container>
-    </div>
-  </div>
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Задачи по развитию"></textarea>
+            </md-input-container>
+        </div>
+        <div class="item-comment">
+            <label>Задачи по KPI</label>
+            <md-input-container class="example-full-width">
+                <textarea mdInput placeholder="Задачи по KPI"></textarea>
+            </md-input-container>
+        </div>
 
+    </div>
+    <button md-raised-button color="primary"><md-icon>save</md-icon> Сохранить</button>
 </div>

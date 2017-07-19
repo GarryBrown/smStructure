@@ -4,7 +4,6 @@
 }
 
 .block-table {
-    outline: 1px solid #ccc;
     flex: 1 1 50%;
 }
 
@@ -13,8 +12,22 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    outline: 1px solid #ccc;
+    justify-content: flex-start;
     md-select {
         margin: 10px;
+    }
+    textarea {
+        padding: 5px;
+        width: 350px;
+    }
+    button {
+        height: 36px;
+    }
+    .item-comment {
+        flex: 1 1 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 }
