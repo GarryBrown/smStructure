@@ -97,6 +97,4 @@ export class EduConfigComponent implements OnInit {
       );
     });
   }
-
-
 }

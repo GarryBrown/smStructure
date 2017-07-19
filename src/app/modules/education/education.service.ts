@@ -20,8 +20,6 @@ export class EducationService {
   ) {
   }
 
-
-
   loadPlans(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: any) => {
@@ -34,6 +32,5 @@ export class EducationService {
     if (type === SCH) return 'Store-check';
     if (type === EDU) return 'Обучение';
   }
-
 }
 

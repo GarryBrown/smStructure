@@ -33,7 +33,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
     if (this.teaching) {
       this.lastStep = this.teaching.typeOfTeaching.steps[this.teaching.typeOfTeaching.steps.length - 1];
     }
-
   }
 
   ngOnDestroy() {

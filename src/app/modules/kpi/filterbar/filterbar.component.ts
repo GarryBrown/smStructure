@@ -27,6 +27,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
   listIndicator: Array<any> = [];
   listRoute: Array<any> = [];
   isDisabled = true;
+
   constructor(
     private pdService: PlanDetailService,
   ) {
@@ -38,7 +39,6 @@ export class FilterbarComponent implements OnInit, OnChanges {
     this.listIndicator = this.copyObj(this.currentIndicators);
     this.listRoute = this.copyObj(this.currentRoutes);
   }
-
 
   ngOnChanges() {
     this.getIndicators();
@@ -100,7 +100,4 @@ export class FilterbarComponent implements OnInit, OnChanges {
   onCheckIndicators(indicators) {
     this.currentIndicators = indicators;
   }
-
-
-
 }

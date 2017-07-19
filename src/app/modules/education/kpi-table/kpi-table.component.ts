@@ -58,5 +58,4 @@ export class KpiTableComponent implements OnInit, OnChanges {
     console.error(`error in ${api} => ${err}`);
     this.alert.open("Не удалось получить данные :(");
   }
-
 }

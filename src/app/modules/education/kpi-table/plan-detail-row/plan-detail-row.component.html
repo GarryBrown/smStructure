@@ -15,7 +15,6 @@
     </ng-template>
 </tr> -->
 
-
 <ng-template ngFor let-dp [ngForOf]="route.planDeliveryPointSet">
     <tr *ngIf="dp.id === deliveryPoint.id">
         <td>{{dp.description}}</td>

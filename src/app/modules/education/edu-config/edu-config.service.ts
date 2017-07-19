@@ -22,29 +22,26 @@ export class EduConfigService {
   }
 
 
-getRoutes(): Observable < Response > {
-  return this.http.get('/api/routes')
-    .map((res: Response) => res.json())
-}
+  getRoutes(): Observable<Response> {
+    return this.http.get('/api/routes')
+      .map((res: Response) => res.json())
+  }
 
-getDelivetyPoints(): Observable < Response > {
-  return this.http.get('/api/deliveryPoints')
-    .map((res: Response) => res.json())
-}
+  getDelivetyPoints(): Observable<Response> {
+    return this.http.get('/api/deliveryPoints')
+      .map((res: Response) => res.json())
+  }
 
-getReports(): Observable < Response > {
-  return this.http.get(this.resourceUrl)
-    .map((res: Response) => res.json())
-}
+  getReports(): Observable<Response> {
+    return this.http.get(this.resourceUrl)
+      .map((res: Response) => res.json())
+  }
 
-setCurrentTeaching(obj) {
-  this.teaching.next(obj);
-}
+  setCurrentTeaching(obj) {
+    this.teaching.next(obj);
+  }
 
-getCurrentTeaching(): Observable < any > {
-  return this.teaching.asObservable(); //.filter(item => item !== undefined);
-}
-
-
-
+  getCurrentTeaching(): Observable<any> {
+    return this.teaching.asObservable(); //.filter(item => item !== undefined);
+  }
 }

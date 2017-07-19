@@ -39,7 +39,6 @@ export class KPIComponent implements OnInit, OnDestroy {
     public kpiService: KPIService,
   ) {}
 
-
   initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: { lat: -34.397, lng: 150.644 },
@@ -81,7 +80,6 @@ export class KPIComponent implements OnInit, OnDestroy {
     console.log(this.plansss);
   }
 
-
   ngOnInit() {
     this.loadData();
     this.addMap();
@@ -99,7 +97,6 @@ export class KPIComponent implements OnInit, OnDestroy {
       (res: Response) => console.log(res.json)
     )
   }
-
 }
 
 

@@ -20,14 +20,17 @@
         padding: 5px;
         width: 350px;
     }
-    button {
-        height: 36px;
-    }
     .item-comment {
-        flex: 1 1 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
     }
+}
+
+.block-comments:last-child button {
+    margin: 16px;
+    height: 36px;
+    width: 116px;
+    margin-right: -71%;
 }

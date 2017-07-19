@@ -25,7 +25,6 @@ export class StepsComponent implements OnInit {
   answeredQuestions: any;
   report: Report;
 
-
   constructor(
     private route: ActivatedRoute,
     private stepsService: StepsService,
@@ -42,8 +41,6 @@ export class StepsComponent implements OnInit {
     this.getReport(1);
     this.getLocation();
     this.getTeaching();
-
-
   }
 
   // Загрузить объект из сервиса
@@ -165,6 +162,4 @@ export class StepsComponent implements OnInit {
       error => console.log("oops")
       )
   }
-
-
 }

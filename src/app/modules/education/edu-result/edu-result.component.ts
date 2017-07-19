@@ -25,9 +25,9 @@ export class EduResultComponent implements OnInit, OnDestroy {
       answer => this.onSucces(answer, this.onSuccessResult),
       err => console.error('Ouups')
     )
-    
+
     this.subscription = this.eduResultService.getEduResult()
-      .subscribe((data: any) => 
+      .subscribe((data: any) =>
         this.eduResult = data.data,
       error => console.log("oops")
       )
@@ -46,6 +46,4 @@ export class EduResultComponent implements OnInit, OnDestroy {
     console.log(data)
     this.results = data;
   }
-
-
 }

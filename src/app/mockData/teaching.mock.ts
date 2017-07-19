@@ -115,18 +115,19 @@ let _teaching = [
           id: 2560,
           description: 'Севанян Виген Гургени, ИП',
         },
-        1: {
-          answer: {
-            comment: "Comment 123",
-            id: 2,
-            orderBy: 1,
-            value: 2,
-            typeOfAnswer: {
-              id: 2,
-              description: '40/60'
-            }
-          }
-        },
+        // id question
+        // 1: {
+        //   answer: {
+        //     comment: "Comment 123",
+        //     id: 2,
+        //     orderBy: 1,
+        //     value: 2,
+        //     typeOfAnswer: {
+        //       id: 2,
+        //       description: '40/60'
+        //     }
+        //   }
+        // },
         // 2: {
         //   answer: {
         //     comment: "Comment 2222",

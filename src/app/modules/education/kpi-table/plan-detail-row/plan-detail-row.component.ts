@@ -28,5 +28,4 @@ export class PlanDetailRowComponent implements OnInit, OnChanges {
   toggle(event) {
     this.isExpanded = !this.isExpanded
   }
-
 }

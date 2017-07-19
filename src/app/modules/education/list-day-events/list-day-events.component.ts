@@ -16,5 +16,4 @@ export class ListDayEventsComponent implements OnInit {
   onOpenDialog(event) {
     this.openDialog.emit(event);
   }
-
 }

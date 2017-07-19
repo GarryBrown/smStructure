@@ -47,7 +47,6 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
     })
   }
 
-
   onSelectDay() {
     this.selectDay.emit(this.todayEvents);
   }

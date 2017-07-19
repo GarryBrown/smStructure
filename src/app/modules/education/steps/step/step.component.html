@@ -31,12 +31,10 @@
       </div>
     </div>
   </div>
-
   <div *ngIf="report && deliveryPoint" class="kpi-block">
     <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
   </div>
-
   <br>
   <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext()">Далее</button>
-  <button *ngIf="isFinish" md-raised-button (click)="goToResult()">Завершить</button>
+  <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
 </div>

@@ -11,7 +11,6 @@ export class KpiTableService {
   
   constructor(private http: Http, ) { }
 
-
   getRoutesData(indicators: Array<Indicator>, routes: Array<Route>): Observable<Response> {
     // api/plan-routes?typeOfPlanId=1,5&routeId=213,214
     let params: URLSearchParams = new URLSearchParams();
@@ -45,5 +44,4 @@ export class KpiTableService {
     });
     return strictIndicators;
   }
-
 }

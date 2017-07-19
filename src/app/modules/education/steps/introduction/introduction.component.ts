@@ -16,5 +16,4 @@ export class IntroductionComponent implements OnInit {
   begin() {
     this.beginSteps.emit(true);
   }
-
 }

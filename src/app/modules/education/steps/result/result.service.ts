@@ -25,7 +25,6 @@ export class ResultService {
         }
       }
     }
-
     return option;
   }
 }
