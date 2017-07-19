@@ -33,17 +33,8 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
       this.lastStep = this.theme.steps[this.theme.steps.length - 1];
       console.log(this.lastStep);
     }
-
   }
-
-
   ngOnDestroy() {
     // this.subscription.unsubscrube();
   }
-
-
-
-
-
-
 }

@@ -8,7 +8,6 @@ export class EduCalendarService {
     private http: Http
   ) { }
 
-
   // скорее всего будет принимать парамет и подргужать либо сторчеки либо обучения
   getEvent() {
     return this.http.get('api/events').map(data => data.json());
@@ -16,7 +15,5 @@ export class EduCalendarService {
   // getEvent() {
   //   return this.http.get('api/teaching').map(data => data.json());
   // }
-
-  
 
 }

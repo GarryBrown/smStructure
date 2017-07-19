@@ -12,9 +12,7 @@ import { ConfirmComponent } from '../../../../shared';
     selector: 'app-report',
     templateUrl: './report.component.html',
     styleUrls: ['./report.component.scss'],
-    providers: [AlertBarComponent],
-
-
+    providers: [AlertBarComponent]
 })
 export class ReportComponent implements OnInit, OnChanges {
     @Input() report: Report;
@@ -41,8 +39,6 @@ export class ReportComponent implements OnInit, OnChanges {
         console.log(this.indicators);
     }
 
-
-
     ngOnChanges() {
         if (this.report && this.report.routes.length) {
             console.log(this.report);
@@ -56,7 +52,6 @@ export class ReportComponent implements OnInit, OnChanges {
                 err => console.log('error')
             )
         }
-
     }
 
     copyObj(indicators) {
@@ -109,7 +104,5 @@ export class ReportComponent implements OnInit, OnChanges {
     onCheckIndicators(indicators) {
         this.report.indicators = indicators;
     }
-
-
 }
 

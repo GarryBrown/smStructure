@@ -27,7 +27,7 @@ export class ReportConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   toggleInfo() {
@@ -35,7 +35,7 @@ export class ReportConfigComponent implements OnInit {
   }
 
   create() {
-   
+
     this.newReport = new Report();
   }
 
@@ -76,7 +76,5 @@ export class ReportConfigComponent implements OnInit {
     } else {
       this.dialogRef.close(false);
     }
-
   }
-
 }

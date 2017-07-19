@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, HttpModule, RequestOptions, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-
 import { DateUtilService, PrincipalService } from '../../core';
-
 
 @Injectable()
 export class KPIService {
@@ -19,14 +17,11 @@ export class KPIService {
   ) {
   }
 
-
-
   loadPlans(): Observable<Response> {
     return this.http.get(this.resourceUrl)
       .map((res: any) => {
         return res
       });
   }
-
 }
 

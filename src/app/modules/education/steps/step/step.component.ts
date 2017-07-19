@@ -12,9 +12,9 @@ import { Report } from '../../../../models';
     styleUrls: ['./step.component.scss']
 })
 export class StepComponent implements OnInit, OnChanges {
-    @Input() theme: any;
+    @Input() theme: any; // typeOfTeaching
     @Input() step: any;
-    @Input() answeredQuestions: any;
+    @Input() answeredQuestions: any; // teachingSpecialities
     @Input() report: Report;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     @Output() toFinish: EventEmitter<any> = new EventEmitter();
@@ -23,6 +23,14 @@ export class StepComponent implements OnInit, OnChanges {
     deliveryPoint: any;
     prevStepsId: Array<number>;
     getSelected: any;
+    disabled: boolean = false;
+
+    materials = [
+        { id: 1, name: "Hydrogen" },
+        { id: 1, name: "Helium" },
+        { id: 1, name: "Lithium" },
+        { id: 1, name: "Beryllium" }
+    ];
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -35,9 +43,12 @@ export class StepComponent implements OnInit, OnChanges {
         this.getSelected = this.utilsService.getSelectedSingle;
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.disableNext();
+    }
 
     ngOnChanges() {
+
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.setDP();
         this.isFinish = this.setIsFinish();
@@ -47,7 +58,6 @@ export class StepComponent implements OnInit, OnChanges {
                 (error) => console.log(error)
             )
         }
-
     }
 
     setIsFinish(): boolean {
@@ -92,9 +102,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     disableNext(): boolean {
-        return false
+        return this.theme.questions.some((q) =>
+            this.answeredQuestions[this.step.id][q.id] === undefined)
     }
-
-
-
 }

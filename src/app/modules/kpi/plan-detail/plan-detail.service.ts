@@ -38,7 +38,6 @@ export class PlanDetailService {
     }).map((res: Response) => res.json());
   }
 
-
   getIndicatorsByRoutes(routes: Array<Route>): Observable<any> {
     if (routes.length) {
       let routesIds: Array<any> = [];
@@ -68,7 +67,6 @@ export class PlanDetailService {
       .map((res: Response) => res.json())
   }
 
-
   toOnlyFields(data: Array<any>, propetry: string): Array<string> {
     let arr: Array<string> = [];
     data.map(item => {
@@ -76,7 +74,6 @@ export class PlanDetailService {
     })
     return arr;
   }
-
 
   getPropsObj(indicators: Array<Indicator>) {
     let strictIndicators: Array<any> = [];

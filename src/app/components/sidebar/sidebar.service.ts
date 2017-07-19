@@ -16,6 +16,4 @@ export class SidebarService {
   logout (): Observable<any> {
     return this.auth.logout();
   }
-
-
 }

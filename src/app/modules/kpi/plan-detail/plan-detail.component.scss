@@ -16,8 +16,6 @@
         position: absolute;
         top: 0;
         left: 0;
-        //width: 40px;
-        //margin-left: 24px;
     }
 }
 
@@ -37,7 +35,6 @@ td.indicator-header {
 .indicator-header {
     height: 82px;
     border-bottom: 3px solid #eceeef;
-    // border-right: 1px solid gray;
     text-align: center;
     &:last-of-type {
         border-right: none;

@@ -13,8 +13,8 @@ import { Report } from '../../../models';
   styleUrls: ['./steps.component.scss']
 })
 export class StepsComponent implements OnInit {
-  subscription: any;
 
+  subscription: any;
   subscriptionServer: Subscription;
   subscriptionRoute: Subscription;
   subscriptionService: Subscription;
@@ -26,7 +26,6 @@ export class StepsComponent implements OnInit {
   showResult: boolean;
   answeredQuestions: any;
   report: Report;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -44,8 +43,6 @@ export class StepsComponent implements OnInit {
     this.getReport(1);
     this.getLocation();
     this.getTeaching();
-
-    
   }
 
   // Загрузить объект из сервиса
@@ -94,7 +91,6 @@ export class StepsComponent implements OnInit {
     console.log(this.currentStepIndex);
     this.setAnsweredQuestions(this.theme.steps);
   }
-
 
   sortStep(steps) {
     return steps.sort(this.utilsService.sortByOrderBy);
@@ -168,13 +164,9 @@ export class StepsComponent implements OnInit {
 
   getReport(id) {
     this.subscription = this.eduConfigService.findReport(id)
-      .subscribe((data: any) => {
+      .subscribe((data: any) =>
         this.report = data.data,
-          console.log("------------------"),
-          console.log(this.report),
-          console.log("------------------")
-      },
-      error => console.log("oops")
+        error => console.log("oops")
       )
 
     // this.eduConfigService.findReport().subscribe(
@@ -185,8 +177,5 @@ export class StepsComponent implements OnInit {
     //       console.log("----------------------")
     //   }
     // )
-
   }
-
-
 }
