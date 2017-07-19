@@ -29,7 +29,7 @@ const EducationRoutes: Routes = [
     canActivate: [RouteAccessService],
   },
   {
-    path: 'edu/result',
+    path: 'edu-result',
     component: EduResultComponent,
     canActivate: [RouteAccessService],
   },

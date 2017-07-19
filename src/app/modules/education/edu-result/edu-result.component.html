@@ -1,39 +1,39 @@
 <md-card>
-    <md-progress-bar mode="indeterminate" color="primary" *ngIf="isLoading"></md-progress-bar>
-    <md-toolbar>
-        Результаты
-    </md-toolbar>
-    <div class="content">
-        <table class="table  table-hover table-condensed table-responsive dataTables-example">
-            <thead align="center">
-                <tr>
-                    <th rowspan="2">Должность</th>
-                    <th rowspan="2">Маршрут</th>
-                    <th rowspan="2">Сотрудник</th>
-                    <th rowspan="2">Вступил в долность</th>
-                    <th rowspan="2">Срок службы</th>
-                    <th colspan="5">Аттестация</th>
-                </tr>
-                <tr>
-                    <th>Дата последней аттестации</th>
-                    <th>Категория цель</th>
-                    <th>Min цель</th>
-                    <th>Оценка</th>
-                    <th>Категория факт</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let eduRes of eduResult" align="center">
-                <td>{{eduRes.position}}</td>
-                <td>{{eduRes.route}}</td>
-                <td>{{eduRes.employee}}</td>
-                <td>{{eduRes.dateOfAdoption}}</td>
-                <td>{{eduRes.lifeTime}}</td>
-                <td>{{eduRes.attestation.dateOfLastAttestation}}</td>
-                <td>{{eduRes.attestation.categoryGoal}}</td>
-                <td>{{eduRes.attestation.minGoal}}</td>
-                <td>{{eduRes.attestation.mark}}</td>
-                <td>{{eduRes.attestation.categoryFact}}</td>
-            </tbody>
-        </table>
-    </div>
+  <md-progress-bar mode="indeterminate" color="primary" *ngIf="!isLoading"></md-progress-bar>
+  <md-toolbar>
+    Результаты
+  </md-toolbar>
+  <div class="content">
+    <table class="table  table-hover table-condensed table-responsive dataTables-example">
+      <thead align="center">
+        <tr>
+          <th rowspan="2">Должность</th>
+          <th rowspan="2">Маршрут</th>
+          <th rowspan="2">Сотрудник</th>
+          <th rowspan="2">Вступил в долность</th>
+          <th rowspan="2">Срок службы</th>
+          <th colspan="5">Аттестация</th>
+        </tr>
+        <tr>
+          <th>Дата последней аттестации</th>
+          <th>Категория цель</th>
+          <th>Min цель</th>
+          <th>Оценка</th>
+          <th>Категория факт</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let eduRes of eduResult" align="center">
+        <td>{{eduRes.position}}</td>
+        <td>{{eduRes.route}}</td>
+        <td>{{eduRes.employee}}</td>
+        <td>{{eduRes.dateOfAdoption}}</td>
+        <td>{{eduRes.lifeTime}}</td>
+        <td>{{eduRes.attestation.dateOfLastAttestation}}</td>
+        <td>{{eduRes.attestation.categoryGoal}}</td>
+        <td>{{eduRes.attestation.minGoal}}</td>
+        <td>{{eduRes.attestation.mark}}</td>
+        <td>{{eduRes.attestation.categoryFact}}</td>
+      </tbody>
+    </table>
+  </div>
 </md-card>
