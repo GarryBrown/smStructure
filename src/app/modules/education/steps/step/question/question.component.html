@@ -13,7 +13,7 @@
   </td>
 </ng-template>
 
-<td>
+<td *ngIf="!onlyLast">
   <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
     <md-option *ngFor="let answerOption of question.answers" [value]="getSelected(answer, answerOption)">
       {{ answerOption.typeOfAnswer.description }}
@@ -25,6 +25,6 @@
 </td>
 <td>
   <md-input-container>
-    <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)"></textarea>
+    <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)" [disabled]="onlyLast"></textarea>
   </md-input-container>
 </td>

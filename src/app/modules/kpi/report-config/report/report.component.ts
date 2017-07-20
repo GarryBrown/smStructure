@@ -28,7 +28,7 @@ export class ReportComponent implements OnInit, OnChanges {
     constructor(
         private pdService: PlanDetailService,
         private reportService: ReportConfigService,
-        private alert: AlertBarComponent,
+        private alertService: AlertBarComponent,
         public dialog: MdDialog
     ) {
 
@@ -64,7 +64,7 @@ export class ReportComponent implements OnInit, OnChanges {
     save() {
         this.onSave.emit(this.report);
         this.toggleInfo();
-        this.alert.open(this.report.description + " успешно изменен!");
+        this.alertService.open(this.report.description + " успешно изменен!");
     }
 
     changeRoutes(routes) {
@@ -87,7 +87,7 @@ export class ReportComponent implements OnInit, OnChanges {
             console.log(result);
             if (result) {
                 this.onDelete.emit(report);
-                this.alert.open(this.report.description + " удален!");
+                this.alertService.open(this.report.description + " удален!");
             } else {
               dialogRef.close();
             }

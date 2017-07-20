@@ -80,14 +80,11 @@ export class AppComponent implements OnInit {
   }
 
   updateMode(width: number) {
-    if (width >= 888) {
-      return 'side';
-    }
-    return 'over';
+    return width >= 888 ? 'side' : 'over';
   }
 
   closeSideNav() {
     this.opened = false;
-    
+
   }
 }

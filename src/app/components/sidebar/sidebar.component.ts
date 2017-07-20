@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SidebarService } from './sidebar.service';
-import { SidebarToggleService } from '../../core/utils/sidebar-toggle.service';
 import { PrincipalService } from '../../core';
 
 @Component({
@@ -19,11 +18,10 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private sidebarService: SidebarService,
-    private sidebartoggle: SidebarToggleService,
     private principal: PrincipalService
   ) {
     this.getUser();
-    
+
   }
 
   ngOnInit() {

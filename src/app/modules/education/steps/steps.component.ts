@@ -13,13 +13,11 @@ import { Report } from '../../../models';
   styleUrls: ['./steps.component.scss']
 })
 export class StepsComponent implements OnInit {
-
   subscription: any;
   subscriptionServer: Subscription;
   subscriptionRoute: Subscription;
   subscriptionService: Subscription;
-  theme: any;
-  results: any;
+  teaching: any;
   stepsIndex: Array<number> = [];
   currentStepIndex: number;
   showIntro: boolean;
@@ -79,17 +77,11 @@ export class StepsComponent implements OnInit {
   }
 
   onSuccess(teaching) {
-    let data = teaching;
-    console.log(data);
-    this.theme = data.typeOfTeaching;
-    this.results = data.teachingSpecialities;
-    this.theme.steps = this.sortStep(this.theme.steps);
-    this.stepsIndex = this.setSteps(this.theme.steps);
-
-    console.log(this.results);
-    this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, data);
-    console.log(this.currentStepIndex);
-    this.setAnsweredQuestions(this.theme.steps);
+    this.teaching = teaching;
+    this.teaching.typeOfTeaching.steps = this.sortStep(this.teaching.typeOfTeaching.steps);
+    this.stepsIndex = this.setSteps(this.teaching.typeOfTeaching.steps);
+    this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, this.teaching);
+    this.setAnsweredQuestions(this.teaching.typeOfTeaching.steps);
   }
 
   sortStep(steps) {
@@ -139,14 +131,14 @@ export class StepsComponent implements OnInit {
 
   setCurrentStepID(steps) {
     return this.stepsIndex.find(id =>
-      this.theme.questions.find(question => {
+      this.teaching.typeOfTeaching.questions.find(question => {
         if (steps[id][question.id] === undefined) return id;
       })
     )
   }
 
   isStepBegined(stepId: number, results: any): boolean {
-    return this.theme.questions.some(question => results[stepId][question.id] !== undefined)
+    return this.teaching.typeOfTeaching.questions.some(question => results[stepId][question.id] !== undefined)
   }
 
   getLocation() {
@@ -164,18 +156,10 @@ export class StepsComponent implements OnInit {
 
   getReport(id) {
     this.subscription = this.eduConfigService.findReport(id)
-      .subscribe((data: any) =>
-        this.report = data.data,
-        error => console.log("oops")
+      .subscribe((data: any) => {
+        this.report = data.data;
+      },
+      error => console.log("oops")
       )
-
-    // this.eduConfigService.findReport().subscribe(
-    //   (obj: any) => {
-    //     this.report = obj.report,
-    //       console.log("----------------------"),
-    //       console.log(this.report),
-    //       console.log("----------------------")
-    //   }
-    // )
   }
 }
