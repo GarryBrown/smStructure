@@ -13,7 +13,30 @@ let _eduResult = [
       minGoal: 3.2,
       mark: 3.5,
       categoryFact: "B"
-    }
+    },
+    themes: [
+      {
+        id: 1,
+        description: "Тема 1",
+        date: "15.01.2017",
+        goals: 3.6,
+        value: 2.6
+      },
+      {
+        id: 2,
+        description: "Тема 2",
+        date: "15.02.2017",
+        goals: 3.6,
+        value: 2.6
+      },
+      {
+        id: 3,
+        description: "Тема 3",
+        date: "15.03.2017",
+        goals: 3.6,
+        value: 2.6
+      }
+    ]
   },
   {
     id: 2,
@@ -29,7 +52,30 @@ let _eduResult = [
       minGoal: 3.2,
       mark: 3.1,
       categoryFact: "B-"
-    }
+    },
+    themes: [
+      {
+        id: 4,
+        description: "Тема 1",
+        date: "15.05.2017",
+        goals: 3.6,
+        value: 3.6
+      },
+      {
+        id: 5,
+        description: "Тема 2",
+        date: "25.01.2017",
+        goals: 3.6,
+        value: 4.6
+      },
+      {
+        id: 6,
+        description: "Тема 3",
+        date: "25.02.2017",
+        goals: 3.6,
+        value: 2.6
+      }
+    ]
   },
   {
     id: 3,
@@ -45,7 +91,30 @@ let _eduResult = [
       minGoal: 3.5,
       mark: 3.6,
       categoryFact: "A"
-    }
+    },
+    themes: [
+      {
+        id: 7,
+        description: "Тема 1",
+        date: "25.03.2017",
+        goals: 3.6,
+        value: 2.6
+      },
+      {
+        id: 8,
+        description: "Тема 2",
+        date: "14.07.2017",
+        goals: 3.6,
+        value: 2.6
+      },
+      {
+        id: 9,
+        description: "Тема 3",
+        date: "18.06.2017",
+        goals: 3.6,
+        value: 2.6
+      }
+    ]
   },
 ];
 

@@ -8,14 +8,33 @@ import { Http, Response } from "@angular/http";
 export class EduResultService {
 
   private currentAnswer = new BehaviorSubject(undefined);
-
   fuck: string;
-
 
   constructor(private http: Http) { }
 
   getEduResult(): Observable<Array<any>> {
     return this.http.get('/api/eduResult')
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  getCategories(): Observable<Array<any>> {
+    return this.http.get('/api/categories')
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+   getRoutes(): Observable<Array<any>> {
+    return this.http.get('/api/routes')
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+   getThemes(): Observable<Array<any>> {
+    return this.http.get('/api/themes')
       .map((res: Response) => {
         return res.json();
       });

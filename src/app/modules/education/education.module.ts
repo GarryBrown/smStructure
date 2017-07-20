@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DatepickerModule } from 'angular2-material-datepicker'
 /*share*/
 import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
@@ -46,7 +47,8 @@ if (!environment.production) {
     EducationRoutingModule,
     SharedModule,
     ...myTestApiModule,
-    MarkdownModule
+    MarkdownModule,
+    DatepickerModule
   ],
   declarations: [
     EducationComponent,

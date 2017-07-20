@@ -6,8 +6,6 @@ import 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from '@angular/material';
-
-
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { FormsModule } from '@angular/forms';
