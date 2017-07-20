@@ -24,14 +24,7 @@ export class StepComponent implements OnInit, OnChanges {
     prevStepsId: Array<number>;
     getSelected: any;
     disabled: boolean = false;
-
-    materials = [
-        { id: 1, name: "Hydrogen" },
-        { id: 1, name: "Helium" },
-        { id: 1, name: "Lithium" },
-        { id: 1, name: "Beryllium" }
-    ];
-
+    
     constructor(
         private eduConfigService: EduConfigService,
         private utilsService: UtilsService,

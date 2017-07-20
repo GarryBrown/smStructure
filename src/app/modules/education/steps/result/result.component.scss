@@ -4,11 +4,11 @@
 }
 
 .block-table {
-    flex: 1 1 50%;
+    width: 50%;
 }
 
 .block-comments {
-    flex: 1 1 50%;
+    width: 50%;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -16,9 +16,13 @@
     md-select {
         margin: 10px;
     }
+    md-input-container {
+        padding: 5px;
+        width: 450px;
+    }
     textarea {
         padding: 5px;
-        width: 350px;
+        width: 450px;
     }
     .item-comment {
         display: flex;
@@ -33,4 +37,14 @@
     height: 36px;
     width: 116px;
     margin-right: -71%;
+}
+
+@media (max-width: 670px) {
+    md-input-container {
+        width: 270px;
+    }
+    textarea {
+        padding: 5px;
+        width: 270px;
+    }
 }
