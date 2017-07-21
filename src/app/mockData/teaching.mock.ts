@@ -14,6 +14,7 @@ let _teaching = [
         {
           id: 1,
           description: 'Пропорция товара на полке, но для начала очень уж большой вопрос, чтобы проверить адаптивность нашей таблицы?',
+          orderBy: 1,
           answers: [
             {
               id: 1,
@@ -47,6 +48,7 @@ let _teaching = [
         {
           id: 2,
           description: 'Условия для выполнения условий?',
+          orderBy: 2,          
           answers: [
             {
               id: 4,
@@ -172,34 +174,34 @@ let _teaching = [
         // }
       },
       3: {
-        // deliveryPoint: {
-        //   id: 2312,
-        //   description: 'Челухин Евгений Владимирович, ИП - м-н Радуга - 2'
-        // },
-        // 1: {
-        //   answer: {
-        //     comment: "Comment 123",
-        //     id: 2,
-        //     orderBy: 1,
-        //     value: 2,
-        //     typeOfAnswer: {
-        //       id: 2,
-        //       description: '40/60'
-        //     }
-        //   }
-        // },
-        // 2: {
-        //   answer: {
-        //     comment: "Comment 2222",
-        //     id: 6,
-        //     value: 3,
-        //     orderBy: 3,
-        //     typeOfAnswer: {
-        //       id: 6,
-        //       description: 'Нет правильного ответа'
-        //     }
-        //   },
-        // }
+        deliveryPoint: {
+          id: 2312,
+          description: 'Челухин Евгений Владимирович, ИП - м-н Радуга - 2'
+        },
+        1: {
+          answer: {
+            comment: "Comment 123",
+            id: 2,
+            orderBy: 1,
+            value: 2,
+            typeOfAnswer: {
+              id: 2,
+              description: '40/60'
+            }
+          }
+        },
+        2: {
+          answer: {
+            comment: "Comment 2222",
+            id: 6,
+            value: 3,
+            orderBy: 3,
+            typeOfAnswer: {
+              id: 6,
+              description: 'Нет правильного ответа'
+            }
+          },
+        }
       }
     },
     commonComment: 'Не плохой парень'

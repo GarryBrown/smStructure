@@ -1,49 +1,49 @@
 <div class="header">
-  <md-toolbar>
-    <h3> Полевая активность </h3>
-    <span class="close">
+    <md-toolbar>
+        <h3> Полевая активность </h3>
+        <span class="close">
       <button md-icon-button (click)="close()">
         <md-icon >close</md-icon>
       </button>
     </span>
-  </md-toolbar>
+    </md-toolbar>
 </div>
 
 <div class="wrapper" *ngIf="event">
-  <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all">
-    <md-option *ngFor="let type of types" [value]="getSelected(event.type, type)">
-      {{ type.description }}
-    </md-option>
-  </md-select>
-  <br>
-  <br>
+    <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all">
+        <md-option *ngFor="let type of types" [value]="getSelected(event.type, type)">
+            {{ type.description }}
+        </md-option>
+    </md-select>
+    <br>
+    <br>
 
-  <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
-    <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
-      {{ route.description }}
-    </md-option>
-  </md-select>
-  <br>
-  <br>
+    <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
+        <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
+            {{ route.description }}
+        </md-option>
+    </md-select>
+    <br>
+    <br>
 
-  <md-select placeholder="Тема">
-    <md-option *ngFor="let item of ['Продажи','Консультации','Удержание']" [value]="item">
-      {{ item }}
-    </md-option>
-  </md-select>
+    <md-select placeholder="Тема">
+        <md-option *ngFor="let item of ['Продажи','Консультации','Удержание']" [value]="item">
+            {{ item }}
+        </md-option>
+    </md-select>
 
-  <md-select *ngIf="access === edu" placeholder="Отчет KPI" name="event" [(ngModel)]="report">
-    <md-option *ngFor="let reportOption of reports" [value]="getSelected(report, reportOption)">
-      {{ reportOption.description }}
-    </md-option>
-  </md-select>
+    <md-select *ngIf="access === edu" placeholder="Отчет KPI" name="event" [(ngModel)]="report">
+        <md-option *ngFor="let reportOption of reports" [value]="getSelected(report, reportOption)">
+            {{ reportOption.description }}
+        </md-option>
+    </md-select>
 
 </div>
 
 <div class="footer">
 
-  <button *ngIf="access === all" md-raised-button color="accent" (click)="saveEvent()">Сохранить</button>
-  <button *ngIf="access === edu" md-raised-button color="accent" (click)="startEvent()" [disabled]="!report">Начать</button>
-  <button *ngIf="access === sch" md-raised-button color="accent" (click)="startEvent()">Начать</button>
-  <button md-raised-button (click)="close()">Отмена</button>
+    <button *ngIf="access === all" md-raised-button color="accent" (click)="saveEvent()">Сохранить</button>
+    <button *ngIf="access === edu" md-raised-button color="accent" (click)="startEvent()" [disabled]="!report">Начать</button>
+    <button *ngIf="access === sch" md-raised-button color="accent" (click)="startEvent()">Начать</button>
+    <button md-raised-button (click)="close()">Отмена</button>
 </div>

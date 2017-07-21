@@ -79,6 +79,23 @@ export class StepsComponent implements OnInit {
   onSuccess(teaching) {
     this.teaching = teaching;
     this.teaching.typeOfTeaching.steps = this.sortStep(this.teaching.typeOfTeaching.steps);
+    this.teaching.typeOfTeaching.questions = this.sortQuestion(this.teaching.typeOfTeaching.questions);
+    this.teaching.typeOfTeaching.questions.map(answer => {
+      let arr = new Array();
+      answer.answers.map(order => {
+        console.log(order.orderBy)
+
+        arr.push(order.orderBy);
+        console.log("==========")
+        console.log(arr);
+      })
+      this.sortAnswers(arr);
+      // this.sortAnswers(order)
+
+    });
+
+
+    // this.sortAnswers(this.teaching.typeOfTeaching.questions.answers);
     this.stepsIndex = this.setSteps(this.teaching.typeOfTeaching.steps);
     this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, this.teaching);
     this.setAnsweredQuestions(this.teaching.typeOfTeaching.steps);
@@ -88,9 +105,22 @@ export class StepsComponent implements OnInit {
     return steps.sort(this.utilsService.sortByOrderBy);
   }
 
+  sortQuestion(questions) {
+    return questions.sort(this.utilsService.sortByOrderBy);
+  }
+
+  sortAnswers(answers) {
+    return answers.sort(this.utilsService.sortByOrderBy);
+  }
+  
   setSteps(steps) {
     return steps.map(step => step.id);//.sort(this.utilsService.sortNumber);
   }
+
+
+  // setQuestions(questions) {
+  //   return questions.map(question => question.id);
+  // }
 
   nextStep(curStep) {
     this.currentStepIndex++;

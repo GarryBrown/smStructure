@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
 
   checkUser(user) {
     if (user) {
-      this.opened = true;
+      this.opened = false;
     } else {
       this.hideNav();
     }
@@ -71,16 +71,28 @@ export class AppComponent implements OnInit {
     this.opened = false;
   }
 
+  hide(event) {
+    this.opened = false;
+  }
+
   toggleNav(opened) {
     console.log(opened);
     this.opened = opened;
   }
+
   setInitMode() {
     this.mode = this.updateMode(window.innerWidth);
   }
 
   updateMode(width: number) {
-    return width >= 888 ? 'side' : 'over';
+    if (width >= 888) {
+      this.opened = true;
+      return 'side';
+    } else {
+      this.opened = false;
+      return 'over';
+    }
+    // return width >= 888 ? 'side' : 'over';
   }
 
   closeSideNav() {

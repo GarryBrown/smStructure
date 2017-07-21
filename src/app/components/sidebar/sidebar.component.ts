@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SidebarService } from './sidebar.service';
@@ -10,6 +10,7 @@ import { PrincipalService } from '../../core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  @Output() hideSidebar = new EventEmitter();
   mode: string;
   show: boolean;
   user: any;
@@ -25,6 +26,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.principal.getUserState().subscribe(
       (user) => {
         this.user = user;
@@ -62,4 +64,10 @@ export class SidebarComponent implements OnInit {
   //     this.toggle();
   //   }
   // }
+
+  hideSideNav() {
+    if (window.innerWidth <= 888) {
+      this.hideSidebar.emit(false);
+    }
+  }
 }

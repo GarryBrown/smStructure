@@ -3,7 +3,7 @@
 <md-sidenav-container class="container">
     <md-sidenav (close-start)="closeSideNav()" #sidenav [opened]="opened" mode="{{mode}}">
         <div class="scrolling-block">
-            <app-sidebar></app-sidebar>
+            <app-sidebar (hideSidebar)="toggleNav($event)"></app-sidebar>
         </div>
     </md-sidenav>
     <div class="scrolling-block">

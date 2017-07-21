@@ -7,21 +7,24 @@
                 <label>По</label>
                 <material-datepicker [(date)]="date" (onSelect)="onSelect($event)" dateFormat="YYYY-MM-DD" [rangeEnd]="testRangeDate"></material-datepicker>
             </div>
-            <md-select placeholder="Маршруты">
-                <md-option *ngFor="let route of routes">
-                    {{ route.description }}
-                </md-option>
-            </md-select>
-            <md-select placeholder="Категории">
-                <md-option *ngFor="let category of categories">
-                    {{ category.description }}
-                </md-option>
-            </md-select>
-            <md-select placeholder="Темы">
-                <md-option *ngFor="let theme of themes">
-                    {{ theme.description }}
-                </md-option>
-            </md-select>
+            <div class="selectFilter">
+                <md-select placeholder="Маршруты">
+                    <md-option *ngFor="let route of routes" [value]="route.id">
+                        {{ route.description }}
+                    </md-option>
+                </md-select>
+                <md-select placeholder="Категории">
+                    <md-option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.description }}
+                    </md-option>
+                </md-select>
+                <md-select placeholder="Темы" (ngModelChange)="changeThemes($event)">
+                    <md-option *ngFor="let theme of themes" [value]="theme.id">
+                        {{ theme.description }}
+                    </md-option>
+                </md-select>
+            </div>
+            <button md-mini-fab (click)="getDataFilter()"><md-icon>filter_list</md-icon></button>
         </div>
     </md-card>
 

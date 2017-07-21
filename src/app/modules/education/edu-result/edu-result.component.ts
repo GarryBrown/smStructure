@@ -88,4 +88,25 @@ export class EduResultComponent implements OnInit, OnDestroy {
         this.sum = this.sum + value.value);
     });
   }
+
+  changeResult(eduResult: Array<any>) {
+    // this.eduResult = this.eduResultService.getEduResultData(eduResult)
+  }
+
+  changeResultSet(eduResult) {
+    this.changeResult(eduResult);
+  }
+
+  applyFilter() {
+    this.eduResultService.getEduResultData(this.themes).subscribe(
+      (data: any) => this.onSucces(data, this.onSuccesThemeData),
+      error => console.error(error)
+    );
+  }
+  onSuccesThemeData(data) {
+    this.eduResult = data.data;
+  }
+  changeThemes(result) {
+    this.applyFilter();
+  }
 }
