@@ -22,7 +22,9 @@ export class EduConfigComponent implements OnInit {
   routes: Array<Route>;
   reports: Array<Report>;
   report: Report;
+  teaching: any;
   getSelected: any;
+  isStarted: boolean;
   types: Array<TypeOfEvent> = [
     { id: 2, description: 'store-check' },
     { id: 1, description: 'Обучение' }
@@ -42,6 +44,7 @@ export class EduConfigComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadTeaching();
     console.log(this.access);
     console.log(this.event);
     this.eduConfigService.getRoutes().subscribe(
@@ -52,16 +55,6 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccess(data, this.onSuccessReports),
       (error) => this.onError('getRoutes', error)
     )
-  }
-
-  startEvent() {
-    console.log(this.event);
-    let obj = {
-      event: this.event,
-      report: this.report,
-    };
-    this.loadTeaching();
-
   }
 
   close() {
@@ -80,21 +73,51 @@ export class EduConfigComponent implements OnInit {
     this.reports = data;
   }
 
+  onSuccessTeaching(data) {
+    console.log(data)
+    this.teaching = data;
+    this.isStarted = this.teaching.position? true: false;
+    console.log(this.isStarted);
+  }
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
-
   }
 
- loadTeaching() {
-    this.stepsService.getTeaching().subscribe((teaching: any) => {
-      let data = teaching.data;
-      // console.log(data);
-      // console.log(data[0].id);
-      this.eduConfigService.setCurrentTeaching(data[0]);
-      this.router.navigate(['edu/theme', 1]).then(
-        (result) => this.dialogRef.close(false),
-        (reason) => console.error(`navigate error ${reason}`)
-      );
-    });
+  loadTeaching() {
+    this.stepsService.find(1).subscribe(
+      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
+    );
   }
+
+  beginTeaching() {
+    console.log('begin')
+    let latLng = null;
+    let time;
+    this.eduConfigService.getLocation().then(
+      (latLng) => {
+        console.log('Promice getLoc is okey')
+        latLng = latLng;
+        time = new Date();
+        console.log(this.teaching)
+        this.teaching.position = latLng;
+        this.teaching.dateTime = time;
+        // this.eduConfigService.update(this.teaching).subscribe(
+        //   (obj) => this.goToTeaching(obj),
+        //   (err) => console.error(err)
+        // )
+        this.goToTeaching(this.teaching);
+      },
+      (err) => console.error('Promise getLocation')
+    );
+  }
+
+  goToTeaching(teaching) {
+    console.log(teaching)
+    this.eduConfigService.setCurrentTeaching(teaching);
+    this.router.navigate(['edu/theme', this.teaching.id]).then(
+      (result) => this.dialogRef.close(false),
+      (reason) => console.error(`navigate error ${reason}`)
+    );
+  }
+
 }

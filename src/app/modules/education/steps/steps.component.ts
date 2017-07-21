@@ -80,22 +80,6 @@ export class StepsComponent implements OnInit {
     this.teaching = teaching;
     this.teaching.typeOfTeaching.steps = this.sortStep(this.teaching.typeOfTeaching.steps);
     this.teaching.typeOfTeaching.questions = this.sortQuestion(this.teaching.typeOfTeaching.questions);
-    this.teaching.typeOfTeaching.questions.map(answer => {
-      let arr = new Array();
-      answer.answers.map(order => {
-        console.log(order.orderBy)
-
-        arr.push(order.orderBy);
-        console.log("==========")
-        console.log(arr);
-      })
-      this.sortAnswers(arr);
-      // this.sortAnswers(order)
-
-    });
-
-
-    // this.sortAnswers(this.teaching.typeOfTeaching.questions.answers);
     this.stepsIndex = this.setSteps(this.teaching.typeOfTeaching.steps);
     this.currentStepIndex = this.setCurrentStep(this.setCurrentStepID, this.teaching);
     this.setAnsweredQuestions(this.teaching.typeOfTeaching.steps);
@@ -106,21 +90,20 @@ export class StepsComponent implements OnInit {
   }
 
   sortQuestion(questions) {
+    questions.map(question => {
+      question.answers = this.sortAnswers(question.answers);
+      return question;
+    });
     return questions.sort(this.utilsService.sortByOrderBy);
   }
 
   sortAnswers(answers) {
     return answers.sort(this.utilsService.sortByOrderBy);
   }
-  
+
   setSteps(steps) {
-    return steps.map(step => step.id);//.sort(this.utilsService.sortNumber);
+    return steps.map(step => step.id);
   }
-
-
-  // setQuestions(questions) {
-  //   return questions.map(question => question.id);
-  // }
 
   nextStep(curStep) {
     this.currentStepIndex++;
@@ -161,14 +144,14 @@ export class StepsComponent implements OnInit {
 
   setCurrentStepID(steps) {
     return this.stepsIndex.find(id =>
-      this.teaching.typeOfTeaching.questions.find(question => {
-        if (steps[id][question.id] === undefined) return id;
+      this.teaching.typeOfTeaching.questions.find((question: any) => {
+        if (steps.steps[id].questions[question.id] === null) return id;
       })
     )
   }
 
   isStepBegined(stepId: number, results: any): boolean {
-    return this.teaching.typeOfTeaching.questions.some(question => results[stepId][question.id] !== undefined)
+    return this.teaching.typeOfTeaching.questions.some(question => results.steps[stepId].questions[question.id] !== null)
   }
 
   getLocation() {
@@ -192,4 +175,20 @@ export class StepsComponent implements OnInit {
       error => console.log("oops")
       )
   }
+}
+
+
+interface teaching {
+  id: number,
+  typeOfTeaching: {
+    id: number,
+    description: string,
+    textBody: string,
+    questions: Array<any>,
+    steps: Array<any>
+  },
+  teachingSpecialities: {
+    steps: any;
+  }
+
 }

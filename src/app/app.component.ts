@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   updateMode(width: number) {
-    if (width >= 888) {
+    if (width >= 1246) {
       this.opened = true;
       return 'side';
     } else {

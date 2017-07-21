@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
   // }
 
   hideSideNav() {
-    if (window.innerWidth <= 888) {
+    if (window.innerWidth <= 1246) {
       this.hideSidebar.emit(false);
     }
   }

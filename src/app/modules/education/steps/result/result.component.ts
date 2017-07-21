@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { StepsService } from '../steps.service';
-import { ResultService } from './result.service';
 import { AlertBarComponent } from '../../../../shared';
 
 
@@ -16,14 +15,11 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   @Input() teaching: any;
   lastStep;
   subscription;
-  getSelected: any;
 
   constructor(
-    private resultService: ResultService,
     private stepsService: StepsService,
     private alertService: AlertBarComponent
   ) {
-    this.getSelected = resultService.getSelected;
   }
 
   ngOnInit() {
@@ -43,7 +39,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
     this.stepsService.update(this.teaching).subscribe(
       (success) => this.alertService.open('Обучение успешно завершено!'),
       (error) => this.alertService.open('Ошибка при сохранении обучения!')
-      // реализовать алерт сервис
     )
 
   }
