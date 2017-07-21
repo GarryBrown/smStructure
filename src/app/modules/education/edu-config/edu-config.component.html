@@ -41,9 +41,9 @@
 </div>
 
 <div class="footer">
-
   <button *ngIf="access === all" md-raised-button color="accent" (click)="saveEvent()">Сохранить</button>
-  <button *ngIf="access === edu" md-raised-button color="accent" (click)="startEvent()" [disabled]="!report">Начать</button>
+  <button *ngIf="access === edu && !isStarted" md-raised-button color="accent" (click)="beginTeaching()" [disabled]="!report">Начать</button>
+  <button *ngIf="access === edu && isStarted" md-raised-button color="accent" (click)="goToTeaching()">Продолжить</button>
   <button *ngIf="access === sch" md-raised-button color="accent" (click)="startEvent()">Начать</button>
   <button md-raised-button (click)="close()">Отмена</button>
 </div>

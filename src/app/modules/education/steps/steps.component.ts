@@ -89,7 +89,7 @@ export class StepsComponent implements OnInit {
   }
 
   setSteps(steps) {
-    return steps.map(step => step.id);//.sort(this.utilsService.sortNumber);
+    return steps.map(step => step.id);
   }
 
   nextStep(curStep) {
@@ -131,14 +131,14 @@ export class StepsComponent implements OnInit {
 
   setCurrentStepID(steps) {
     return this.stepsIndex.find(id =>
-      this.teaching.typeOfTeaching.questions.find(question => {
-        if (steps[id][question.id] === undefined) return id;
+      this.teaching.typeOfTeaching.questions.find((question: any) => {
+        if (steps.steps[id].questions[question.id] === null) return id;
       })
     )
   }
 
   isStepBegined(stepId: number, results: any): boolean {
-    return this.teaching.typeOfTeaching.questions.some(question => results[stepId][question.id] !== undefined)
+    return this.teaching.typeOfTeaching.questions.some(question => results.steps[stepId].questions[question.id] !== null)
   }
 
   getLocation() {
@@ -162,4 +162,20 @@ export class StepsComponent implements OnInit {
       error => console.log("oops")
       )
   }
+}
+
+
+interface teaching {
+  id: number,
+  typeOfTeaching: {
+    id: number,
+    description: string,
+    textBody: string,
+    questions: Array<any>,
+    steps: Array<any>
+  },
+  teachingSpecialities: {
+    steps: any;
+  }
+
 }

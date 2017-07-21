@@ -21,6 +21,12 @@ export class EduConfigService {
     });
   }
 
+  update(teaching: any): Observable<any> {
+    let copy: any = Object.assign({}, teaching);
+    return this.http.put(this.resourceUrl, copy).map((res: Response) => {
+      return res.json();
+    });
+  }
 
   getRoutes(): Observable<Response> {
     return this.http.get('/api/routes')
@@ -43,5 +49,20 @@ export class EduConfigService {
 
   getCurrentTeaching(): Observable<any> {
     return this.teaching.asObservable(); //.filter(item => item !== undefined);
+  }
+
+  getLocation() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position);
+          resolve(position);
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+        resolve(null);
+      }
+    });
+
   }
 }

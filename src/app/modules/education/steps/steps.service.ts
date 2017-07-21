@@ -24,12 +24,13 @@ export class StepsService {
     });
   }
 
-    create(teaching: any): Observable<Response> {
-        return this.http.post(this.resourceUrl, teaching);
-    }
 
-    update(teaching: any): Observable<Response> {
-        return this.http.put(this.resourceUrl, teaching);
-    }
+  create(teaching: any): Observable<Response> {
+    return this.http.post(this.resourceUrl, teaching);
+  }
+
+  update(teaching: any): Observable<Response> {
+    return this.http.put(this.resourceUrl, teaching);
+  }
 
 }

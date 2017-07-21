@@ -67,7 +67,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     next() {
-        if (!this.answeredQuestions[this.step.id].deliveryPoint) {
+        if (!this.answeredQuestions.steps[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
         }
         this.nextStep.emit(this.step);
@@ -86,20 +86,20 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     changeDelivetyPoint(dp) {
-        this.answeredQuestions[this.step.id].deliveryPoint = dp;
+        this.answeredQuestions.steps[this.step.id].deliveryPoint = dp;
     }
 
     setDP() {
         if (this.prevStepsId && this.prevStepsId.length !== 0) {
-            if (this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
-                this.deliveryPoint = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
+            if (this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
+                this.deliveryPoint = this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
         }
-        if (this.deliveryPoint === undefined &&
+        if (this.deliveryPoint === null &&
             this.answeredQuestions &&
-            this.answeredQuestions[this.step.id] &&
-            this.answeredQuestions[this.step.id].deliveryPoint) {
-            this.deliveryPoint = this.answeredQuestions[this.step.id].deliveryPoint;
+            this.answeredQuestions.steps[this.step.id] &&
+            this.answeredQuestions.steps[this.step.id].deliveryPoint) {
+            this.deliveryPoint = this.answeredQuestions.steps[this.step.id].deliveryPoint;
         }
     }
 
@@ -109,7 +109,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     disableNext(): boolean {
-        return this.theme.questions.some((q) =>
-            this.answeredQuestions[this.step.id][q.id] === undefined)
+        return this.theme.questions.some((question) =>
+            this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
     }
 }

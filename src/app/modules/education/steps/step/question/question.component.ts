@@ -23,36 +23,36 @@ export class QuestionComponent implements OnInit, OnChanges {
     private utilsService: UtilsService,
   ) {
     this.comment = '';
-    this.getSelected = this.utilsService.getSelectedSingle;
+    this.getSelected = this.utilsService.getSelectedAnswer;
   }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
-    
-    if (!this.onlyLast && this.prevStepsId.length !== 0 && 
+
+    if (!this.onlyLast && this.prevStepsId.length !== 0 &&
       this.question && this.answeredQuestions &&
-      this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment) {
-      this.comment = this.answeredQuestions[this.prevStepsId[this.prevStepsId.length - 1]][this.question.id].answer.comment;
+      this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].questions[this.question.id].answer.comment) {
+      this.comment = this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].questions[this.question.id].answer.comment;
     }
 
-    if (this.question && this.answeredQuestions && this.answeredQuestions[this.step.id][this.question.id] &&
-      this.answeredQuestions[this.step.id][this.question.id].answer) {
-      this.answer = this.answeredQuestions[this.step.id][this.question.id].answer;
-      if (this.comment === '' && this.answeredQuestions[this.step.id][this.question.id].answer.comment !== undefined) {
-        this.comment = this.answeredQuestions[this.step.id][this.question.id].answer.comment;
+    if (this.question && this.answeredQuestions && this.answeredQuestions.steps[this.step.id].questions[this.question.id] &&
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer) {
+      this.answer = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer;
+      if (this.comment === '' && this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment !== null) {
+        this.comment = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment;
       }
     }
   }
 
   getAnswer(answer) {
     this.answer = answer;
-    if (!this.answeredQuestions[this.step.id][this.question.id]) {
-      this.answeredQuestions[this.step.id][this.question.id] = new Object();
+    if (!this.answeredQuestions.steps[this.step.id].questions[this.question.id]) {
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id] = new Object();
     }
-    this.answeredQuestions[this.step.id][this.question.id].answer = answer;
-    this.answeredQuestions[this.step.id][this.question.id].answer.comment = this.comment;
+    this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = answer;
+    this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = this.comment;
     console.log(this.answeredQuestions);
   }
 
@@ -71,11 +71,11 @@ export class QuestionComponent implements OnInit, OnChanges {
   changeComment(event) {
     let comment = event.target.value;
     this.comment = comment;
-    if (!this.answeredQuestions[this.step.id][this.question.id]) {
-      this.answeredQuestions[this.step.id][this.question.id] = new Object();
-      this.answeredQuestions[this.step.id][this.question.id].answer = new Object();
+    if (!this.answeredQuestions.steps[this.step.id].questions[this.question.id]) {
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id] = new Object();
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = new Object();
     }
-    this.answeredQuestions[this.step.id][this.question.id].answer.comment = comment;
+    this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = comment;
   }
 
 
