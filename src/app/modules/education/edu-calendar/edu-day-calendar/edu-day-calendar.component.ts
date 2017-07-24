@@ -9,6 +9,7 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
   @Input() date;
   @Input() access;
   @Input() eventsData: Array<any>;
+  @Input() selected: any;
   @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
   isEdu: boolean;
   isSch: boolean;
@@ -50,5 +51,4 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
   onSelectDay() {
     this.selectDay.emit(this.todayEvents);
   }
-
 }

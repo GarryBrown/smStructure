@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,  Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Http } from '@angular/http';
 import { Subscription } from "rxjs/Subscription";
@@ -47,6 +47,4 @@ export class EduCalendarComponent implements OnInit {
       err => console.error('Opps')
     )
   }
-
-
 }
