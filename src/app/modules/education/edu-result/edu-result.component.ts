@@ -97,7 +97,7 @@ export class EduResultComponent implements OnInit, OnDestroy {
     this.changeResult(eduResult);
   }
 
-  applyFilter() {
+  getDataFilter() {
     this.eduResultService.getEduResultData(this.themes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesThemeData),
       error => console.error(error)
@@ -106,7 +106,5 @@ export class EduResultComponent implements OnInit, OnDestroy {
   onSuccesThemeData(data) {
     this.eduResult = data.data;
   }
-  changeThemes(result) {
-    this.applyFilter();
-  }
+
 }

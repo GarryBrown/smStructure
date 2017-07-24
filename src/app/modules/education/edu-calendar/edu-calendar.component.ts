@@ -58,5 +58,4 @@ export class EduCalendarComponent implements OnInit {
     this.dateTo = new Date(today.year, today.month, 0)
   }
 
-
 }
