@@ -1,34 +1,28 @@
-
 md-toolbar {
-  position: fixed;
-  z-index: 11;
-  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    position: fixed;
+    z-index: 2;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
-
-// .mat-toolbar.mat-primary {
-//   background-color: transparent;
-// }
 
 nav {
-  height: 100%;
-  width: 100%;
-  outline: 0px solid red;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-content: center;
-  align-items: center;
-
-  a {
-    margin-right: 1.2em;
-  }
-
+    height: 100%;
+    width: 100%;
+    outline: 0px solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    a {
+        margin-right: 1.2em;
+    }
 }
+
 .burger {
-  //margin-right: auto;
-  display: inline-block;
+    display: inline-block;
 }
+
 .logo {
     margin-right: auto;
     margin-left: 30px;
@@ -40,16 +34,15 @@ nav {
     background-size: contain;
 }
 
-
 .cart-icon {
-  color: #fff;
+    color: #fff;
 }
 
-
-
+.dropdown-menu-mobile {
+    display: none;
+}
 
 a {
-  // color: $primaryC;
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }

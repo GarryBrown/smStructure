@@ -1,0 +1,24 @@
+md-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+    button {
+        margin-left: auto;
+    }
+}
+
+.schedule {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    & * {
+        flex: 1 1 50%;
+    }
+}
+
+@media (max-width: 500px) {
+    .schedule {
+        flex-direction: column
+    }
+}

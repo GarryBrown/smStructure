@@ -6,7 +6,7 @@ import { RouteAccessService } from '../../core';
 
 import { AccountsComponent } from './account.component';
 import { ActivateComponent } from './activate/activate.component';
-// import { AccountsPopupComponent } from './dialogs/stores-popup.component';
+import { ActivateByEmailComponent } from './activate-by-email/activate-by-email.component';
 
 
 
@@ -20,24 +20,14 @@ const AccountsRoutes: Routes = [
         path:'activate',
         component: ActivateComponent,
         //canActivate: [RouteAccessService],
+      },
+       {
+        path:'activateByEmail',
+        component: ActivateByEmailComponent,
+        //canActivate: [RouteAccessService],
       }
     ]
   },
-  // {
-  //     path: 'store/:id/detail',
-  //     component: AccountsPopupComponent,
-  //     outlet: 'popup'
-  // },
-  // {
-  //     path: 'new-store',
-  //     component: AccountsPopupComponent,
-  //     outlet: 'popup'
-  // },
-  // {
-  //     path: 'store/:id/edit',
-  //     component: AccountsPopupComponent,
-  //     outlet: 'popup'
-  // },
 ];
 
 @NgModule({

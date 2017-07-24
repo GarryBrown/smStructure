@@ -8,16 +8,15 @@ export class AuthService {
   constructor(
     private principal: PrincipalService,
     private router: Router
-  ) {}
+  ) { }
 
-  authorize (force) {
+  authorize(force) {
 
     let authReturn = this.principal.identity(force).then(authThen.bind(this));
 
     return authReturn;
 
-    function authThen () {
-      //console.log(this.principal.getAccount());
+    function authThen() {
       let canActivate = this.principal.isAuthenticated();
       if (!canActivate) {
         this.router.navigate(['/login']);
@@ -26,4 +25,5 @@ export class AuthService {
       return canActivate;
     }
   }
+
 }

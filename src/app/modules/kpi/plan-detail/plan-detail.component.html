@@ -1,0 +1,43 @@
+<md-card>
+    <div class="top-filter">
+        <div class="filter-item" id="first">
+            <md-select placeholder="Отчеты" [(ngModel)]="currentReport" (ngModelChange)="changeReports($event)" [disabled]="!reports.length">
+                <md-option *ngFor="let report of reports" [value]="getSelected(currentReport, report)">
+                    {{ report.description }}
+                </md-option>
+            </md-select>
+        </div>
+        <div class="check-item">
+            <md-progress-bar mode="indeterminate" color="primary" *ngIf="isSaving"></md-progress-bar>
+        </div>
+        <div class="filter-item report-config">
+            <button md-icon-button (click)="openConfig()"><md-icon >settings</md-icon></button>
+        </div>
+    </div>
+</md-card>
+
+<md-card *ngIf="routesData && currentReport && listIndicators && routesData.length">
+    <table class="table  table-hover table-condensed table-responsive dataTables-example">
+        <thead>
+            <tr>
+                <td id="first"></td>
+                <td *ngFor="let indicator of currentIndicators" [attr.colspan]="indicator.planFields.length" class="indicator-header">
+                    {{indicator.description}}
+                </td>
+            </tr>
+            <tr>
+                <td>Маршрут</td>
+                <ng-template ngFor let-indicator [ngForOf]="currentIndicators">
+                    <td *ngIf="!indicator.planFields[0]"></td>
+                    <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
+                        {{field.description}}
+                    </td>
+                </ng-template>
+            </tr>
+        </thead>
+        <tbody plan-detail-row [route]="route" [indicators]=[listIndicators] *ngFor="let route of routesData"></tbody>
+    </table>
+</md-card>
+
+<app-filterbar *ngIf="indicators && currentReport" [routes]="routes" [indicators]="indicators" [currentReport]="currentReport" [currentRoutes]="currentRoutes" [currentIndicators]="currentIndicators" (changeIndicators)="changeIndicatorsSet($event)" (updateCurrentIndicators)="changeFields($event)"
+    (getData)="getData($event)"></app-filterbar>

@@ -9,11 +9,6 @@ import { Router } from '@angular/router';
 export class LandingComponent implements OnInit {
   btn_back: boolean;
   constructor(private route: Router) {
-  /*  console.log(route.url);
-    if (route.url? '/signup' || route.url? '/login') {
-      this.btn_back = true;
-    }
-    console.log(this.btn_back);*/
   }
 
   ngOnInit() {

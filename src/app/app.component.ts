@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarToggleService } from './core/utils/sidebar-toggle.service';
-import { PrincipalService } from './core';
+import { Observable } from "rxjs/Observable";
 
+import { PrincipalService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -10,40 +10,93 @@ import { PrincipalService } from './core';
   providers: [PrincipalService],
 })
 export class AppComponent implements OnInit {
-  show: boolean;
+  mode: string;
+  opened: boolean;
   user: any;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
-  constructor(private sidebartoggle: SidebarToggleService,
-              private principal: PrincipalService) {
+  constructor(
+    private principal: PrincipalService) {
+    this.setInitMode();
+    Observable.fromEvent(window, 'resize')
+      .debounceTime(200).map((e: Event) => e.target)
+      .subscribe(
+      (w: Window) => {
+        console.log(w.innerWidth);
+        this.mode = this.updateMode(w.innerWidth);
+      }
+      );
   }
-
 
   ngOnInit() {
-    this.principal.identity(false).then(
-      user => this.user = user
+    this.principal.getUserState().subscribe(
+      (user) => {
+        this.checkUser(user);
+        this.user = user;
+      }
     );
-    this.sidebartoggle.userAuth$.subscribe(user => {
-      console.log(user);
-      this.user = user;
-    });
-
-    this.sidebartoggle.missionConfirmed$.subscribe( show => { this.show = show; });
   }
 
-  swipe(action = this.SWIPE_ACTION.RIGHT) {
-    console.log('swipe');
-    console.log(this.user);
-    console.log(action);
-    if (this.user && action === 'swipeleft') {
-      this.show = false;
-      this.sidebartoggle.sidebarToggle(this.show);
-    }
-    if (this.user && action === 'swiperight') {
-      this.show = true;
-      this.sidebartoggle.sidebarToggle(this.show);
+  // swipe(action = this.SWIPE_ACTION.RIGHT) {
+  //   console.log('swipe');
+  //   console.log(this.user);
+  //   console.log(action);
+  //   if (this.user && action === 'swipeleft') {
+  //     this.opened = false;
+  //   }
+  //   if (this.user && action === 'swiperight') {
+  //     this.opened = true;
+  //   }
+  // }
+
+  getUser() {
+    this.principal.identity()
+      .then(user => {
+        this.checkUser(user);
+        this.user = user;
+      }, error => {
+        this.opened = null;
+      });
+  }
+
+  checkUser(user) {
+    if (user) {
+      this.opened = false;
+    } else {
+      this.hideNav();
     }
   }
 
+  hideNav() {
+    this.opened = false;
+  }
 
+  hide(event) {
+    this.opened = false;
+  }
+
+  toggleNav(opened) {
+    console.log(opened);
+    this.opened = opened;
+  }
+
+  setInitMode() {
+    this.mode = this.updateMode(window.innerWidth);
+  }
+
+  updateMode(width: number) {
+    if (width >= 1246) {
+      this.opened = true;
+      return 'side';
+    } else {
+      this.opened = false;
+      return 'over';
+    }
+    // return width >= 888 ? 'side' : 'over';
+  }
+
+  closeSideNav() {
+    this.opened = false;
+
+  }
 }

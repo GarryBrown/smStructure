@@ -1,157 +1,91 @@
 @import "~theme.scss";
-
-
-$primaryColor: #607D8B;
-$accent: #f44336;
 $width-sidebar: 240px;
 $heightHeader: 64px;
 $heightSidebar: calc(100% - 64px);
-
-
-
-.wrapper {
-  position: fixed;
-  top: $heightHeader;
-  left:0;
-  height: calc(100% - #{$heightHeader});
-  z-index: 10;
-  width: $width-sidebar;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  will-change: box-shadow;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  background-color: white;
-}
-
-.hide {
-  left: -250px;
-}
-
-
-.profile{
-  outline: 0px solid red;
-
-  .profile-background {
-    margin-top:0px;
-    padding-top: 20px;
-    height:150px;
-    width:100%;
-    padding-left:20px;
-    //background: md-color($primary);
-    background: $tsPrimary;
-    outline: 0px solid green;
-
-    .avatar {
-      outline: 0px solid yellow;
-      width: 80px;
-      height: 80px;
-      margin-left:15px;
-      // background-image: url('../../../assets/images/ava.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 50%;
-
-      & + button {
-        margin-left:0;
-      }
-    }
-
-    button, md-icon {
-      color: #ffffff;
-    }
-  }
-
-  h4 {
-    margin-top:10px;
-  }
-}
-
 $navHeight: calc(#{$heightSidebar} - 86px);
+.wrapper {
+    width: $width-sidebar;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    will-change: box-shadow;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background-color: white;
+    padding: 0;
+}
+
+.profile {
+    .profile-background {
+        margin-top: 0px;
+        padding: 16px;
+        width: 100%;
+        background-color: mat-color($ts-primary);
+        .avatar {
+            width: 64px;
+            height: 64px;
+            margin-left: 16px;
+            background-size: cover;
+            background-size: 215% 215%;
+            background-position: center;
+            border-radius: 50%;
+            &+button {
+                margin-left: 0;
+            }
+        }
+        button {
+            margin-top: 8px;
+            color: #ffffff;
+        }
+    }
+    h4 {
+        margin-top: 10px;
+    }
+}
 
 nav {
-  position: relative;
-  margin-top:0px;
-  overflow-y: scroll;
-  outline:0px solid red;
-  // max-height: 900px;
-   min-height: 250px;
-  height: $navHeight;
-
-  a {
-    display:block;
-    text-decoration: none;
-    font-size: 14px;
-    //text-transform: uppercase;
-    padding:15px;
-    padding-left:30px;
-    color: $text-color;
-    outline:0px solid gray;
-
-    &:hover{
-      //background: #e57373;
-      //background-color: $primary200;
-      background-color: $tsPrimary200;
-      color: #fff;
+    position: relative;
+    margin-top: 0px;
+    overflow-y: auto;
+    min-height: 250px;
+    height: $navHeight;
+    h3 {
+        border: none;
+        font-size: 10px;
+        letter-spacing: 1px;
+        line-height: 24px;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin: 0;
+        padding: 0 16px;
+        background: rgba(0, 0, 0, .32);
+        color: #fff;
     }
-    &:hover md-icon{
-      color: #fff;
+    a {
+        display: flex;
+        text-decoration: none;
+        color: $text-color;
+        border-bottom: 1px solid $divider-black;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 47px;
+        transition: all .3s;
+        padding: 0 16px;
+        &:hover {
+            background-color: $grey-dark;
+        }
+        span {
+            align-self: center;
+        }
+        md-icon {
+            align-self: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            margin-left: 8px;
+            // font-size: 32px;
+        }
     }
-
-    md-icon {
-      position: relative;
-      top:5px;
-      left:-5px;
-      font-size:20px;
-
+    .active {
+        background-color: $grey-light;
     }
-  }
-  .active {
-    //background-color: $primary300;
-    background-color: $tsPrimary300;
-    color: #fff;
-  }
-}
-
-
-/* ******** TOGGLE ******** */
-
-md-icon-button {
-  position: relative;
-  text-align: center;
-  margin:0 auto;
-  padding:0;
-  z-index: 9;
-
-}
-
-.open-menu {
-  top: 5px;
-  left: 255px;
-
-  &:focus {outline:0;}
-  md-icon {
-    color: $text-color;
-  }
-}
-
-.close-menu {
-  top: 5px;
-  left: 190px;
-
-
-  &:focus {outline:0;}
-  md-icon {
-    color: #fff;
-  }
-}
-
-// Mobile
-
-@media only screen and  (max-width : 600px) {
-
-  .wrapper {
-    top: 54px;
-    height: calc(#{$heightSidebar} + 10px);
-  }
 }

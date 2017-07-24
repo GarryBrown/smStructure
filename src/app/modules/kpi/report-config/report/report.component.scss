@@ -1,0 +1,53 @@
+.row-info {
+    display: flex;
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+}
+
+md-icon {
+    text-align: center;
+}
+
+.details {
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    margin-top: 20px;
+}
+
+.header-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+    app-checkbox {
+        margin-right: 10px;
+    }
+    md-select {
+        min-width: 130px;
+        width: 35%;
+        margin-right: 10px;
+        margin-bottom: 24px;
+    }
+}
+
+.label-for-list {
+    margin-left: 15%;
+    font-weight: bolder;
+}
+
+.indicators-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin-right: 23%;
+}
+
+md-checkbox {
+    margin: 5px;
+}
