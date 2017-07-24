@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ALL, SCH, EDU } from '../education.constants';
-import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
+import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { EduConfigService } from './edu-config.service';
@@ -44,7 +44,7 @@ export class EduConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadTeaching();
+    this.loadCommonObj();
     console.log(this.access);
     console.log(this.event);
     this.eduConfigService.getRoutes().subscribe(
@@ -76,7 +76,7 @@ export class EduConfigComponent implements OnInit {
   onSuccessTeaching(data) {
     console.log(data)
     this.teaching = data;
-    this.isStarted = this.teaching.position? true: false;
+    this.isStarted = this.teaching.position ? true : false;
     console.log(this.isStarted);
   }
   onError(api: string, err: any) {
@@ -87,6 +87,14 @@ export class EduConfigComponent implements OnInit {
     this.stepsService.find(1).subscribe(
       (data: any) => this.onSuccess(data, this.onSuccessTeaching),
     );
+  }
+
+  loadCommonObj() {
+    if (this.event.type.description === 'Обучение') {
+      this.loadTeaching();
+    } else {
+      // this.loadStoreCheck();
+    }
   }
 
   beginTeaching() {
