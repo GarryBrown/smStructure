@@ -48,15 +48,19 @@ export class EduCalendarComponent implements OnInit {
 
   loadData() {
     this.subscription = this.calService.getEvent(this.dateFrom, this.dateTo).subscribe(
-      (data: any) => this.eventsData = data.data,
+      (data: any) => {
+        console.log("EVENTS");
+        console.log(data);
+        this.eventsData = data
+      },
       err => console.error('Opps')
     )
   }
 
 
   getDateRange(today) {
-    this.dateFrom = new Date(today.year, today.month - 1, 1)
-    this.dateTo = new Date(today.year, today.month, 0)
+    this.dateFrom = new Date(today.year, today.month, 1)
+    this.dateTo = new Date(today.year, today.month + 1, 0)
   }
 
 }

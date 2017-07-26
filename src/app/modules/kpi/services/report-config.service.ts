@@ -7,8 +7,8 @@ import { Report } from '../../../models';
 @Injectable()
 export class ReportConfigService {
 
-  // private resourceUrl = '/api/plan-reports';
-  private resourceUrl = '/api/planReports';
+  private resourceUrl = '/api/plan-reports';
+  //private resourceUrl = '/api/planReports';
 
   constructor(
     private http: Http,

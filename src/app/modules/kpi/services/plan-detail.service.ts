@@ -7,10 +7,10 @@ import { Report, Indicator, Route } from '../../../models';
 
 @Injectable()
 export class PlanDetailService {
-  // private resourceUrlPlanRoutes = '/api/plan-routes';
-  private resourceUrlPlanRoutes = '/api/planRoutes';
-  // private resourceUrlPlanIndicators = '/api/plan-indicators';
-  private resourceUrlPlanIndicators = '/api/planIndicators';
+  private resourceUrlPlanRoutes = '/api/plan-routes';
+  // private resourceUrlPlanRoutes = '/api/planRoutes';
+  private resourceUrlPlanIndicators = '/api/plan-indicators';
+  // private resourceUrlPlanIndicators = '/api/planIndicators';
 
 
   constructor(private http: Http,
@@ -34,7 +34,7 @@ export class PlanDetailService {
     params.set('routeId', routesIds.join());
 
     return this.http.get(this.resourceUrlPlanRoutes, {
-      // search: params
+      search: params
     }).map((res: Response) => res.json());
   }
 
@@ -58,7 +58,7 @@ export class PlanDetailService {
     let params: URLSearchParams = new URLSearchParams();
     params.set('routeId', routes);
     return this.http.get(this.resourceUrlPlanIndicators, {
-      // search: params
+      search: params
     }).map((res: Response) => res.json());
   }
 

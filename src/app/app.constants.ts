@@ -1,7 +1,8 @@
 let _environment = {
-  production: false,
-  origin: 'http://localhost',
-  mockUres: true
+  production: true,
+  mockUres: true,
+  origin: 'https://localhost:8081',
+  gataway: 'https://localhost:8443'
 };
 
 export const environment = _environment;

@@ -16,10 +16,11 @@ export class StepComponent implements OnInit, OnChanges {
     @Input() step: any;
     @Input() answeredQuestions: any; // teachingSpecialities
     @Input() report: Report;
+    @Input() deliveryPoints: Array<any>;;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     @Output() toFinish: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;
-    listDP: Array<any>;
+    
     deliveryPoint: any;
     prevStepsId: Array<number>;
     getSelected: any;
@@ -32,7 +33,6 @@ export class StepComponent implements OnInit, OnChanges {
         private eduResultService: EduResultService
     ) {
         this.isFinish = false;
-        this.listDP = [];
         this.getSelected = this.utilsService.getSelectedSingle;
     }
 
@@ -46,12 +46,12 @@ export class StepComponent implements OnInit, OnChanges {
         this.setDP();
 
         this.isFinish = this.setIsFinish();
-        if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
-            this.eduConfigService.getDelivetyPoints().subscribe(
-                (data: any) => this.listDP = data.data,
-                (error) => console.log(error)
-            )
-        }
+        // if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
+        //     this.eduConfigService.getDelivetyPoints(1).subscribe(
+        //         (data: any) => this.listDP = data,
+        //         (error) => console.log(error)
+        //     )
+        // }
     }
 
     setIsFinish(): boolean {

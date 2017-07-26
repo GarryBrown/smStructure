@@ -7,34 +7,44 @@ import { Report } from '../../../models';
 
 @Injectable()
 export class EduConfigService {
-  // private resourceUrl = '/api/plan-reports';
-  private resourceUrl = '/api/planReports';
   private teaching = new BehaviorSubject(undefined);
-  private reportUrl = '/api/reports';
+
+  private resourceUrl = 'api/plan-reports-origin';
+  private resourceReportUrl = 'api/plan-reports';
+  private resourceTeachingUrl = 'api/teachings';
+
   constructor(
     private http: Http,
   ) { }
 
   findReport(id: number): Observable<any> {
-    return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
+    return this.http.get(`${this.resourceReportUrl}/${id}`).map((res: Response) => {
       return res.json();
     });
   }
 
   update(teaching: any): Observable<any> {
     let copy: any = Object.assign({}, teaching);
-    return this.http.put(this.resourceUrl, copy).map((res: Response) => {
+    return this.http.put(this.resourceTeachingUrl, copy).map((res: Response) => {
       return res.json();
     });
   }
 
   getRoutes(): Observable<Response> {
-    return this.http.get('/api/routes')
+    return this.http.get('api/routes')
       .map((res: Response) => res.json())
   }
 
-  getDelivetyPoints(): Observable<Response> {
-    return this.http.get('/api/deliveryPoints')
+
+  getDelivetyPoints(routeID): Observable<Response> {
+    let params = new URLSearchParams();
+    params.set('routeId', routeID.toString())
+    return this.http.get('/api/delivery-points')
+      .map((res: Response) => res.json())
+  }
+
+  getThemes(): Observable<Response> {
+    return this.http.get('/api/type-of-teachings')
       .map((res: Response) => res.json())
   }
 
@@ -53,15 +63,55 @@ export class EduConfigService {
 
   getLocation() {
     return new Promise((resolve, reject) => {
-
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          resolve(position);
-        });
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve(position);
+          },
+          (error) => {
+            console.error(error);
+            if (error.code === 2 || error.code === 1) {
+              resolve(this.getPositionByIP(resolve, reject))
+            }
+
+            reject(error);
+          });
       } else {
-        reject(null);
+        console.log("Geolocation is not supported by this browser.");
+        reject(false);
       }
     });
 
   }
+
+  getPositionByIP(resolve, reject): Promise<any> {
+    return this.http.get('https://ipinfo.io')
+      .map((res: Response) => res.json())
+      .toPromise().then(
+      (position) => {
+        resolve(position)
+      },
+      (error) => reject(error)
+      )
+  }
+
+  createMetrics(location: any, time: any, teachingId: number, routeId: number, staffId: number) {
+    let position;
+    console.log(location);
+    if (location.hasOwnProperty('loc')) {
+      position = location.loc;
+    } else {
+      position = `${location.coords.latitude},${location.coords.longitude}`;
+    }
+    return {
+      position: position,
+      time: time,
+      route: routeId,
+      teaching: teachingId,
+      staff: staffId
+    }
+  }
+
+
 }
+

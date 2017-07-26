@@ -35,10 +35,10 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
 
   checkDate() {
     this.eventsData.map(event => {
-      let d1 = new Date(event.dateOfStart);
+      let d1 = new Date(event.date);
       let d2 = new Date(this.date.year, this.date.month - 1, this.date.day);
       if (d1.valueOf() === d2.valueOf()) {
-        if (event.type.id === 1) {
+        if (event.type === 'teaching') {
         this.isEdu = true;
         } else {
           this.isSch = true;

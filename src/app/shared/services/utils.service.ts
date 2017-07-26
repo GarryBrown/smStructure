@@ -51,4 +51,8 @@ export class UtilsService {
     return 0;
   }
 
+  dateToString(date: Date) {
+    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+  }
+
 }

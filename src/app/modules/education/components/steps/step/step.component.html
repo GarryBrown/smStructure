@@ -4,8 +4,8 @@
   </md-toolbar>
   <br>
   <div class="delivery-point-select">
-    <md-select *ngIf="listDP.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
-      <md-option *ngFor="let dp of listDP" [value]="getSelected(deliveryPoint, dp)">
+    <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
+      <md-option *ngFor="let dp of deliveryPoints" [value]="getSelected(deliveryPoint, dp)">
         {{ dp.description }}
       </md-option>
     </md-select>

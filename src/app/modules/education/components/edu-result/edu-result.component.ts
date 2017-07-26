@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
+import { EduResultService, resultFilter } from '../../services/edu-result.service';
 import { DatepickerModule } from 'angular2-material-datepicker'
 
-import { EduResultService } from '../../services/edu-result.service';
 
 @Component({
   selector: 'app-edu-result',
@@ -10,66 +11,45 @@ import { EduResultService } from '../../services/edu-result.service';
   styleUrls: ['./edu-result.component.scss']
 })
 export class EduResultComponent implements OnInit, OnDestroy {
-  @Input() testRangeDate: Date;
-  results: any;
-  subscription: Subscription;
+
+
   isLoading: boolean;
-  eduResult: Array<any>;
-  model;
-  date: Date;
-  disabled: boolean;
+  resultFilter: resultFilter;
+  /* list select */
   categories: Array<any>;
   routes: Array<any>;
   themes: Array<any>;
-  eduResultTheme;
-  itog: Array<any> = [];
+  /* result value*/
+  eduResult: Array<any>;
   sum: number = 0;
+  /* subscriptions */
+  subscription: Subscription;
+  subscriptionThemes: Subscription;
+  subscriptionRoutes: Subscription;
+  subscriptionCategories: Subscription;
+
   constructor(
     private eduResultService: EduResultService,
   ) {
     this.isLoading = true;
-    this.testRangeDate = new Date();
+    this.resultFilter = this.setFilter();
   }
 
   ngOnInit() {
-
-    this.subscription = this.eduResultService.getCurrentAnswer().subscribe(
-      answer => this.onSucces(answer, this.onSuccessResult),
-      err => console.error('Ouups')
-    )
-
     this.subscription = this.eduResultService.getEduResult()
-      .subscribe((data: any) => {
-        this.onSuccessResult(data)
-      },
-      error => console.log("oops")
-      )
-
-    this.subscription = this.eduResultService.getCategories()
-      .subscribe((data: any) => {
-        this.categories = data
-      });
-
-    this.subscription = this.eduResultService.getRoutes()
-      .subscribe((data: any) => {
-      });
-
-    this.subscription = this.eduResultService.getThemes()
-      .subscribe((data: any) => {
-        this.themes = data.data
-      });
-
+      .subscribe(
+      (data: any) => this.onSuccessResult(data),
+      error => console.log("oops"))
+    this.subscriptionCategories = this.eduResultService.getCategories()
+      .subscribe((data: any) => this.categories = data.data);
+    this.subscriptionRoutes = this.eduResultService.getRoutes()
+      .subscribe((data: any) => this.routes = data.data, );
+    this.subscriptionThemes = this.eduResultService.getThemes()
+      .subscribe((data: any) => this.themes = data.data);
   }
+
   formatDate(date: Date): string {
     return date.toLocaleString();
-  }
-
-  onSelect(date: Date) {
-    console.log("onSelect: ", date);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   onSucces(data: any, cb: any) {
@@ -85,22 +65,30 @@ export class EduResultComponent implements OnInit, OnDestroy {
     });
   }
 
-  changeResult(eduResult: Array<any>) {
-    // this.eduResult = this.eduResultService.getEduResultData(eduResult)
-  }
-
-  changeResultSet(eduResult) {
-    this.changeResult(eduResult);
-  }
-
-  getDataFilter() {
-    this.eduResultService.getEduResultData(this.themes).subscribe(
-      (data: any) => this.onSucces(data, this.onSuccesThemeData),
+  loadData() {
+    this.eduResultService.getEduResultData(this.resultFilter).subscribe(
+      (data: any) => console.log(data.data),
       error => console.error(error)
     );
   }
-  onSuccesThemeData(data) {
-    this.eduResult = data.data;
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscriptionThemes.unsubscribe();
+    this.subscriptionRoutes.unsubscribe();
+    this.subscriptionCategories.unsubscribe();
+  }
+
+  setFilter() {
+    return {
+      dateFrom: null,
+      dateTo: null,
+      themes: [],
+      routes: [],
+      category: null
+    }
   }
 
 }
+
+
