@@ -5,7 +5,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Subscription } from "rxjs/Subscription";
 import {} from '@types/googlemaps';
 
-import { KPIService } from './kpi.service';
+import { KPIService } from './services/kpi.service';
 import { Plan } from "app/models/plan.model";
 import { Agent } from "app/models/agent.model";
 
@@ -77,7 +77,6 @@ export class KPIComponent implements OnInit, OnDestroy {
       });
       this.plansss.push(planByType);
     });
-    console.log(this.plansss);
   }
 
   ngOnInit() {

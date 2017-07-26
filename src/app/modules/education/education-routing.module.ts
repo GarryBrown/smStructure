@@ -4,8 +4,8 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { RouteAccessService } from '../../core';
 
 import { EducationComponent } from './education.component';
-import { StepsComponent } from './steps/steps.component';
-import { EduResultComponent } from './edu-result/edu-result.component';
+import { StepsComponent } from './components/steps/steps.component';
+import { EduResultComponent } from './components/edu-result/edu-result.component';
 
 const EducationRoutes: Routes = [
   {

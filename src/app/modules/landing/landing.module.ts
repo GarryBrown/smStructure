@@ -10,9 +10,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { LandingRoutingModule } from './landing-routing.module';
 /* components */
 import { LandingComponent } from './landing.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './components/signin/signin.component';
 /* services */
-import { SigninService } from './signin/signin.service';
+import { SigninService } from './services/signin.service';
 
 @NgModule({
   imports: [

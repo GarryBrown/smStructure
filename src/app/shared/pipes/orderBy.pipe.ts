@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrderBy {
   transform(array: Array<string>, args: string): Array<string> {
-    console.log(args);
     if (array) {
       array.sort((a: any, b: any) => {
         if (a[args] < b[args]) {

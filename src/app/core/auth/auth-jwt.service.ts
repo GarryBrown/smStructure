@@ -83,7 +83,6 @@ export class AuthJwtService {
     }
 
     storeAuthenticationToken(jwt, rememberMe) {
-        console.log(jwt + '    ' + rememberMe);
         if (rememberMe) {
             this.$localStorage.store('authenticationToken', jwt);
         } else {

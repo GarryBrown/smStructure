@@ -4,9 +4,9 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { PaginUtilService } from '../../shared';
 import { RouteAccessService } from '../../core';
 
-import { AccountsComponent } from './account.component';
-import { ActivateComponent } from './activate/activate.component';
-import { ActivateByEmailComponent } from './activate-by-email/activate-by-email.component';
+import { AccountsComponent } from './components/account/account.component';
+import { ActivateComponent } from './components/activate/activate.component';
+import { ActivateByEmailComponent } from './components/activate-by-email/activate-by-email.component';
 
 
 

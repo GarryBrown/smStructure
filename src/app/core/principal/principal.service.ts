@@ -75,7 +75,7 @@ export class PrincipalService {
       this.authenticationState.next(this._identity);
       return Promise.resolve(this._identity);
     }
-    if (environment.production) {
+    if (!environment.mockUres) {
       return this.account.get().toPromise().then(account => {
         account.imageUrl = '../../../assets//images/default-user-avatar.png';
         if (account) {

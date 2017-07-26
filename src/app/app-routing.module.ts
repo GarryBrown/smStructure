@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 
 const routes: Routes = [
   // Main redirect
-  {path: '', redirectTo: 'kpi', pathMatch: 'full'},
+  { path: '', redirectTo: 'kpi', pathMatch: 'full' },
   // {
   //   path: '', component: SidebarComponent,
   //   outlet: 'sidebar'
@@ -16,7 +16,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

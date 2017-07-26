@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 /* Basic */
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { LayoutrModule } from './components//layout.module';
+import { LayoutrModule } from './layouts//layout.module';
 
 /* Modules */
 import { KPIModule } from './modules/kpi/kpi.module';

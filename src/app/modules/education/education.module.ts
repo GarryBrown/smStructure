@@ -13,27 +13,27 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { EducationRoutingModule } from './education-routing.module';
 /*service */
-import { KpiTableService } from './kpi-table/kpi-table.service';
-import { EducationService } from './education.service';
-import { EduCalendarService } from './edu-calendar/edu-calendar.service';
-import { StepsService } from './steps/steps.service';
-import { EduConfigService } from './edu-config/edu-config.service';
-import { EduResultService } from './edu-result/edu-result.service';
-import { ResultService } from "app/modules/education/steps/result/result.service";
+import { KpiTableService } from './services/kpi-table.service';
+import { EducationService } from './services/education.service';
+import { EduCalendarService } from './services/edu-calendar.service';
+import { StepsService } from './services/steps.service';
+import { EduConfigService } from './services/edu-config.service';
+import { EduResultService } from './services/edu-result.service';
+import { ResultService } from "./services/result.service";
 /* components */
 import { EducationComponent } from './education.component';
-import { EduCalendarComponent } from './edu-calendar/edu-calendar.component';
-import { EduDayCalendarComponent } from './edu-calendar/edu-day-calendar/edu-day-calendar.component';
-import { ListDayEventsComponent } from './list-day-events/list-day-events.component';
-import { StepsComponent } from './steps/steps.component';
-import { IntroductionComponent } from './steps/introduction/introduction.component';
-import { StepComponent } from './steps/step/step.component';
-import { EduConfigComponent } from './edu-config/edu-config.component';
-import { QuestionComponent } from './steps/step/question/question.component';
-import { EduResultComponent } from './edu-result/edu-result.component';
-import { KpiTableComponent } from './kpi-table/kpi-table.component';
-import { PlanDetailRowComponent } from './kpi-table/plan-detail-row/plan-detail-row.component'
-import { ResultComponent } from './steps/result/result.component';
+import { EduCalendarComponent } from './components/edu-calendar/edu-calendar.component';
+import { EduDayCalendarComponent } from './components/edu-calendar/edu-day-calendar/edu-day-calendar.component';
+import { ListDayEventsComponent } from './components/list-day-events/list-day-events.component';
+import { StepsComponent } from './components/steps/steps.component';
+import { IntroductionComponent } from './components/steps/introduction/introduction.component';
+import { StepComponent } from './components/steps/step/step.component';
+import { EduConfigComponent } from './components/edu-config/edu-config.component';
+import { QuestionComponent } from './components/steps/step/question/question.component';
+import { EduResultComponent } from './components/edu-result/edu-result.component';
+import { KpiTableComponent } from './components/kpi-table/kpi-table.component';
+import { PlanDetailRowComponent } from './components/kpi-table/plan-detail-row/plan-detail-row.component'
+import { ResultComponent } from './components/steps/result/result.component';
 
 
 let myTestApiModule = [];

@@ -6,12 +6,12 @@ import { SharedModule } from '../../shared/shared.module';
 import { AccountsRoutingModule } from './account-routing.module';
 
 /* components */
-import { AccountsComponent } from './account.component';
+import { AccountsComponent } from './components/account/account.component';
 /*service */
-import { AccountsService } from './account.service';
-import { ActivateComponent } from './activate/activate.component';
-import { ActivateByEmailComponent } from './activate-by-email/activate-by-email.component';
-import { ActivateByEmailService } from './activate-by-email/activate-by-email.service';
+import { AccountsService } from './services/account.service';
+import { ActivateComponent } from './components/activate/activate.component';
+import { ActivateByEmailComponent } from './components/activate-by-email/activate-by-email.component';
+import { ActivateByEmailService } from './services/activate-by-email.service';
 
 
 @NgModule({

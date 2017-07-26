@@ -4,8 +4,8 @@ import { Response } from '@angular/http';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { Http } from "@angular/http";
-import { DashboardService } from './dashboard.service';
-import { DashboardPopupService } from './dialogs/dashboard-popup.service';
+import { DashboardService } from './services/dashboard.service';
+import { DashboardPopupService } from './services/dashboard-popup.service';
 
 
 

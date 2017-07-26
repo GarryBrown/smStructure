@@ -1,0 +1,57 @@
+{
+    "themes": [{
+            "id": 1,
+            "description": "Тема 1"
+        },
+        {
+            "id": 2,
+            "description": "Тема 2"
+
+        },
+        {
+            "id": 3,
+            "description": "Тема 3"
+        },
+        {
+            "id": 4,
+            "description": "Тема 4"
+        }
+    ],
+
+    "routes": [{
+        "id": 213,
+        "isActive": true,
+        "code": "00000000891",
+        "description": "PS108"
+    }, {
+        "id": 214,
+        "isActive": true,
+        "code": "00000000828",
+        "description": "PS101"
+    }, {
+        "id": 215,
+        "isActive": true,
+        "code": "00000000831",
+        "description": "PS106"
+    }],
+
+    "categories": [{
+            "id": 1,
+            "description": "Категория 1"
+        },
+        {
+            "id": 2,
+            "description": "Категория 2"
+        },
+        {
+            "id": 3,
+            "description": "Категория 3"
+        },
+        {
+            "id": 4,
+            "description": "Категория 4"
+        }
+    ]
+
+
+}

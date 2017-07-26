@@ -25,7 +25,6 @@ var DashboardComponent = (function() {
         this.dateFromPlaceholder = "С";
         this.dateToPlaceholder = "По";
         this.routeData = this.activatedRoute.data.subscribe(function(data) {
-            console.log(data);
             _this.previousPage = data['pagingParams'].page;
             _this.page = data['pagingParams'].page;
             _this.reverse = data['pagingParams'].ascending;

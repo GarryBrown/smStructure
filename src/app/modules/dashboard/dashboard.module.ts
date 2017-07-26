@@ -12,12 +12,12 @@ import { DateUtilService } from '../../core/utils/date-util.service';
 /* route */
 import { DashboardRoutingModule, UserResolvePagingParams } from './dashboard-routing.module';
 /*service */
-import { DashboardService } from './dashboard.service';
-import { DashboardPopupService } from './dialogs/dashboard-popup.service';
+import { DashboardService } from './services/dashboard.service';
+import { DashboardPopupService } from './services/dashboard-popup.service';
 /* components */
 import { DashboardComponent } from './dashboard.component';
-import { OrderDetailComponent } from './dialogs/order-detail.component';
-import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { OrderDetailComponent } from './components/dialogs/order-detail.component';
+import { OrderPopupComponent } from './components/dialogs/order-popup.component';
 
 @NgModule({
   imports: [

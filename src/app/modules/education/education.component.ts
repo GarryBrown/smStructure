@@ -8,8 +8,8 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { ALL, SCH, EDU } from './education.constants';
 import { Event } from '../../models';
 
-import { EducationService } from './education.service';
-import { EduConfigComponent } from './edu-config/edu-config.component';
+import { EducationService } from './services/education.service';
+import { EduConfigComponent } from './components/edu-config/edu-config.component';
 
 @Component({
   selector: 'app-education',
@@ -30,11 +30,10 @@ export class EducationComponent implements OnInit, OnDestroy {
     this.selectedDayEvent = [];
     this.access = this.setStateByRoute(this.router.url);
     this.header = this.educationService.getHeader(this.access);
-    console.log(this.access);
   }
 
   ngOnInit() {
-  
+
   }
 
   ngOnDestroy() {

@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
       .debounceTime(200).map((e: Event) => e.target)
       .subscribe(
       (w: Window) => {
-        console.log(w.innerWidth);
         this.mode = this.updateMode(w.innerWidth);
       }
       );
@@ -76,7 +75,6 @@ export class AppComponent implements OnInit {
   }
 
   toggleNav(opened) {
-    console.log(opened);
     this.opened = opened;
   }
 
