@@ -2,7 +2,7 @@
   <app-introduction *ngIf="showIntro" [theme]="teaching.typeOfTeaching" (beginSteps)="beginSteps($event)"></app-introduction>
   <ng-template [ngIf]="!showIntro && !showResult">
     <ng-template ngFor let-step [ngForOf]="teaching.typeOfTeaching.steps">
-      <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="teaching.typeOfTeaching" [step]="step" [answeredQuestions]="teaching.teachingSpecialities" [report]="report" (nextStep)="nextStep($event)" (toFinish)="setFinish($event)"></app-step>
+      <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="teaching.typeOfTeaching" [step]="step" [answeredQuestions]="teaching.teachingSpecialities" [report]="report" [deliveryPoints]="deliveryPoints" (nextStep)="nextStep($event)" (toFinish)="setFinish($event)"></app-step>
     </ng-template>
   </ng-template>
   <app-result *ngIf="showResult" [teaching]="teaching"></app-result>

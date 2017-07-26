@@ -14,9 +14,11 @@ export class EduCalendarService {
     const to: string = `${dateTo.getFullYear()}/${dateTo.getMonth()}/${dateTo.getDate()}`;
     console.log(`from ${from} to ${to}`)
     let params: URLSearchParams = new URLSearchParams();
-    params.set('from', from);
-    params.set('to', to);
-    return this.http.get('api/events').map(data => data.json());
+    params.set('beginDate', from);
+    params.set('endDate', to);
+    return this.http.get('api/events', {
+      search: params
+    }).map(data => data.json());
   }
 
 }

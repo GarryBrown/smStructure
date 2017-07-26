@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { EduConfigService } from './edu-config.service';
 import { StepsService } from '../steps/steps.service';
 import { UtilsService } from '../../../shared';
-import { Event, TypeOfEvent, Route, Report } from '../../../models';
+import { Event, Route, Report } from '../../../models';
 
 @Component({
   selector: 'app-edu-config',
@@ -21,13 +21,14 @@ export class EduConfigComponent implements OnInit {
   public access;
   routes: Array<Route>;
   reports: Array<Report>;
+  themes: Array<any>;
   report: Report;
   teaching: any;
   getSelected: any;
   isStarted: boolean;
-  types: Array<TypeOfEvent> = [
-    { id: 2, description: 'store-check' },
-    { id: 1, description: 'Обучение' }
+  types: Array<string> = [
+    'store-check',
+    'teaching'
   ];
 
   constructor(
@@ -45,8 +46,6 @@ export class EduConfigComponent implements OnInit {
 
   ngOnInit() {
     this.loadCommonObj();
-    console.log(this.access);
-    console.log(this.event);
     this.eduConfigService.getRoutes().subscribe(
       (data: any) => this.onSuccess(data, this.onSuccessRoutes),
       (error) => this.onError('getRoutes', error)
@@ -55,14 +54,71 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccess(data, this.onSuccessReports),
       (error) => this.onError('getRoutes', error)
     )
+    this.eduConfigService.getThemes().subscribe(
+      (data: any) => this.onSuccess(data, this.onSuccessThemes),
+      (error) => this.onError('getRoutes', error)
+    )
   }
 
-  close() {
-    this.dialogRef.close(false);
+  loadTeaching(id) {
+    this.stepsService.find(id).subscribe(
+      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
+    );
   }
+
+  loadCommonObj() {
+    if (this.event.type === 'teaching') {
+      this.loadTeaching(this.event.id);
+    } else {
+      // this.loadStoreCheck();
+    }
+  }
+
+  beginTeaching() {
+    console.log('begin')
+    let position: any = { loc: '' };
+    let time, metrics;
+    this.eduConfigService.getLocation().then(
+      (latLng) => {
+        console.log('then1 res')
+        position = latLng ? latLng : position;
+        time = new Date();
+        return this.eduConfigService.createMetrics(position, time, this.teaching.id, this.teaching.route.id, this.teaching.staff.id)
+      },
+      (err) => {
+        console.log('then1 rej')
+        time = new Date();
+        return this.eduConfigService.createMetrics(position, time, this.teaching.id, this.teaching.route.id, this.teaching.staff.id)
+      }
+    ).then(
+      (metricObj) => {
+        console.log('then2 res')
+        // this.eduConfigService.update(this.teaching).subscribe(
+        //   (obj) => this.goToTeaching(obj),
+        //   (err) => console.error(err)
+        // )
+        this.goToTeaching(this.teaching);
+      }
+      );
+  }
+
+  goToTeaching(teaching) {
+    console.log(teaching)
+    this.eduConfigService.findRoutes(this.report.id).subscribe(
+      (data) => { console.log(data) },
+      (err) => console.error(err),
+    )
+
+    this.eduConfigService.setCurrentTeaching(teaching);
+    this.router.navigate(['edu/theme', this.teaching.id]).then(
+      (result) => this.dialogRef.close(false),
+      (reason) => console.error(`navigate error ${reason}`)
+    );
+  }
+
 
   onSuccess(data: any, cb: any) {
-    cb.bind(this)(data.data);
+    cb.bind(this)(data);
   }
 
   onSuccessRoutes(data) {
@@ -73,59 +129,21 @@ export class EduConfigComponent implements OnInit {
     this.reports = data;
   }
 
+  onSuccessThemes(data) {
+    this.themes = data;
+  }
+
   onSuccessTeaching(data) {
-    console.log(data)
     this.teaching = data;
     this.isStarted = this.teaching.position ? true : false;
-    console.log(this.isStarted);
   }
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
   }
 
-  loadTeaching() {
-    this.stepsService.find(1).subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
-    );
+  close() {
+    this.dialogRef.close(false);
   }
 
-  loadCommonObj() {
-    if (this.event.type.description === 'Обучение') {
-      this.loadTeaching();
-    } else {
-      // this.loadStoreCheck();
-    }
-  }
-
-  beginTeaching() {
-    console.log('begin')
-    let latLng = null;
-    let time;
-    this.eduConfigService.getLocation().then(
-      (latLng) => {
-        console.log('Promice getLoc is okey')
-        latLng = latLng;
-        time = new Date();
-        console.log(this.teaching)
-        this.teaching.position = latLng;
-        this.teaching.dateTime = time;
-        // this.eduConfigService.update(this.teaching).subscribe(
-        //   (obj) => this.goToTeaching(obj),
-        //   (err) => console.error(err)
-        // )
-        this.goToTeaching(this.teaching);
-      },
-      (err) => console.error('Promise getLocation')
-    );
-  }
-
-  goToTeaching(teaching) {
-    console.log(teaching)
-    this.eduConfigService.setCurrentTeaching(teaching);
-    this.router.navigate(['edu/theme', this.teaching.id]).then(
-      (result) => this.dialogRef.close(false),
-      (reason) => console.error(`navigate error ${reason}`)
-    );
-  }
 
 }

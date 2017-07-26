@@ -6,8 +6,8 @@ import { Report, Indicator, Route } from '../../../models';
 
 @Injectable()
 export class KpiTableService {
-  // private resourceUrlPlanRoutes = '/api/plan-routes';
-  private resourceUrlPlanRoutes = '/api/planRoutes';
+  private resourceUrlPlanRoutes = '/api/plan-routes';
+  // private resourceUrlPlanRoutes = '/api/planRoutes';
   
   constructor(private http: Http, ) { }
 
@@ -26,7 +26,7 @@ export class KpiTableService {
     params.set('routeId', routesIds.join());
 
     return this.http.get(this.resourceUrlPlanRoutes, {
-      // search: params
+      search: params
     }).map((res: Response) => res.json());
   }
 

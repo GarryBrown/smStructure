@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "precache": "sw-precache --root=dist --verbose"
+    "precache": "sw-precache --root=dist --verbose",
+    "ssl": "ng serve --host 192.168.210.36 --ssl true --ssl-key src/server/pr1ivate.key --ssl-cert src/server/hermes.crt"
   },
   "private": true,
   "dependencies": {

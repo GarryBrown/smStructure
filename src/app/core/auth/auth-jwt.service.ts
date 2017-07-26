@@ -29,7 +29,7 @@ export class AuthJwtService {
             rememberMe: credentials.rememberMe
         };
         if (environment.production) {
-            return this.http.post('api/authenticate', data).map(authenticateSuccess.bind(this));
+            return this.http.post('api/authenticate', data).map(resp => resp.json()).map(authenticateSuccess.bind(this));
         } else {
             return new Observable(observer => {
                 observer.next(5);
@@ -39,10 +39,12 @@ export class AuthJwtService {
 
 
 
-        function authenticateSuccess(resp) {
+        function authenticateSuccess(data) {
             let bearerToken;
             if (environment.production) {
-                bearerToken = resp.headers.get('Authorization');
+                // when done interceptor headers breaks
+                // bearerToken = resp.headers.get('Authorization');
+                bearerToken = 'Bearer ' + data.id_token;
             } else {
                 bearerToken = "Bearer fdsfjewpfjpwijr543209ur09243rjek;fj9320jr82094jrskdfj2930r902jreis;jarkl49t43htj3jkht;asd";
             }
@@ -83,7 +85,6 @@ export class AuthJwtService {
     }
 
     storeAuthenticationToken(jwt, rememberMe) {
-        console.log(jwt + '    ' + rememberMe);
         if (rememberMe) {
             this.$localStorage.store('authenticationToken', jwt);
         } else {

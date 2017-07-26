@@ -1,105 +1,105 @@
 <div class="wrapper">
-    <md-card>
-        <div class="filterWrapp">
-            <div class="dateFilter">
-                <label>С</label>
-                <material-datepicker [(date)]="date" (onSelect)="onSelect($event)" dateFormat="YYYY-MM-DD" [rangeEnd]="testRangeDate"></material-datepicker>
-                <label>По</label>
-                <material-datepicker [(date)]="date" (onSelect)="onSelect($event)" dateFormat="YYYY-MM-DD" [rangeEnd]="testRangeDate"></material-datepicker>
-            </div>
-            <div class="selectFilter">
-                <md-select placeholder="Маршруты">
-                    <md-option *ngFor="let route of routes" [value]="route.id">
-                        {{ route.description }}
-                    </md-option>
-                </md-select>
-                <md-select placeholder="Категории">
-                    <md-option *ngFor="let category of categories" [value]="category.id">
-                        {{ category.description }}
-                    </md-option>
-                </md-select>
-                <md-select placeholder="Темы" (ngModelChange)="changeThemes($event)">
-                    <md-option *ngFor="let theme of themes" [value]="theme.id">
-                        {{ theme.description }}
-                    </md-option>
-                </md-select>
-            </div>
-            <button md-mini-fab (click)="getDataFilter()"><md-icon>filter_list</md-icon></button>
-        </div>
-    </md-card>
+  <md-card>
+    <div class="filterWrapp">
+      <div class="dateFilter">
+        <label>С</label>
+        <material-datepicker [(date)]="resultFilter.dateFrom" dateFormat="YYYY-MM-DD"></material-datepicker>
+        <label>По</label>
+        <material-datepicker [(date)]="resultFilter.dateTo" dateFormat="YYYY-MM-DD"></material-datepicker>
+      </div>
+      <div class="selectFilter">
+        <md-select placeholder="Маршруты" [(ngModel)]="resultFilter.routes" [multiple]="true">
+          <md-option *ngFor="let route of routes" [value]="route.id">
+            {{ route.description }}
+          </md-option>
+        </md-select>
+        <md-select placeholder="Категории" [(ngModel)]="resultFilter.categoty">
+          <md-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.description }}
+          </md-option>
+        </md-select>
+        <md-select placeholder="Темы" [(ngModel)]="resultFilter.themes" [multiple]="true">
+          <md-option *ngFor="let theme of themes" [value]="theme.id">
+            {{ theme.description }}
+          </md-option>
+        </md-select>
+      </div>
+      <button md-mini-fab (click)="loadData()"><md-icon>filter_list</md-icon></button>
+    </div>
+  </md-card>
 
 
-    <md-card>
-        <md-progress-bar mode="indeterminate" color="primary" *ngIf="!isLoading"></md-progress-bar>
-        <md-toolbar>
-            Результаты
-        </md-toolbar>
-        <div class="content">
-            <table class="table  table-hover table-condensed table-responsive dataTables-example">
-                <thead align="center">
-                    <tr>
-                        <th rowspan="2">Должность</th>
-                        <th rowspan="2">Маршрут</th>
-                        <th rowspan="2">Сотрудник</th>
-                        <th rowspan="2">Вступил в долность</th>
-                        <th rowspan="2">Срок службы</th>
-                        <th colspan="5">Аттестация</th>
-                        <th colspan="3">Темы</th>
-                    </tr>
-                    <tr>
-                        <th>Дата последней аттестации</th>
-                        <th>Категория цель</th>
-                        <th>Min цель</th>
-                        <th>Оценка</th>
-                        <th>Категория факт</th>
-                        <th>Название темы</th>
-                        <th>Дата проведения</th>
-                        <th>Цель</th>
-                        <th>Оценка</th>
-                    </tr>
+  <md-card>
+    <md-progress-bar mode="indeterminate" color="primary" *ngIf="!isLoading"></md-progress-bar>
+    <md-toolbar>
+      Результаты
+    </md-toolbar>
+    <div class="content">
+      <table class="table  table-hover table-condensed table-responsive dataTables-example">
+        <thead align="center">
+          <tr>
+            <th rowspan="2">Должность</th>
+            <th rowspan="2">Маршрут</th>
+            <th rowspan="2">Сотрудник</th>
+            <th rowspan="2">Вступил в долность</th>
+            <th rowspan="2">Срок службы</th>
+            <th colspan="5">Аттестация</th>
+            <th colspan="3">Темы</th>
+          </tr>
+          <tr>
+            <th>Дата последней аттестации</th>
+            <th>Категория цель</th>
+            <th>Min цель</th>
+            <th>Оценка</th>
+            <th>Категория факт</th>
+            <th>Название темы</th>
+            <th>Дата проведения</th>
+            <th>Цель</th>
+            <th>Оценка</th>
+          </tr>
 
-                </thead>
-                <tbody *ngFor="let eduRes of eduResult" align="center">
+        </thead>
+        <tbody *ngFor="let eduRes of eduResult" align="center">
 
-                    <td>{{eduRes.position}}</td>
-                    <td>{{eduRes.route}}</td>
-                    <td>{{eduRes.employee}}</td>
-                    <td>{{eduRes.dateOfAdoption}}</td>
-                    <td>{{eduRes.lifeTime}}</td>
-                    <td>{{eduRes.attestation.dateOfLastAttestation}}</td>
-                    <td>{{eduRes.attestation.categoryGoal}}</td>
-                    <td>{{eduRes.attestation.minGoal}}</td>
-                    <td>{{eduRes.attestation.mark}}</td>
-                    <td>{{eduRes.attestation.categoryFact}}</td>
+          <td>{{eduRes.position}}</td>
+          <td>{{eduRes.route}}</td>
+          <td>{{eduRes.employee}}</td>
+          <td>{{eduRes.dateOfAdoption}}</td>
+          <td>{{eduRes.lifeTime}}</td>
+          <td>{{eduRes.attestation.dateOfLastAttestation}}</td>
+          <td>{{eduRes.attestation.categoryGoal}}</td>
+          <td>{{eduRes.attestation.minGoal}}</td>
+          <td>{{eduRes.attestation.mark}}</td>
+          <td>{{eduRes.attestation.categoryFact}}</td>
 
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.description}}
-                        </tr>
-                    </td>
+          <td>
+            <tr *ngFor="let theme of eduRes.themes">
+              {{theme.description}}
+            </tr>
+          </td>
 
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.date}}
-                        </tr>
-                    </td>
+          <td>
+            <tr *ngFor="let theme of eduRes.themes">
+              {{theme.date}}
+            </tr>
+          </td>
 
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.goals}}
-                        </tr>
-                    </td>
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.value}}
-                        </tr>
-                    </td>
+          <td>
+            <tr *ngFor="let theme of eduRes.themes">
+              {{theme.goals}}
+            </tr>
+          </td>
+          <td>
+            <tr *ngFor="let theme of eduRes.themes">
+              {{theme.value}}
+            </tr>
+          </td>
 
 
 
-                </tbody>
-            </table>
-            <h1>Итог: {{sum | number}}</h1>
-        </div>
-    </md-card>
+        </tbody>
+      </table>
+      <h1>Итог: {{sum | number}}</h1>
+    </div>
+  </md-card>
 </div>

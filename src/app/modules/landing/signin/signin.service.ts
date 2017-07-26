@@ -16,7 +16,7 @@ export class SigninService {
 
     return new Promise((resolve, reject) => {
       this.authServerProvider.login(credentials).subscribe(jwt => {
-        console.log(jwt)
+
         if (jwt) {
           this.principal.identity(true).then(account => {
             if (account !== null) {
@@ -25,6 +25,7 @@ export class SigninService {
           });
           return cb();
         } else {
+          console.error('No jwt token')
           reject('Error role b2b');
         }
 

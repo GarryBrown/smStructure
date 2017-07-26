@@ -23,6 +23,7 @@ export class StepsComponent implements OnInit {
   showIntro: boolean;
   showResult: boolean;
   answeredQuestions: any;
+  deliveryPoints: Array<any>
   report: Report;
 
   constructor(
@@ -38,7 +39,6 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getReport(1);
     this.getLocation();
     this.getTeaching();
   }
@@ -51,9 +51,9 @@ export class StepsComponent implements OnInit {
   getTeaching() {
     console.log('getTeaching');
     this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
-      (obj: any) => {
-        if (obj !== undefined) {
-          this.onSuccess(obj);
+      (teaching: any) => {
+        if (teaching !== undefined) {
+          this.onSuccess(teaching);
         } else {
           console.log("Loading from server");
           this.loadFromRouteParam();
@@ -72,12 +72,15 @@ export class StepsComponent implements OnInit {
 
   load(id) {
     this.stepsService.find(id).subscribe((teaching: any) => {
-      this.onSuccess(teaching.data);
+      this.onSuccess(teaching);
     });
   }
 
   onSuccess(teaching) {
+    console.log(teaching);
     this.teaching = teaching;
+    this.getDeliveryPoints(teaching.route.id);
+    if (teaching.planReport.id) this.getReport(teaching.planReport.id);
     this.teaching.typeOfTeaching.steps = this.sortStep(this.teaching.typeOfTeaching.steps);
     this.teaching.typeOfTeaching.questions = this.sortQuestion(this.teaching.typeOfTeaching.questions);
     this.stepsIndex = this.setSteps(this.teaching.typeOfTeaching.steps);
@@ -170,10 +173,17 @@ export class StepsComponent implements OnInit {
   getReport(id) {
     this.subscription = this.eduConfigService.findReport(id)
       .subscribe((data: any) => {
-        this.report = data.data;
+        this.report = data;
       },
-      error => console.log("oops")
+      error => console.error("oops getReport")
       )
+  }
+
+  getDeliveryPoints(id) {
+    this.eduConfigService.getDelivetyPoints(id).subscribe(
+      (data: any) => this.deliveryPoints = data,
+      (error) => console.error(error)
+    )
   }
 }
 

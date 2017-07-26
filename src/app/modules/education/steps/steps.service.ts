@@ -5,8 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class StepsService {
 
-  // private resourceUrl = 'api/edu';
-  private resourceUrl = 'api/teaching';
+  private resourceUrl = 'api/teachings';
 
   constructor(
     private http: Http,

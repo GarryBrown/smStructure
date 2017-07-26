@@ -1,13 +1,13 @@
 <app-header [opened]="opened" (toggleNav)="toggleNav($event)"></app-header>
 
 <md-sidenav-container class="container">
-    <md-sidenav (close-start)="closeSideNav()" #sidenav [opened]="opened" mode="{{mode}}">
-        <div class="scrolling-block">
-            <app-sidebar (hideSidebar)="toggleNav($event)"></app-sidebar>
-        </div>
-    </md-sidenav>
+  <md-sidenav (close-start)="closeSideNav()" #sidenav [opened]="user && opened" mode="{{mode}}">
     <div class="scrolling-block">
-        <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
+      <app-sidebar (hideSidebar)="toggleNav($event)"></app-sidebar>
     </div>
+  </md-sidenav>
+  <div class="scrolling-block">
+    <router-outlet></router-outlet>
+    <router-outlet name="popup"></router-outlet>
+  </div>
 </md-sidenav-container>

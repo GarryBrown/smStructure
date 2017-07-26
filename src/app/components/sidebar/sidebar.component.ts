@@ -26,14 +26,12 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.principal.getUserState().subscribe(
       (user) => {
         this.user = user;
       }, error => {
         this.user = null;
       });
-
   }
 
   logout() {

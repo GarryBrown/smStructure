@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SigninService } from './signin.service';
-import { SidebarToggleService, PrincipalService } from '../../../core';
+import { PrincipalService } from '../../../core';
 import { User } from '../../../models';
 
 @Component({
@@ -22,17 +22,13 @@ export class SigninComponent implements OnInit {
     private principal: PrincipalService,
     private loginService: SigninService,
     private router: Router,
-    private sidebartoggle: SidebarToggleService
   ) {
     this.credentials = {};
     this.rememberMe = true;
     this.loading = true;
-
-
   }
 
   ngOnInit() {
-    console.log(` isAuthenticated on da SIGNIN ${this.principal.isAuthenticated()}`);
     this.principal.identity().then(
       account => {
         if (account) this.redirect();
@@ -51,17 +47,13 @@ export class SigninComponent implements OnInit {
       rememberMe: this.rememberMe
     }).then((account: User) => {
       this.authenticationError = false;
-      console.log('=====AUTH PRINCIPAL NEXT');
       this.principal.authenticate(account);
-      console.log("=====AUTH SIDEBAR NEXT");
-      this.sidebartoggle.auth(account);
       if (this.principal.isAdmin(account.authorities)) {
         this.router.navigate(['kpi']);
       } else {
         this.router.navigate(['kpi']);
       }
     }).catch(() => {
-      console.log('some error of promise auth!');
       this.authenticationError = true;
     });
   }

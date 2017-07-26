@@ -1,6 +1,7 @@
 let _environment = {
-  production: false,
-  origin: 'http://localhost'
+  production: true,
+  origin: 'https://localhost:8081',
+  gataway: 'https://localhost:8443'
 };
 
 
