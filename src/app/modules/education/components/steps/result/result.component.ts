@@ -22,6 +22,7 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
+
   }
 
   ngOnChanges() {
@@ -41,6 +42,12 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
       (success) => this.alertService.open('Обучение успешно завершено!'),
       (error) => this.alertService.open('Ошибка при сохранении обучения!')
     )
+  }
 
+  disableSave(): boolean {
+    if (!this.teaching.strongSuit || !this.teaching.zoneOfGrowth || !this.teaching.ability || !this.teaching.kpi) {
+      return true;
+    }
+    return false;
   }
 }
