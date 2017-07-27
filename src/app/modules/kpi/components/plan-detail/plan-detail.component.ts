@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-import { PlanDetailService } from '../../services/plan-detail.service';
-import { ReportConfigService } from '../../services/report-config.service';
+import { PlanDetailService } from '../../services';
+import { ReportConfigService } from '../../services';
 import { ReportConfigComponent } from '../report-config/report-config.component';
 import { Route, Report, Indicator } from '../../../../models';
 import { AlertBarComponent } from '../../../../shared';
@@ -58,7 +58,8 @@ export class PlanDetailComponent implements OnInit {
       (data: any) => {
         this.onSucces(data, this.onSuccesRoutes)
       },
-      err => console.error('No getroutes for filter routes'));
+      err => this.alert.open("Не удалось получить данные :("));
+    // console.error('No getroutes for filter routes'));
   }
 
   // changes selects
@@ -111,7 +112,8 @@ export class PlanDetailComponent implements OnInit {
     this.isSaving = true;
     this.pdService.getRoutesData(this.currentIndicators, this.currentRoutes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
-      error => console.error(error)
+      error => this.alert.open("Не удалось получить данные :(")
+      // console.error(error)
     );
   }
 
@@ -119,7 +121,8 @@ export class PlanDetailComponent implements OnInit {
     this.isSaving = true;
     this.pdService.getRoutesData(report.indicators, report.routes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
-      error => console.error(error)
+      error => this.alert.open("Не удалось получить данные :(")
+      // console.error(error)
     );
   }
 

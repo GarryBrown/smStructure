@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { StepsService } from '../../../services/steps.service';
+import { StepsService } from '../../../services';
 import { AlertBarComponent } from '../../../../../shared';
 
 @Component({

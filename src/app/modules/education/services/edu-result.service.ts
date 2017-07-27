@@ -18,7 +18,7 @@ export class EduResultService {
 
   private currentAnswer = new BehaviorSubject(undefined);
   fuck: string;
-  private resoureUrlEduResult = '/api/eduResult';
+  private resoureUrlEduResult = 'api/eduResult';
 
   constructor(
     private http: Http,
@@ -42,21 +42,21 @@ export class EduResultService {
   }
 
   getCategories(): Observable<Array<any>> {
-    return this.http.get('/api/categories')
+    return this.http.get('api/categories')
       .map((res: Response) => {
         return res.json();
       });
   }
 
   getRoutes(): Observable<Array<any>> {
-    return this.http.get('/api/routes')
+    return this.http.get('api/routes')
       .map((res: Response) => {
         return res.json();
       });
   }
 
   getThemes(): Observable<Array<any>> {
-    return this.http.get('/api/themes')
+    return this.http.get('api/themes')
       .map((res: Response) => {
         return res.json();
       });

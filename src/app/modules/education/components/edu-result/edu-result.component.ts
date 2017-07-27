@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { EduResultService, resultFilter } from '../../services/edu-result.service';
+import { EduResultService, resultFilter } from '../../services';
 import { DatepickerModule } from 'angular2-material-datepicker'
+import { AlertBarComponent } from "app/shared";
 
 
 @Component({
@@ -30,6 +31,7 @@ export class EduResultComponent implements OnInit, OnDestroy {
 
   constructor(
     private eduResultService: EduResultService,
+    private alert: AlertBarComponent
   ) {
     this.isLoading = true;
     this.resultFilter = this.setFilter();
@@ -39,7 +41,8 @@ export class EduResultComponent implements OnInit, OnDestroy {
     this.subscription = this.eduResultService.getEduResult()
       .subscribe(
       (data: any) => this.onSuccessResult(data),
-      error => console.log("oops"))
+      error => this.alert.open("Не удалось получить данные :("))
+    // console.log("oops"))
     this.subscriptionCategories = this.eduResultService.getCategories()
       .subscribe((data: any) => this.categories = data.data);
     this.subscriptionRoutes = this.eduResultService.getRoutes()
@@ -68,7 +71,8 @@ export class EduResultComponent implements OnInit, OnDestroy {
   loadData() {
     this.eduResultService.getEduResultData(this.resultFilter).subscribe(
       (data: any) => console.log(data.data),
-      error => console.error(error)
+      error => this.alert.open("не удалось получить данные :(")
+      // console.error(error)
     );
   }
 

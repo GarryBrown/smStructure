@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EduResultService } from '../../../services/edu-result.service';
-import { EduConfigService } from '../../../services/edu-config.service';
+import { EduResultService } from '../../../services';
+import { EduConfigService } from '../../../services';
 import { UtilsService } from '../../../../../shared';
 import { Report } from '../../../../../models';
 
@@ -20,12 +20,12 @@ export class StepComponent implements OnInit, OnChanges {
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     @Output() toFinish: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;
-    
+
     deliveryPoint: any;
     prevStepsId: Array<number>;
     getSelected: any;
     disabled: boolean = false;
-    
+
     constructor(
         private eduConfigService: EduConfigService,
         private utilsService: UtilsService,
@@ -37,7 +37,7 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.disableNext();
+        this.disabledDeliveryPoint();
     }
 
     ngOnChanges() {
@@ -102,6 +102,11 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     disableNext(): boolean {
+        return this.theme.questions.some((question) =>
+            this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
+    }
+
+    disabledDeliveryPoint() {
         return this.theme.questions.some((question) =>
             this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
     }

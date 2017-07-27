@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { PlanDetailService } from '../../services/plan-detail.service';
+import { PlanDetailService } from '../../services';
 import { Route, Report, Indicator, Field } from '../../../../models';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 

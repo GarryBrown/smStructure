@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { Http } from '@angular/http';
 import { Subscription } from "rxjs/Subscription";
 
-import { EduCalendarService } from '../../services/edu-calendar.service';
+import { EduCalendarService } from '../../services';
+import { AlertBarComponent } from "app/shared";
 
 @Component({
   selector: 'app-edu-calendar',
   templateUrl: './edu-calendar.component.html',
   styleUrls: ['./edu-calendar.component.scss']
 })
-export class EduCalendarComponent implements OnInit {
+export class EduCalendarComponent implements OnInit, OnDestroy {
   @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
   @Input() access: string;
   model: NgbDateStruct;
@@ -19,11 +19,13 @@ export class EduCalendarComponent implements OnInit {
   date: any;
   dateFrom: any;
   dateTo: any;
+  current: any;
+
 
   constructor(
-    private http: Http,
     private calendar: NgbCalendar,
-    private calService: EduCalendarService
+    private calService: EduCalendarService,
+    private alert: AlertBarComponent
   ) {
     this.getDateRange(this.calendar.getToday())
   }
@@ -31,6 +33,9 @@ export class EduCalendarComponent implements OnInit {
   ngOnInit() {
 
     this.loadData();
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   isWeekend(date: NgbDateStruct) {
@@ -50,10 +55,10 @@ export class EduCalendarComponent implements OnInit {
     this.subscription = this.calService.getEvent(this.dateFrom, this.dateTo).subscribe(
       (data: any) => {
         console.log("EVENTS");
-        console.log(data);
-        this.eventsData = data
+        this.eventsData = data;
       },
-      err => console.error('Opps')
+      err => this.alert.open("Не удалось получить данные :(")
+      // console.error('Opps')
     )
   }
 
@@ -61,6 +66,13 @@ export class EduCalendarComponent implements OnInit {
   getDateRange(today) {
     this.dateFrom = new Date(today.year, today.month, 1)
     this.dateTo = new Date(today.year, today.month + 1, 0)
+  }
+
+  getMonth(ev) {
+    console.log(ev.next);
+    this.getDateRange(ev.next);
+    this.loadData();
+    return ev.next;
   }
 
 }

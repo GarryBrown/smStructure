@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlertBarComponent } from '../../../../shared';
 
 import { Report } from '../../../../models';
-import { KpiTableService } from '../../services/kpi-table.service';
+import { KpiTableService } from '../../services';
 
 @Component({
   selector: 'app-kpi-table',
@@ -38,7 +38,8 @@ export class KpiTableComponent implements OnInit, OnChanges {
     this.isSaving = true;
     this.kpiTableService.getRoutesData(report.indicators, report.routes).subscribe(
       (data: any) => this.onSucces(data, this.onSuccesRouteData),
-      error => console.error(error)
+      error => this.alert.open("Не удалось получить данные :(")
+      // console.error(error)
     );
   }
 

@@ -13,13 +13,14 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { EducationRoutingModule } from './education-routing.module';
 /*service */
-import { KpiTableService } from './services/kpi-table.service';
-import { EducationService } from './services/education.service';
-import { EduCalendarService } from './services/edu-calendar.service';
-import { StepsService } from './services/steps.service';
-import { EduConfigService } from './services/edu-config.service';
-import { EduResultService } from './services/edu-result.service';
-import { ResultService } from "./services/result.service";
+import {
+  KpiTableService, EducationService,
+  EduCalendarService,
+  StepsService,
+  EduConfigService,
+  EduResultService,
+  ResultService
+} from './services';
 /* components */
 import { EducationComponent } from './education.component';
 import { EduCalendarComponent } from './components/edu-calendar/edu-calendar.component';

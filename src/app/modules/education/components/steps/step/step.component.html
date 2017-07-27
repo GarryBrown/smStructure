@@ -1,40 +1,40 @@
 <div *ngIf="step">
-  <md-toolbar>
-    <h3>{{ step.typeOfTeachingStep.description}}</h3>
-  </md-toolbar>
-  <br>
-  <div class="delivery-point-select">
-    <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
-      <md-option *ngFor="let dp of deliveryPoints" [value]="getSelected(deliveryPoint, dp)">
-        {{ dp.description }}
-      </md-option>
-    </md-select>
-  </div>
-  <div class="wrapper-block">
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-condensed table-responsive">
-          <thead>
-            <th>Вопрос</th>
-            <ng-template ngFor let-qty [ngForOf]="prevStepsId">
-              <th>Ответ</th>
-              <th>Оценка</th>
-            </ng-template>
-            <th>Вариант</th>
-            <th>Оценка</th>
-            <th>Комментарий</th>
-          </thead>
-          <tbody>
-            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
-          </tbody>
-        </table>
-      </div>
+    <md-toolbar>
+        <h3>{{ step.typeOfTeachingStep.description}}</h3>
+    </md-toolbar>
+    <br>
+    <div class="delivery-point-select">
+        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
+            <md-option *ngFor="let dp of deliveryPoints" [value]="getSelected(deliveryPoint, dp)">
+                {{ dp.description }}
+            </md-option>
+        </md-select>
     </div>
-  </div>
-  <div *ngIf="report && deliveryPoint" class="kpi-block">
-    <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
-  </div>
-  <br>
-  <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext()">Далее</button>
-  <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
+    <div class="wrapper-block">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-condensed table-responsive">
+                    <thead>
+                        <th>Вопрос</th>
+                        <ng-template ngFor let-qty [ngForOf]="prevStepsId">
+                            <th>Ответ</th>
+                            <th>Оценка</th>
+                        </ng-template>
+                        <th>Вариант</th>
+                        <th>Оценка</th>
+                        <th>Комментарий</th>
+                    </thead>
+                    <tbody>
+                        <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="report && deliveryPoint" class="kpi-block">
+        <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
+    </div>
+    <br>
+    <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext() || !deliveryPoint">Далее</button>
+    <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
 </div>

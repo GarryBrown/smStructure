@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
-import { StepsService } from '../../services/steps.service';
-import { EduConfigService } from '../../services/edu-config.service'
+import { StepsService } from '../../services';
+import { EduConfigService } from '../../services'
 import { UtilsService } from '../../../../shared';
 import { Report } from '../../../../models';
+import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-steps',
   templateUrl: './steps.component.html',
   styleUrls: ['./steps.component.scss']
 })
+
 export class StepsComponent implements OnInit {
   subscription: any;
   subscriptionServer: Subscription;
@@ -30,7 +32,8 @@ export class StepsComponent implements OnInit {
     private route: ActivatedRoute,
     private stepsService: StepsService,
     private utilsService: UtilsService,
-    private eduConfigService: EduConfigService
+    private eduConfigService: EduConfigService,
+    private alert: AlertBarComponent
   ) {
     this.currentStepIndex = 0;
     this.showIntro = false;
@@ -57,7 +60,8 @@ export class StepsComponent implements OnInit {
           this.loadFromRouteParam();
         }
       },
-      err => console.error(err)
+      err => this.alert.open("Не удалось получить данные :(")
+      // console.error(err)
     );
   }
 
@@ -173,14 +177,16 @@ export class StepsComponent implements OnInit {
       .subscribe((data: any) => {
         this.report = data;
       },
-      error => console.error("oops getReport")
+      error => this.alert.open("Не удалось получить данные :(")
+      // console.error("oops getReport")
       )
   }
 
   getDeliveryPoints(id) {
     this.eduConfigService.getDelivetyPoints(id).subscribe(
       (data: any) => this.deliveryPoints = data,
-      (error) => console.error(error)
+      (error) => this.alert.open("Не удалось получить данные :(")
+      // console.error(error)
     )
   }
 }

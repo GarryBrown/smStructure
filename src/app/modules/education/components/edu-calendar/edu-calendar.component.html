@@ -1,4 +1,4 @@
-<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" [dayTemplate]="customDay" #d="ngbDatepicker" [markDisabled]="isDisabled">
+<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = getMonth($event)" [dayTemplate]="customDay" #d="ngbDatepicker" [markDisabled]="isDisabled">
 </ngb-datepicker>
 
 <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">

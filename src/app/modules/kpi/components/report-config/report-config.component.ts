@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
-import { ReportConfigService } from '../../services/report-config.service';
+import { ReportConfigService } from '../../services';
 import { Route, Report } from '../../../../models';
+import { AlertBarComponent } from "app/shared";
 
 @Component({
   selector: 'app-report-config',
@@ -20,6 +21,7 @@ export class ReportConfigComponent implements OnInit {
     @Inject(MD_DIALOG_DATA) public data: any,
     public dialogRef: MdDialogRef<ReportConfigComponent>,
     private reportService: ReportConfigService,
+    private alert: AlertBarComponent
   ) {
     this.isChanged = false;
     this.reports = data[0].slice(0, data[0].length);
@@ -66,6 +68,7 @@ export class ReportConfigComponent implements OnInit {
   }
 
   onSaveError(err) {
+    this.alert.open("не удалось сохранить данные :(");
     console.error(err);
   }
 

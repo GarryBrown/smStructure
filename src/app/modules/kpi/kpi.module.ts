@@ -13,9 +13,7 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.module';
 /*service */
-import { KPIService } from './services/kpi.service';
-import { PlanDetailService } from './services/plan-detail.service';
-import { ReportConfigService } from './services/report-config.service';
+import { KPIService, PlanDetailService, ReportConfigService } from './services';
 /* components */
 import { KPIComponent } from './kpi.component';
 import { PlanDetailComponent } from "./components/plan-detail/plan-detail.component";

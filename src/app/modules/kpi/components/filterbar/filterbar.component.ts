@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 
-import { PlanDetailService } from '../../services/plan-detail.service';
+import { PlanDetailService } from '../../services';
 import { Report, Route } from '../../../../models';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { AlertBarComponent } from "app/shared";
 
 @Component({
   selector: 'app-filterbar',
@@ -30,6 +31,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
 
   constructor(
     private pdService: PlanDetailService,
+    private alert: AlertBarComponent
   ) {
     this.getSelected = pdService.getSelected;
   }
@@ -61,6 +63,7 @@ export class FilterbarComponent implements OnInit, OnChanges {
   }
 
   onError(api: string, err: any) {
+    this.alert.open("Не удалось получить данные :(")
     console.error(`error in ${api} => ${err}`);
   }
 

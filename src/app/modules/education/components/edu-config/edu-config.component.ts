@@ -3,8 +3,8 @@ import { ALL, SCH, EDU } from '../../education.constants';
 import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { EduConfigService } from '../../services/edu-config.service';
-import { StepsService } from '../../services/steps.service';
+import { EduConfigService } from '../../services';
+import { StepsService } from '../../services';
 import { UtilsService } from '../../../../shared';
 import { Event, Route, Report } from '../../../../models';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-import { PlanDetailService } from '../../../services/plan-detail.service';
-import { ReportConfigService } from '../../../services/report-config.service';
+import { PlanDetailService } from '../../../services';
+import { ReportConfigService } from '../../../services';
 import { Route, Report, Indicator, Field } from '../../../../../models';
 import { CheckboxComponent } from '../../checkbox/checkbox.component';
 import { AlertBarComponent } from '../../../../../shared';
@@ -28,7 +28,7 @@ export class ReportComponent implements OnInit, OnChanges {
     constructor(
         private pdService: PlanDetailService,
         private reportService: ReportConfigService,
-        private alertService: AlertBarComponent,
+        private alert: AlertBarComponent,
         public dialog: MdDialog
     ) {
 
@@ -43,11 +43,12 @@ export class ReportComponent implements OnInit, OnChanges {
             this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
                 (data: any) => {
                     this.report.indicators = this.copyObj(this.report.indicators);
-                    this.indicators = data.data;
+                    this.indicators = data;
 
                     this.allFields = this.indicators[0].planFields;
                 },
-                err => console.log('error')
+                err => this.alert.open("Не удалось получить данные :(")
+                // console.log('error')
             )
         }
     }
@@ -62,7 +63,7 @@ export class ReportComponent implements OnInit, OnChanges {
     save() {
         this.onSave.emit(this.report);
         this.toggleInfo();
-        this.alertService.open(this.report.description + " успешно изменен!");
+        this.alert.open(this.report.description + " успешно изменен!");
     }
 
     changeRoutes(routes) {
@@ -84,14 +85,15 @@ export class ReportComponent implements OnInit, OnChanges {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.onDelete.emit(report);
-                this.alertService.open(this.report.description + " удален!");
+                this.alert.open(this.report.description + " удален!");
             } else {
-              dialogRef.close();
+                dialogRef.close();
             }
         });
     }
 
     onError(api: string, err: any) {
+        this.alert.open("Не удалось получить данные :(")
         console.error(`error in ${api} => ${err}`);
     }
 
