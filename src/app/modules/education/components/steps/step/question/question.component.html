@@ -21,10 +21,10 @@
   </md-select>
 </td>
 <td>
-  <span *ngIf="answer.value">{{ answer.value}}</span>
+  <span *ngIf="answer">{{ answer.value}}</span>
 </td>
 <td>
   <md-input-container>
-    <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)" [disabled]="onlyLast"></textarea>
+    <textarea mdInput mdAutosize minRows="2" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)" [disabled]="onlyLast || !answer.id"></textarea>
   </md-input-container>
 </td>

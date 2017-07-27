@@ -95,7 +95,7 @@ export class EduConfigComponent implements OnInit {
     ).then(
       (metricObj) => {
         console.log('then2 res')
-        // this.eduConfigService.update(this.teaching).subscribe(
+        // this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
         //   (obj) => this.goToTeaching(obj),
         //   (err) => console.error(err)
         // )
@@ -106,10 +106,11 @@ export class EduConfigComponent implements OnInit {
 
   goToTeaching(teaching) {
     console.log(teaching)
-    this.eduConfigService.findReport(this.report.id).subscribe(
-      (data) => { console.log(data) },
-      (err) => console.error(err),
-    )
+    // what is the foo below???? For why?
+    // this.eduConfigService.findReport(this.report.id).subscribe(
+    //   (data) => { console.log(data) },
+    //   (err) => console.error(err),
+    // )
     this.eduConfigService.setCurrentTeaching(teaching);
     this.router.navigate(['edu/theme', this.teaching.id]).then(
       (result) => this.dialogRef.close(false),

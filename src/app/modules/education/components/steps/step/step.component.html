@@ -10,7 +10,7 @@
       </md-option>
     </md-select>
   </div>
-  <div class="wrapper-block">
+  <div *ngIf="deliveryPoint" class="wrapper-block">
     <div class="row">
       <div class="col-md-12">
         <table class="table table-condensed table-responsive">
@@ -25,7 +25,7 @@
             <th>Комментарий</th>
           </thead>
           <tbody>
-            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
+            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId" (sendAnswer)="sendAnswer($event)"></tr>
           </tbody>
         </table>
       </div>

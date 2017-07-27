@@ -1,12 +1,12 @@
 <div class="wrapper">
-  <div class="block-table">
+  <div *ngIf="lastStep" class="block-table">
     <table class="table table-condensed table-responsive">
       <thead>
         <th>Вопрос</th>
         <th>Оценка</th>
         <th>Комментарий</th>
       </thead>
-      <tbody *ngIf="lastStep">
+      <tbody>
         <tr app-question *ngFor="let question of teaching.typeOfTeaching.questions" [question]="question" [answeredQuestions]="teaching.teachingSpecialities" [step]="lastStep" [steps]="teaching.typeOfTeaching.steps" [onlyLast]="true"></tr>
       </tbody>
     </table>
@@ -15,25 +15,25 @@
     <div class="item-comment">
       <label>Сильные стороны</label>
       <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Сильные стороны"></textarea>
+        <textarea mdInput placeholder="Сильные стороны" [(ngModel)]="teaching.strongSuit" required></textarea>
       </md-input-container>
     </div>
     <div class="item-comment">
       <label>Зоны развития</label>
       <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Зоны развития"></textarea>
+        <textarea mdInput placeholder="Зоны развития" [(ngModel)]="teaching.zoneOfGrowth" required></textarea>
       </md-input-container>
     </div>
     <div class="item-comment">
       <label>Задачи по развитию</label>
       <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Задачи по развитию"></textarea>
+        <textarea mdInput placeholder="Задачи по развитию" [(ngModel)]="teaching.ability" required></textarea>
       </md-input-container>
     </div>
     <div class="item-comment">
       <label>Задачи по KPI</label>
       <md-input-container class="example-full-width">
-        <textarea mdInput placeholder="Задачи по KPI"></textarea>
+        <textarea mdInput placeholder="Задачи по KPI" [(ngModel)]="teaching.kpi" required></textarea>
       </md-input-container>
     </div>
     <button md-raised-button color="primary" (click)="save()"><md-icon>save</md-icon> Сохранить</button>

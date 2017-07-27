@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(
-    private principal: PrincipalService) {
+    private principal: PrincipalService
+  ) {
     this.setInitMode();
     Observable.fromEvent(window, 'resize')
       .debounceTime(200).map((e: Event) => e.target)
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
       }
       );
   }
+
 
   ngOnInit() {
     this.principal.getUserState().subscribe(
