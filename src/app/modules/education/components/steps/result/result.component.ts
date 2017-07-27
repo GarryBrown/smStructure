@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { StepsService } from '../../../services';
+
+import { EduConfigService } from '../../../services';
 import { AlertBarComponent } from '../../../../../shared';
 
 @Component({
@@ -11,11 +12,11 @@ import { AlertBarComponent } from '../../../../../shared';
 })
 export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   @Input() teaching: any;
-  lastStep;
+  lastStep: any;
   subscription;
 
   constructor(
-    private stepsService: StepsService,
+    private eduConfigService: EduConfigService,
     private alertService: AlertBarComponent
   ) {
   }
@@ -25,16 +26,18 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges() {
     if (this.teaching) {
+      console.log('set teaching')
       this.lastStep = this.teaching.typeOfTeaching.steps[this.teaching.typeOfTeaching.steps.length - 1];
+      console.log(this.lastStep)
     }
   }
 
   ngOnDestroy() {
-    // this.subscription.unsubscrube();
+    this.subscription.unsubscrube();
   }
 
   save() {
-    this.stepsService.update(this.teaching).subscribe(
+    this.subscription = this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
       (success) => this.alertService.open('Обучение успешно завершено!'),
       (error) => this.alertService.open('Ошибка при сохранении обучения!')
     )

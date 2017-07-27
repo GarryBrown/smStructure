@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EduResultService } from '../../../services';
-import { EduConfigService } from '../../../services';
+
+import { EduResultService, EduConfigService, StepsService } from '../../../services';
 import { UtilsService } from '../../../../../shared';
 import { Report } from '../../../../../models';
 
@@ -29,6 +29,7 @@ export class StepComponent implements OnInit, OnChanges {
     constructor(
         private eduConfigService: EduConfigService,
         private utilsService: UtilsService,
+        private stepsService: StepsService,
         private router: Router,
         private eduResultService: EduResultService
     ) {
@@ -37,21 +38,29 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.disabledDeliveryPoint();
     }
 
     ngOnChanges() {
-
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.setDP();
-
         this.isFinish = this.setIsFinish();
-        // if (this.step && this.step.typeOfTeachingStep.isNeedSelectDP && this.listDP.length === 0) {
-        //     this.eduConfigService.getDelivetyPoints(1).subscribe(
-        //         (data: any) => this.listDP = data,
-        //         (error) => console.log(error)
-        //     )
-        // }
+    }
+
+    sendAnswer(answer) {
+        answer.deliveryPointId = this.deliveryPoint.id;
+        this.eduConfigService.getCurrentTeaching().subscribe(
+            (teaching) => {
+                answer.teachingId = teaching.id;
+                this.stepsService.sendAnswer(answer).subscribe(
+                    answer => {
+                        this.answeredQuestions.steps[this.step.id].questions[answer.typeOfTeachingQuestionId].answer.id = answer.id
+                    },
+                    err => console.error(` sendAnswer ${err}`)
+                    //подключи алерт сервис ('Произошла ошибка. Ответ не сохранен')
+                )
+            },
+            (err) => console.error(err)
+        )
     }
 
     setIsFinish(): boolean {
@@ -88,7 +97,7 @@ export class StepComponent implements OnInit, OnChanges {
                 this.deliveryPoint = this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
             }
         }
-        if (this.deliveryPoint === null &&
+        if ((this.deliveryPoint === null || this.deliveryPoint === undefined) &&
             this.answeredQuestions &&
             this.answeredQuestions.steps[this.step.id] &&
             this.answeredQuestions.steps[this.step.id].deliveryPoint) {
@@ -106,8 +115,4 @@ export class StepComponent implements OnInit, OnChanges {
             this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
     }
 
-    disabledDeliveryPoint() {
-        return this.theme.questions.some((question) =>
-            this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
-    }
 }

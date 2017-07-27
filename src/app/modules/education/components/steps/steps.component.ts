@@ -19,6 +19,7 @@ export class StepsComponent implements OnInit {
   subscriptionServer: Subscription;
   subscriptionRoute: Subscription;
   subscriptionService: Subscription;
+
   teaching: any;
   stepsIndex: Array<number> = [];
   currentStepIndex: number;
@@ -42,7 +43,6 @@ export class StepsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getLocation();
     this.getTeaching();
   }
 
@@ -75,6 +75,7 @@ export class StepsComponent implements OnInit {
   load(id) {
     this.stepsService.find(id).subscribe((teaching: any) => {
       this.onSuccess(teaching);
+      this.eduConfigService.setCurrentTeaching(teaching);
     });
   }
 
@@ -138,13 +139,10 @@ export class StepsComponent implements OnInit {
         this.showIntro = false;
       }
       return currentStep;
-    } else if (data.commonComment) {
+    } else  {
       this.showResult = true;
-      return null;
-    } else {
-      this.showIntro = true;
       return 0;
-    }
+    } 
   }
 
   setCurrentStepID(steps) {
@@ -157,15 +155,6 @@ export class StepsComponent implements OnInit {
 
   isStepBegined(stepId: number, results: any): boolean {
     return this.teaching.typeOfTeaching.questions.some(question => results.steps[stepId].questions[question.id] !== null)
-  }
-
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
   }
 
   getCurrentTime() {

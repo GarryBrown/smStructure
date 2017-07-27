@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 export class StepsService {
 
   private resourceUrl = 'api/teachings';
+  private resourceSpecialitiesUrl = 'api/teaching-specialities';
 
   constructor(
     private http: Http,
@@ -23,6 +24,12 @@ export class StepsService {
     });
   }
 
+  sendAnswer(teachingSpecialities) {
+    let copy: any = Object.assign({}, teachingSpecialities);
+    return this.http.put(this.resourceSpecialitiesUrl, copy).map((res: Response) => {
+      return res.json();
+    });
+  }
 
   create(teaching: any): Observable<Response> {
     return this.http.post(this.resourceUrl, teaching);

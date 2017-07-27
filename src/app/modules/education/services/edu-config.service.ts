@@ -23,7 +23,21 @@ export class EduConfigService {
     });
   }
 
-  update(teaching: any): Observable<any> {
+  partiallyUpdate(teaching: any): Observable<any> {
+    let copy: any = Object.assign({}, teaching);
+    copy.teachingSpecialities = null;
+    copy.planReport.planReportTypeOfPlans = null;
+    copy.planReport.routes = null;
+    copy.typeOfTeaching.questions = null;
+    copy.typeOfTeaching.steps = null;
+    copy.typeOfTeaching.textBody = null;
+    return this.http.put(this.resourceTeachingUrl, copy).map((res: Response) => {
+      return res.json();
+    });
+  }
+
+
+  fullUpdate(teaching: any): Observable<any> {
     let copy: any = Object.assign({}, teaching);
     return this.http.put(this.resourceTeachingUrl, copy).map((res: Response) => {
       return res.json();
@@ -39,7 +53,9 @@ export class EduConfigService {
   getDelivetyPoints(routeID): Observable<Response> {
     let params = new URLSearchParams();
     params.set('routeId', routeID.toString())
-    return this.http.get('/api/delivery-points')
+    return this.http.get('/api/delivery-points', {
+      search: params
+    })
       .map((res: Response) => res.json())
   }
 
@@ -97,7 +113,6 @@ export class EduConfigService {
 
   createMetrics(location: any, time: any, teachingId: number, routeId: number, staffId: number) {
     let position;
-    console.log(location);
     if (location.hasOwnProperty('loc')) {
       position = location.loc;
     } else {
