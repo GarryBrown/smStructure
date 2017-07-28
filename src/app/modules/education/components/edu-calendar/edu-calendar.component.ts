@@ -31,9 +31,8 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this.loadData();
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -54,11 +53,9 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   loadData() {
     this.subscription = this.calService.getEvent(this.dateFrom, this.dateTo).subscribe(
       (data: any) => {
-        console.log("EVENTS");
         this.eventsData = data;
       },
-      err => this.alert.open("Не удалось получить данные :(")
-      // console.error('Opps')
+      err => this.alert.open("Не удалось получить данные по обучению :(")
     )
   }
 
@@ -69,7 +66,6 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   }
 
   getMonth(ev) {
-    console.log(ev.next);
     this.getDateRange(ev.next);
     this.loadData();
     return ev.next;

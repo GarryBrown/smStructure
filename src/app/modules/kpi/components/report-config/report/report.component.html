@@ -14,7 +14,7 @@
         <button md-icon-button *ngIf="details" [disabled]="report.description.length === 0" (click)="toggleInfo()">
           <md-icon>keyboard_arrow_up</md-icon>
         </button>
-        <button md-icon-button *ngIf="details" [disabled]="report.description.length === 0" (click)="save()">
+        <button md-icon-button *ngIf="details" [disabled]="disableSave()" (click)="save()">
           <md-icon>save</md-icon>
         </button>
         <button md-icon-button *ngIf="!details" (click)="delete(report)">

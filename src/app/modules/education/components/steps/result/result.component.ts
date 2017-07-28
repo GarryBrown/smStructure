@@ -34,7 +34,10 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscrube();
+    if (this.subscription) {
+      this.subscription.unsubscrube();
+    }
+
   }
 
   save() {
