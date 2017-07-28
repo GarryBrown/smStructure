@@ -1,0 +1,28 @@
+{
+    "plansKPI": [{
+        "id": 3,
+        "name": "PS103",
+        "plans": [{
+                "id": 7,
+                "typeplanid": 1,
+                "plan": 500,
+                "fact": 321,
+                "name": "Товарооборот"
+            },
+            {
+                "id": 8,
+                "typeplanid": 2,
+                "plan": 400,
+                "fact": 123,
+                "name": "Покрытие"
+            },
+            {
+                "id": 9,
+                "typeplanid": 3,
+                "plan": 5000,
+                "fact": 1545,
+                "name": "Листинг"
+            }
+        ]
+    }]
+}

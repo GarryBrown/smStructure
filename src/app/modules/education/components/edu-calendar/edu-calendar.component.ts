@@ -65,8 +65,7 @@ export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
       (data: any) => {
         this.eventsData = data;
       },
-      err => this.alert.open("Не удалось получить данные :(")
-      // console.error('Opps')
+      err => this.alert.open("Не удалось получить данные по обучению :(")
     )
   }
 

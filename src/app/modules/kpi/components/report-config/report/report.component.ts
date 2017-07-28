@@ -44,11 +44,9 @@ export class ReportComponent implements OnInit, OnChanges {
                 (data: any) => {
                     this.report.indicators = this.copyObj(this.report.indicators);
                     this.indicators = data;
-
                     this.allFields = this.indicators[0].planFields;
                 },
                 err => this.alert.open("Не удалось получить данные :(")
-                // console.log('error')
             )
         }
     }
@@ -69,7 +67,7 @@ export class ReportComponent implements OnInit, OnChanges {
     changeRoutes(routes) {
         this.pdService.getIndicatorsByRoutes(routes).subscribe(
             data => {
-                this.indicators = data.data;
+                this.indicators = data;
                 this.allFields = this.indicators[0].planFields;
             },
             err => this.onError('getIndicatorsByRoutes', err)
@@ -78,8 +76,8 @@ export class ReportComponent implements OnInit, OnChanges {
 
     delete(report) {
         let dialogRef = this.dialog.open(ConfirmComponent, {
-            width: '20%',
-            height: '20%',
+            width: '40%',
+            height: '40%',
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -94,7 +92,6 @@ export class ReportComponent implements OnInit, OnChanges {
 
     onError(api: string, err: any) {
         this.alert.open("Не удалось получить данные :(")
-        console.error(`error in ${api} => ${err}`);
     }
 
     onCheckRoutes(routes) {
@@ -102,6 +99,13 @@ export class ReportComponent implements OnInit, OnChanges {
     }
     onCheckIndicators(indicators) {
         this.report.indicators = indicators;
+    }
+
+    disableSave(): boolean {
+        if (this.report.description.length === 0 || this.report.routes.length === 0 || this.report.indicators.length === 0) {
+            return true;
+        }
+        return false;
     }
 }
 

@@ -30,6 +30,11 @@
         justify-content: flex-start;
         align-items: flex-start;
     }
+    button {
+        width: 116px;
+        height: 36px;
+        padding: 2px;
+    }
 }
 
 .block-comments:last-child button {

@@ -20,11 +20,12 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private eduConfigService: EduConfigService,
     private alertService: AlertBarComponent,
-    private router:Router
+    private router: Router
   ) {
   }
 
   ngOnInit() {
+
   }
 
   ngOnChanges() {
@@ -36,7 +37,10 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
   }
 
   save() {
@@ -50,7 +54,13 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
       },
       (error) => this.alertService.open('Ошибка при сохранении обучения!')
     )
+  }
 
+  disableSave(): boolean {
+    if (!this.teaching.strongSuit || !this.teaching.zoneOfGrowth || !this.teaching.ability || !this.teaching.kpi) {
+      return true;
+    }
+    return false;
   }
 
   redirect() {
