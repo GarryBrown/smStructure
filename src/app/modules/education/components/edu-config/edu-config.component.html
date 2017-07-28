@@ -10,23 +10,24 @@
 </div>
 
 <div class="wrapper" *ngIf="event">
+
+  <div *ngIf="access === edu && event && event.id === null">
+    <material-datepicker [(date)]="event.date" dateFormat="YYYY-MM-DD"></material-datepicker>
+  </div>
+
   <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all">
     <md-option *ngFor="let type of types" [value]="type">
       {{ type }}
     </md-option>
   </md-select>
-  <br>
-  <br>
 
   <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
     <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
       {{ route.description }}
     </md-option>
   </md-select>
-  <br>
-  <br>
 
-  <md-select *ngIf="teaching" placeholder="Тема" [(ngModel)]="teaching.typeOfTeaching">
+  <md-select *ngIf="event && teaching" placeholder="Тема" [(ngModel)]="teaching.typeOfTeaching">
     <md-option *ngFor="let theme of themes" [value]="getSelected(teaching.typeOfTeaching, theme)">
       {{ theme.description }}
     </md-option>
@@ -40,10 +41,15 @@
 
 </div>
 
-<div class="footer">
+
+<div *ngIf="access && event" class="footer">
+  <!-- Блок планирование создание обучения или стор-чека  -->
   <button *ngIf="access === all" md-raised-button color="accent" (click)="saveEvent()">Сохранить</button>
-  <button *ngIf="teaching && access === edu && !isStarted" md-raised-button color="accent" (click)="beginTeaching()" [disabled]="!teaching.planReport.id">Начать</button>
-  <button *ngIf="access === edu && isStarted" md-raised-button color="accent" (click)="goToTeaching()">Продолжить</button>
+  <button *ngIf="access === edu && event && event.id === null" md-raised-button color="accent" (click)="createTeaching()">Создать</button>
+  <button *ngIf="event.id && teaching && access === edu && !isStarted && !isFinished" md-raised-button color="accent" (click)="beginTeaching()" [disabled]="!teaching && !teaching.planReport.id">Начать</button>
+  <button *ngIf="access === edu && isStarted && !isFinished" md-raised-button color="accent" (click)="goToTeaching()">Продолжить</button>
   <button *ngIf="access === sch" md-raised-button color="accent" (click)="startEvent()">Начать</button>
+
+  <button *ngIf="access === edu && isFinished" md-raised-button (click)="close()" [disabled]="true">Завершено</button>
   <button md-raised-button (click)="close()">Отмена</button>
 </div>

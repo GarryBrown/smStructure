@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter } from '@angular/core';
 
+import { TEACHING } from '../../../education.constants';
 @Component({
   selector: 'app-edu-day-calendar',
   templateUrl: './edu-day-calendar.component.html',
@@ -38,7 +39,7 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
       let d1 = new Date(event.date);
       let d2 = new Date(this.date.year, this.date.month - 1, this.date.day);
       if (d1.valueOf() === d2.valueOf()) {
-        if (event.type === 'teaching') {
+        if (event.type === TEACHING) {
         this.isEdu = true;
         } else {
           this.isSch = true;

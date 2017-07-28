@@ -36,6 +36,13 @@ export class EduConfigService {
     });
   }
 
+  createTeaching(teaching: any): Observable<any> {
+    let copy: any = Object.assign({}, teaching);
+    return this.http.post(this.resourceTeachingUrl, copy).map((res: Response) => {
+      return res.json();
+    });
+  }
+
 
   fullUpdate(teaching: any): Observable<any> {
     let copy: any = Object.assign({}, teaching);

@@ -17,18 +17,10 @@ import { LayoutrModule } from './layouts//layout.module';
 /* Modules */
 import { KPIModule } from './modules/kpi/kpi.module';
 import { EducationModule } from './modules/education/education.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
+// import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
-import { AccountModule } from './modules/account/account.module';
-// import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
-
-export class MyHammerConfig extends HammerGestureConfig {
-  // overrides = <any>{
-  //   'swipe': { velocity: 0.4, threshold: 10 } // override default settings
-  // }
-}
 
 @NgModule({
   declarations: [
@@ -45,17 +37,14 @@ export class MyHammerConfig extends HammerGestureConfig {
     /*layouts */
     LayoutrModule,
     /* modules */
-    AccountModule,
     LandingModule,
     KPIModule,
     EducationModule,
-    DashboardModule,
+    // DashboardModule,
     ProfileModule,
   ],
   providers: [
     customHttpProvider(),
-    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
-    // provide(Http, { useClass: InterceptorService })
   ],
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,14 @@
 <md-card>
-    <div class="header">
-        <md-toolbar>
-            <h3> {{ header }} </h3>
-            <button md-mini-fab (click)="openDialog()">
+  <div class="header">
+    <md-toolbar>
+      <h3> {{ header }} </h3>
+      <button md-mini-fab (click)="openDialog()">
         <md-icon>add</md-icon>
       </button>
-        </md-toolbar>
-    </div>
-    <div class="schedule">
-        <app-edu-calendar (selectDay)="onSelectDay($event)" [access]="access"></app-edu-calendar>
-        <app-list-day-events *ngIf="selectedDayEvent && selectedDayEvent.length" [events]="selectedDayEvent" (openDialog)="openDialog($event)"></app-list-day-events>
-    </div>
+    </md-toolbar>
+  </div>
+  <div class="schedule">
+    <app-edu-calendar (selectDay)="onSelectDay($event)" [access]="access" [newEvents]="newEvents"></app-edu-calendar>
+    <app-list-day-events *ngIf="selectedDayEvent && selectedDayEvent.length" [events]="selectedDayEvent" (openDialog)="openDialog($event)"></app-list-day-events>
+  </div>
 </md-card>

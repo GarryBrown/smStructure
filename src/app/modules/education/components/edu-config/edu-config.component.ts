@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ALL, SCH, EDU } from '../../education.constants';
+import { ALL, SCH, EDU, TEACHING, STORECHECK } from '../../education.constants';
 import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { EduConfigService } from '../../services';
 import { StepsService } from '../../services';
 import { UtilsService } from '../../../../shared';
 import { Event, Route, Report } from '../../../../models';
+import { Http } from '@angular/http'
 
 
 @Component({
@@ -27,12 +28,15 @@ export class EduConfigComponent implements OnInit {
   teaching: any;
   getSelected: any;
   isStarted: boolean;
+  isFinished: boolean;
+
   types: Array<string> = [
-    'store-check',
-    'teaching'
+    TEACHING,
+    STORECHECK
   ];
 
   constructor(
+    private http: Http,
     private utilsService: UtilsService,
     public dialogRef: MdDialogRef<EduConfigComponent>,
     private eduConfigService: EduConfigService,
@@ -59,6 +63,8 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccess(data, this.onSuccessThemes),
       (error) => this.onError('getRoutes', error)
     )
+    console.log(this.event)
+    console.log(this.access)
   }
 
 
@@ -69,9 +75,14 @@ export class EduConfigComponent implements OnInit {
   }
 
   loadCommonObj() {
-    if (this.event.type === 'teaching') {
-      this.loadTeaching(this.event.id);
-    } else {
+    if (this.event.type === TEACHING) {
+      if (this.event.id) {
+        this.loadTeaching(this.event.id);
+      } else {
+        this.onSuccessTeaching({})
+      }
+
+    } else if (this.event.id && this.event.type === STORECHECK) {
       // this.loadStoreCheck();
     }
   }
@@ -82,24 +93,21 @@ export class EduConfigComponent implements OnInit {
     let time, metrics;
     this.eduConfigService.getLocation().then(
       (latLng) => {
-        console.log('then1 res')
         position = latLng ? latLng : position;
         time = new Date();
         return this.eduConfigService.createMetrics(position, time, this.teaching.id, this.teaching.route.id, this.teaching.staff.id)
       },
       (err) => {
-        console.log('then1 rej')
         time = new Date();
         return this.eduConfigService.createMetrics(position, time, this.teaching.id, this.teaching.route.id, this.teaching.staff.id)
       }
     ).then(
       (metricObj) => {
-        console.log('then2 res')
-        // this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
-        //   (obj) => this.goToTeaching(obj),
-        //   (err) => console.error(err)
-        // )
-        this.goToTeaching(this.teaching);
+        this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
+          (obj) => this.goToTeaching(obj),
+          (err) => console.error(err)
+        )
+        // this.goToTeaching(this.teaching);
       }
       );
   }
@@ -116,6 +124,37 @@ export class EduConfigComponent implements OnInit {
       (result) => this.dialogRef.close(false),
       (reason) => console.error(`navigate error ${reason}`)
     );
+  }
+
+  createTeaching() {
+    this.teaching.dateOfStart = this.event.date;
+    // this.teaching.route = this.event.route;
+    this.http.get(`api/routes/${this.event.route.id}`).subscribe(
+      (data: any) => {
+        data = data.json();
+        console.log(data)
+        this.teaching.route = data;
+        this.teaching.staff = data.staff;
+        this.teaching.kpi = '';
+        this.teaching.ability = '';
+        this.teaching.strongSuit = '';
+        this.teaching.zoneOfGrowth = '';
+        console.log(this.teaching)
+        this.eduConfigService.createTeaching(this.teaching).subscribe(
+          (teaching) => {
+            // вставить алерт сервис
+            this.close(teaching);
+          },
+          (error) => { }// вставить алерт сервис
+        )
+      },
+      (err) => console.error(err)
+    )
+
+
+
+
+
   }
 
 
@@ -137,14 +176,37 @@ export class EduConfigComponent implements OnInit {
 
   onSuccessTeaching(data) {
     this.teaching = data;
-    this.isStarted = this.teaching.position ? true : false;
+
+    // для избежания многочисленных проверок, опишите и создайте класс в соответствии с объектом
+    // у которого уже будут необходимые пустые поля, я не успел, сорян
+    if (data.teachingSpecialities) {
+      this.isStarted = this.isStartedEdu(data.teachingSpecialities);
+    } else {
+      this.isStarted = false;
+    }
+    this.isFinished = this.teaching.kpi ? true : false;
   }
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
   }
 
-  close() {
-    this.dialogRef.close(false);
+  close(result?) {
+    this.dialogRef.close(result);
+  }
+
+  isStartedEdu(spesiality) {
+    let isStarted;
+    if (spesiality.steps) {
+      for (let key in spesiality.steps) {
+        if (spesiality.steps[key].questions || spesiality.steps[key].deliveryPoint) {
+          isStarted = true
+        }
+      }
+    } else {
+      isStarted = false;
+    }
+    console.log(isStarted)
+    return isStarted;
   }
 
 

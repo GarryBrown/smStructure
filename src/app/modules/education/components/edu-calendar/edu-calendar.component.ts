@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from "rxjs/Subscription";
 
@@ -10,9 +10,10 @@ import { AlertBarComponent } from "app/shared";
   templateUrl: './edu-calendar.component.html',
   styleUrls: ['./edu-calendar.component.scss']
 })
-export class EduCalendarComponent implements OnInit, OnDestroy {
+export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
   @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
   @Input() access: string;
+  @Input() newEvents: any;
   model: NgbDateStruct;
   subscription: Subscription;
   eventsData: Array<any>;
@@ -31,9 +32,17 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-    this.loadData();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes.newEvents.currentValue)
+    if (changes.newEvents.currentValue) {
+      this.eventsData.push(changes.newEvents.currentValue);
+      console.log(this.eventsData)
+    }
+
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -54,7 +63,6 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   loadData() {
     this.subscription = this.calService.getEvent(this.dateFrom, this.dateTo).subscribe(
       (data: any) => {
-        console.log("EVENTS");
         this.eventsData = data;
       },
       err => this.alert.open("Не удалось получить данные :(")
@@ -69,7 +77,6 @@ export class EduCalendarComponent implements OnInit, OnDestroy {
   }
 
   getMonth(ev) {
-    console.log(ev.next);
     this.getDateRange(ev.next);
     this.loadData();
     return ev.next;

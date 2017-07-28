@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { PrincipalService } from '../../core';
-import { GetHelpComponent } from '../get-help/get-help.component';
+
 
 @Component({
   selector: 'app-header',
@@ -35,9 +35,4 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.toggleNav.emit(this.show);
   }
 
-  openHelp() {
-    let dialogRef = this.dialog.open(GetHelpComponent);
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
 }
