@@ -107,7 +107,7 @@ export class EduConfigComponent implements OnInit {
           (obj) => this.goToTeaching(obj),
           (err) => console.error(err)
         )
-        // this.goToTeaching(this.teaching);
+        //  this.goToTeaching(this.teaching);
       }
       );
   }
@@ -128,7 +128,7 @@ export class EduConfigComponent implements OnInit {
 
   createTeaching() {
     this.teaching.dateOfStart = this.event.date;
-    // this.teaching.route = this.event.route;
+    this.teaching.route = this.event.route;
     this.http.get(`api/routes/${this.event.route.id}`).subscribe(
       (data: any) => {
         data = data.json();

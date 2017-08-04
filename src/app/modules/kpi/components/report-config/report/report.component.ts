@@ -49,6 +49,7 @@ export class ReportComponent implements OnInit, OnChanges {
                 err => this.alert.open("Не удалось получить данные :(")
             )
         }
+        this.details = false;
     }
 
     copyObj(indicators) {
@@ -76,8 +77,8 @@ export class ReportComponent implements OnInit, OnChanges {
 
     delete(report) {
         let dialogRef = this.dialog.open(ConfirmComponent, {
-            width: '40%',
-            height: '40%',
+            width: '45%',
+            height: '57%',
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -106,6 +107,9 @@ export class ReportComponent implements OnInit, OnChanges {
             return true;
         }
         return false;
+    }
+    onTitleClick() {
+        this.details = true;
     }
 }
 

@@ -1,10 +1,11 @@
 <div *ngIf="step">
     <md-toolbar>
-        <h3>{{ step.typeOfTeachingStep.description}}</h3>
+        <h3>Шаг: {{ step.typeOfTeachingStep.description}}</h3>
     </md-toolbar>
     <br>
     <div class="delivery-point-select">
-        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" [disabled]="disableNext()">
+        <label>Выберите точку для продолжения работы:</label>
+        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
             <md-option *ngFor="let dp of deliveryPoints" [value]="getSelected(deliveryPoint, dp)">
                 {{ dp.description }}
             </md-option>
@@ -30,7 +31,7 @@
                 </table>
             </div>
         </div>
-        <div class="wrapper-block">
+        <!-- <div class="wrapper-block">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-condensed table-responsive">
@@ -50,7 +51,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div *ngIf="report && deliveryPoint" class="kpi-block">
             <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
         </div>

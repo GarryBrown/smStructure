@@ -134,6 +134,10 @@ export class EduConfigService {
     }
   }
 
+  delete(id: number): Observable<Response> {
+    return this.http.delete(`${this.resourceTeachingUrl}/${id}`);
+  }
+
 
 }
 

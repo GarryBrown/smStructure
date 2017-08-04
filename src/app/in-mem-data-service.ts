@@ -2,7 +2,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import {
   typeOfTeachingMock, eventsMock, plansKPIMock, planRoutesMock, teachingMock, eduResultMock,
-  reportsMock, routesMock, indicatorsMock, deliveryPointsMock, ordersMock, qualitiesMock, categoriesMock, themesMock
+  reportsMock, routesMock, indicatorsMock, deliveryPointsMock, ordersMock, qualitiesMock, categoriesMock, themesMock, salariesMock
 } from './mockData';
 
 export class InMemDataService implements InMemoryDbService {
@@ -21,7 +21,8 @@ export class InMemDataService implements InMemoryDbService {
       qualities = qualitiesMock,
       eduResult = eduResultMock,
       categories = categoriesMock,
-      themes = themesMock;
+      themes = themesMock,
+      salaries = salariesMock;
 
 
     return {
@@ -39,6 +40,7 @@ export class InMemDataService implements InMemoryDbService {
       eduResult: eduResult,
       categories: categories,
       themes: themes,
+      salaries: salaries
     };
   }
 }

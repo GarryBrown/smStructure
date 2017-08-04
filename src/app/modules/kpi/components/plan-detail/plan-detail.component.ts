@@ -35,6 +35,7 @@ export class PlanDetailComponent implements OnInit {
   getSelected: any;
 
   currentdRoutes: Array<Route>;
+  salaries: Array<any>;
 
   constructor(
     private pdService: PlanDetailService,
@@ -64,11 +65,13 @@ export class PlanDetailComponent implements OnInit {
 
   // changes selects
   changeReports(report: Report) {
-    this.currentRoutes = report.routes;
-    this.changeRoutes(this.currentRoutes);
-    this.currentIndicators = report.indicators;
-    this.changeIndicators(report.indicators);
-    this.applyFilter();
+    if (report) {
+      this.currentRoutes = report.routes;
+      this.changeRoutes(this.currentRoutes);
+      this.currentIndicators = report.indicators;
+      this.changeIndicators(report.indicators);
+      this.applyFilter();
+    }
   }
 
   changeIndicatorsSet(indicators) {

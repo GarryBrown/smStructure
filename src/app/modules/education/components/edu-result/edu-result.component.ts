@@ -43,12 +43,15 @@ export class EduResultComponent implements OnInit, OnDestroy {
       (data: any) => this.onSuccessResult(data),
       error => this.alert.open("Не удалось получить данные :("))
     // console.log("oops"))
-    this.subscriptionCategories = this.eduResultService.getCategories()
-      .subscribe((data: any) => this.categories = data.data);
-    this.subscriptionRoutes = this.eduResultService.getRoutes()
-      .subscribe((data: any) => this.routes = data.data, );
-    this.subscriptionThemes = this.eduResultService.getThemes()
-      .subscribe((data: any) => this.themes = data.data);
+    // this.subscriptionCategories = this.eduResultService.getCategories()
+    //   .subscribe((data: any) => this.categories = data.data);
+    // this.subscriptionRoutes = this.eduResultService.getRoutes()
+    //   .subscribe((data: any) => this.routes = data.data, );
+    // this.subscriptionThemes = this.eduResultService.getThemes()
+    //   .subscribe((data: any) => this.themes = data.data);
+
+
+
   }
 
   formatDate(date: Date): string {
@@ -61,11 +64,50 @@ export class EduResultComponent implements OnInit, OnDestroy {
   }
 
   onSuccessResult(data) {
-    this.eduResult = data.data;
-    this.eduResult.map(theme => {
-      theme.themes.map(value =>
-        this.sum = this.sum + value.value);
-    });
+    this.eduResult = data;
+    this.eduResult.map(date => {
+
+
+      console.log(date.staff)
+      var date1 = new Date(date.staff.startDate);
+      var date2 = new Date();
+      var milliseconds = date2.getTime() - date1.getTime();
+
+      var days = date2.getDate() - date1.getDate();
+      if (days < 0) {
+        days += new Date(date2.getFullYear(), date2.getMonth() - 1, 0).getDate() + 1;
+        date2.setMonth(date2.getMonth() - 1);
+      }
+
+      var months = date2.getMonth() - date1.getMonth();
+      if (months < 0) {
+        months += 12;
+        date2.setFullYear(date2.getFullYear() - 1);
+      }
+
+
+      var years = date2.getFullYear() - date1.getFullYear();
+      if (years === 0) {
+        date.staff.workTime = months + " мес.";
+      } else {
+        date.staff.workTime = years + " г. " + months + " мес.";
+      }
+      if (months === 0) {
+        date.staff.workTime = years + " г. ";
+      }
+
+      console.log(date.staff.workTime);
+
+
+    })
+    console.log("----------")
+    console.log(data);
+    // this.eduResult.map(theme => {
+    //   theme.themes.map(value =>
+    //     this.sum = this.sum + value.value);
+    // });
+
+
   }
 
   loadData() {
@@ -77,10 +119,13 @@ export class EduResultComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.subscriptionThemes.unsubscribe();
-    this.subscriptionRoutes.unsubscribe();
-    this.subscriptionCategories.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      // this.subscriptionThemes.unsubscribe();
+      // this.subscriptionRoutes.unsubscribe();
+      // this.subscriptionCategories.unsubscribe();
+    }
+
   }
 
   setFilter() {

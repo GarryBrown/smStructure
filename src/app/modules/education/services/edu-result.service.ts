@@ -18,8 +18,8 @@ export class EduResultService {
 
   private currentAnswer = new BehaviorSubject(undefined);
   fuck: string;
-  private resoureUrlEduResult = 'api/eduResult';
-
+  private resoureUrlEduResult = 'api/teaching-results';
+// private resoureUrlEduResult = 'api/eduResult';
   constructor(
     private http: Http,
     private utilsService: UtilsService

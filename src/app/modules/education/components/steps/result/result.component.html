@@ -13,30 +13,28 @@
     </div>
     <div class="block-comments">
         <div class="item-comment">
-            <label>Сильные стороны</label>
+
             <md-input-container class="example-full-width">
                 <textarea mdInput placeholder="Сильные стороны" [(ngModel)]="teaching.strongSuit" required></textarea>
             </md-input-container>
         </div>
         <div class="item-comment">
-            <label>Зоны развития</label>
             <md-input-container class="example-full-width">
                 <textarea mdInput placeholder="Зоны развития" [(ngModel)]="teaching.zoneOfGrowth" required></textarea>
             </md-input-container>
         </div>
         <div class="item-comment">
-            <label>Задачи по развитию</label>
             <md-input-container class="example-full-width">
                 <textarea mdInput placeholder="Задачи по развитию" [(ngModel)]="teaching.ability" required></textarea>
             </md-input-container>
         </div>
         <div class="item-comment">
-            <label>Задачи по KPI</label>
             <md-input-container class="example-full-width">
                 <textarea mdInput placeholder="Задачи по KPI" [(ngModel)]="teaching.kpi" required></textarea>
             </md-input-container>
+            <button md-raised-button color="primary" (click)="save()" [disabled]="disableSave()"><md-icon>save</md-icon> Сохранить</button>
+
         </div>
-        <button md-raised-button color="primary" (click)="save()" [disabled]="disableSave()"><md-icon>save</md-icon> Сохранить</button>
     </div>
 
 </div>

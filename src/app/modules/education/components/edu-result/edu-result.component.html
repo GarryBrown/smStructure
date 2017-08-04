@@ -1,5 +1,5 @@
-<div class="wrapper">
-    <md-card>
+<div class="wrapper" *ngIf="eduResult">
+    <!-- <md-card>
         <div *ngIf="resultFilter" class="filterWrapp">
             <div class="dateFilter">
                 <label>С</label>
@@ -26,7 +26,7 @@
             </div>
             <button md-mini-fab (click)="loadData()"><md-icon>filter_list</md-icon></button>
         </div>
-    </md-card>
+    </md-card> -->
 
 
     <md-card>
@@ -42,7 +42,7 @@
                         <th rowspan="2">Маршрут</th>
                         <th rowspan="2">Сотрудник</th>
                         <th rowspan="2">Вступил в долность</th>
-                        <th rowspan="2">Срок службы</th>
+                        <th rowspan="2">Время работы</th>
                         <th colspan="5">Аттестация</th>
                         <th colspan="3">Темы</th>
                     </tr>
@@ -60,46 +60,54 @@
 
                 </thead>
                 <tbody *ngFor="let eduRes of eduResult" align="center">
+                    <td>{{eduRes.staff.position.description}}</td>
+                    <td>{{eduRes.route.description}}</td>
+                    <td>{{eduRes.staff.description}}</td>
+                    <td>{{eduRes.staff.startDate | date}}</td>
+                    <td>{{eduRes.staff.workTime}}</td>
+                    <ng-template [ngIf]="eduRes.attestation">
+                        <td>{{eduRes.attestation.dateOfStart | date}}</td>
+                        <td>{{eduRes.attestation.planGrade}}</td>
+                        <td>{{eduRes.attestation.planValue}}</td>
+                        <td>{{eduRes.attestation.factValue}}</td>
+                        <td>{{eduRes.attestation.factGrade}}</td>
+                    </ng-template>
+                    <ng-template [ngIf]="!eduRes.attestation">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </ng-template>
+                    <ng-template [ngIf]="eduRes.themes">
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.typeOfTeaching.description}}
+                            </tr>
+                        </td>
 
-                    <td>{{eduRes.position}}</td>
-                    <td>{{eduRes.route}}</td>
-                    <td>{{eduRes.employee}}</td>
-                    <td>{{eduRes.dateOfAdoption}}</td>
-                    <td>{{eduRes.lifeTime}}</td>
-                    <td>{{eduRes.attestation.dateOfLastAttestation}}</td>
-                    <td>{{eduRes.attestation.categoryGoal}}</td>
-                    <td>{{eduRes.attestation.minGoal}}</td>
-                    <td>{{eduRes.attestation.mark}}</td>
-                    <td>{{eduRes.attestation.categoryFact}}</td>
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.dateOfStart | date}}
+                            </tr>
+                        </td>
 
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.description}}
-                        </tr>
-                    </td>
-
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.date}}
-                        </tr>
-                    </td>
-
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.goals}}
-                        </tr>
-                    </td>
-                    <td>
-                        <tr *ngFor="let theme of eduRes.themes">
-                            {{theme.value}}
-                        </tr>
-                    </td>
-
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.planValue}}
+                            </tr>
+                        </td>
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.factValue}}
+                            </tr>
+                        </td>
+                    </ng-template>
 
 
                 </tbody>
             </table>
-            <h1>Итог: {{sum | number}}</h1>
+            <!-- <h1>Итог: {{sum | number}}</h1> -->
         </div>
     </md-card>
 </div>

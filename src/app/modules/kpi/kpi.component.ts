@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Subscription } from "rxjs/Subscription";
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 import { KPIService } from './services/kpi.service';
 import { Plan } from "app/models/plan.model";
@@ -37,7 +37,7 @@ export class KPIComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public kpiService: KPIService,
-  ) {}
+  ) { }
 
   initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
@@ -48,10 +48,10 @@ export class KPIComponent implements OnInit, OnDestroy {
 
   addMap() {
     document.body.appendChild(Object.assign(document.createElement('script'), {
-        type: 'text/javascript',
-        src: this.googleMapsUrl,
-        onload: () => this.initMap()
-      }))
+      type: 'text/javascript',
+      src: this.googleMapsUrl,
+      onload: () => this.initMap()
+    }))
   }
 
   predictionChange(event) {
@@ -85,7 +85,9 @@ export class KPIComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe;
+    if (this.subscription) {
+      this.subscription.unsubscribe;
+    }
   }
 
   loadData() {

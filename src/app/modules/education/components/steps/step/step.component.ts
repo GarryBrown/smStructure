@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EduResultService, EduConfigService, StepsService } from '../../../services';
 import { UtilsService } from '../../../../../shared';
 import { Report } from '../../../../../models';
+import { AlertBarComponent } from "app/shared/components/alert-bar/alert-bar.component";
 
 @Component({
     selector: 'app-step',
@@ -31,7 +32,8 @@ export class StepComponent implements OnInit, OnChanges {
         private utilsService: UtilsService,
         private stepsService: StepsService,
         private router: Router,
-        private eduResultService: EduResultService
+        private eduResultService: EduResultService,
+        private alert: AlertBarComponent
     ) {
         this.isFinish = false;
         this.getSelected = this.utilsService.getSelectedSingle;
@@ -55,7 +57,10 @@ export class StepComponent implements OnInit, OnChanges {
                     answer => {
                         this.answeredQuestions.steps[this.step.id].questions[answer.typeOfTeachingQuestionId].answer.id = answer.id
                     },
-                    err => console.error(` sendAnswer ${err}`)
+                    err => {
+                        this.alert.open("Произошла ошибка. Ответ не сохранен")
+                        console.error(` sendAnswer ${err}`)
+                    }
                     //подключи алерт сервис ('Произошла ошибка. Ответ не сохранен')
                 )
             },

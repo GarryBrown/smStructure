@@ -1,8 +1,8 @@
 <div>
     <div class="row-info">
-        <h5 md-line *ngIf="!details">{{report.description}}</h5>
+        <h5 md-line *ngIf="!details" (click)="onTitleClick()">{{report.description}}</h5>
         <div *ngIf="details">
-            <md-input-container>
+            <md-input-container *ngIf="details">
                 <input mdInput name="description" placeholder="Название" [(ngModel)]="report.description">
             </md-input-container>
         </div>

@@ -18,11 +18,10 @@
     }
     md-input-container {
         padding: 5px;
-        width: 450px;
+        width: 300px;
     }
     textarea {
         padding: 5px;
-        width: 450px;
     }
     .item-comment {
         display: flex;
@@ -34,22 +33,18 @@
         width: 116px;
         height: 36px;
         padding: 2px;
+        margin-left: 180px;
+        // margin-right: 100px;
     }
 }
 
-.block-comments:last-child button {
-    margin: 16px;
-    height: 36px;
-    width: 116px;
-    margin-right: -71%;
-}
-
-@media (max-width: 670px) {
+// .block-comments:last-child button {
+//     margin: 16px;
+//     height: 36px;
+//     width: 116px;
+// }
+@media (max-width: 870px) {
     md-input-container {
-        width: 270px;
-    }
-    textarea {
-        padding: 5px;
-        width: 270px;
+        width: 300px;
     }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: Http) {
     SortDirective,
     HasAuthorityDirective,
     AlertBarComponent,
+    BrowserAnimationsModule
   ],
   providers: [
     PaginUtilService,

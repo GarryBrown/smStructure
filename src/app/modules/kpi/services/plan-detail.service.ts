@@ -12,7 +12,6 @@ export class PlanDetailService {
   private resourceUrlPlanIndicators = '/api/plan-indicators';
   // private resourceUrlPlanIndicators = '/api/planIndicators';
 
-
   constructor(private http: Http,
     private dateUtils: DateUtilService,
     private principal: PrincipalService,
