@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogConfig } from '@angular/material';
+import { Subscription } from "rxjs/Subscription";
 
 import { AlertBarComponent } from '../../shared';
 import { ALL, SCH, EDU, TEACHING, STORECHECK } from './education.constants';
 import { Event } from '../../models';
 
-import { EducationService, EduConfigService } from './services';
+import { EducationService, EduConfigService, EduCalendarService } from './services';
 import { EduConfigComponent } from './components/edu-config/edu-config.component';
 
 @Component({
@@ -16,15 +17,19 @@ import { EduConfigComponent } from './components/edu-config/edu-config.component
   providers: [AlertBarComponent]
 })
 export class EducationComponent implements OnInit, OnDestroy {
-  selectedDayEvent: Array<any>;
+  selectedDayEvent: Array<Event>;
   access: string;
   newEvents: any;
   header: string;
+  eventsData: Array<any>;
+  subscription: Subscription;
+
   constructor(
     private router: Router,
     public dialog: MdDialog,
     public educationService: EducationService,
     public eduConfigService: EduConfigService,
+    private calService: EduCalendarService,
     private alert: AlertBarComponent
   ) {
     this.newEvents = null;
@@ -34,10 +39,22 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  loadData(dateRange) {
+    console.log('loadData')
+    this.subscription = this.calService.getEvent(dateRange.dateFrom, dateRange.dateTo).subscribe(
+      (data: any) => {
+        this.eventsData = data;
+      },
+      err => this.alert.open("Не удалось получить данные по обучению :(")
+    )
   }
 
   onSelectDay(events) {
@@ -55,14 +72,18 @@ export class EducationComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        let newEvent = new Event(
+        let newEvent: Event = new Event(
           result.id, result.type,
           result.route, result.route.staff,
           {}, result.dateOfStart);
-        this.selectedDayEvent = result;
-        this.newEvents = newEvent;
+        this.selectedDayEvent = [newEvent];
+        this.eventsData = this.updateEvent(newEvent);
       }
     });
+  }
+
+  updateEvent(event) {
+    return [...this.eventsData, event]
   }
 
   setStateByRoute(url: string): string {
@@ -86,11 +107,15 @@ export class EducationComponent implements OnInit, OnDestroy {
   deleteEvent(event) {
     this.eduConfigService.delete(event.id).subscribe(
       succes => {
-        this.alert.open('Событие покабудке удалено')
+        this.eventsData = this.eventsData.filter(ev => ev.id !== event.id)
+        this.selectedDayEvent = [];
+        this.alert.open('Событие удалено.')
       },
       error => this.alert.open('Ошибка! Событие не удалено')
     )
   }
+
+
 
 }
 

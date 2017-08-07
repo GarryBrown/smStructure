@@ -12,14 +12,13 @@ import { AlertBarComponent } from "app/shared";
 })
 export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
   @Output() selectDay: EventEmitter<Array<any>> = new EventEmitter();
+  @Output() loadingData: EventEmitter<Array<any>> = new EventEmitter();
   @Input() access: string;
-  @Input() newEvents: any;
+  @Input() eventsData: Array<any>;
   model: NgbDateStruct;
   subscription: Subscription;
-  eventsData: Array<any>;
+
   date: any;
-  dateFrom: any;
-  dateTo: any;
   current: any;
 
 
@@ -35,15 +34,9 @@ export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.newEvents.currentValue) {
-      this.eventsData = this.addEvents(changes.newEvents.currentValue)
-    }
-
+    console.log(changes)
   }
 
-  addEvents(event) {
-    return [...this.eventsData, event];
-  }
 
   ngOnDestroy() {
     if (this.subscription) {
@@ -64,24 +57,17 @@ export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
     this.selectDay.emit(events);
   }
 
-  loadData() {
-    this.subscription = this.calService.getEvent(this.dateFrom, this.dateTo).subscribe(
-      (data: any) => {
-        this.eventsData = data;
-      },
-      err => this.alert.open("Не удалось получить данные по обучению :(")
-    )
-  }
+  getDateRange(today): any {
+    return {
+      dateFrom: new Date(today.year, today.month, 1),
+      dateTo: new Date(today.year, today.month + 1, 0)
+    }
 
-
-  getDateRange(today) {
-    this.dateFrom = new Date(today.year, today.month, 1)
-    this.dateTo = new Date(today.year, today.month + 1, 0)
   }
 
   getMonth(ev) {
-    this.getDateRange(ev.next);
-    this.loadData();
+    let dateRange = this.getDateRange(ev.next);
+    this.loadingData.emit(dateRange);
     return ev.next;
   }
 

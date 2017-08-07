@@ -6,7 +6,7 @@ import { TEACHING } from '../../../education.constants';
   templateUrl: './edu-day-calendar.component.html',
   styleUrls: ['./edu-day-calendar.component.scss']
 })
-export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
+export class EduDayCalendarComponent implements OnInit, OnChanges {
   @Input() date;
   @Input() access;
   @Input() eventsData: Array<any>;
@@ -32,11 +32,10 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
     }
   }
 
-  ngDoCheck() {
-
-  }
-
   checkDate(eventsData) {
+    this.isEdu = false;
+    this.isSch = false;
+    this.todayEvents = []
     eventsData.map(event => {
       let d1 = new Date(event.date);
       let d2 = new Date(this.date.year, this.date.month - 1, this.date.day);
@@ -49,6 +48,7 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
         this.todayEvents.push(event);
       }
     })
+    // console.log(`${this.date.day} === ${this.todayEvents.length}`);
   }
 
   onSelectDay() {
