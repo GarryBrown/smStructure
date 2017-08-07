@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 
 import { PrincipalService } from './core';
@@ -8,6 +8,7 @@ import { PrincipalService } from './core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [PrincipalService],
+  // encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   mode: string;

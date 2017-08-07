@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
-
 import { PlanDetailService } from '../../services';
 import { Report, Route } from '../../../../models';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
@@ -8,7 +7,7 @@ import { AlertBarComponent } from "app/shared";
 @Component({
   selector: 'app-filterbar',
   templateUrl: './filterbar.component.html',
-  styleUrls: ['./filterbar.component.scss', './media.component.scss' ]
+  styleUrls: ['./filterbar.component.scss', './media.component.scss' ],
 })
 export class FilterbarComponent implements OnInit, OnChanges {
   @Input() indicators: Array<any>;
