@@ -27,10 +27,7 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
     if (changes.eventsData && changes.eventsData.currentValue) {
-      console.log('ngOnChanges day')
-      console.log(changes.eventsData.currentValue)
       this.checkDate(changes.eventsData.currentValue);
     }
   }

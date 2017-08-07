@@ -7,8 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ListDayEventsComponent implements OnInit {
   @Output() openDialog: EventEmitter<any> = new EventEmitter();
+  @Output() deleteEvent: EventEmitter<any> = new EventEmitter();
   @Input() events;
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -16,5 +17,9 @@ export class ListDayEventsComponent implements OnInit {
 
   onOpenDialog(event) {
     this.openDialog.emit(event);
+  }
+
+  deleteEducation(event) {
+    this.deleteEvent.emit(event);
   }
 }

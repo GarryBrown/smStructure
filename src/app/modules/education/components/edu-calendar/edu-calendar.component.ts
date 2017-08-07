@@ -36,11 +36,13 @@ export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.newEvents.currentValue) {
-      console.log(changes.newEvents.currentValue)
-      this.eventsData.push(changes.newEvents.currentValue);
-      console.log(this.eventsData)
+      this.eventsData = this.addEvents(changes.newEvents.currentValue)
     }
 
+  }
+
+  addEvents(event) {
+    return [...this.eventsData, event];
   }
 
   ngOnDestroy() {

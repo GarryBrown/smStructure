@@ -1,15 +1,15 @@
 <md-list>
-    <md-list-item *ngFor="let event of events">
-        <div class="content">
-            <span md-line>{{ event.staff.description }} </span>
-            <span md-line>{{ event.route.description }} </span>
+  <md-list-item *ngFor="let event of events">
+    <div class="content">
+      <span md-line>{{ event.staff.description }} </span>
+      <span md-line>{{ event.route.description }} </span>
 
-            <button md-raised-button color="accent" (click)="onOpenDialog(event)"><md-icon>play_arrow</md-icon><span>Обучение</span></button>
-            <button md-raised-button (click)="deleteEducation($event)"><md-icon>delete</md-icon><span>Удалить</span></button>
+      <button md-raised-button color="accent" (click)="onOpenDialog(event)"><md-icon>play_arrow</md-icon><span>Обучение</span></button>
+      <button md-raised-button (click)="deleteEducation(event)"><md-icon>delete</md-icon><span>Удалить</span></button>
 
-            <!-- <a md-icon-button  >
+      <!-- <a md-icon-button  >
       
     </a> -->
-        </div>
-    </md-list-item>
+    </div>
+  </md-list-item>
 </md-list>
