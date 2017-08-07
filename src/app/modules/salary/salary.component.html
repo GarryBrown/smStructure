@@ -1,33 +1,33 @@
 <div class="wrapper" *ngIf="userSalary && salaries">
-    <div class="header">
-        <md-expansion-panel class="md-expansion-demo-width" #myPanel>
-            <md-expansion-panel-header>
-                <mat-panel-title>{{userSalary.staff.description}}</mat-panel-title>
-                <span>Итог: {{userSalary.salary + userSalary.sum}} руб.</span>
-                <mat-panel-description>
-                    Ставка: {{userSalary.salary}} руб. Премия: {{userSalary.sum}} руб.
-                </mat-panel-description>
-            </md-expansion-panel-header>
+  <div class="header">
+    <md-expansion-panel class="md-expansion-demo-width" #myPanel>
+      <md-expansion-panel-header>
+        <mat-panel-title>{{userSalary.staff.description}}</mat-panel-title>
+        <span>Итог: {{userSalary.salary + userSalary.sum}} руб.</span>
+        <mat-panel-description>
+          Ставка: {{userSalary.salary}} руб. Премия: {{userSalary.sum}} руб.
+        </mat-panel-description>
+      </md-expansion-panel-header>
 
-            <p *ngFor="let sp of userSalary.salarySpecialities">{{sp.description}} <span> {{sp.salary}} руб.</span></p>
+      <p *ngFor="let sp of userSalary.salarySpecialities">{{sp.description}} <span> {{sp.salary}} руб.</span></p>
 
-            <!-- <hr> -->
-            <div></div>
-        </md-expansion-panel>
-    </div>
-
-    <md-expansion-panel class="md-expansion-demo-width" #myPanel *ngFor="let salary of salaries">
-        <md-expansion-panel-header>
-            <mat-panel-title>{{salary.staff.description}}</mat-panel-title>
-            <span>Итог: {{salary.salary + salary.sum}} руб.</span>
-            <mat-panel-description>
-                Ставка: {{salary.salary}} руб. Премия: {{salary.sum}} руб.
-            </mat-panel-description>
-        </md-expansion-panel-header>
-        <p *ngFor="let sp of salary.salarySpecialities">
-            {{sp.description}} <span> {{sp.salary}} руб.</span>
-        </p>
-        <!-- <hr> -->
-        <!-- <div><span></span></div> -->
+      <!-- <hr> -->
+      <div></div>
     </md-expansion-panel>
+  </div>
+
+  <md-expansion-panel class="md-expansion-demo-width" #myPanel *ngFor="let salary of salaries">
+    <md-expansion-panel-header>
+      <mat-panel-title>{{salary.staff.description}}</mat-panel-title>
+      <span>Итог: {{salary.salary + salary.sum}} руб.</span>
+      <mat-panel-description>
+        Ставка: {{salary.salary}} руб. Премия: {{salary.sum}} руб.
+      </mat-panel-description>
+    </md-expansion-panel-header>
+    <p *ngFor="let sp of salary.salarySpecialities">
+      {{sp.description}} <span> {{sp.salary}} руб.</span>
+    </p>
+    <!-- <hr> -->
+    <!-- <div><span></span></div> -->
+  </md-expansion-panel>
 </div>

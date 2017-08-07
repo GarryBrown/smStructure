@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 import { TEACHING } from '../../../education.constants';
 @Component({
@@ -26,21 +26,26 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
 
   }
 
-  ngOnChanges() {
-    if (this.eventsData) this.checkDate();
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+    if (changes.eventsData && changes.eventsData.currentValue) {
+      console.log('ngOnChanges day')
+      console.log(changes.eventsData.currentValue)
+      this.checkDate(changes.eventsData.currentValue);
+    }
   }
 
   ngDoCheck() {
 
   }
 
-  checkDate() {
-    this.eventsData.map(event => {
+  checkDate(eventsData) {
+    eventsData.map(event => {
       let d1 = new Date(event.date);
       let d2 = new Date(this.date.year, this.date.month - 1, this.date.day);
       if (d1.valueOf() === d2.valueOf()) {
         if (event.type === TEACHING) {
-        this.isEdu = true;
+          this.isEdu = true;
         } else {
           this.isSch = true;
         }

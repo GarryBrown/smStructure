@@ -29,7 +29,7 @@ export class EduConfigComponent implements OnInit {
   getSelected: any;
   isStarted: boolean;
   isFinished: boolean;
-
+  // for select type teaching
   types: Array<string> = [
     TEACHING,
     STORECHECK
@@ -50,7 +50,6 @@ export class EduConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadCommonObj();
     this.eduConfigService.getRoutes().subscribe(
       (data: any) => this.onSuccess(data, this.onSuccessRoutes),
       (error) => this.onError('getRoutes', error)
@@ -63,15 +62,9 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccess(data, this.onSuccessThemes),
       (error) => this.onError('getRoutes', error)
     )
+    this.loadCommonObj();
     console.log(this.event)
     console.log(this.access)
-  }
-
-
-  loadTeaching(id) {
-    this.stepsService.find(id).subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
-    );
   }
 
   loadCommonObj() {
@@ -79,12 +72,19 @@ export class EduConfigComponent implements OnInit {
       if (this.event.id) {
         this.loadTeaching(this.event.id);
       } else {
+        console.warn('Event hasn"t id field!');
         this.onSuccessTeaching({})
       }
 
     } else if (this.event.id && this.event.type === STORECHECK) {
       // this.loadStoreCheck();
     }
+  }
+
+  loadTeaching(id) {
+    this.stepsService.find(id).subscribe(
+      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
+    );
   }
 
   beginTeaching() {
@@ -107,19 +107,12 @@ export class EduConfigComponent implements OnInit {
           (obj) => this.goToTeaching(obj),
           (err) => console.error(err)
         )
-        //  this.goToTeaching(this.teaching);
       }
       );
   }
 
   goToTeaching(teaching) {
     console.log(teaching)
-    // what is the foo below???? For why?
-    // this.eduConfigService.findReport(this.report.id).subscribe(
-    //   (data) => { console.log(data) },
-    //   (err) => console.error(err),
-    // )
-    this.eduConfigService.setCurrentTeaching(teaching);
     this.router.navigate(['edu/theme', this.teaching.id]).then(
       (result) => this.dialogRef.close(false),
       (reason) => console.error(`navigate error ${reason}`)
@@ -142,19 +135,15 @@ export class EduConfigComponent implements OnInit {
         console.log(this.teaching)
         this.eduConfigService.createTeaching(this.teaching).subscribe(
           (teaching) => {
+            teaching.type = this.event.type;
             // вставить алерт сервис
             this.close(teaching);
           },
-          (error) => { }// вставить алерт сервис
+          (error) => { console.error('createTeaching error') }// вставить алерт сервис
         )
       },
       (err) => console.error(err)
     )
-
-
-
-
-
   }
 
 
@@ -175,8 +164,9 @@ export class EduConfigComponent implements OnInit {
   }
 
   onSuccessTeaching(data) {
+    console.log('onSuccessTeaching')
+    console.log(data)
     this.teaching = data;
-
     // для избежания многочисленных проверок, опишите и создайте класс в соответствии с объектом
     // у которого уже будут необходимые пустые поля, я не успел, сорян
     if (data.teachingSpecialities) {
@@ -186,6 +176,7 @@ export class EduConfigComponent implements OnInit {
     }
     this.isFinished = this.teaching.kpi ? true : false;
   }
+
   onError(api: string, err: any) {
     console.error(`error in ${api} => ${err}`);
   }
@@ -194,19 +185,27 @@ export class EduConfigComponent implements OnInit {
     this.dialogRef.close(result);
   }
 
-  isStartedEdu(spesiality) {
-    let isStarted;
+  isStartedEdu(spesiality: any): boolean {
+    let isStarted: boolean;
     if (spesiality.steps) {
       for (let key in spesiality.steps) {
-        if (spesiality.steps[key].questions || spesiality.steps[key].deliveryPoint) {
+        if (this.isQuestionsHasAnswer(spesiality.steps[key].questions) || spesiality.steps[key].deliveryPoint) {
           isStarted = true
         }
       }
     } else {
       isStarted = false;
     }
-    console.log(isStarted)
     return isStarted;
+  }
+
+  // можно вынести в сервис или утилиты
+  isQuestionsHasAnswer(questions: any): boolean {
+    let hasAnswer: boolean = false;
+    for (let key in questions) {
+      if (questions[key] !== null) hasAnswer = true;
+    }
+    return hasAnswer;
   }
 
 

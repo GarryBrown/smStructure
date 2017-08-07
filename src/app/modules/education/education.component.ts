@@ -40,8 +40,8 @@ export class EducationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  onSelectDay(event) {
-    this.selectedDayEvent = event;
+  onSelectDay(events) {
+    this.selectedDayEvent = events;
   }
 
   openDialog(event?: any) {
@@ -54,26 +54,31 @@ export class EducationComponent implements OnInit, OnDestroy {
     dialogRef.componentInstance.access = this.access;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        let newEvent = new Event(
+          result.id, result.type,
+          result.route, result.route.staff,
+          {}, result.dateOfStart);
         this.selectedDayEvent = result;
+        this.newEvents = newEvent;
       }
-      this.newEvents = {
-        id: 8,
-        type: "teaching",
-        date: "2017-07-19T17:47:56.873+03:00",
-        route: {
-          id: 214,
-          isActive: true,
-          code: "00000000828",
-          description: "PS101",
-          staff: null
-        },
-        staff: {
-          id: 49,
-          isActive: true,
-          code: "CB-003714",
-          description: "Обмачевская Ирина Николаевна"
-        }
-      }
+      // this.newEvents = {
+      //   id: 8,
+      //   type: "teaching",
+      //   date: "2017-07-19T17:47:56.873+03:00",
+      //   route: {
+      //     id: 214,
+      //     isActive: true,
+      //     code: "00000000828",
+      //     description: "PS101",
+      //     staff: null
+      //   },
+      //   staff: {
+      //     id: 49,
+      //     isActive: true,
+      //     code: "CB-003714",
+      //     description: "Обмачевская Ирина Николаевна"
+      //   }
+      // }
 
     });
   }

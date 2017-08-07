@@ -6,9 +6,6 @@ import { MaterialModule } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Http } from '@angular/http';
 /* directives */
 import { SortByDirective } from './directive/sort-by.directive';
 import { SortDirective } from './directive/sort.directive';
@@ -27,9 +24,6 @@ import { InterceptableHttp } from './interceptor/interceptable-http';
 /* components */
 import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
 
-export function HttpLoaderFactory(http: Http) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 
 @NgModule({
   imports: [
@@ -38,13 +32,6 @@ export function HttpLoaderFactory(http: Http) {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [Http]
-      }
-    }),
   ],
   declarations: [
     SortByDirective,
@@ -59,7 +46,6 @@ export function HttpLoaderFactory(http: Http) {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    TranslateModule,
     PrettyCountPipe,
     NgxChartsModule,
     SortByDirective,
