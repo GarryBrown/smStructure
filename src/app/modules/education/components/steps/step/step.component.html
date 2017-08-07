@@ -31,27 +31,6 @@
                 </table>
             </div>
         </div>
-        <!-- <div class="wrapper-block">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-condensed table-responsive">
-                        <thead>
-                            <th>Вопрос</th>
-                            <ng-template ngFor let-qty [ngForOf]="prevStepsId">
-                                <th>Ответ</th>
-                                <th>Оценка</th>
-                            </ng-template>
-                            <th>Вариант</th>
-                            <th>Оценка</th>
-                            <th>Комментарий</th>
-                        </thead>
-                        <tbody>
-                            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId"></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> -->
         <div *ngIf="report && deliveryPoint" class="kpi-block">
             <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
         </div>

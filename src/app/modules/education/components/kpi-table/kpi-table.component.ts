@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlertBarComponent } from '../../../../shared';
+import { ViewEncapsulation } from '@angular/core';
 
 import { Report } from '../../../../models';
 import { KpiTableService } from '../../services';
@@ -7,7 +8,8 @@ import { KpiTableService } from '../../services';
 @Component({
   selector: 'app-kpi-table',
   templateUrl: './kpi-table.component.html',
-  styleUrls: ['./kpi-table.component.scss']
+  styleUrls: ['./kpi-table.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class KpiTableComponent implements OnInit, OnChanges {
   @Input() report: Report;
@@ -43,8 +45,8 @@ export class KpiTableComponent implements OnInit, OnChanges {
     );
   }
 
-  onSuccesRouteData(data) { 
-    console.log(data);  
+  onSuccesRouteData(data) {
+    console.log(data);
     this.routesData = data;
     // this.routesData = data.slice(1,data.length); // for inmemory
   }
