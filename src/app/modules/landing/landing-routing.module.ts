@@ -2,7 +2,7 @@ import { NgModule, Injectable } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LandingComponent } from './landing.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './components/signin/signin.component';
 
 
 const LandingRoutes: Routes = [

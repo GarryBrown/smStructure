@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Observable } from "rxjs/Observable";
 
 import { PrincipalService } from './core';
 
@@ -7,16 +8,27 @@ import { PrincipalService } from './core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [PrincipalService],
+  // encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+  mode: string;
   opened: boolean;
   user: any;
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   constructor(
-    private principal: PrincipalService) {
-
+    private principal: PrincipalService
+  ) {
+    this.setInitMode();
+    Observable.fromEvent(window, 'resize')
+      .debounceTime(200).map((e: Event) => e.target)
+      .subscribe(
+      (w: Window) => {
+        this.mode = this.updateMode(w.innerWidth);
+      }
+      );
   }
+
 
   ngOnInit() {
     this.principal.getUserState().subscribe(
@@ -51,7 +63,7 @@ export class AppComponent implements OnInit {
 
   checkUser(user) {
     if (user) {
-      this.opened = true;
+      this.opened = false;
     } else {
       this.hideNav();
     }
@@ -61,10 +73,31 @@ export class AppComponent implements OnInit {
     this.opened = false;
   }
 
+  hide(event) {
+    this.opened = false;
+  }
+
   toggleNav(opened) {
-    console.log(opened);
     this.opened = opened;
   }
 
+  setInitMode() {
+    this.mode = this.updateMode(window.innerWidth);
+  }
 
+  updateMode(width: number) {
+    if (width >= 1246) {
+      this.opened = true;
+      return 'side';
+    } else {
+      this.opened = false;
+      return 'over';
+    }
+    // return width >= 888 ? 'side' : 'over';
+  }
+
+  closeSideNav() {
+    this.opened = false;
+
+  }
 }

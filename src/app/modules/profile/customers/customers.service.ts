@@ -11,7 +11,6 @@ export class CustomersService {
   ) { }
 
   create(store: any): Observable<any> {
-    console.log('creation in service');
     let copy: any = Object.assign({}, store);
     return this.http.post(this.resourceUrl, copy).map((res: Response) => {
       return res.json();

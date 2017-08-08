@@ -1,0 +1,31 @@
+ngb-datepicker /deep/ {
+    min-width: 400px;
+    width: 100%;
+    .ngb-dp-header {
+        background-color: #fff;
+        border: 0;
+    }
+    .ngb-dp-months {
+        padding: 0 !important;
+    }
+    .ngb-dp-month {
+        width: 100%;
+        .ngb-dp-week {
+            justify-content: space-between;
+            &:first-of-type {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            .ngb-dp-day {
+                min-width: 50px;
+                width: 100%;
+                height: 50px;
+            }
+        }
+    }
+    select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+    }
+}

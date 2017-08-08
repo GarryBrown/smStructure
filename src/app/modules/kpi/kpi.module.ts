@@ -13,23 +13,19 @@ import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { OrdersRoutingModule, UserResolvePagingParams } from './kpi-routing.module';
 /*service */
-import { KPIService } from './kpi.service';
-import { PlanDetailService } from './plan-detail/plan-detail.service';
-import { ReportConfigService } from './report-config/report-config.service';
+import { KPIService, PlanDetailService, ReportConfigService } from './services';
 /* components */
 import { KPIComponent } from './kpi.component';
-import { PlanChartComponent } from "app/components/planChart/plan-chart.component";
-import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
-import { PlanDetailRowComponent } from "app/modules/kpi/plan-detail/plan-detail-row/plan-detail-row.component";
-import { FilterbarComponent } from "./filterbar/filterbar.component";
-import { ReportConfigComponent } from './report-config/report-config.component';
-import { ReportComponent } from './report-config/report/report.component';
-import { CheckboxComponent } from './checkbox/checkbox.component';
-
+import { PlanDetailComponent } from "./components/plan-detail/plan-detail.component";
+import { PlanDetailRowComponent } from "./components/plan-detail/plan-detail-row/plan-detail-row.component";
+import { FilterbarComponent } from "./components/filterbar/filterbar.component";
+import { ReportConfigComponent } from './components/report-config/report-config.component';
+import { ReportComponent } from './components/report-config/report/report.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 import { environment } from '../../app.constants';
-import { KpiChartComponent } from './kpi-chart/kpi-chart.component';
-import { ListFieldsComponent } from './list-fields/list-fields.component';
+import { KpiChartComponent } from './components/kpi-chart/kpi-chart.component';
+import { ListFieldsComponent } from './components/list-fields/list-fields.component';
 
 let myTestApiModule = [];
 if (!environment.production) {
@@ -49,7 +45,6 @@ if (!environment.production) {
     KPIComponent,
     PlanDetailRowComponent,
     PlanDetailComponent,
-    PlanChartComponent,
     ReportConfigComponent,
     ReportComponent,
     FilterbarComponent,
@@ -60,7 +55,6 @@ if (!environment.production) {
     ConfirmComponent],
   entryComponents: [
     PlanDetailRowComponent,
-    PlanChartComponent,
     PlanDetailComponent,
     ReportConfigComponent,
     FilterbarComponent,

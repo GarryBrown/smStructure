@@ -21,10 +21,6 @@ export class PrincipalService {
     private authJwt: AuthJwtService
   ) { }
 
-  auth(user: any) {
-    this.authenticationState.next(user);
-  }
-
   authenticate(_identity) {
     this._identity = _identity;
     this.authenticated = _identity !== null;
@@ -75,7 +71,7 @@ export class PrincipalService {
       this.authenticationState.next(this._identity);
       return Promise.resolve(this._identity);
     }
-    if (environment.production) {
+    if (!environment.mockUres) {
       return this.account.get().toPromise().then(account => {
         account.imageUrl = '../../../assets//images/default-user-avatar.png';
         if (account) {
@@ -104,7 +100,7 @@ export class PrincipalService {
             firstname: 'Elon',
             lastname: 'Musk',
             hobby: 'Murder',
-            imageUrl: 'https://www.aivanet.com/wp-content/uploads/2015/10/elonmusk3.jpg',
+            imageUrl: 'https://images.aif.ru/008/288/2d0942be5d439641128a81bca9855eb4.jpg'
           };
           this.authenticate(this._identity);
           resolve(this._identity);

@@ -10,7 +10,6 @@ import { AccountService } from './principal/account.service';
 import { PrincipalService } from './principal/principal.service';
 
 import { DateUtilService } from './utils/date-util.service';
-import { SidebarToggleService } from './utils/sidebar-toggle.service';
 import { CSRFService } from './auth/csrf.service';
 import { UrlB2bService } from './utils/url-b2b.service';
 
@@ -32,7 +31,6 @@ export class CoreModule {
         PrincipalService,
         DateUtilService,
         CSRFService,
-        SidebarToggleService,
         UrlB2bService,
       ]
     };

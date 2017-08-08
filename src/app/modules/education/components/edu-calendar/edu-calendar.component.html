@@ -1,0 +1,6 @@
+<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = getMonth($event)" [dayTemplate]="customDay" #d="ngbDatepicker" [markDisabled]="isDisabled">
+</ngb-datepicker>
+
+<ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+  <app-edu-day-calendar [selected]="selected" [date]="date" [eventsData]="eventsData" [access]="access" (selectDay)="onSelectDay($event)" [class.hidden]="date.month !== currentMonth"></app-edu-day-calendar>
+</ng-template>

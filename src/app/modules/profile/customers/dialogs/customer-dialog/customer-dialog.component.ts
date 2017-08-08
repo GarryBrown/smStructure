@@ -41,14 +41,10 @@ export class CustomerDialogComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    console.log('save');
-    console.log(this.customer);
         this.isSaving = true;
         if (this.customer.id !== undefined ) {
-            console.log('update');
             this.customerService.update(this.customer).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
         } else {
-            console.log('create');
             this.customerService.create(this.customer).subscribe(response => this.onSaveSuccess(response), () => this.onSaveError());
         }
   }

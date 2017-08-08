@@ -1,0 +1,10 @@
+{
+  "sidebar": {
+
+    "menuItem": {
+      "orders": "Заказы",
+      "stores": "Магазины"
+    }
+    
+  }
+}

@@ -13,7 +13,6 @@ export class AuthJwtService {
         private $localStorage: LocalStorageService,
         private $sessionStorage: SessionStorageService,
         private urlB2bService: UrlB2bService
-
     ) { }
 
     getToken() {
@@ -28,8 +27,8 @@ export class AuthJwtService {
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-        if (environment.production) {
-            return this.http.post('api/authenticate', data).map(authenticateSuccess.bind(this));
+        if (!environment.mockUres) {
+            return this.http.post('api/authenticate', data).map(resp => resp.json()).map(authenticateSuccess.bind(this));
         } else {
             return new Observable(observer => {
                 observer.next(5);
@@ -38,14 +37,16 @@ export class AuthJwtService {
         }
 
 
-
-        function authenticateSuccess(resp) {
+        function authenticateSuccess(data) {
             let bearerToken;
-            if (environment.production) {
-                bearerToken = resp.headers.get('Authorization');
+            if (!environment.mockUres) {
+                // when done interceptor headers breaks
+                // bearerToken = resp.headers.get('Authorization');
+                bearerToken = 'Bearer ' + data.id_token;
             } else {
-                bearerToken = "Bearer fdsfjewpfjpwijr543209ur09243rjek;fj9320jr82094jrskdfj2930r902jreis;jarkl49t43htj3jkht;asd";
+                bearerToken = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb3JidW5vdi5pYSIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfTUFOQUdFUixST0xFX1VTRVIiLCJnYXRld2F5IjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIiwiZ2F0ZXdheSI6Ii8ifSx7ImF1dGhvcml0eSI6IlJPTEVfTUFOQUdFUiIsImdhdGV3YXkiOiIvaGVybWVzbWFuYWdlciJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIiwiZ2F0ZXdheSI6Ii9oZXJtZXNnYXRld2F5In1dLCJleHAiOjE1MDExNjkwODN9.8vVOIgJeu91aXDiqTQiwElUtJhdjB2KnlsatsAi08KKMNDBPpzQSjR0jBbXwmDaG7QaxMd2j_7ipBHpTcTK1cg";
             }
+            console.log(bearerToken);
             if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
                 let jwt = bearerToken.slice(7, bearerToken.length);
                 let dataJwt = this.parseJwt(jwt);
@@ -83,7 +84,6 @@ export class AuthJwtService {
     }
 
     storeAuthenticationToken(jwt, rememberMe) {
-        console.log(jwt + '    ' + rememberMe);
         if (rememberMe) {
             this.$localStorage.store('authenticationToken', jwt);
         } else {

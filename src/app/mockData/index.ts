@@ -1,5 +1,5 @@
-export * from './edu.mock';
-// export * from './teaching.mock';
+export * from './typeOfTeaching.mock';
+export * from './teaching.mock';
 export * from './events.mock';
 export * from './planKPI.mock';
 export * from './planRoutes.mock';
@@ -9,3 +9,7 @@ export * from './indicators.mock';
 export * from './orders.mock';
 export * from './deliveryPoints.mock';
 export * from './qualities.mock';
+export * from './eduResult.mock';
+export * from './categories.mock';
+export * from './themes.mock';
+export * from './salaries.mock';

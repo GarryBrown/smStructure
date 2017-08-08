@@ -5,7 +5,7 @@ import { PaginUtilService } from '../../shared';
 import { RouteAccessService } from '../../core';
 
 import { DashboardComponent } from './dashboard.component';
-import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { OrderPopupComponent } from './components/dialogs/order-popup.component';
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {

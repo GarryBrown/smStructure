@@ -1,0 +1,93 @@
+.top-filter {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    .filter-item,
+    button {
+        margin-left: 20px;
+    }
+    .report-config {
+        margin-left: auto;
+    }
+    md-progress-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+md-select {
+    width: 200px;
+}
+
+md-card {
+    margin-top: 24px;
+}
+
+td.indicator-header {
+    vertical-align: middle;
+}
+
+// for table
+.indicator-header {
+    height: 82px;
+    border-bottom: 3px solid #eceeef;
+    text-align: center;
+    &:last-of-type {
+        border-right: none;
+    }
+}
+
+.indicator-header:nth-child(even) {
+    background: #f8f8f8;
+}
+
+td#first {
+    border-bottom: 3px solid #eceeef;
+}
+
+@media (max-width: 525px) {
+    .top-filter {
+        #first,
+        #second,
+        #third {
+            padding: 10px 0;
+            md-select {
+                min-width: 150px;
+            }
+            button {
+                margin-left: auto;
+                padding: 5px;
+            }
+        }
+        .check-item {
+            margin-left: auto;
+        }
+    }
+}
+
+@media (max-width: 491px) {
+    #first,
+    #second {
+        md-select {
+            width: 200px;
+        }
+    }
+}
+
+@media (max-width: 742px) {
+    .check-item {
+        float: right
+    }
+}
+
+md-card {
+    margin: 24px;
+}
+
+// .table2 {
+//     display: none;
+// }

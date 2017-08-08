@@ -1,0 +1,22 @@
+<td>{{task.code}}</td>
+<td>{{task.description}}</td>
+<td>{{task.typeOfActivity.description}}</td>
+<td>{{task.dataSource.description}}</td>
+<td>{{task.route.description}}</td>
+<td>{{task.deliveryPoint.description}}</td>
+<td>
+  <md-slide-toggle color="accent" [checked]="task.isComplete" [disabled]="task.isComplete" (change)="setActive(task, $event)">
+  </md-slide-toggle>
+</td>
+
+<td align="right">
+  <button *ngIf="!task.isComplete" md-icon-button [routerLink]="['/', { outlets: { popup: 'task/' + task.id + '/edit' } }]">
+    <md-icon>edit</md-icon>
+  </button>
+  <button md-icon-button [routerLink]="['/', { outlets: { popup: 'task/' + task.id + '/details' } }]">
+    <md-icon>visibility</md-icon>
+  </button>
+  <button md-icon-button (click)="onDelete(task)">
+    <md-icon>delete</md-icon>
+  </button>
+</td>

@@ -7,6 +7,10 @@
     font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 }
 
+.wrapper {
+    padding: 24px;
+}
+
 .modal-footer {
     border-top: 0px !important;
 }
@@ -144,4 +148,13 @@ button:focus {
 
 button {
     cursor: pointer;
+}
+
+html,
+body,
+md-sidenav-container,
+.scrolling-block {
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }

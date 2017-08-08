@@ -12,5 +12,6 @@ export * from './field.model';
 
 // EDU
 export * from './event.model';
+export * from './task.model';
 
 

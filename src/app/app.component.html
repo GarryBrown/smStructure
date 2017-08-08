@@ -1,9 +1,9 @@
 <app-header [opened]="opened" (toggleNav)="toggleNav($event)"></app-header>
-<md-sidenav-container class="container">
 
-  <md-sidenav #sidenav mode="side" [opened]="opened">
+<md-sidenav-container class="container">
+  <md-sidenav (close-start)="closeSideNav()" #sidenav [opened]="user && opened" mode="{{mode}}">
     <div class="scrolling-block">
-      <app-sidebar></app-sidebar>
+      <app-sidebar (hideSidebar)="toggleNav($event)"></app-sidebar>
     </div>
   </md-sidenav>
   <div class="scrolling-block">

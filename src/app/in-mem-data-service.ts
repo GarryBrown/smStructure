@@ -1,16 +1,16 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import {
-  eduMock, eventsMock, plansKPIMock, planRoutesMock, 
-  reportsMock, routesMock, indicatorsMock, deliveryPointsMock, ordersMock, qualitiesMock
+  typeOfTeachingMock, eventsMock, plansKPIMock, planRoutesMock, teachingMock, eduResultMock,
+  reportsMock, routesMock, indicatorsMock, deliveryPointsMock, ordersMock, qualitiesMock, categoriesMock, themesMock, salariesMock
 } from './mockData';
 
 export class InMemDataService implements InMemoryDbService {
 
   createDb() {
-    let edu = eduMock,
+    let edu = typeOfTeachingMock,
       events = eventsMock,
-      // teaching = teachingMock,
+      teaching = teachingMock,
       plansKPI = plansKPIMock,
       planRoutes = planRoutesMock,
       reports = reportsMock,
@@ -18,21 +18,29 @@ export class InMemDataService implements InMemoryDbService {
       planIndicators = indicatorsMock,
       deliveryPoints = deliveryPointsMock,
       orders = ordersMock,
-      qualities = qualitiesMock;
+      qualities = qualitiesMock,
+      eduResult = eduResultMock,
+      categories = categoriesMock,
+      themes = themesMock,
+      salaries = salariesMock;
 
 
     return {
       deliveryPoints: deliveryPoints,
       orders: orders,
       edu: edu,
-      // teaching: teaching,
+      teaching: teaching,
       events: events,
       plans: plansKPI,
       planRoutes: planRoutes,
       planReports: reports,
       routes: routes,
       planIndicators: planIndicators,
-      qualities: qualities
+      qualities: qualities,
+      eduResult: eduResult,
+      categories: categories,
+      themes: themes,
+      salaries: salaries
     };
   }
 }

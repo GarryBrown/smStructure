@@ -3,12 +3,12 @@ let _reports = [
     id: 1,
     description: 'KPI отчет',
     routes: [
-      {
-        id: 213,
-        isActive: true,
-        code: '00000000891',
-        description: 'PS108'
-      },
+      // {
+      //   id: 213,
+      //   isActive: true,
+      //   code: '00000000891',
+      //   description: 'PS108'
+      // },
       {
         id: 214,
         isActive: true,

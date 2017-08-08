@@ -1,0 +1,9 @@
+<span class="custom-day" (click)="onSelectDay()" [class.selected]="selected">
+    <span class="text">
+        {{ date.day }}
+    </span>
+<span class="icons">
+      <md-icon [class.hidden]="!isSch">assignment_turned_in</md-icon>
+      <md-icon [class.hidden]="!isEdu">school</md-icon>
+    </span>
+</span>

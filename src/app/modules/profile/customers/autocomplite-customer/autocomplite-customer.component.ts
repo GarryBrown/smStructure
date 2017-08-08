@@ -22,14 +22,12 @@ export class AutocompliteCustomerComponent implements OnInit {
   }
 
   search(e) {
-     console.log(e);
      if (typeof e === 'string' && e.length >= 4) {
         this.daData.queryCustomers({
           query: e
         }).subscribe(
           data => {
             this.daDataList = data.suggestions;
-            console.log(this.daDataList);
           },
           error => console.log(error)
         );
@@ -38,7 +36,6 @@ export class AutocompliteCustomerComponent implements OnInit {
 
 
   onSelect(sug) {
-    console.log(sug);
     this.daDataList = [];
     this.selectSug.emit(sug);
     this.value = sug.value;

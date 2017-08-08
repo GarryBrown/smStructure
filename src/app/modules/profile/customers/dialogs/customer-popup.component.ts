@@ -25,14 +25,11 @@ export class CustomerPopupComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('CrofilecustomerPopupComponent ngOnInit ');
     this.routeSub = this.route.params.subscribe(params => {
 
       if (this.router.url.indexOf('detail') !== -1) {
-       console.log('this is details!!');
        this.modalRef = this.customerPopup.open(CustomerDetailComponent, params['id']);
       } else {
-        console.log('this is not details!!');
         if (params['id']) {
           this.modalRef = this.customerPopup.open(CustomerDialogComponent, params['id']);
         } else {

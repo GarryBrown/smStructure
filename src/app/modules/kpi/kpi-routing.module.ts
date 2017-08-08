@@ -5,8 +5,8 @@ import { PaginUtilService } from '../../shared/services/pagin-util.service';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';
-import { PlanDetailComponent } from "app/modules/kpi/plan-detail/plan-detail.component";
-import { KpiChartComponent } from './kpi-chart/kpi-chart.component';
+import { PlanDetailComponent } from "./components/plan-detail/plan-detail.component";
+import { KpiChartComponent } from './components/kpi-chart/kpi-chart.component';
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {

@@ -25,6 +25,15 @@ export class UtilsService {
     return option;
   }
 
+  getSelectedAnswer(selectedVals: any, option: any) {
+    if (selectedVals && selectedVals.hasOwnProperty('typeOfAnswer')) {
+      if (option.typeOfAnswer.id === selectedVals.typeOfAnswer.id) {
+        return selectedVals;
+      }
+    }
+    return option;
+  }
+
   rangeArray(n: number) {
     return Array.apply(null, { length: n }).map(Number.call, Number);
   }
@@ -40,6 +49,10 @@ export class UtilsService {
     if (a.orderBy > b.orderBy)
       return 1;
     return 0;
+  }
+
+  dateToString(date: Date) {
+    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
   }
 
 }

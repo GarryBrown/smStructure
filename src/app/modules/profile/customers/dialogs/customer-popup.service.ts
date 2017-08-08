@@ -24,29 +24,20 @@ export class CustomerPopupService {
             this.bindDialog(component, customer.data);
         });
       } else {
-        console.log(new Customer());
         this.bindDialog(component, new Customer());
       }
   }
 
-
   bindDialog(component, customer?: any) {
-
     let dialogRef;
     let config = new MdDialogConfig();
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
-
     dialogRef.componentInstance.customer = customer;
-
-
     dialogRef.afterClosed().subscribe(res => {
-        console.log('closed');
         this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
     });
-
     return dialogRef;
   }
-
 }

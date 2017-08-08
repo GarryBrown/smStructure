@@ -72,7 +72,10 @@ export class InterceptableHttp extends Http {
     }
 
     private updateUrl(req: string) {
-        if (req.indexOf("api/") == -1) {
+        if (req.indexOf("api/authenticate") !== -1 || req.indexOf("api/account") !== -1) {
+            console.log(environment.gataway + '/' + req)
+            return environment.gataway + '/' + req;
+        } else if (req.indexOf("api/") !== -1) {
             return environment.origin + '/' + req;
         }
         else {

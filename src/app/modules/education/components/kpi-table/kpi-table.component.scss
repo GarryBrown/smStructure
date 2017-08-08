@@ -1,0 +1,116 @@
+md-select {
+    width: 200px;
+}
+
+md-card {
+    margin-top: 24px;
+}
+
+td.indicator-header {
+    vertical-align: middle;
+}
+
+// for table
+.indicator-header {
+    height: 30px;
+    border-bottom: 3px solid #eceeef;
+    // border-right: 1px solid gray;
+    text-align: center;
+    &:last-of-type {
+        border-right: none;
+    }
+}
+
+.indicator-header:nth-child(even) {
+    background: #f8f8f8;
+}
+
+td#first {
+    border-bottom: 3px solid #eceeef;
+}
+
+@media (max-width: 491px) {
+    #first,
+    #second {
+        md-select {
+            width: 200px;
+        }
+    }
+}
+
+@media (max-width: 742px) {
+    .check-item {
+        float: right
+    }
+}
+
+.hidden-menu {
+    display: block;
+    position: fixed;
+    list-style: none;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 150px;
+    left: 0;
+    background-color: #fff;
+    outline: 1px solid #e2e2e2;
+    bottom: -170px;
+    transition: right .2s;
+    z-index: 2;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    overflow-x: scroll;
+}
+
+.hidden-menu-ticker {
+    display: none;
+}
+
+.btn-menu {
+    color: #fff;
+    background-color: #00897b;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    left: 85%;
+    cursor: pointer;
+    transition: right .23s;
+    z-index: 1;
+    width: 30px;
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    span {
+        display: block;
+        height: 4px;
+        background-color: #fff;
+        margin: 6px 0 0;
+        transition: all .1s linear .15s;
+        position: relative;
+    }
+    span.first {
+        margin-top: 0;
+    }
+}
+
+.hidden-menu-ticker:checked~.btn-menu {
+    bottom: 150px;
+}
+
+.hidden-menu-ticker:checked~.hidden-menu {
+    bottom: 0;
+}
+
+.hidden-menu-ticker:checked~.btn-menu span.first {
+    -webkit-transform: rotate(45deg);
+    top: 10px;
+}
+
+.hidden-menu-ticker:checked~.btn-menu span.second {
+    opacity: 0;
+}
+
+.hidden-menu-ticker:checked~.btn-menu span.third {
+    -webkit-transform: rotate(-45deg);
+    top: -10px;
+}

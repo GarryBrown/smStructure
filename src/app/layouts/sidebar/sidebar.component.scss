@@ -1,0 +1,91 @@
+@import "~theme.scss";
+$width-sidebar: 240px;
+$heightHeader: 64px;
+$heightSidebar: calc(100% - 64px);
+$navHeight: calc(#{$heightSidebar} - 86px);
+.wrapper {
+    width: $width-sidebar;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    will-change: box-shadow;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background-color: white;
+    padding: 0;
+}
+
+.profile {
+    .profile-background {
+        margin-top: 0px;
+        padding: 16px;
+        width: 100%;
+        background-color: mat-color($ts-primary);
+        .avatar {
+            width: 64px;
+            height: 64px;
+            margin-left: 16px;
+            background-size: cover;
+            background-size: 215% 215%;
+            background-position: center;
+            border-radius: 50%;
+            &+button {
+                margin-left: 0;
+            }
+        }
+        button {
+            margin-top: 8px;
+            color: #ffffff;
+        }
+    }
+    h4 {
+        margin-top: 10px;
+    }
+}
+
+nav {
+    position: relative;
+    margin-top: 0px;
+    overflow-y: auto;
+    min-height: 250px;
+    height: $navHeight;
+    h3 {
+        border: none;
+        font-size: 10px;
+        letter-spacing: 1px;
+        line-height: 24px;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin: 0;
+        padding: 0 16px;
+        background: rgba(0, 0, 0, .32);
+        color: #fff;
+    }
+    a {
+        display: flex;
+        text-decoration: none;
+        color: $text-color;
+        border-bottom: 1px solid $divider-black;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 47px;
+        transition: all .3s;
+        padding: 0 16px;
+        &:hover {
+            background-color: $grey-dark;
+        }
+        span {
+            align-self: center;
+        }
+        md-icon {
+            align-self: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+            margin-left: 8px;
+            // font-size: 32px;
+        }
+    }
+    .active {
+        background-color: $grey-light;
+    }
+}
