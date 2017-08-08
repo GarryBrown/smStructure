@@ -6,7 +6,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4200 --proxy-config proxy.config.json",
-    "external": "ng serve --host 192.168.210.154 --port 4202 --proxy-config proxy.config.json",
+    "externalProxy": "ng serve --host 192.168.210.154 --port 4202 --proxy-config proxy.config.json",
+    "external": "ng serve --host 192.168.210.36 --port 4200",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

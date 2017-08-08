@@ -7,10 +7,6 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 const routes: Routes = [
   // Main redirect
   { path: '', redirectTo: 'kpi', pathMatch: 'full' },
-  // {
-  //   path: '', component: SidebarComponent,
-  //   outlet: 'sidebar'
-  // },
   // Handle all other routes
   //{path: '**',    redirectTo: '' }, //wtf!!?? It's break all
 ];
