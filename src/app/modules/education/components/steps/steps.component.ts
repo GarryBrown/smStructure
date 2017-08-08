@@ -46,11 +46,11 @@ export class StepsComponent implements OnInit {
     this.getTeaching();
   }
 
-  // Загрузить объект из сервиса
-  //   if (undefined)
-  //     загрузить с сервера
-  // Отсортировать
-  // Определить текущий
+  /* Загрузить объект из сервиса *
+  **     if (undefined)          *
+  **       загрузить с сервера   *
+  **     Отсортировать           *
+  **     Определить текущий      */
   getTeaching() {
     this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
       (teaching: any) => {
@@ -61,7 +61,6 @@ export class StepsComponent implements OnInit {
         }
       },
       err => this.alert.open("Не удалось получить данные :(")
-      // console.error(err)
     );
   }
 
@@ -74,8 +73,9 @@ export class StepsComponent implements OnInit {
 
   load(id) {
     this.stepsService.find(id).subscribe((teaching: any) => {
-      this.onSuccess(teaching);
       this.eduConfigService.setCurrentTeaching(teaching);
+      this.onSuccess(teaching);
+
     });
   }
 
@@ -93,6 +93,7 @@ export class StepsComponent implements OnInit {
   }
 
   sortStep(steps) {
+    console.info(steps)
     return steps.sort(this.utilsService.sortByOrderBy);
   }
 

@@ -2,14 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DatepickerModule } from 'angular2-material-datepicker'
-/*share*/
+/* shared */
 import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
-/* test api */
-import { environment } from '../../app.constants';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemDataService } from '../../in-mem-data-service';
 /* route */
 import { EducationRoutingModule } from './education-routing.module';
 /*service */
@@ -37,17 +33,12 @@ import { PlanDetailRowComponent } from './components/kpi-table/plan-detail-row/p
 import { ResultComponent } from './components/steps/result/result.component';
 
 
-let myTestApiModule = [];
-if (!environment.production) {
-  myTestApiModule.push(InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }));
-}
 
 @NgModule({
   imports: [
     CommonModule,
     EducationRoutingModule,
     SharedModule,
-    ...myTestApiModule,
     MarkdownModule,
     DatepickerModule
   ],

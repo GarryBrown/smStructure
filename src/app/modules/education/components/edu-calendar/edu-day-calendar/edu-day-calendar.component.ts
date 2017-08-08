@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 import { TEACHING } from '../../../education.constants';
 @Component({
@@ -6,7 +6,7 @@ import { TEACHING } from '../../../education.constants';
   templateUrl: './edu-day-calendar.component.html',
   styleUrls: ['./edu-day-calendar.component.scss']
 })
-export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
+export class EduDayCalendarComponent implements OnInit, OnChanges {
   @Input() date;
   @Input() access;
   @Input() eventsData: Array<any>;
@@ -26,27 +26,29 @@ export class EduDayCalendarComponent implements OnInit, DoCheck, OnChanges {
 
   }
 
-  ngOnChanges() {
-    if (this.eventsData) this.checkDate();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.eventsData && changes.eventsData.currentValue) {
+      this.checkDate(changes.eventsData.currentValue);
+    }
   }
 
-  ngDoCheck() {
-
-  }
-
-  checkDate() {
-    this.eventsData.map(event => {
+  checkDate(eventsData) {
+    this.isEdu = false;
+    this.isSch = false;
+    this.todayEvents = []
+    eventsData.map(event => {
       let d1 = new Date(event.date);
       let d2 = new Date(this.date.year, this.date.month - 1, this.date.day);
       if (d1.valueOf() === d2.valueOf()) {
         if (event.type === TEACHING) {
-        this.isEdu = true;
+          this.isEdu = true;
         } else {
           this.isSch = true;
         }
         this.todayEvents.push(event);
       }
     })
+    // console.log(`${this.date.day} === ${this.todayEvents.length}`);
   }
 
   onSelectDay() {

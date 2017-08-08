@@ -8,7 +8,7 @@
     </md-toolbar>
   </div>
   <div class="schedule">
-    <app-edu-calendar (selectDay)="onSelectDay($event)" [access]="access" [newEvents]="newEvents"></app-edu-calendar>
-    <app-list-day-events *ngIf="selectedDayEvent && selectedDayEvent.length" [events]="selectedDayEvent" (openDialog)="openDialog($event)"></app-list-day-events>
+    <app-edu-calendar (selectDay)="onSelectDay($event)" (loadingData)="loadData($event)" [access]="access" [eventsData]="eventsData"></app-edu-calendar>
+    <app-list-day-events *ngIf="selectedDayEvent && selectedDayEvent.length" [events]="selectedDayEvent" (openDialog)="openDialog($event)" (deleteEvent)="deleteEvent($event)"></app-list-day-events>
   </div>
 </md-card>

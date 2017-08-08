@@ -141,6 +141,9 @@ export class PlanDetailComponent implements OnInit {
     this.reports = reports;
     if (!this.reports.length) {
       this.currentReport = new Report();
+    } else {
+      this.currentReport = reports[0];
+      this.changeReports(this.currentReport);
     }
   }
 

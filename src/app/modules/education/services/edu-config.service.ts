@@ -17,11 +17,7 @@ export class EduConfigService {
     private http: Http,
   ) { }
 
-  findReport(id: number): Observable<any> {
-    return this.http.get(`${this.resourceReportUrl}/${id}`).map((res: Response) => {
-      return res.json();
-    });
-  }
+  /* teaching */
 
   partiallyUpdate(teaching: any): Observable<any> {
     let copy: any = Object.assign({}, teaching);
@@ -51,11 +47,27 @@ export class EduConfigService {
     });
   }
 
+  delete(id: number): Observable<Response> {
+    return this.http.delete(`${this.resourceTeachingUrl}/${id}`);
+  }
+
+  /* entity for selects */
+
   getRoutes(): Observable<Response> {
     return this.http.get('api/routes')
       .map((res: Response) => res.json())
   }
 
+  findReport(id: number): Observable<any> {
+    return this.http.get(`${this.resourceReportUrl}/${id}`).map((res: Response) => {
+      return res.json();
+    });
+  }
+
+  getReports(): Observable<Response> {
+    return this.http.get(this.resourceUrl)
+      .map((res: Response) => res.json())
+  }
 
   getDelivetyPoints(routeID): Observable<Response> {
     let params = new URLSearchParams();
@@ -71,10 +83,7 @@ export class EduConfigService {
       .map((res: Response) => res.json())
   }
 
-  getReports(): Observable<Response> {
-    return this.http.get(this.resourceUrl)
-      .map((res: Response) => res.json())
-  }
+
 
   setCurrentTeaching(obj) {
     this.teaching.next(obj);
@@ -134,9 +143,7 @@ export class EduConfigService {
     }
   }
 
-  delete(id: number): Observable<Response> {
-    return this.http.delete(`${this.resourceTeachingUrl}/${id}`);
-  }
+
 
 
 }

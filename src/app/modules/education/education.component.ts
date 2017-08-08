@@ -1,31 +1,36 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Response } from '@angular/http';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { Subscription } from "rxjs/Subscription";
 
+import { AlertBarComponent } from '../../shared';
 import { ALL, SCH, EDU, TEACHING, STORECHECK } from './education.constants';
 import { Event } from '../../models';
 
-import { EducationService } from './services/education.service';
+import { EducationService, EduConfigService, EduCalendarService } from './services';
 import { EduConfigComponent } from './components/edu-config/edu-config.component';
 
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.scss'],
-  providers: [EducationService]
+  providers: [AlertBarComponent]
 })
 export class EducationComponent implements OnInit, OnDestroy {
-  selectedDayEvent: Array<any>;
+  selectedDayEvent: Array<Event>;
   access: string;
   newEvents: any;
   header: string;
+  eventsData: Array<any>;
+  subscription: Subscription;
+
   constructor(
     private router: Router,
     public dialog: MdDialog,
-    private activatedRoute: ActivatedRoute,
     public educationService: EducationService,
+    public eduConfigService: EduConfigService,
+    private calService: EduCalendarService,
+    private alert: AlertBarComponent
   ) {
     this.newEvents = null;
     this.selectedDayEvent = [];
@@ -34,14 +39,26 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
-  onSelectDay(event) {
-    this.selectedDayEvent = event;
+  loadData(dateRange) {
+    console.log('loadData')
+    this.subscription = this.calService.getEvent(dateRange.dateFrom, dateRange.dateTo).subscribe(
+      (data: any) => {
+        this.eventsData = data;
+      },
+      err => this.alert.open("Не удалось получить данные по обучению :(")
+    )
+  }
+
+  onSelectDay(events) {
+    this.selectedDayEvent = events;
   }
 
   openDialog(event?: any) {
@@ -52,30 +69,21 @@ export class EducationComponent implements OnInit, OnDestroy {
     let eventObj = event ? event : this.access === EDU ? this.createEDUEvent(TEACHING) : this.createEDUEvent(STORECHECK);
     dialogRef.componentInstance.event = eventObj;
     dialogRef.componentInstance.access = this.access;
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.selectedDayEvent = result;
+        let newEvent: Event = new Event(
+          result.id, result.type,
+          result.route, result.route.staff,
+          {}, result.dateOfStart);
+        this.selectedDayEvent = [newEvent];
+        this.eventsData = this.updateEvent(newEvent);
       }
-      this.newEvents = {
-        id: 8,
-        type: "teaching",
-        date: "2017-07-19T17:47:56.873+03:00",
-        route: {
-          id: 214,
-          isActive: true,
-          code: "00000000828",
-          description: "PS101",
-          staff: null
-        },
-        staff: {
-          id: 49,
-          isActive: true,
-          code: "CB-003714",
-          description: "Обмачевская Ирина Николаевна"
-        }
-      }
-
     });
+  }
+
+  updateEvent(event) {
+    return [...this.eventsData, event]
   }
 
   setStateByRoute(url: string): string {
@@ -94,6 +102,20 @@ export class EducationComponent implements OnInit, OnDestroy {
     event.type = type;
     return event;
   }
+
+
+  deleteEvent(event) {
+    this.eduConfigService.delete(event.id).subscribe(
+      succes => {
+        this.eventsData = this.eventsData.filter(ev => ev.id !== event.id)
+        this.selectedDayEvent = [];
+        this.alert.open('Событие удалено.')
+      },
+      error => this.alert.open('Ошибка! Событие не удалено')
+    )
+  }
+
+
 
 }
 
