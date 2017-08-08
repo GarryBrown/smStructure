@@ -21,31 +21,31 @@ export class TasksPopupService {
     if (id) {
       this.tasksService.find(id)
         .subscribe(task => {
+
           this.bindDialog(component, task);
         });
     } else {
-      let newTask = new Task()
-      this.bindDialog(component, newTask);
+      let source = Observable.of(new Task())
+      source.subscribe(task => {
+        console.log('next!')
+          this.bindDialog(component, task);
+        });
     }
 
   }
 
   bindDialog(component, task: Task) {
-
+          console.log('sdsadsdsad')
+          console.log(task)
     let dialogRef;
     let config = new MdDialogConfig();
     config.height = '80%';
     config.width = '70%';
     dialogRef = this.dialog.open(component, config);
-    if (task.id === undefined || task.id === null) {
-      // dialogRef.componentInstance.isDisableForm = false;
-    }
-
     dialogRef.componentInstance.task = task;
 
     dialogRef.afterClosed().subscribe(res => {
       this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
-      //update reducer
     });
 
     return dialogRef;

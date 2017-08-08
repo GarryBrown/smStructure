@@ -30,11 +30,14 @@ export class TasksPopupComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
 
       if (this.router.url.indexOf('details') !== -1) {
+        console.log('Details')
         this.modalRef = this.tasksPopup.open(TaskDetailsComponent, params['id']);
       } else {
         if (params['id']) {
+          console.log('edit with params')
           this.modalRef = this.tasksPopup.open(TaskEditComponent, params['id']);
         } else {
+          console.log('edit with no params')
           this.modalRef = this.tasksPopup.open(TaskEditComponent);
         }
       }
