@@ -17,7 +17,7 @@ export class StepComponent implements OnInit, OnChanges {
     @Input() step: any;
     @Input() answeredQuestions: any; // teachingSpecialities
     @Input() report: Report;
-    @Input() deliveryPoints: Array<any>;;
+    @Input() deliveryPoints: Array<any>;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     @Output() toFinish: EventEmitter<any> = new EventEmitter();
     isFinish: boolean;

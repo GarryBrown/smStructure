@@ -52,10 +52,15 @@
                         <th>Min цель</th>
                         <th>Оценка</th>
                         <th>Категория факт</th>
-                        <th>Название темы</th>
-                        <th>Дата проведения</th>
-                        <th>Цель</th>
-                        <th>Оценка</th>
+                        <th colspan="6" class="four">
+                            <label>Название темы</label>
+                            <label>Дата проведения</label>
+                            <label>Цель</label>
+                            <label>Оценка</label>
+                        </th>
+                        <!-- <th></th>
+                        <th></th>
+                        <th></th> -->
                     </tr>
 
                 </thead>
@@ -80,7 +85,7 @@
                         <td></td>
                     </ng-template>
                     <ng-template [ngIf]="eduRes.themes">
-                        <td>
+                        <!-- <td>
                             <tr *ngFor="let theme of eduRes.themes">
                                 {{theme.typeOfTeaching.description}}
                             </tr>
@@ -101,8 +106,18 @@
                             <tr *ngFor="let theme of eduRes.themes">
                                 {{theme.factValue}}
                             </tr>
+                        </td> -->
+                        <td class="themes" colspan="6">
+                            <tr *ngFor="let theme of eduRes.themes">
+                                <td> {{theme.typeOfTeaching.description}}</td>
+                                <td>{{theme.dateOfStart | date}}</td>
+                                <td> {{theme.planValue}}</td>
+                                <td> {{theme.factValue}}</td>
+                            </tr>
                         </td>
                     </ng-template>
+
+
 
 
                 </tbody>

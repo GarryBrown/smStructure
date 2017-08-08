@@ -11,7 +11,7 @@
 
 <div class="wrapper" *ngIf="event">
 
-    <div *ngIf="access === edu && event && event.id === null">
+    <div *ngIf="access === edu && event && event.id === null" class="dataPicker">
         <material-datepicker [(date)]="event.date" dateFormat="YYYY-MM-DD"></material-datepicker>
     </div>
 

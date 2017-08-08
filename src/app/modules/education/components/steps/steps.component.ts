@@ -81,6 +81,7 @@ export class StepsComponent implements OnInit {
 
   onSuccess(teaching) {
     console.log(teaching);
+    console.log(teaching.teachingSpecialities.steps);
     this.teaching = teaching;
     this.getDeliveryPoints(teaching.route.id);
     if (teaching.planReport.id) this.getReport(teaching.planReport.id);
@@ -139,10 +140,10 @@ export class StepsComponent implements OnInit {
         this.showIntro = false;
       }
       return currentStep;
-    } else  {
+    } else {
       this.showResult = true;
       return 0;
-    } 
+    }
   }
 
   setCurrentStepID(steps) {

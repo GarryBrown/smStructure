@@ -37,4 +37,7 @@
         </div>
     </div>
 
+    <div *ngIf="report && deliveryPoint" class="kpi-block">
+        <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
+    </div>
 </div>

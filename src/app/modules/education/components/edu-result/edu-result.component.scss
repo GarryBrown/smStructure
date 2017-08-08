@@ -26,3 +26,22 @@ md-card {
     margin: 0;
     margin-bottom: 24px;
 }
+
+.themes tr {
+    height: 40px;
+    padding: 0;
+    td {
+        vertical-align: middle;
+    }
+}
+
+.themes {
+    padding-top: 0;
+}
+
+.four {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7px;
+    border: none;
+}

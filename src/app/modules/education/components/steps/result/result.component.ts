@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { EduConfigService } from '../../../services';
 import { AlertBarComponent } from '../../../../../shared';
+import { Report } from "../../../../..//models";
 
 @Component({
   selector: 'app-result',
@@ -14,9 +15,11 @@ import { AlertBarComponent } from '../../../../../shared';
 })
 export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   @Input() teaching: any;
+  @Input() report: Report;
+  @Input() deliveryPoints: Array<any>;
   lastStep: any;
   subscription: Subscription;
-
+  deliveryPoint: any;
   constructor(
     private eduConfigService: EduConfigService,
     private alertService: AlertBarComponent,
@@ -26,11 +29,15 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
 
+    // console.log(this.teaching.teachingSpecialities.steps);
+
   }
 
   ngOnChanges() {
     if (this.teaching) {
       console.log('set teaching')
+      console.log(this.teaching.teachingSpecialities.steps[this.teaching.typeOfTeaching.steps.length - 1])
+      this.deliveryPoint = this.teaching.teachingSpecialities.steps[this.teaching.typeOfTeaching.steps.length - 1].deliveryPoint;
       this.lastStep = this.teaching.typeOfTeaching.steps[this.teaching.typeOfTeaching.steps.length - 1];
       console.log(this.lastStep)
     }

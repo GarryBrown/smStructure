@@ -23,4 +23,9 @@ ngb-datepicker /deep/ {
             }
         }
     }
+    select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+    }
 }
