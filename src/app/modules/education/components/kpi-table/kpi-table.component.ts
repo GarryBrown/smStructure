@@ -27,6 +27,7 @@ export class KpiTableComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    console.log('hello from kpi')
   }
 
   ngOnChanges() {
@@ -34,6 +35,9 @@ export class KpiTableComponent implements OnInit, OnChanges {
       this.getData(this.report[0]);
       this.listIndicators = this.kpiTableService.getPropsObj(this.report[0].indicators);
     }
+    console.log('changed kpi')
+    console.log(this.report)
+    console.log(this.deliveryPoint)
   }
 
   getData(report: Report) {
