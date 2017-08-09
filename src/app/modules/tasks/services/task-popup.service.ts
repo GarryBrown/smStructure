@@ -4,6 +4,7 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { TasksService } from './tasks.service';
+import { TaskEditService } from './task-edit.service';
 import { Task } from '../../../models';
 
 
@@ -13,7 +14,8 @@ export class TasksPopupService {
   constructor(
     private dialog: MdDialog,
     private router: Router,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    private taskEditService: TaskEditService
   ) { }
 
   public open(component: any, id?: string) {
@@ -28,15 +30,13 @@ export class TasksPopupService {
       let source = Observable.of(new Task())
       source.subscribe(task => {
         console.log('next!')
-          this.bindDialog(component, task);
-        });
+        this.bindDialog(component, task);
+      });
     }
 
   }
 
   bindDialog(component, task: Task) {
-          console.log('sdsadsdsad')
-          console.log(task)
     let dialogRef;
     let config = new MdDialogConfig();
     config.height = '80%';
@@ -44,7 +44,11 @@ export class TasksPopupService {
     dialogRef = this.dialog.open(component, config);
     dialogRef.componentInstance.task = task;
 
-    dialogRef.afterClosed().subscribe(res => {
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.taskEditService.updateTasks(data);
+      }
+
       this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true });
     });
 

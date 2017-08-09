@@ -1,16 +1,17 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 
 import { Task } from '../../../../models';
-import { TaskEditService } from "../../services";
-import { UtilsService } from '../../../../shared';
+import { TaskEditService, TasksService } from "../../services";
+import { UtilsService, AlertBarComponent } from '../../../../shared';
 
 @Component({
   selector: 'app-task-edit',
   templateUrl: './task-edit.component.html',
-  styleUrls: ['./task-edit.component.scss']
+  styleUrls: ['./task-edit.component.scss'],
+  providers: [AlertBarComponent]
 })
-export class TaskEditComponent implements OnInit, OnChanges {
-
+export class TaskEditComponent implements OnInit {
   public task: Task;
   routes: any;
   typeOfActivities: any;
@@ -18,63 +19,57 @@ export class TaskEditComponent implements OnInit, OnChanges {
   getSelectedSingle: any;
 
   constructor(
+    private alert: AlertBarComponent,
+    private utilsService: UtilsService,
     private taskEditService: TaskEditService,
-    private utilsService: UtilsService
+    private tasksService: TasksService,
+    public dialogRef: MdDialogRef<TaskEditComponent>,
   ) {
     this.getSelectedSingle = utilsService.getSelectedSingle;
   }
 
   ngOnInit() {
     this.taskEditService.getRoutes().subscribe(
-      (route: any) => {
-        this.onSuccess(route);
-        // this.routes = data;
-        console.log(this.routes);
-      },
+      (route: any) => this.routes = route,
       (error) => console.error(error)
     )
-
     this.taskEditService.getTypeOfActivity().subscribe(
-      (data: any) => {
-        this.typeOfActivities = data;
-        console.log(this.typeOfActivities);
-      },
+      (data: any) => this.typeOfActivities = data,
       (error) => console.log(error)
     )
-
-    if (this.task && this.task.route) {
-      console.log("adfwerfaf")
+    if (this.task && this.task.route.id) {
       this.getDeliveryPoints(this.task.route);
-    }
-
-    // this.taskEditService.getDelivetyPoints().subscribe(
-    //   (data: any) => {
-    //     this.deliveryPoints = data;
-    //     console.log(this.deliveryPoints);
-    //   },
-    //   (error) => console.log(error)
-    // )
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    if (changes.task && changes.task.currentValue.route) {
-      this.getDeliveryPoints(changes.task.currentValue.route);
     }
   }
 
   getDeliveryPoints(route) {
-    console.log("sluhaaa")
     this.taskEditService.getDelivetyPoints(route.id)
       .subscribe(
       (data: any) => this.deliveryPoints = data,
-      (error) => console.log("looooh")
+      (error) => console.error("Error getDelivetyPoints")
       )
   }
 
-  onSuccess(data) {
-    this.routes = data;
-    // console.log(this.routes);
+  save() {
+    if (this.task.id) {
+      this.tasksService.update(this.task).subscribe(
+        (suc) => this.onSuccess(suc.json()),
+        (err) => console.error(err)
+      )
+    } else {
+      this.tasksService.create(this.task).subscribe(
+        (suc) => this.onSuccess(suc.json()),
+        (err) => console.error(err)
+      )
+    }
+  }
 
+  close(data?) {
+    this.dialogRef.close(data);
+  }
+
+  onSuccess(data) {
+    this.alert.open('Изменения сохранены.')
+    this.close(data);
   }
 }

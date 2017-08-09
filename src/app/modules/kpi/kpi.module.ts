@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 /*share*/
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { SharedModule } from '../../shared';
+import { SharedModule, ConfirmComponent, OrderBy } from '../../shared';
 import { DateUtilService } from '../../core';
-import { OrderBy } from '../../shared';
-import { ConfirmComponent } from '../../shared';
+
 /* test api */
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '../../in-mem-data-service';
