@@ -1,19 +1,60 @@
 <div>
-  <md-toolbar>{{task.description}}</md-toolbar>
-
+  <md-toolbar>
+    <h3> Детали задачи </h3>
+    <span class="close">
+              <button md-icon-button (click)="close()">
+                <md-icon>close</md-icon>
+              </button>
+        </span>
+  </md-toolbar>
 
   <md-card-content>
 
+    <md-list>
+      <md-list-item>
+        <h4>
+          <b>Описание:</b> {{task.description }}
+        </h4>
+      </md-list-item>
+      <md-list-item>
+        <p>
+          <b>Код:</b> {{task.code }}
+        </p>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item>
+        <p md-line><b>Маршрут:</b> {{task.route.description }} </p>
+        <p md-line><b>ТТ:</b> {{task.deliveryPoint.description }} </p>
+        <p md-line><b>Тип:</b> {{task.typeOfActivity.description }} </p>
+      </md-list-item>
+      <md-divider></md-divider>
+      <ng-template [ngIf]="comments">
+        <md-list-item *ngFor="let comment of comments">
+          <h3 md-line>
+            <b>Комментарий:</b> {{comment.result }}
+          </h3>
+          <p md-line> {{comment.resultDate | date}}</p>
+        </md-list-item>
+      </ng-template>
+    </md-list>
 
-    <md-grid-list *ngIf="pictures" cols="3" rowHeight="200px">
-      <md-grid-tile *ngFor="let picture of pictures">
-        <img [alt]="picture.resultDate" src="{{picture.result}}">
+    <md-grid-list *ngIf="increasedPicture" cols="1">
+      <md-grid-tile>
+        <img [alt]="increasedPicture.resultDate" src="{{increasedPicture.result}}">
         <md-grid-tile-footer>
-          <span md-line> {{picture.resultDate| date}}</span>
+          <span md-line> {{increasedPicture.resultDate | date}}</span>
         </md-grid-tile-footer>
       </md-grid-tile>
     </md-grid-list>
 
+    <md-grid-list *ngIf="pictures" cols="3" rowHeight="200px">
+      <md-grid-tile *ngFor="let picture of pictures" (click)="selectPicture(picture)">
+        <img [alt]="picture.resultDate" src="{{picture.result}}">
+        <md-grid-tile-footer>
+          <span md-line> {{picture.resultDate | date}}</span>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
 
   </md-card-content>
 </div>

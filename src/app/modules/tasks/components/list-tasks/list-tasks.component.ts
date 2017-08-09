@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Task } from '../../../../models';
-import { TasksService } from '../../services';
+import { TasksService, TaskEditService } from '../../services';
 
 @Component({
   selector: 'app-list-tasks',
@@ -37,6 +37,7 @@ export class ListTasksComponent implements OnInit {
     private router: Router,
     private tasksService: TasksService,
     private activatedRoute: ActivatedRoute,
+    private taskEditService: TaskEditService
   ) {
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.previousPage = data['pagingParams'].page;
@@ -47,11 +48,33 @@ export class ListTasksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.taskEditService.checkUpdatesTasks().subscribe(
+      (task) => this.updateTasks(task),
+    )
     this.loadData();
   }
 
-  onDelete(task) {
+  updateTasks(updatedTask) {
+    let isNew = true;
+    this.tasks = this.tasks.map(task => {
+      if (task.id === updatedTask.id) {
+        isNew = false;
+        task = updatedTask;
+      }
+      return task;
+    })
+    if (isNew) {
+      this.tasks = [...this.tasks, updatedTask]
+    }
+  }
 
+  onDelete(task) {
+    this.tasksService.delete(task.id).subscribe(
+      (res) => {
+        this.tasks = this.tasks.filter(taskItem => taskItem.id !== task.id);
+      },
+      (err) => console.error('Ошибка Сергей вставь alert service')
+    )
   }
 
   transition() {

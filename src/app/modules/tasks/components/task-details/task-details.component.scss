@@ -1,0 +1,17 @@
+md-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    .close {
+        margin-left: auto;
+    }
+}
+
+.footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    button {
+        margin: 10px;
+    }
+}
