@@ -11,7 +11,7 @@ import {
   TaskDetailsComponent,
   TasksPopupComponent
 } from "./components";
-import { TasksService, TasksPopupService } from './services';
+import { TasksService, TasksPopupService, TaskEditService } from './services';
 
 
 
@@ -32,7 +32,8 @@ import { TasksService, TasksPopupService } from './services';
   providers: [
     UserResolvePagingParams,
     TasksService,
-    TasksPopupService
+    TasksPopupService,
+    TaskEditService
   ]
 })
 export class TasksModule { }
