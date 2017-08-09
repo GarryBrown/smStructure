@@ -23,15 +23,17 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.allList && this.currentList && this.allList.length) {
-        this.changeViewByCurValue();
+      this.changeViewByCurValue();
+      console.log(this.allList);
     }
     if (this.currentList.length !== 0 && this.currentList.length !== this.allList.length) {
-        this.copyCurList = this.currentList.slice();
+      this.copyCurList = this.currentList.slice();
+      console.log(this.currentList);
     }
   }
 
   changeViewByCurValue() {
-    
+
     // this.checkModel = this.checkValues[++this.index % this.len];
 
     if (this.allList.length === this.currentList.length) {
@@ -58,11 +60,11 @@ export class CheckboxComponent implements OnInit, OnChanges {
   //   }
   // }
 
-   changeCurValueByView() {
+  changeCurValueByView() {
     this.checkModel = this.checkValues[++this.index % this.len];
     if (this.checkModel === true) {
       this.onCheckChange.emit(this.allList)
-    } else  {
+    } else {
       this.onCheckChange.emit([])
     }
   }

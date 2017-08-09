@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit, OnChanges {
     @Output() onSave: EventEmitter<Report> = new EventEmitter<Report>();
     @Output() onDelete: EventEmitter<Report> = new EventEmitter<Report>();
 
-    indicators: Array<Indicator>;
+    @Input() indicators: Array<Indicator>;
     allFields: Array<Field>;
     details = false;
     getSelected: any;
@@ -36,6 +36,7 @@ export class ReportComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        console.log(this.report);
     }
 
     ngOnChanges() {
@@ -77,8 +78,8 @@ export class ReportComponent implements OnInit, OnChanges {
 
     delete(report) {
         let dialogRef = this.dialog.open(ConfirmComponent, {
-            width: '45%',
-            height: '57%',
+            width: '27%',
+            height: '30%',
         });
 
         dialogRef.afterClosed().subscribe(result => {
@@ -97,9 +98,23 @@ export class ReportComponent implements OnInit, OnChanges {
 
     onCheckRoutes(routes) {
         this.report.routes = routes;
+        console.log(this.report.routes);
+        if (this.report && this.report.routes.length) {
+            this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
+                (data: any) => {
+                    this.report.indicators = this.copyObj(this.report.indicators);
+                    this.indicators = data;
+                    this.allFields = this.indicators[0].planFields;
+                },
+                err => this.alert.open("Не удалось получить данные :(")
+            )
+        }
     }
+
     onCheckIndicators(indicators) {
+        console.log(indicators);
         this.report.indicators = indicators;
+        console.log(this.report.indicators);
     }
 
     disableSave(): boolean {

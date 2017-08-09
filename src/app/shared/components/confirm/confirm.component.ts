@@ -16,18 +16,18 @@ import { MdDialog, MdDialogRef } from '@angular/material';
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss'],
-  animations: [
-    trigger('focusPanel', [
-      state('inactive', style({
-        transform: 'scale(1)'
-      })),
-      state('active', style({
-        transform: 'scale(1.1)'
-      })),
-      transition('inactive => active', animate('100ms ease-in')),
-      transition('active => inactive', animate('100ms ease-out'))
-    ])
-  ]
+  // animations: [
+  //   trigger('focusPanel', [
+  //     state('inactive', style({
+  //       transform: 'scale(1)'
+  //     })),
+  //     state('active', style({
+  //       transform: 'scale(1.1)'
+  //     })),
+  //     transition('inactive => active', animate('100ms ease-in')),
+  //     transition('active => inactive', animate('100ms ease-out'))
+  //   ])
+  // ]
 })
 export class ConfirmComponent implements OnInit {
 
@@ -40,8 +40,8 @@ export class ConfirmComponent implements OnInit {
   }
 
   close(answer) {
-    this.state = (this.state === 'inactive' ? 'active' : 'inactive');
-    // this.dialogRef.close(answer);
+    // this.state = (this.state === 'inactive' ? 'active' : 'inactive');
+    this.dialogRef.close(answer);
   }
 
 }

@@ -1,8 +1,8 @@
-<div class="wrapper" [@focusPanel]='state'>
+<div class="wrapper">
     <h4>Вы уверены?</h4>
 
     <div class="buttons">
-        <button md-mini-fab color="accent" (click)="close(true)"><md-icon>done</md-icon></button>
-        <button md-mini-fab color="white" (click)="close(false)"><md-icon>backspace</md-icon></button>
+        <button md-fab color="accent" (click)="close(true)"><md-icon>done</md-icon></button>
+        <button md-fab color="white" (click)="close(false)"><md-icon>close</md-icon></button>
     </div>
 </div>
