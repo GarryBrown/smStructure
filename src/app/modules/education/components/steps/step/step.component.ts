@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 
 import { EduResultService, EduConfigService, StepsService } from '../../../services';
@@ -12,7 +13,7 @@ import { AlertBarComponent } from "app/shared/components/alert-bar/alert-bar.com
     templateUrl: './step.component.html',
     styleUrls: ['./step.component.scss']
 })
-export class StepComponent implements OnInit, OnChanges {
+export class StepComponent implements OnInit, OnChanges, OnDestroy {
     @Input() theme: any; // typeOfTeaching
     @Input() step: any;
     @Input() answeredQuestions: any; // teachingSpecialities
@@ -26,6 +27,7 @@ export class StepComponent implements OnInit, OnChanges {
     prevStepsId: Array<number>;
     getSelected: any;
     disabled: boolean = false;
+    teachingSubscription: Subscription;
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -40,6 +42,13 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+
+    }
+
+    ngOnDestroy() {
+        if (this.teachingSubscription) {
+            this.teachingSubscription.unsubscribe();
+        }
     }
 
     ngOnChanges() {
@@ -49,9 +58,12 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     sendAnswer(answer) {
+        console.warn('I SEND ANSWER FUNC')
         answer.deliveryPointId = this.deliveryPoint.id;
-        this.eduConfigService.getCurrentTeaching().subscribe(
+        this.teachingSubscription = this.eduConfigService.getCurrentTeaching().subscribe(
             (teaching) => {
+                console.warn('WTF')
+                console.warn(answer)
                 answer.teachingId = teaching.id;
                 this.stepsService.sendAnswer(answer).subscribe(
                     answer => {
@@ -111,6 +123,9 @@ export class StepComponent implements OnInit, OnChanges {
     }
 
     goToResult() {
+        if (!this.answeredQuestions.steps[this.step.id].deliveryPoint) {
+            this.changeDelivetyPoint(this.deliveryPoint);
+        }
         this.eduResultService.setCurrentAnswer(this.answeredQuestions);
         this.toFinish.emit(true);
     }

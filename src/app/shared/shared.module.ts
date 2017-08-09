@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 /* directives */
 import { SortByDirective } from './directive/sort-by.directive';
@@ -47,7 +46,6 @@ import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
     ReactiveFormsModule,
     NgbModule,
     PrettyCountPipe,
-    NgxChartsModule,
     SortByDirective,
     SortDirective,
     HasAuthorityDirective,

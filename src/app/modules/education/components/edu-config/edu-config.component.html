@@ -12,28 +12,28 @@
 <div class="wrapper" *ngIf="event">
 
     <div *ngIf="access === edu && event && event.id === null" class="dataPicker">
-        <material-datepicker [(date)]="event.date" dateFormat="YYYY-MM-DD"></material-datepicker>
+        <material-datepicker [(date)]="event.date" dateFormat="YYYY-MM-DD" [disabled]="isStarted || isFinished"></material-datepicker>
     </div>
 
-    <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all">
+    <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all" [disabled]="isStarted || isFinished">
         <md-option *ngFor="let type of types" [value]="type">
             {{ type }}
         </md-option>
     </md-select>
 
-    <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route">
+    <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route" [disabled]="isStarted || isFinished">
         <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
             {{ route.description }}
         </md-option>
     </md-select>
 
-    <md-select *ngIf="event && teaching" placeholder="Тема" [(ngModel)]="teaching.typeOfTeaching">
+    <md-select *ngIf="event && teaching" placeholder="Тема" [(ngModel)]="teaching.typeOfTeaching" [disabled]="isStarted || isFinished">
         <md-option *ngFor="let theme of themes" [value]="getSelected(teaching.typeOfTeaching, theme)">
             {{ theme.description }}
         </md-option>
     </md-select>
 
-    <md-select *ngIf="teaching && access === edu" placeholder="Отчет KPI" name="event" [(ngModel)]="teaching.planReport">
+    <md-select *ngIf="teaching && access === edu" placeholder="Отчет KPI" name="event" [(ngModel)]="teaching.planReport" [disabled]="isStarted || isFinished">
         <md-option *ngFor="let reportOption of reports" [value]="getSelected(teaching.planReport, reportOption)">
             {{ reportOption.description }}
         </md-option>

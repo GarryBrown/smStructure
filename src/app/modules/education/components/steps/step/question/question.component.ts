@@ -57,11 +57,15 @@ export class QuestionComponent implements OnInit, OnChanges {
       isNew = true;
       this.answeredQuestions.steps[this.step.id].questions[this.question.id] = new Object();
     }
-    answerId = isNew ? null : this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.id;
-    this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = answer;
-    this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = this.comment;
+    if (this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer === undefined ||
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.typeOfAnswer.id !== answer.typeOfAnswer.id) {
+      // console.warn('SEND NEW OR UNIQUE ANSWER')
+      answerId = isNew ? null : this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.id;
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = answer;
+      this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = this.comment;
 
-    this.sendChanges(answerId, this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer)
+      this.sendChanges(answerId, this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer)
+    }
   }
 
   setPrevSteps(steps) {
@@ -86,10 +90,11 @@ export class QuestionComponent implements OnInit, OnChanges {
       this.answeredQuestions.steps[this.step.id].questions[this.question.id] = new Object();
       this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = new Object();
     }
+    
     answerId = isNew ? null : this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.id;
 
     this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = comment;
-
+    // console.warn('changeComment sendAnswer')
     this.sendChanges(answerId, this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer)
   }
 

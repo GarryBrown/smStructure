@@ -113,6 +113,7 @@ export class EduConfigComponent implements OnInit {
 
   goToTeaching(teaching) {
     console.log(teaching)
+    this.eduConfigService.setCurrentTeaching(undefined);
     this.router.navigate(['edu/theme', this.teaching.id]).then(
       (result) => this.dialogRef.close(false),
       (reason) => console.error(`navigate error ${reason}`)

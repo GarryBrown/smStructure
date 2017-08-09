@@ -28,33 +28,23 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-
     // console.log(this.teaching.teachingSpecialities.steps);
-
   }
 
   ngOnChanges() {
     if (this.teaching) {
-      /* тичинг не обновленный приходит и из-за этого нет последней выбранной деливири поинтс */
-      // console.log('set teaching')
-      // console.log(this.teaching.teachingSpecialities.steps)
-      // console.log(this.teaching.teachingSpecialities.steps[this.teaching.typeOfTeaching.steps[this.teaching.typeOfTeaching.steps.length - 1].id])
       this.deliveryPoint = this.applyDeliveryPoint(this.teaching);
       this.lastStep = this.applyLastStep(this.teaching);
-      console.log('result ngOnChanges')
-      console.log(this.deliveryPoint)
-      console.log(this.report)
-      // console.log(this.lastStep)
     }
   }
 
   applyLastStep(teaching) {
     return teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1]
   }
+
   applyDeliveryPoint(teaching) {
-    console.log('applyDeliveryPoint')
-    console.log(teaching.teachingSpecialities.steps)
-    console.log(teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1].id)
+    // console.log(teaching.teachingSpecialities.steps)
+    // console.log(teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1].id)
     return teaching.teachingSpecialities.steps[teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1].id].deliveryPoint
   }
 
@@ -86,6 +76,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   redirect() {
-    this.router.navigate(['/edu']);
+    this.router.navigate(['/edu-result']);
   }
 }

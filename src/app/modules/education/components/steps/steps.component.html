@@ -1,4 +1,4 @@
-<md-card *ngIf="teaching">
+<md-card *ngIf="teaching" class="wrapper">
     <app-introduction *ngIf="showIntro" [theme]="teaching.typeOfTeaching" (beginSteps)="beginSteps($event)"></app-introduction>
     <ng-template [ngIf]="!showIntro && !showResult">
         <ng-template ngFor let-step [ngForOf]="teaching.typeOfTeaching.steps">

@@ -90,7 +90,7 @@ export class EduConfigService {
   }
 
   getCurrentTeaching(): Observable<any> {
-    return this.teaching.asObservable(); //.filter(item => item !== undefined);
+    return this.teaching.asObservable().filter(item => item !== undefined);
   }
 
   getLocation() {

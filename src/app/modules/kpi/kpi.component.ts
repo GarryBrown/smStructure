@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Subscription } from "rxjs/Subscription";
 import { } from '@types/googlemaps';
 
@@ -13,7 +12,7 @@ import { Agent } from "app/models/agent.model";
   selector: 'app-kpi',
   templateUrl: './kpi.component.html',
   styleUrls: ['./kpi.component.scss'],
-  providers: [KPIService, NgxChartsModule]
+  providers: [KPIService]
 })
 export class KPIComponent implements OnInit, OnDestroy {
   subscription: Subscription;

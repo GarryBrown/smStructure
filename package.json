@@ -35,7 +35,6 @@
         "@ngrx/store": "^4.0.2",
         "@ngx-translate/core": "^7.1.0",
         "@ngx-translate/http-loader": "1.0.1",
-        "@swimlane/ngx-charts": "^6.0.1",
         "@types/googlemaps": "^3.26.17",
         "angular2-cookie": "1.2.6",
         "angular2-markdown": "^1.6.0",
