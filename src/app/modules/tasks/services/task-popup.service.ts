@@ -35,7 +35,7 @@ export class TasksPopupService {
     let dialogRef;
     let config = new MdDialogConfig();
     config.height = '80%';
-    config.width = '70%';
+    config.width = '50%';
     dialogRef = this.dialog.open(component, config);
     if (task.id === undefined || task.id === null) {
       // dialogRef.componentInstance.isDisableForm = false;

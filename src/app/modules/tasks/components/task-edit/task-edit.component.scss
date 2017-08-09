@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    flex-direction: column;
+    md-select,
+    md-input-container {
+        width: 300px;
+    }
+}
+
+.footer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    button {
+        margin: 10px;
+    }
+}
