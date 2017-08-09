@@ -1,1 +1,19 @@
-<h3>{{task.description}}</h3>
+<div>
+  <md-toolbar>{{task.description}}</md-toolbar>
+
+
+  <md-card-content>
+
+
+    <md-grid-list *ngIf="pictures" cols="3" rowHeight="200px">
+      <md-grid-tile *ngFor="let picture of pictures">
+        <img [alt]="picture.resultDate" src="{{picture.result}}">
+        <md-grid-tile-footer>
+          <span md-line> {{picture.resultDate| date}}</span>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+    </md-grid-list>
+
+
+  </md-card-content>
+</div>

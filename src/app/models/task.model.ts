@@ -23,6 +23,5 @@ export class Task {
         this.typeOfActivity = typeOfActivity ? typeOfActivity : {};
         this.typeOfActivity = typeOfActivity ? typeOfActivity : {};
         this.activityResults = activityResults ? activityResults : [];
-        
     }
 }
