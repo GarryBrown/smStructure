@@ -52,16 +52,17 @@ export class StepsComponent implements OnInit {
   **     Отсортировать           *
   **     Определить текущий      */
   getTeaching() {
-    this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
-      (teaching: any) => {
-        if (teaching !== undefined) {
-          this.onSuccess(teaching);
-        } else {
-          this.loadFromRouteParam();
-        }
-      },
-      err => this.alert.open("Не удалось получить данные :(")
-    );
+    // this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
+    //   (teaching: any) => {
+    //     if (teaching !== undefined) {
+    //       this.onSuccess(teaching);
+    //     } else {
+    //       this.loadFromRouteParam();
+    //     }
+    //   },
+    //   err => this.alert.open("Не удалось получить данные :(")
+    // );
+    this.loadFromRouteParam();
   }
 
   loadFromRouteParam() {
