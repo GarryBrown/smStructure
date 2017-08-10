@@ -30,6 +30,10 @@ export class TaskDetailsComponent implements OnInit {
 
   }
 
+  bindEntity(task) {
+    this.task = task;
+  }
+
   selectPicture(picture) {
     this.increasedPicture = picture;
   }
