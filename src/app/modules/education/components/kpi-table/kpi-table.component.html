@@ -16,14 +16,12 @@
                 </td>
             </tr>
             <tr>
-
                 <td>Торговая точка</td>
                 <ng-template ngFor let-indicator [ngForOf]="report[0].indicators">
                     <td *ngIf="!indicator.planFields[0]"></td>
                     <td *ngFor="let field of indicator.planFields" [hidden]="hideElement">
                         {{field.description}}
                     </td>
-
                 </ng-template>
             </tr>
         </thead>

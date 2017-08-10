@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { EduConfigService } from '../../../services';
 import { AlertBarComponent } from '../../../../../shared';
-import { Report } from "../../../../..//models";
+import { Report } from "../../../../../models";
 
 @Component({
   selector: 'app-result',

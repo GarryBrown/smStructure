@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 import { UtilsService } from '../../../../../../shared';
-import { StepsService } from '../../../../services/steps.service'
+import { StepsService } from '../../../../services'
 
 @Component({
   selector: '[app-question]',

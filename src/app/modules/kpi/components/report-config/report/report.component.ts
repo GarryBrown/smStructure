@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
-import { PlanDetailService } from '../../../services';
-import { ReportConfigService } from '../../../services';
+import { PlanDetailService, ReportConfigService } from '../../../services';
 import { Route, Report, Indicator, Field } from '../../../../../models';
 import { CheckboxComponent } from '../../checkbox/checkbox.component';
-import { AlertBarComponent } from '../../../../../shared';
-import { ConfirmComponent } from '../../../../../shared';
+import { AlertBarComponent, ConfirmComponent } from '../../../../../shared';;
 
 @Component({
     selector: 'app-report',

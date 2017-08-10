@@ -3,7 +3,7 @@ import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from "rxjs/Subscription";
 
 import { EduCalendarService } from '../../services';
-import { AlertBarComponent } from "app/shared";
+import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-edu-calendar',
@@ -20,7 +20,6 @@ export class EduCalendarComponent implements OnInit, OnChanges, OnDestroy {
 
   date: any;
   current: any;
-
 
   constructor(
     private calendar: NgbCalendar,

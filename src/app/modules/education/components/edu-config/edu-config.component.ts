@@ -1,14 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ALL, SCH, EDU, TEACHING, STORECHECK } from '../../education.constants';
 import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
-
-import { EduConfigService } from '../../services';
-import { StepsService } from '../../services';
-import { UtilsService } from '../../../../shared';
-import { Event, Route, Report } from '../../../../models';
 import { Http } from '@angular/http'
 
+import { EduConfigService, StepsService } from '../../services';
+import { UtilsService } from '../../../../shared';
+import { Event, Route, Report } from '../../../../models';
+import { ALL, SCH, EDU, TEACHING, STORECHECK } from '../../education.constants';
 
 @Component({
   selector: 'app-edu-config',
@@ -16,6 +14,7 @@ import { Http } from '@angular/http'
   styleUrls: ['./edu-config.component.scss']
 })
 export class EduConfigComponent implements OnInit {
+
   all;
   sch;
   edu;

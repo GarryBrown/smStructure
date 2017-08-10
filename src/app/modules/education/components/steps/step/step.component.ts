@@ -4,9 +4,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 import { EduResultService, EduConfigService, StepsService } from '../../../services';
-import { UtilsService } from '../../../../../shared';
+import { UtilsService, AlertBarComponent } from '../../../../../shared';
 import { Report } from '../../../../../models';
-import { AlertBarComponent } from "app/shared/components/alert-bar/alert-bar.component";
 
 @Component({
     selector: 'app-step',

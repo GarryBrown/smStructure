@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { AlertBarComponent } from '../../../../shared';
 import { ViewEncapsulation } from '@angular/core';
 
 import { Report } from '../../../../models';
 import { KpiTableService } from '../../services';
+import { AlertBarComponent } from '../../../../shared';
 
 @Component({
   selector: 'app-kpi-table',

@@ -1,20 +1,18 @@
 <div class="wrapper">
-  <div class="header">
-    <md-toolbar>
-      <h3> Отчеты </h3>
-      <span class="close">
+    <div class="header">
+        <md-toolbar>
+            <h3> Отчеты </h3>
+            <span class="close">
               <button md-icon-button (click)="close()">
                 <md-icon>close</md-icon>
               </button>
         </span>
-    </md-toolbar>
-  </div>
-  <br>
-
-  <button md-icon-button (click)="create()">
+        </md-toolbar>
+    </div>
+    <br>
+    <button md-icon-button (click)="create()">
         <md-icon>add</md-icon>
   </button>
-
-  <app-report *ngIf="newReport" [report]="newReport" [routes]="routes" (onSave)="onSave($event)" (onDelete)="onDelete($event)"></app-report>
-  <app-report *ngFor="let report of reports" [report]="report" [routes]="routes" (onSave)="onSave($event)" (onDelete)="onDelete($event)"></app-report>
+    <app-report *ngIf="newReport" [report]="newReport" [routes]="routes" (onSave)="onSave($event)" (onDelete)="onDelete($event)"></app-report>
+    <app-report *ngFor="let report of reports" [report]="report" [routes]="routes" (onSave)="onSave($event)" (onDelete)="onDelete($event)"></app-report>
 </div>

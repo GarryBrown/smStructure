@@ -18,17 +18,7 @@ export class TaskEditService {
   checkUpdatesTasks(): Observable<any> {
     return this.sourceTaskUpdated.asObservable();
   }
-
-  // getRoutes(): Observable<Response> {
-  //   return this.http.get('api/routes')
-  //     .map((res: Response) => res.json())
-  // }
-
-  // getTypeOfActivity(): Observable<Response> {
-  //   return this.http.get('api/type-of-activities')
-  //     .map((res: Response) => res.json())
-  // }
-
+  
   getDelivetyPoints(routeID): Observable<Response> {
     let params = new URLSearchParams();
     params.set('routeId', routeID.toString())

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { EduResultService, resultFilter } from '../../services';
 import { DatepickerModule } from 'angular2-material-datepicker'
-import { AlertBarComponent } from "app/shared";
+import { AlertBarComponent } from "../../../../shared";
 
 
 @Component({
@@ -12,7 +12,6 @@ import { AlertBarComponent } from "app/shared";
   styleUrls: ['./edu-result.component.scss']
 })
 export class EduResultComponent implements OnInit, OnDestroy {
-
 
   isLoading: boolean;
   resultFilter: resultFilter;
@@ -49,9 +48,6 @@ export class EduResultComponent implements OnInit, OnDestroy {
     //   .subscribe((data: any) => this.routes = data.data, );
     // this.subscriptionThemes = this.eduResultService.getThemes()
     //   .subscribe((data: any) => this.themes = data.data);
-
-
-
   }
 
   formatDate(date: Date): string {

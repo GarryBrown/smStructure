@@ -12,12 +12,11 @@ import { AlertBarComponent } from "../../../../shared";
   styleUrls: ['./list-tasks.component.scss']
 })
 export class ListTasksComponent implements OnInit {
+  
+  
   tasks: Array<Task>;
-
   error: any;
   success: any;
-
-
   routeData: any;
   /* pagin */
   itemsPerPage: number;

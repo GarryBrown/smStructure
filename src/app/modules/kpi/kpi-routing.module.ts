@@ -1,7 +1,7 @@
 import { NgModule, Injectable } from '@angular/core';
 import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 
-import { PaginUtilService } from '../../shared/services/pagin-util.service';
+import { PaginUtilService } from '../../shared';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
 import { KPIComponent } from './kpi.component';

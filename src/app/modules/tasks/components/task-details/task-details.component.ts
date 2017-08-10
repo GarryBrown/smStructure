@@ -8,9 +8,10 @@ import { Task } from '../../../../models';
   styleUrls: ['./task-details.component.scss']
 })
 export class TaskDetailsComponent implements OnInit {
-  public task: Task;
-  private pictures: Array<any>;
-  private comments: Array<any>;
+
+  task: Task;
+  pictures: Array<any>;
+  comments: Array<any>;
   increasedPicture: any;
 
   constructor(

@@ -2,8 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-import { PlanDetailService } from '../../services';
-import { ReportConfigService } from '../../services';
+import { PlanDetailService, ReportConfigService } from '../../services';
 import { ReportConfigComponent } from '../report-config/report-config.component';
 import { Route, Report, Indicator } from '../../../../models';
 import { AlertBarComponent } from '../../../../shared';
@@ -20,12 +19,9 @@ export class PlanDetailComponent implements OnInit {
 
   routesData: Array<any>;
   isSaving: boolean;
-
   indicators: Array<any>;
   currentIndicators: Array<any>;
-
   routes: Array<Route>;
-
   currentRoutes: Array<Route>;
   reports: Array<any>;
   currentReport: Report;
