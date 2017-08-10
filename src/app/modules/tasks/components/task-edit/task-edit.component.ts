@@ -4,6 +4,7 @@ import { MdDialogRef } from '@angular/material';
 import { Task } from '../../../../models';
 import { TaskEditService, TasksService } from "../../services";
 import { UtilsService, AlertBarComponent } from '../../../../shared';
+import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'app-task-edit',
@@ -12,6 +13,8 @@ import { UtilsService, AlertBarComponent } from '../../../../shared';
   providers: [AlertBarComponent]
 })
 export class TaskEditComponent implements OnInit {
+
+  subscription: Subscription;
   public task: Task;
   routes: any;
   typeOfActivities: any;
@@ -29,14 +32,21 @@ export class TaskEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskEditService.getRoutes().subscribe(
-      (route: any) => this.routes = route,
-      (error) => console.error(error)
-    )
-    this.taskEditService.getTypeOfActivity().subscribe(
-      (data: any) => this.typeOfActivities = data,
-      (error) => console.log(error)
-    )
+    this.subscription = this.taskEditService.getRoutesAndTypeOfActivities()
+      .subscribe(data => {
+        this.onSuccessRoutesAndTypeOfActivities(data)
+      }, err => console.log(err)
+      );
+
+    // this.taskEditService.getRoutes().subscribe(
+    //   (route: any) => this.routes = route,
+    //   (error) => console.error(error)
+    // )
+    // this.taskEditService.getTypeOfActivity().subscribe(
+    //   (data: any) => this.typeOfActivities = data,
+    //   (error) => console.log(error)
+    // )
+
     if (this.task && this.task.route.id) {
       this.getDeliveryPoints(this.task.route);
     }
@@ -71,5 +81,10 @@ export class TaskEditComponent implements OnInit {
   onSuccess(data) {
     this.alert.open('Изменения сохранены.')
     this.close(data);
+  }
+
+  onSuccessRoutesAndTypeOfActivities(data) {
+    this.routes = data[0];
+    this.typeOfActivities = data[1];
   }
 }

@@ -73,10 +73,9 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
                         this.alert.open("Произошла ошибка. Ответ не сохранен")
                         console.error(` sendAnswer ${err}`)
                     }
-                    //подключи алерт сервис ('Произошла ошибка. Ответ не сохранен')
                 )
             },
-            (err) => console.error(err)
+            (err) => this.alert.open("Не удалось получить данные :(")
         )
     }
 

@@ -4,6 +4,7 @@ import { Response } from '@angular/http';
 
 import { Task } from '../../../../models';
 import { TasksService, TaskEditService } from '../../services';
+import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-list-tasks',
@@ -27,17 +28,12 @@ export class ListTasksComponent implements OnInit {
   reverse: any;
   /* filter */
 
-  foods = [
-    { value: 'steak-0', viewValue: 'P&G' },
-    { value: 'pizza-1', viewValue: 'Food' },
-    { value: 'tacos-2', viewValue: 'Tacko' }
-  ];
-
   constructor(
     private router: Router,
     private tasksService: TasksService,
     private activatedRoute: ActivatedRoute,
-    private taskEditService: TaskEditService
+    private taskEditService: TaskEditService,
+    private alert: AlertBarComponent
   ) {
     this.routeData = this.activatedRoute.data.subscribe(data => {
       this.previousPage = data['pagingParams'].page;
@@ -73,7 +69,7 @@ export class ListTasksComponent implements OnInit {
       (res) => {
         this.tasks = this.tasks.filter(taskItem => taskItem.id !== task.id);
       },
-      (err) => console.error('Ошибка Сергей вставь alert service')
+      (err) => this.alert.open("Ошибка при удалении задания :(")
     )
   }
 

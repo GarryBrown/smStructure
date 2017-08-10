@@ -1,17 +1,33 @@
-form {
+.content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     md-select,
     md-input-container {
         width: 300px;
+        margin: 10px;
+    }
+    span {
+        margin: 10px;
     }
 }
 
 .footer {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     button {
         margin: 10px;
+        height: 36px;
     }
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.wrapper {
+    padding: 0;
 }
