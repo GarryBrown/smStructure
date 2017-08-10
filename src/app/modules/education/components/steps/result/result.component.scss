@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     flex-direction: row;
+    padding: 0;
 }
 
 .block-table {
@@ -23,26 +24,14 @@
     textarea {
         padding: 5px;
     }
-    .item-comment {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
     button {
         width: 116px;
         height: 36px;
         padding: 2px;
         margin-left: 180px;
-        // margin-right: 100px;
     }
 }
 
-// .block-comments:last-child button {
-//     margin: 16px;
-//     height: 36px;
-//     width: 116px;
-// }
 @media (max-width: 870px) {
     md-input-container {
         width: 300px;

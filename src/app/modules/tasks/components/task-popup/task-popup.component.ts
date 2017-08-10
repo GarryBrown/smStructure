@@ -2,12 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 import { TaskEditComponent, TaskDetailsComponent } from "../";
-
 import { TasksPopupService } from '../../services';
-
-
 
 @Component({
   selector: 'tasks-popup',

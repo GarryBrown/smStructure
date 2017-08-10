@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
-import { StepsService } from '../../services';
-import { EduConfigService } from '../../services'
-import { UtilsService } from '../../../../shared';
+import { StepsService, EduConfigService } from '../../services';
+import { UtilsService, AlertBarComponent } from '../../../../shared';
 import { Report } from '../../../../models';
-import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-steps',

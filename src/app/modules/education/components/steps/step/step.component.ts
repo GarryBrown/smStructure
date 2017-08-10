@@ -4,9 +4,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 import { EduResultService, EduConfigService, StepsService } from '../../../services';
-import { UtilsService } from '../../../../../shared';
+import { UtilsService, AlertBarComponent } from '../../../../../shared';
 import { Report } from '../../../../../models';
-import { AlertBarComponent } from "app/shared/components/alert-bar/alert-bar.component";
 
 @Component({
     selector: 'app-step',
@@ -73,10 +72,9 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
                         this.alert.open("Произошла ошибка. Ответ не сохранен")
                         console.error(` sendAnswer ${err}`)
                     }
-                    //подключи алерт сервис ('Произошла ошибка. Ответ не сохранен')
                 )
             },
-            (err) => console.error(err)
+            (err) => this.alert.open("Не удалось получить данные :(")
         )
     }
 

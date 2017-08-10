@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angu
 import { PlanDetailService } from '../../services';
 import { Report, Route } from '../../../../models';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
-import { AlertBarComponent } from "app/shared";
+import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-filterbar',

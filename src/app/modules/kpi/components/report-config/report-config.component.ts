@@ -3,7 +3,7 @@ import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
 import { ReportConfigService } from '../../services';
 import { Route, Report } from '../../../../models';
-import { AlertBarComponent } from "app/shared";
+import { AlertBarComponent } from "../../../../shared";
 
 @Component({
   selector: 'app-report-config',
@@ -29,7 +29,6 @@ export class ReportConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   toggleInfo() {
@@ -37,13 +36,11 @@ export class ReportConfigComponent implements OnInit {
   }
 
   create() {
-
     this.newReport = new Report();
   }
 
   onDelete(report) {
     this.reportService.delete(report.id).subscribe(response => this.onDeleteSuccess(report.id, response), (err) => this.onSaveError(err));
-
   }
 
   onSave(report) {

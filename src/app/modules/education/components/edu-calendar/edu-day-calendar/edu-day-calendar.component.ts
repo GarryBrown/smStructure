@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, DoCheck, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 import { TEACHING } from '../../../education.constants';
 @Component({

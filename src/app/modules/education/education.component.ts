@@ -103,7 +103,6 @@ export class EducationComponent implements OnInit, OnDestroy {
     return event;
   }
 
-
   deleteEvent(event) {
     this.eduConfigService.delete(event.id).subscribe(
       succes => {
@@ -114,9 +113,6 @@ export class EducationComponent implements OnInit, OnDestroy {
       error => this.alert.open('Ошибка! Событие не удалено')
     )
   }
-
-
-
 }
 
 
