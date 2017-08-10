@@ -1,20 +1,19 @@
 FROM node:6.6
 
-RUN mkdir -p /home/app
-ENV HOME=/home/app
+RUN mkdir -p /usr/src/app
+ENV HOME=/usr/src/app
 WORKDIR $HOME
 
 CMD [ "node" ]
 
-
 # Install app dependencies
-COPY src/server/ $HOME
+COPY src/server/express $HOME
 RUN npm install
 RUN npm i pm2  -g
 
-# Bundle app source
-COPY dist $HOME
+EXPOSE 3000
+# CMD [ "pm2", "start", "index.js" ]
+CMD [ "echo", "'app is started'" ]
+CMD ["node", "index.js" ]
 
-EXPOSE 9000
-CMD [ "npm", "start" ]
 
