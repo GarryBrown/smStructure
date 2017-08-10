@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, Component } from '@angular/core';
+import { Injectable, ViewContainerRef, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Rx';
 import { TasksService } from './tasks.service';
 import { TaskEditService } from './task-edit.service';
 import { Task } from '../../../models';
-
 
 @Injectable()
 export class TasksPopupService {
@@ -27,22 +26,20 @@ export class TasksPopupService {
           this.bindDialog(component, task);
         });
     } else {
-      let source = Observable.of(new Task())
-      source.subscribe(task => {
-        console.log('next!')
+      Observable.of(new Task()).delay(300).subscribe(task => {
         this.bindDialog(component, task);
       });
     }
 
   }
 
-  bindDialog(component, task: Task) {
-    let dialogRef;
+  bindDialog(component: TemplateRef<any>, task: Task) {
+    let dialogRef: MdDialogRef<any>;
     let config = new MdDialogConfig();
     config.height = '80%';
     config.width = '50%';
     dialogRef = this.dialog.open(component, config);
-    dialogRef.componentInstance.task = task;
+    dialogRef.componentInstance.bindEntity(task);
 
     dialogRef.afterClosed().subscribe(data => {
       if (data) {

@@ -12,7 +12,7 @@ import { UtilsService, AlertBarComponent } from '../../../../shared';
   providers: [AlertBarComponent]
 })
 export class TaskEditComponent implements OnInit {
-  public task: Task;
+  private task: Task;
   routes: any;
   typeOfActivities: any;
   deliveryPoints: any;
@@ -42,6 +42,10 @@ export class TaskEditComponent implements OnInit {
     }
   }
 
+  bindEntity(task) {
+    this.task = task;
+  }
+
   getDeliveryPoints(route) {
     this.taskEditService.getDelivetyPoints(route.id)
       .subscribe(
@@ -54,12 +58,18 @@ export class TaskEditComponent implements OnInit {
     if (this.task.id) {
       this.tasksService.update(this.task).subscribe(
         (suc) => this.onSuccess(suc.json()),
-        (err) => console.error(err)
+        (err) => {
+          console.error(err);
+          this.alert.open('Изменения не сохранены.')
+        }
       )
     } else {
       this.tasksService.create(this.task).subscribe(
         (suc) => this.onSuccess(suc.json()),
-        (err) => console.error(err)
+        (err) => {
+          console.error(err);
+          this.alert.open('Изменения не сохранены.')
+        }
       )
     }
   }

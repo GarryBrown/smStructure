@@ -17,7 +17,7 @@ export class TaskItemComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
+    // console.log(changes)
   }
 
   onDelete(task: Task) {
