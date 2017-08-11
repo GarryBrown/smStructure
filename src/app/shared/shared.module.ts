@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
@@ -27,8 +27,8 @@ import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     MaterialModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -50,7 +50,6 @@ import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
     SortDirective,
     HasAuthorityDirective,
     AlertBarComponent,
-    BrowserAnimationsModule
   ],
   providers: [
     PaginUtilService,

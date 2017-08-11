@@ -38,7 +38,7 @@ const EducationRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(EducationRoutes, { useHash: true }),
+    RouterModule.forChild(EducationRoutes),
   ],
   exports: [
     RouterModule,

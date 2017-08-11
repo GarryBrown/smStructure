@@ -21,7 +21,6 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ngOnInit')
     if (this.task && this.task.activityResults) {
       this.pictures = this.task.activityResults
         .filter(result => result.typeOfActivityResult.code === 'PHOTO')

@@ -12,8 +12,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-After build run 'npm precache" for create serfice worker cache file.
+Run `npm run clean` for remove dist and public (if not exist this directory will error occur!!!);
+Run `npm run build` buld prod+aot+precash version ;
+Run `npm run copy` copy from dist to express/public;
+Run `npm run dockerClean` for delete all docker images and container before build new;
+Run `npm run prod` for create docker image named 'ai' and run container named 'ac';
 
 ## Running unit tests
 

@@ -13,7 +13,7 @@ const SalaryRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(SalaryRoutes, { useHash: true }),
+    RouterModule.forChild(SalaryRoutes),
   ],
   exports: [
     RouterModule

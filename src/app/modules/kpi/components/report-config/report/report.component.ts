@@ -34,7 +34,6 @@ export class ReportComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        console.log(this.report);
     }
 
     ngOnChanges() {
@@ -96,7 +95,6 @@ export class ReportComponent implements OnInit, OnChanges {
 
     onCheckRoutes(routes) {
         this.report.routes = routes;
-        console.log(this.report.routes);
         if (this.report && this.report.routes.length) {
             this.pdService.getIndicatorsByRoutes(this.report.routes).subscribe(
                 (data: any) => {
@@ -110,9 +108,7 @@ export class ReportComponent implements OnInit, OnChanges {
     }
 
     onCheckIndicators(indicators) {
-        console.log(indicators);
         this.report.indicators = indicators;
-        console.log(this.report.indicators);
     }
 
     disableSave(): boolean {

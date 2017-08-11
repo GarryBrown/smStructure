@@ -116,7 +116,7 @@ export class ListTasksComponent implements OnInit {
   }
 
   private onError(error) {
-    console.log('On error things');
+    console.error('On error things');
   }
 
 

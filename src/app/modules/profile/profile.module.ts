@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/* shared */
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-/*share*/
-import { SharedModule } from '../../shared/shared.module';
-/* test api */
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemDataService }     from '../../in-mem-data-service';
+import { SharedModule } from '../../shared';
 /* route */
 import { ProfileRoutesModule } from './profile-routing.module';
 /* components */
@@ -29,8 +26,7 @@ import { AutocompliteCustomerComponent } from './customers/autocomplite-customer
     CommonModule,
     ProfileRoutesModule,
     SharedModule,
-    NgbModule.forRoot(),
-    // InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }),
+    NgbModule.forRoot()
   ],
   declarations: [
     ProfileComponent,
@@ -50,6 +46,6 @@ import { AutocompliteCustomerComponent } from './customers/autocomplite-customer
     AutocompliteCustomerComponent],
   providers: [
     CustomersService,
-    ]
+  ]
 })
 export class ProfileModule { }

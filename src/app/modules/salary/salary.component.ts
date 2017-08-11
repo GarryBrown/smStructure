@@ -19,10 +19,11 @@ export class SalaryComponent implements OnInit, OnDestroy {
   user: any;
   userSalary: any;
 
-  constructor(private salaryService: SalaryService, private http: Http) { }
+  constructor(
+    private salaryService: SalaryService,
+    private http: Http) { }
 
   ngOnInit() {
-
     this.subscription = this.salaryService.getSalariesAndUserSalary()
       .subscribe(data => {
         this.onSuccess(data)

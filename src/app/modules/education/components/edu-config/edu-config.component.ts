@@ -62,8 +62,8 @@ export class EduConfigComponent implements OnInit {
       (error) => this.onError('getRoutes', error)
     )
     this.loadCommonObj();
-    console.log(this.event)
-    console.log(this.access)
+    // console.log(this.event)
+    // console.log(this.access)
   }
 
   loadCommonObj() {
@@ -87,7 +87,7 @@ export class EduConfigComponent implements OnInit {
   }
 
   beginTeaching() {
-    console.log('begin')
+    // console.log('begin')
     let position: any = { loc: '' };
     let time, metrics;
     this.eduConfigService.getLocation().then(
@@ -111,7 +111,7 @@ export class EduConfigComponent implements OnInit {
   }
 
   goToTeaching(teaching) {
-    console.log(teaching)
+    // console.log(teaching)
     this.eduConfigService.setCurrentTeaching(undefined);
     this.router.navigate(['edu/theme', this.teaching.id]).then(
       (result) => this.dialogRef.close(false),
@@ -125,14 +125,14 @@ export class EduConfigComponent implements OnInit {
     this.http.get(`api/routes/${this.event.route.id}`).subscribe(
       (data: any) => {
         data = data.json();
-        console.log(data)
+        // console.log(data)
         this.teaching.route = data;
         this.teaching.staff = data.staff;
         this.teaching.kpi = '';
         this.teaching.ability = '';
         this.teaching.strongSuit = '';
         this.teaching.zoneOfGrowth = '';
-        console.log(this.teaching)
+        // console.log(this.teaching)
         this.eduConfigService.createTeaching(this.teaching).subscribe(
           (teaching) => {
             teaching.type = this.event.type;
@@ -164,8 +164,8 @@ export class EduConfigComponent implements OnInit {
   }
 
   onSuccessTeaching(data) {
-    console.log('onSuccessTeaching')
-    console.log(data)
+    // console.log('onSuccessTeaching')
+    // console.log(data);
     this.teaching = data;
     // для избежания многочисленных проверок, опишите и создайте класс в соответствии с объектом
     // у которого уже будут необходимые пустые поля, я не успел, сорян

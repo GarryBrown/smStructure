@@ -79,8 +79,8 @@ export class StepsComponent implements OnInit {
   }
 
   onSuccess(teaching) {
-    console.log(teaching);
-    console.log(teaching.teachingSpecialities.steps);
+    // console.log(teaching);
+    // console.log(teaching.teachingSpecialities.steps);
     this.teaching = teaching;
     this.getDeliveryPoints(teaching.route.id);
     if (teaching.planReport.id) this.getReport(teaching.planReport.id);

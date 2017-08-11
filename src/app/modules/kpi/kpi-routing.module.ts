@@ -4,9 +4,7 @@ import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Rou
 import { PaginUtilService } from '../../shared';
 import { RouteAccessService } from '../../core/auth/route-access.service';
 
-import { KPIComponent } from './kpi.component';
 import { PlanDetailComponent } from "./components/plan-detail/plan-detail.component";
-import { KpiChartComponent } from './components/kpi-chart/kpi-chart.component';
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
@@ -26,26 +24,15 @@ export class UserResolvePagingParams implements Resolve<any> {
 
 const KPIRoutes: Routes = [
   {
-    path: 'kpi/charts',
-    component: KPIComponent,
-    canActivate: [RouteAccessService],
-    resolve: { 'pagingParams': UserResolvePagingParams }
-  },
-  {
     path: 'kpi',
     canActivate: [RouteAccessService],
     component: PlanDetailComponent
   },
-  {
-    path: 'chart',
-    canActivate: [RouteAccessService],
-    component: KpiChartComponent
-  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(KPIRoutes, { useHash: true }),
+    RouterModule.forChild(KPIRoutes),
   ],
   exports: [
     RouterModule

@@ -46,7 +46,7 @@ export class KpiTableComponent implements OnInit, OnChanges {
   }
 
   onSuccesRouteData(data) {
-    console.log(data);
+    /// console.log(data);
     this.routesData = data;
     // this.routesData = data.slice(1,data.length); // for inmemory
   }

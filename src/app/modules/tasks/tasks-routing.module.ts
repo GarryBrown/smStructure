@@ -50,7 +50,7 @@ const mapRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(mapRoutes, { useHash: true }),
+    RouterModule.forChild(mapRoutes),
   ],
   exports: [
     RouterModule

@@ -46,7 +46,7 @@ export class AuthJwtService {
             } else {
                 bearerToken = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb3JidW5vdi5pYSIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfTUFOQUdFUixST0xFX1VTRVIiLCJnYXRld2F5IjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIiwiZ2F0ZXdheSI6Ii8ifSx7ImF1dGhvcml0eSI6IlJPTEVfTUFOQUdFUiIsImdhdGV3YXkiOiIvaGVybWVzbWFuYWdlciJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIiwiZ2F0ZXdheSI6Ii9oZXJtZXNnYXRld2F5In1dLCJleHAiOjE1MDExNjkwODN9.8vVOIgJeu91aXDiqTQiwElUtJhdjB2KnlsatsAi08KKMNDBPpzQSjR0jBbXwmDaG7QaxMd2j_7ipBHpTcTK1cg";
             }
-            console.log(bearerToken);
+            // console.log(bearerToken);
             if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
                 let jwt = bearerToken.slice(7, bearerToken.length);
                 let dataJwt = this.parseJwt(jwt);
