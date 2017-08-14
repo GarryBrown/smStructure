@@ -111,6 +111,9 @@ export class ListTasksComponent implements OnInit {
 
   private onSuccess(data, headers) {
     this.totalItems = headers.get('X-Total-Count');
+    console.log(headers);
+    console.log(this.totalItems);
+    console.log(this.page);
     console.log(data);
     this.tasks = data;
   }

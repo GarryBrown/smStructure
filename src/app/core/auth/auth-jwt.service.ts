@@ -28,7 +28,8 @@ export class AuthJwtService {
             rememberMe: credentials.rememberMe
         };
         if (!environment.mockUres) {
-            return this.http.post('api/authenticate', data).map(resp => resp.json()).map(authenticateSuccess.bind(this));
+            return this.http.post('api/authenticate', data).map(resp => resp.json())
+            .map(authenticateSuccess.bind(this));
         } else {
             return new Observable(observer => {
                 observer.next(5);

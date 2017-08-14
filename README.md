@@ -13,9 +13,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `npm run clean` for remove dist and public (if not exist this directory will error occur!!!);
+Run `npm run dockerClean` for delete all docker images and container before build new;
 Run `npm run build` buld prod+aot+precash version ;
 Run `npm run copy` copy from dist to express/public;
-Run `npm run dockerClean` for delete all docker images and container before build new;
 Run `npm run prod` for create docker image named 'ai' and run container named 'ac';
 
 ## Running unit tests

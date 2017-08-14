@@ -1,33 +1,33 @@
 <div class="wrapper">
-    <md-card>
-        <md-card-title class="header">
-            <h3>Задания</h3>
-            <div>
-                <button md-mini-fab color="accent" [routerLink]="['/', { outlets: { popup: 'task/new' } }]"><md-icon>add</md-icon></button>
-            </div>
-        </md-card-title>
-        <md-card-content>
-            <div *ngIf="tasks" class="table-responsive">
-                <table class="table  table-hover table-striped  table-condensed dataTables-example">
-                    <thead>
-                        <tr appSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                            <th appSortBy="code"><span>Код</span> <span class="fa fa-sort"></span></th>
-                            <th appSortBy="description"><span>Описание</span> <span class="fa fa-sort"></span></th>
-                            <th appSortBy="type"> <span>Тип</span> <span class="fa fa-sort"></span></th>
-                            <th appSortBy="source"><span>Источник</span> <span class="fa fa-sort"></span></th>
-                            <th><span>Маршрут</span> <span class="fa fa-sort"></span></th>
-                            <th><span>Точка</span> <span class="fa fa-sort"></span></th>
-                            <th appSortBy="isComplete" class="th-center"><span>Статус</span> <span class="fa fa-sort"></span></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="tasks">
-                        <tr app-task-item *ngFor="let task of tasks; trackBy: trackIdentity" [task]="task" (delete)="onDelete($event)"></tr>
-                    </tbody>
-                </table>
-            </div>
-        </md-card-content>
+  <md-card>
+    <md-card-title class="header">
+      <h3>Задания</h3>
+      <div>
+        <button md-mini-fab color="accent" [routerLink]="['/', { outlets: { popup: 'task/new' } }]"><md-icon>add</md-icon></button>
+      </div>
+    </md-card-title>
+    <md-card-content>
+      <div *ngIf="tasks" class="table-responsive">
+        <table class="table  table-hover table-striped  table-condensed dataTables-example">
+          <thead>
+            <tr appSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+              <th appSortBy="code"><span>Код</span> <span class="fa fa-sort"></span></th>
+              <th appSortBy="description"><span>Описание</span> <span class="fa fa-sort"></span></th>
+              <th appSortBy="type"> <span>Тип</span> <span class="fa fa-sort"></span></th>
+              <th appSortBy="source"><span>Источник</span> <span class="fa fa-sort"></span></th>
+              <th><span>Маршрут</span> <span class="fa fa-sort"></span></th>
+              <th><span>Точка</span> <span class="fa fa-sort"></span></th>
+              <th appSortBy="isComplete" class="th-center"><span>Статус</span> <span class="fa fa-sort"></span></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="tasks">
+            <tr app-task-item *ngFor="let task of tasks; trackBy: trackIdentity" [task]="task" (delete)="onDelete($event)"></tr>
+          </tbody>
+        </table>
+      </div>
+    </md-card-content>
 
-        <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-    </md-card>
+    <ngb-pagination [collectionSize]="11" [(page)]="page" [maxSize]="7" [rotate]="true" [pageSize]="itemsPerPage" (pageChange)="loadPage($event)"></ngb-pagination>
+  </md-card>
 </div>

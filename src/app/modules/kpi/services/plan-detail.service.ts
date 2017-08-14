@@ -34,7 +34,9 @@ export class PlanDetailService {
 
     return this.http.get(this.resourceUrlPlanRoutes, {
       search: params
-    }).map((res: Response) => res.json());
+    })
+      .map((res: Response) => { console.log(res); return res })
+      .map((res: Response) => res.json());
   }
 
   getIndicatorsByRoutes(routes: Array<Route>): Observable<any> {
