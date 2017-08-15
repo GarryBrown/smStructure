@@ -28,7 +28,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-    // console.log(this.teaching.teachingSpecialities.steps);
   }
 
   ngOnChanges() {
@@ -43,8 +42,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   applyDeliveryPoint(teaching) {
-    // console.log(teaching.teachingSpecialities.steps)
-    // console.log(teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1].id)
     return teaching.teachingSpecialities.steps[teaching.typeOfTeaching.steps[teaching.typeOfTeaching.steps.length - 1].id].deliveryPoint
   }
 
@@ -76,6 +73,6 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   redirect() {
-    this.router.navigate(['/edu-result']);
+    this.router.navigate(['/edu'], { queryParams: { date: this.teaching.dateOfStart } });
   }
 }

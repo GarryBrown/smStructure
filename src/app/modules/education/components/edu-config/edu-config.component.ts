@@ -14,12 +14,11 @@ import { ALL, SCH, EDU, TEACHING, STORECHECK } from '../../education.constants';
   styleUrls: ['./edu-config.component.scss']
 })
 export class EduConfigComponent implements OnInit {
-
   all;
   sch;
   edu;
   public event: Event;
-  public access;
+  public access: string;
   routes: Array<Route>;
   reports: Array<Report>;
   themes: Array<any>;
@@ -30,8 +29,8 @@ export class EduConfigComponent implements OnInit {
   isFinished: boolean;
   // for select type teaching
   types: Array<string> = [
-    TEACHING,
-    STORECHECK
+    STORECHECK,
+    TEACHING
   ];
 
   constructor(
@@ -50,20 +49,18 @@ export class EduConfigComponent implements OnInit {
 
   ngOnInit() {
     this.eduConfigService.getRoutes().subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessRoutes),
+      (data: any) => this.onSuccessRoutes(data),
       (error) => this.onError('getRoutes', error)
     )
     this.eduConfigService.getReports().subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessReports),
+      (data: any) => this.onSuccessReports(data),
       (error) => this.onError('getRoutes', error)
     )
     this.eduConfigService.getThemes().subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessThemes),
+      (data: any) => this.onSuccessThemes(data),
       (error) => this.onError('getRoutes', error)
     )
     this.loadCommonObj();
-    // console.log(this.event)
-    // console.log(this.access)
   }
 
   loadCommonObj() {
@@ -71,7 +68,7 @@ export class EduConfigComponent implements OnInit {
       if (this.event.id) {
         this.loadTeaching(this.event.id);
       } else {
-        console.warn('Event hasn"t id field!');
+        console.warn('Event hasn"t "id" field! And I create a new one!');
         this.onSuccessTeaching({})
       }
 
@@ -82,12 +79,11 @@ export class EduConfigComponent implements OnInit {
 
   loadTeaching(id) {
     this.stepsService.find(id).subscribe(
-      (data: any) => this.onSuccess(data, this.onSuccessTeaching),
+      (data: any) => this.onSuccessTeaching(data),
     );
   }
 
   beginTeaching() {
-    // console.log('begin')
     let position: any = { loc: '' };
     let time, metrics;
     this.eduConfigService.getLocation().then(
@@ -110,8 +106,11 @@ export class EduConfigComponent implements OnInit {
       );
   }
 
+  // переход в обучение
   goToTeaching(teaching) {
     // console.log(teaching)
+    this.teaching = teaching;
+    // очистка "кеша"
     this.eduConfigService.setCurrentTeaching(undefined);
     this.router.navigate(['edu/theme', this.teaching.id]).then(
       (result) => this.dialogRef.close(false),
@@ -125,14 +124,12 @@ export class EduConfigComponent implements OnInit {
     this.http.get(`api/routes/${this.event.route.id}`).subscribe(
       (data: any) => {
         data = data.json();
-        // console.log(data)
         this.teaching.route = data;
         this.teaching.staff = data.staff;
         this.teaching.kpi = '';
         this.teaching.ability = '';
         this.teaching.strongSuit = '';
         this.teaching.zoneOfGrowth = '';
-        // console.log(this.teaching)
         this.eduConfigService.createTeaching(this.teaching).subscribe(
           (teaching) => {
             teaching.type = this.event.type;
@@ -144,11 +141,6 @@ export class EduConfigComponent implements OnInit {
       },
       (err) => console.error(err)
     )
-  }
-
-
-  onSuccess(data: any, cb: any) {
-    cb.bind(this)(data);
   }
 
   onSuccessRoutes(data) {
@@ -164,8 +156,6 @@ export class EduConfigComponent implements OnInit {
   }
 
   onSuccessTeaching(data) {
-    // console.log('onSuccessTeaching')
-    // console.log(data);
     this.teaching = data;
     // для избежания многочисленных проверок, опишите и создайте класс в соответствии с объектом
     // у которого уже будут необходимые пустые поля, я не успел, сорян
@@ -189,7 +179,7 @@ export class EduConfigComponent implements OnInit {
     let isStarted: boolean;
     if (spesiality.steps) {
       for (let key in spesiality.steps) {
-        if (this.isQuestionsHasAnswer(spesiality.steps[key].questions) || spesiality.steps[key].deliveryPoint) {
+        if (this.eduConfigService.isQuestionsHasAnswer(spesiality.steps[key].questions) || spesiality.steps[key].deliveryPoint) {
           isStarted = true
         }
       }
@@ -199,13 +189,37 @@ export class EduConfigComponent implements OnInit {
     return isStarted;
   }
 
-  // можно вынести в сервис или утилиты
-  isQuestionsHasAnswer(questions: any): boolean {
-    let hasAnswer: boolean = false;
-    for (let key in questions) {
-      if (questions[key] !== null) hasAnswer = true;
+
+  changeEventType(event) {
+    if (event === TEACHING) {
+      this.teaching = {}
+    } else {
+      this.teaching = null;
     }
-    return hasAnswer;
+  }
+
+  saveEvent() {
+    if (this.event.type === TEACHING) {
+      this.createTeaching();
+    } else {
+      console.warn('Я ещё не обучен создавать store-check')
+    }
+  }
+
+  startEvent() {
+    if (this.event.type === TEACHING) {
+      this.beginTeaching();
+    } else {
+      console.warn('Я ещё не обучен начинать store-check')
+    }
+  }
+
+  continueEvent() {
+    if (this.event.type === TEACHING) {
+      this.goToTeaching(this.teaching);
+    } else {
+      console.warn('Я ещё не обучен продолжпть store-check')
+    }
   }
 
 
