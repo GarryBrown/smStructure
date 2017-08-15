@@ -18,3 +18,14 @@ button {
         }
     }
 }
+
+md-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+md-list-item {
+    margin: 10px;
+}

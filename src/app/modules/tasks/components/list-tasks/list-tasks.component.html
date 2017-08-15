@@ -28,6 +28,6 @@
             </div>
         </md-card-content>
 
-        <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        <ngb-pagination [collectionSize]="totalItems" [pageSize]="20" [(page)]="page" [maxSize]="7" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
     </md-card>
 </div>

@@ -12,15 +12,15 @@ import { AlertBarComponent } from "../../../../shared";
   styleUrls: ['./list-tasks.component.scss']
 })
 export class ListTasksComponent implements OnInit {
-  
-  
+
+
   tasks: Array<Task>;
   error: any;
   success: any;
   routeData: any;
   /* pagin */
   itemsPerPage: number;
-  totalItems: any;
+  totalItems: number;
   page: any;
   previousPage: any;
   predicate: any;
@@ -83,15 +83,36 @@ export class ListTasksComponent implements OnInit {
     this.loadData();
   }
 
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
+
+  // loadData() {
+  //   this.dataService.query({
+  //     page: this.page - 1,
+  //     size: this.itemsPerPage,
+  //   }).subscribe(
+  //     (res: Response) => this.onSuccess(res.json(), res.headers),
+  //     (res: Response) => this.onError(res.json())
+  //     )
+  // }
+
   loadData() {
     this.tasksService.query({
       page: this.page - 1,
       size: this.itemsPerPage,
       sort: this.sort()
     }).subscribe(
-      (res: Response) => this.onSuccess(res.json(), res.headers),
-      (res: Response) => this.onError(res.json())
-      )
+      (res: Response) => {
+        this.onSuccess(res.json(), res.headers)
+        console.log(res.headers)
+      },
+      (res: Response) => this.onError(res.json()),
+
+    )
   }
 
   sort() {
@@ -102,16 +123,13 @@ export class ListTasksComponent implements OnInit {
     return result;
   }
 
-  loadPage(page: number) {
-    if (page !== this.previousPage) {
-      this.previousPage = page;
-      this.transition();
-    }
-  }
-
   private onSuccess(data, headers) {
-    this.totalItems = headers.get('X-Total-Count');
+    
+    
     console.log(data);
+    this.totalItems = headers.get('X-Total-Count');
+    // this.totalItems = data.length;
+    console.log(this.totalItems);
     this.tasks = data;
   }
 

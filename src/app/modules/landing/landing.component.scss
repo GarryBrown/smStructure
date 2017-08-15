@@ -1,4 +1,7 @@
 .background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +14,7 @@
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #8e9eab, #eef2f3);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-image: url("https://martechtoday.com/wp-content/uploads/2016/10/technology-man-laptop-analytics-data-ss-1920.jpg");
+    // background-image: url("https://martechtoday.com/wp-content/uploads/2016/10/technology-man-laptop-analytics-data-ss-1920.jpg");
 }
 
 nav {

@@ -26,18 +26,40 @@
             <md-icon>attach_money</md-icon>
             <span>Зарплата</span>
         </a>
+        <a [routerLink]="['/kpi']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>view_list</md-icon>
+            <span>KPI</span>
+        </a>
         <a [routerLink]="['/tasks']" (click)="hideSideNav()" routerLinkActive="active">
             <md-icon>playlist_add_check</md-icon>
             <span>Задачи</span>
         </a>
-        <a [routerLink]="['/kpi']" (click)="hideSideNav()" routerLinkActive="active">
-            <md-icon>view_list</md-icon>
-            <span>KPI</span>
+        <a [routerLink]="['/edu']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>date_range</md-icon>
+            <span>Календарь</span>
         </a>
         <a [routerLink]="['/map']" style="font-size:12px" (click)="hideSideNav()" routerLinkActive="active">
             <md-icon>near_me</md-icon>
             <span>Планирование маршрутов</span>
         </a>
+        <a [routerLink]="['/market']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>import_contacts</md-icon>
+            <span>Журнал активностей</span>
+        </a>
+        <a [routerLink]="['/edu-result']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>school</md-icon>
+            <span>Результаты обучения</span>
+        </a>
+        <a [routerLink]="['/edu-result']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>school</md-icon>
+            <span>Результаты аттестации</span>
+        </a>
+        <a [routerLink]="['/edu1']" (click)="hideSideNav()" routerLinkActive="active">
+            <md-icon>school</md-icon>
+            <span>Результаты store-check</span>
+        </a>
+
+        <h3>Отчеты v-reports</h3>
         <a href="http://v-reportserver/Reports/report/SMT/%D0%9C%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%82%D0%BE%D1%80%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%20%D0%BD%D0%B0%20%D0%BA%D0%B0%D1%80%D1%82%D0%B5"
             style="font-size:12px" (click)="hideSideNav()" target="_blank">
             <md-icon>view_list</md-icon>
@@ -53,23 +75,17 @@
       <md-icon>school</md-icon>
       <span>Планирование</span>
     </a> -->
-        <h3>Обучение</h3>
-        <a [routerLink]="['/edu']" (click)="hideSideNav()" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Календарь</span>
-        </a>
-        <a [routerLink]="['/edu-result']" (click)="hideSideNav()" routerLinkActive="active">
-            <md-icon>school</md-icon>
-            <span>Результаты</span>
-        </a>
-        <h3>Задачи</h3>
-        <a [routerLink]="['/store-check']" (click)="hideSideNav()" routerLinkActive="active">
+        <!-- <h3>Обучение</h3> -->
+
+
+        <!-- <h3>Задачи</h3> -->
+        <!-- <a [routerLink]="['/store-check']" (click)="hideSideNav()" routerLinkActive="active">
             <md-icon>school</md-icon>
             <span>Календарь</span>
         </a>
         <a [routerLink]="['/edu1']" (click)="hideSideNav()" routerLinkActive="active">
             <md-icon>school</md-icon>
             <span>Результаты</span>
-        </a>
+        </a> -->
     </nav>
 </div>

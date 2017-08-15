@@ -16,6 +16,7 @@ export function interceptableFactory(
         backend,
         defaultOptions,
         [
+          
             new AuthInterceptor(localStorage, sessionStorage),
             // Other interceptors can be added here
         ]

@@ -1,26 +1,26 @@
 {
     "/api/*": {
-        "target": "http://localhost:3000",
+        "target": "https://192.168.210.36:8081",
         "secure": false,
         "logLevel": "debug"
     },
     "/api/account": {
-        "target": "http://localhost:3000",
+        "target": "https://192.168.210.36:8443",
         "secure": false,
         "logLevel": "debug"
     },
     "/api/login": {
-        "target": "http://localhost:3000",
+        "target": "https://192.168.210.36:8443",
         "secure": false,
         "logLevel": "debug"
     },
     "/api/authenticate": {
-        "target": "http://localhost:3000",
+        "target": "https://192.168.210.36:8443",
         "secure": false,
         "logLevel": "debug"
     },
     "/api*": {
-        "target": "http://localhost:3000",
+        "target": "https://192.168.210.36:8081",
         "secure": false,
         "logLevel": "debug"
     }

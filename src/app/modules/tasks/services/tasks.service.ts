@@ -42,4 +42,23 @@ export class TasksService {
     };
     return this.http.get(this.resourceUrl, options);
   }
+
+  // query(req?: any): Observable<Response> {
+  //   let headers = new Headers();
+  //   headers.append('Access-Control-Expose-Headers', 'etag');
+  //   const params: URLSearchParams = new URLSearchParams();
+
+  //   if (req) {
+  //     params.set('page', req.page);
+  //     params.set('size', req.size);
+  //     if (req.sort) {
+  //       params.paramsMap.set('sort', req.sort);
+  //     }
+  //   }
+  //   const options = {
+  //     search: params,
+  //     headers: headers
+  //   };
+  //   return this.http.get(this.resourceUrl, options);
+  // }
 }
