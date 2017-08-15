@@ -174,7 +174,11 @@ export class StepsComponent implements OnInit {
 
   getDeliveryPoints(id) {
     this.eduConfigService.getDelivetyPoints(id).subscribe(
-      (data: any) => this.deliveryPoints = data,
+      (data: any) => {
+        this.deliveryPoints = data.sort(),
+
+          console.log(this.deliveryPoints);
+      },
       (error) => this.alert.open("Не удалось получить данные :(")
       // console.error(error)
     )

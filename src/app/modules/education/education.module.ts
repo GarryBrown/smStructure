@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DatepickerModule } from 'angular2-material-datepicker'
 /* shared */
-import { SharedModule, AlertBarComponent, UtilsService } from '../../shared';
+import { SharedModule, AlertBarComponent, UtilsService, OrderBy } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
 /* route */
@@ -55,7 +55,7 @@ import { ResultComponent } from './components/steps/result/result.component';
     EduResultComponent,
     KpiTableComponent,
     PlanDetailRowComponent,
-    ResultComponent
+    ResultComponent,    
   ],
   entryComponents: [
     EduConfigComponent,
@@ -69,7 +69,8 @@ import { ResultComponent } from './components/steps/result/result.component';
     EduResultService,
     UtilsService,
     AlertBarComponent,
-    ResultService
+    ResultService,
+    
   ]
 })
 export class EducationModule { }

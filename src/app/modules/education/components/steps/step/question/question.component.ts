@@ -30,6 +30,11 @@ export class QuestionComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    // var a = ["12", "2", "3", "1", "2", "6", "5", "9", "11", "67"]
+    // var b = this.question.description.sort();
+    // console.log(b);
+    // // this.question.sortQuestion(this.question.description);
+    // console.log(this.question.description);
   }
 
   ngOnChanges() {
@@ -47,6 +52,18 @@ export class QuestionComponent implements OnInit, OnChanges {
         this.comment = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment;
       }
     }
+  }
+
+  sortQuestion(questions) {
+    questions.map(question => {
+      question.answers = this.sortAnswers(question.answers);
+      return question;
+    });
+    return questions.sort(this.utilsService.sortByOrderBy);
+  }
+
+  sortAnswers(answers) {
+    return answers.sort(this.utilsService.sortByOrderBy);
   }
 
   getAnswer(answer) {
@@ -90,7 +107,7 @@ export class QuestionComponent implements OnInit, OnChanges {
       this.answeredQuestions.steps[this.step.id].questions[this.question.id] = new Object();
       this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer = new Object();
     }
-    
+
     answerId = isNew ? null : this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.id;
 
     this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment = comment;

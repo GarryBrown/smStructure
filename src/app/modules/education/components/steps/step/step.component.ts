@@ -42,7 +42,7 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-
+       
     }
 
     ngOnDestroy() {

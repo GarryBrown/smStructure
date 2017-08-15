@@ -17,6 +17,7 @@ import { StoresService } from './services/stores.service';
 import { UtilsService } from './services/utils.service';
 /* pipes  */
 import { PrettyCountPipe } from './pipes/pretty-count.pipe';
+import { OrderBy } from './pipes/orderBy.pipe';
 /* interceptors */
 import { HttpInterceptor } from './interceptor/http.interceptor';
 import { InterceptableHttp } from './interceptor/interceptable-http';
@@ -38,6 +39,7 @@ import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
     HasAuthorityDirective,
     PrettyCountPipe,
     AlertBarComponent,
+    OrderBy
   ],
   exports: [
     CommonModule,
@@ -50,6 +52,7 @@ import { AlertBarComponent } from './components/alert-bar/alert-bar.component';
     SortDirective,
     HasAuthorityDirective,
     AlertBarComponent,
+    OrderBy
   ],
   providers: [
     PaginUtilService,

@@ -35,7 +35,7 @@ import { ListFieldsComponent } from './components/list-fields/list-fields.compon
     FilterbarComponent,
     ListFieldsComponent,
     CheckboxComponent,
-    OrderBy,
+    //OrderBy,
     ConfirmComponent
   ],
   entryComponents: [
