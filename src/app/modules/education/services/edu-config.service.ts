@@ -93,6 +93,17 @@ export class EduConfigService {
     return this.teaching.asObservable().filter(item => item !== undefined);
   }
 
+  /*  pure function  */
+
+  isQuestionsHasAnswer(questions: any): boolean {
+    let hasAnswer: boolean = false;
+    for (let key in questions) {
+      if (questions[key] !== null) hasAnswer = true;
+    }
+    return hasAnswer;
+  }
+
+  /*  geolocation  */
   getLocation() {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {

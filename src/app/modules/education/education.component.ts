@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MdDialog, MdDialogConfig } from '@angular/material';
 import { Subscription } from "rxjs/Subscription";
+import { Observable } from "rxjs/Observable";
 
 import { AlertBarComponent } from '../../shared';
 import { ALL, SCH, EDU, TEACHING, STORECHECK } from './education.constants';
@@ -22,10 +23,14 @@ export class EducationComponent implements OnInit, OnDestroy {
   newEvents: any;
   header: string;
   eventsData: Array<any>;
+  dateFromUrl: string;
   subscription: Subscription;
+  subRoute: Subscription;
+  subRouteAndData: Subscription;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     public dialog: MdDialog,
     public educationService: EducationService,
     public eduConfigService: EduConfigService,
@@ -41,20 +46,31 @@ export class EducationComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+
 
   loadData(dateRange) {
-    // console.log('loadData')
     this.subscription = this.calService.getEvent(dateRange.dateFrom, dateRange.dateTo).subscribe(
       (data: any) => {
         this.eventsData = data;
+        // this.selectedDayEvent = this.getSelectedFromUrl(data, this.router.);
       },
       err => this.alert.open("Не удалось получить данные по обучению :(")
-    )
+    );
+    this.subRoute = this.route
+      .queryParams
+      .subscribe(params => {
+        this.dateFromUrl = params['date'];
+      });
+
+    this.subRouteAndData = Observable.combineLatest(
+      this.calService.getEvent(dateRange.dateFrom, dateRange.dateTo),
+      this.route.queryParams
+    ).subscribe(
+      (data) => {
+        this.selectedDayEvent = this.getSelectedFromUrl(data[0], data[1].date)
+      }
+      )
+
   }
 
   onSelectDay(events) {
@@ -76,7 +92,7 @@ export class EducationComponent implements OnInit, OnDestroy {
           result.id, result.type,
           result.route, result.route.staff,
           {}, result.dateOfStart);
-        this.selectedDayEvent = [newEvent];
+        this.selectedDayEvent = [...this.selectedDayEvent, newEvent];
         this.eventsData = this.updateEvent(newEvent);
       }
     });
@@ -89,12 +105,21 @@ export class EducationComponent implements OnInit, OnDestroy {
   setStateByRoute(url: string): string {
     url = url.slice(1, url.length);
     if (url === 'edu') {
-      return EDU;
+      // return EDU;
+      return ALL;
     } else if (url === STORECHECK) {
       return SCH;
     } else {
       return ALL;
     }
+  }
+
+  getSelectedFromUrl(events: Array<Event>, date: string) {
+    return events.filter((event) => {
+      const d1 = new Date(event.date);
+      const d2 = new Date(date);
+      return d1.getDate() === d2.getDate();
+    });
   }
 
   createEDUEvent(type: string) {
@@ -112,6 +137,12 @@ export class EducationComponent implements OnInit, OnDestroy {
       },
       error => this.alert.open('Ошибка! Событие не удалено')
     )
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subRoute.unsubscribe();
+    this.subRouteAndData.unsubscribe();
   }
 }
 
