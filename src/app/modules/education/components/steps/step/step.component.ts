@@ -20,8 +20,9 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     @Input() deliveryPoints: Array<any>;
     @Output() nextStep: EventEmitter<any> = new EventEmitter();
     @Output() toFinish: EventEmitter<any> = new EventEmitter();
-    isFinish: boolean;
 
+    isFinish: boolean;
+    isShowListQuestions: boolean;
     deliveryPoint: any;
     prevStepsId: Array<number>;
     getSelected: any;
@@ -52,17 +53,13 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnChanges() {
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
-        this.setDP();
         this.isFinish = this.setIsFinish();
     }
 
     sendAnswer(answer) {
-        console.warn('I SEND ANSWER FUNC')
         answer.deliveryPointId = this.deliveryPoint.id;
         this.teachingSubscription = this.eduConfigService.getCurrentTeaching().subscribe(
             (teaching) => {
-                console.warn('WTF')
-                console.warn(answer)
                 answer.teachingId = teaching.id;
                 this.stepsService.sendAnswer(answer).subscribe(
                     answer => {
@@ -106,20 +103,6 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
         this.answeredQuestions.steps[this.step.id].deliveryPoint = dp;
     }
 
-    setDP() {
-        if (this.prevStepsId && this.prevStepsId.length !== 0) {
-            if (this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint) {
-                this.deliveryPoint = this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].deliveryPoint;
-            }
-        }
-        if ((this.deliveryPoint === null || this.deliveryPoint === undefined) &&
-            this.answeredQuestions &&
-            this.answeredQuestions.steps[this.step.id] &&
-            this.answeredQuestions.steps[this.step.id].deliveryPoint) {
-            this.deliveryPoint = this.answeredQuestions.steps[this.step.id].deliveryPoint;
-        }
-    }
-
     goToResult() {
         if (!this.answeredQuestions.steps[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
@@ -131,6 +114,10 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     disableNext(): boolean {
         return this.theme.questions.some((question) =>
             this.answeredQuestions.steps[this.step.id].questions[question.id] === null)
+    }
+
+    showListQuestions() {
+        if (this.deliveryPoint) this.isShowListQuestions = true;
     }
 
 }

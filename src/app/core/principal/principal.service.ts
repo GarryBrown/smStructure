@@ -73,7 +73,7 @@ export class PrincipalService {
     }
     if (!environment.mockUres) {
       return this.account.get().toPromise().then(account => {
-        account.imageUrl = '../../../assets//images/default-user-avatar.png';
+        account.imageUrl = '../../../assets/images/default-user-avatar.png';
         if (account) {
           this._identity = account;
           this.authenticated = true;

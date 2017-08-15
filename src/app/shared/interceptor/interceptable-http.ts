@@ -62,7 +62,16 @@ export class InterceptableHttp extends Http {
         }
         if (!options.headers) {
             options.headers = new Headers();
+
+            // options.headers.append('Access-Control-Allow-Origin', '*');
+            // options.headers.append('Access-Control-Allow-Headers', 'origin,X-Requested-With,Content-Type,Accept');
+            // options.headers.append('Access-Control-Allow-Credentials', 'true');
+            // options.headers.append('Access-Control-Expose-Headers', 'X-Total-Count');
+            // options.headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+
+
         }
+        options.withCredentials = true;
         return !this.firstInterceptor ? options : this.firstInterceptor.processRequestInterception(options);
     }
 

@@ -124,17 +124,18 @@ export class ListTasksComponent implements OnInit {
   }
 
   private onSuccess(data, headers) {
-    
-    
-    console.log(data);
     this.totalItems = headers.get('X-Total-Count');
+    console.log(headers);
+    console.log(this.page);
+    console.log(data);
+
     // this.totalItems = data.length;
     console.log(this.totalItems);
     this.tasks = data;
   }
 
   private onError(error) {
-    console.log('On error things');
+    console.error('On error things');
   }
 
 

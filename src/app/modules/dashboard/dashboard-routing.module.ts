@@ -41,7 +41,7 @@ const DashboardRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(DashboardRoutes, { useHash: true }),
+    RouterModule.forChild(DashboardRoutes),
   ],
   exports: [
     RouterModule

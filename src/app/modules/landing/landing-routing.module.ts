@@ -30,7 +30,7 @@ const LandingRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(LandingRoutes, { useHash: true }),
+    RouterModule.forChild(LandingRoutes),
   ],
   exports: [
     RouterModule

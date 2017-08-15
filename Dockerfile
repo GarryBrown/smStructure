@@ -11,7 +11,7 @@ COPY src/server/express $HOME
 RUN npm install
 RUN npm i pm2  -g
 
-EXPOSE 3000
+EXPOSE 443
 # CMD [ "pm2", "start", "index.js" ]
 CMD [ "echo", "'app is started'" ]
 CMD ["node", "index.js" ]

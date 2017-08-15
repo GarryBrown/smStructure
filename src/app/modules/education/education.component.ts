@@ -48,7 +48,7 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   loadData(dateRange) {
-    console.log('loadData')
+    // console.log('loadData')
     this.subscription = this.calService.getEvent(dateRange.dateFrom, dateRange.dateTo).subscribe(
       (data: any) => {
         this.eventsData = data;

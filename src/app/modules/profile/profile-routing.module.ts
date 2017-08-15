@@ -44,7 +44,7 @@ const ProfileRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(ProfileRoutes, { useHash: true }),
+    RouterModule.forChild(ProfileRoutes),
   ],
   exports: [
     RouterModule

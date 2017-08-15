@@ -63,8 +63,6 @@ export class EduResultComponent implements OnInit, OnDestroy {
     this.eduResult = data;
     this.eduResult.map(date => {
 
-
-      console.log(date.staff)
       var date1 = new Date(date.staff.startDate);
       var date2 = new Date();
       var milliseconds = date2.getTime() - date1.getTime();
@@ -92,18 +90,7 @@ export class EduResultComponent implements OnInit, OnDestroy {
         date.staff.workTime = years + " г. ";
       }
 
-      console.log(date.staff.workTime);
-
-
     })
-    console.log("----------")
-    console.log(data);
-    // this.eduResult.map(theme => {
-    //   theme.themes.map(value =>
-    //     this.sum = this.sum + value.value);
-    // });
-
-
   }
 
   loadData() {
