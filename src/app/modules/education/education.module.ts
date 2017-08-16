@@ -6,6 +6,7 @@ import { DatepickerModule } from 'angular2-material-datepicker'
 import { SharedModule, AlertBarComponent, UtilsService, OrderBy } from '../../shared';
 import { DateUtilService } from '../../core';
 import { MarkdownModule } from 'angular2-markdown';
+import { MdNativeDateModule } from '@angular/material'
 /* route */
 import { EducationRoutingModule } from './education-routing.module';
 /*service */
@@ -31,7 +32,9 @@ import { EduResultComponent } from './components/edu-result/edu-result.component
 import { KpiTableComponent } from './components/kpi-table/kpi-table.component';
 import { PlanDetailRowComponent } from './components/kpi-table/plan-detail-row/plan-detail-row.component'
 import { ResultComponent } from './components/steps/result/result.component';
-
+import { JournalComponent } from './components/journal/journal.component';
+import { ItemJournalComponent } from './components/journal/item-journal/item-journal.component';
+import { FilterJournalComponent } from './components/journal/filter-journal/filter-journal.component';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { ResultComponent } from './components/steps/result/result.component';
     EducationRoutingModule,
     SharedModule,
     MarkdownModule,
-    DatepickerModule
+    DatepickerModule,
+    MdNativeDateModule
   ],
   declarations: [
     EducationComponent,
@@ -55,7 +59,10 @@ import { ResultComponent } from './components/steps/result/result.component';
     EduResultComponent,
     KpiTableComponent,
     PlanDetailRowComponent,
-    ResultComponent,    
+    ResultComponent,
+    JournalComponent,
+    ItemJournalComponent,
+    FilterJournalComponent,    
   ],
   entryComponents: [
     EduConfigComponent,

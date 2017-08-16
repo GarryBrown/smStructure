@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <app-filter-journal (onOparams)="onFilter($event)"></app-filter-journal>
+
+  <md-card>
+    <md-list *ngIf="list;else loading">
+      <md-list-item *ngFor="let journal of list">
+        <app-item-journal [journal]="journal"></app-item-journal>
+      </md-list-item>
+    </md-list>
+    <ng-template #loading>loading...</ng-template>
+  </md-card>
+</div>

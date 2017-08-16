@@ -5,3 +5,4 @@ export * from './education.service';
 export * from './kpi-table.service';
 export * from './result.service';
 export * from './steps.service';
+export * from './journal.service';
