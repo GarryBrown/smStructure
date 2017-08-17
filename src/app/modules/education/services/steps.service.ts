@@ -12,7 +12,7 @@ export class StepsService {
     private http: Http,
   ) { }
 
-  find(id: number): Observable<any> {
+  find(id: string): Observable<any> {
     return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
       return res.json();
     });
