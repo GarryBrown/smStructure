@@ -1,36 +1,39 @@
 <div class="wrapper" *ngIf="teaching">
 
-  <div *ngIf="lastStep" class="block-table">
-    <md-toolbar>
-      <h3>{{ teaching.typeOfTeaching.description}}. Результат</h3>
-    </md-toolbar>
+    <div *ngIf="lastStep" class="block-table">
+        <md-toolbar>
+            <h3>{{ teaching.typeOfTeaching.description}}.
 
-    <table class="table table-condensed table-responsive">
-      <tbody>
-        <tr app-question *ngFor="let question of teaching.typeOfTeaching.questions" [question]="question" [answeredQuestions]="teaching.teachingSpecialities" [step]="lastStep" [steps]="teaching.typeOfTeaching.steps" [onlyLast]="true"></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="block-comments">
+                <p>Результат</p>
+            </h3>
+        </md-toolbar>
 
-    <md-input-container class="example-full-width">
-      <textarea mdInput placeholder="Сильные стороны" [(ngModel)]="teaching.strongSuit" required></textarea>
-    </md-input-container>
-    <md-input-container class="example-full-width">
-      <textarea mdInput placeholder="Зоны развития" [(ngModel)]="teaching.zoneOfGrowth" required></textarea>
-    </md-input-container>
-    <md-input-container class="example-full-width">
-      <textarea mdInput placeholder="Задачи по развитию" [(ngModel)]="teaching.ability" required></textarea>
-    </md-input-container>
-    <md-input-container class="example-full-width">
-      <textarea mdInput placeholder="Задачи по KPI" [(ngModel)]="teaching.kpi" required></textarea>
-    </md-input-container>
+        <table class="table table-condensed table-responsive">
+            <tbody>
+                <tr app-question *ngFor="let question of teaching.typeOfTeaching.questions" [question]="question" [answeredQuestions]="teaching.teachingSpecialities" [step]="lastStep" [steps]="teaching.typeOfTeaching.steps" [onlyLast]="true"></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="block-comments">
 
-    <button md-raised-button color="primary" (click)="save()" [disabled]="disableSave()"><md-icon>save</md-icon> Сохранить результат</button>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Сильные стороны" [(ngModel)]="teaching.strongSuit" required></textarea>
+        </md-input-container>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Зоны развития" [(ngModel)]="teaching.zoneOfGrowth" required></textarea>
+        </md-input-container>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Задачи по развитию" [(ngModel)]="teaching.ability" required></textarea>
+        </md-input-container>
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Задачи по KPI" [(ngModel)]="teaching.kpi" required></textarea>
+        </md-input-container>
 
-  </div>
+        <button md-raised-button color="accent" (click)="save()" [disabled]="disableSave()">Сохранить результат</button>
 
-  <div *ngIf="report && deliveryPoint" class="kpi-block">
-    <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
-  </div>
+    </div>
+
+    <div *ngIf="report && deliveryPoint" class="kpi-block">
+        <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
+    </div>
 </div>

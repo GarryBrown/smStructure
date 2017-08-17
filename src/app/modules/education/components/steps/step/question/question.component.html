@@ -2,7 +2,7 @@
 
 <ng-template ngFor let-prevStep [ngForOf]="prevStepsId">
     <td>
-        <md-select name="answer" [(ngModel)]="answeredQuestions.steps[prevStep].questions[question.id].answer" [disabled]="true">
+        <md-select name="answer" [(ngModel)]="answeredQuestions.steps[prevStep].questions[question.id].answer" [disabled]="true" floatPlaceholder="never">
             <md-option *ngFor="let answer of question.answers" [value]="getSelected(answeredQuestions.steps[prevStep].questions[question.id].answer, answer)">
                 {{ answer.typeOfAnswer.description }}
             </md-option>
@@ -14,7 +14,7 @@
 </ng-template>
 
 <td *ngIf="!onlyLast">
-    <md-select placeholder="Вариант ответа" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)">
+    <md-select placeholder="Оценка" name="answer" [(ngModel)]="answer" (ngModelChange)="getAnswer($event)" floatPlaceholder="never">
         <md-option *ngFor="let answerOption of question.answers" [value]="getSelected(answer, answerOption)">
             {{ answerOption.typeOfAnswer.description }}
         </md-option>
@@ -24,7 +24,8 @@
     <span *ngIf="answer">{{ answer.value}}</span>
 </td>
 <td>
-    <md-input-container>
-        <textarea mdInput maxlength="50" mdAutosize rows="1" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)" [disabled]="onlyLast || !answer.id"></textarea>
+    <md-input-container floatPlaceholder="never">
+        <textarea mdInput #message maxlength="50" mdAutosize rows="1" placeholder="Комментарий" [value]="comment" (change)="changeComment($event)" [disabled]="onlyLast || !answer.id"></textarea>
+        <!-- <md-hint align="end">{{message.value.length}} / 50</md-hint> -->
     </md-input-container>
 </td>

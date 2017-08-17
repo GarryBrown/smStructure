@@ -3,6 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'orderBy'
 })
+
 export class OrderBy {
   transform(array: Array<string>, args: string): Array<string> {
     if (array) {
@@ -21,5 +22,6 @@ export class OrderBy {
 
     return array;
   }
-
 }
+
+

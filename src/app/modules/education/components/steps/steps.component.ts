@@ -44,6 +44,7 @@ export class StepsComponent implements OnInit {
     this.getTeaching();
   }
 
+
   /* Загрузить объект из сервиса *
   **     if (undefined)          *
   **       загрузить с сервера   *
@@ -83,6 +84,7 @@ export class StepsComponent implements OnInit {
     // console.log(teaching.teachingSpecialities.steps);
     this.teaching = teaching;
     this.getDeliveryPoints(teaching.route.id);
+    console.log(teaching.visitDay)
     if (teaching.planReport.id) this.getReport(teaching.planReport.id);
     this.teaching.typeOfTeaching.steps = this.sortStep(this.teaching.typeOfTeaching.steps);
     this.teaching.typeOfTeaching.questions = this.sortQuestion(this.teaching.typeOfTeaching.questions);
@@ -172,16 +174,21 @@ export class StepsComponent implements OnInit {
       )
   }
 
-  getDeliveryPoints(id) {
-    this.eduConfigService.getDelivetyPoints(id).subscribe(
-      (data: any) => {
-        this.deliveryPoints = data.sort(),
+ 
 
-          console.log(this.deliveryPoints);
+  getDeliveryPoints(id) {
+    this.eduConfigService.getDeliveryPoints(id).subscribe(
+      (data: any) => {
+        this.onSuccessDP(data)
       },
       (error) => this.alert.open("Не удалось получить данные :(")
-      // console.error(error)
     )
+  }
+
+  onSuccessDP(data) {
+    this.deliveryPoints = data;
+
+    console.log(this.utilsService.dateToString(new Date));
   }
 }
 

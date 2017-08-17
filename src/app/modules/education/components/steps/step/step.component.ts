@@ -15,6 +15,7 @@ import { Report } from '../../../../../models';
 export class StepComponent implements OnInit, OnChanges, OnDestroy {
     @Input() theme: any; // typeOfTeaching
     @Input() step: any;
+    @Input() route: any;
     @Input() answeredQuestions: any; // teachingSpecialities
     @Input() report: Report;
     @Input() deliveryPoints: Array<any>;
@@ -26,8 +27,10 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     deliveryPoint: any;
     prevStepsId: Array<number>;
     getSelected: any;
-    disabled: boolean = false;
+    disabled: boolean = true;
     teachingSubscription: Subscription;
+    visitDay: any;
+    deliveryPointOnRoute: any;
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -39,10 +42,11 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     ) {
         this.isFinish = false;
         this.getSelected = this.utilsService.getSelectedSingle;
+        this.visitDay = this.utilsService.dateToString(new Date());
     }
 
     ngOnInit() {
-       
+        // this.onRoute();
     }
 
     ngOnDestroy() {
@@ -118,6 +122,26 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
 
     showListQuestions() {
         if (this.deliveryPoint) this.isShowListQuestions = true;
+        this.set_localstorage();
+
+    }
+
+    set_localstorage() {
+        let a: Date = new Date();
+        localStorage.setItem("a", JSON.stringify(a));
+    }
+
+    onRoute(event) {
+        if (event == true) {
+            this.eduConfigService.getDeliveryPoints(this.route.id, this.visitDay).subscribe(
+                (data: any) => {
+                    this.deliveryPoint = data,
+                        console.log(this.deliveryPoint)
+                },
+                (error) => console.log(error)
+            )
+        }
+
     }
 
 }

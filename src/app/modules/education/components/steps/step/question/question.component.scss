@@ -13,3 +13,21 @@ textarea {
 td span {
     border-bottom: 1px solid #000;
 }
+
+md-hint {
+    // font-size: 8px;
+}
+
+td {
+    width: 240px;
+}
+
+tr,
+td {
+    padding: 2px;
+    margin: 0;
+}
+
+td:nth-of-type(2) {
+    text-align: center;
+}

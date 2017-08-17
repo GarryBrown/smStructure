@@ -69,9 +69,14 @@ export class EduConfigService {
       .map((res: Response) => res.json())
   }
 
-  getDelivetyPoints(routeID): Observable<Response> {
+  getDeliveryPoints(routeID, visitDay?: string): Observable<Response> {
     let params = new URLSearchParams();
-    params.set('routeId', routeID.toString())
+    params.set('routeId', routeID.toString());
+
+    if (visitDay) {
+      params.set('visitDay', visitDay);
+    }
+
     return this.http.get('/api/delivery-points', {
       search: params
     })
@@ -153,9 +158,5 @@ export class EduConfigService {
       staff: staffId
     }
   }
-
-
-
-
 }
 

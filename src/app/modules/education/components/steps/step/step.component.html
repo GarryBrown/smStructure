@@ -1,15 +1,15 @@
 <div *ngIf="step">
     <md-toolbar>
-        <h3>Шаг {{ step.orderBy}}: {{ step.typeOfTeachingStep.description}}</h3>
+        <h3>Шаг {{ step.orderBy}}. {{ step.typeOfTeachingStep.description}}</h3>
     </md-toolbar>
     <br>
     <div class="delivery-point-select">
         <section class="example-section">
-            <md-checkbox [(ngModel)]="disabled">На маршруте</md-checkbox>
+            <md-checkbox (ngModelChange)="onRoute($event)">На маршруте</md-checkbox>
         </section>
         <label>Выберите точку для продолжения работы:</label>
-        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)">
-            <md-option *ngFor="let dp of deliveryPoints | orderBy:'description'" [value]="getSelected(deliveryPoint, dp)">
+        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" floatPlaceholder="never">
+            <md-option *ngFor="let dp of deliveryPoints | sortQuotes:'description'" [value]="getSelected(deliveryPoint, dp)">
                 {{ dp.description }}
             </md-option>
         </md-select>

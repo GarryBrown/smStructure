@@ -31,7 +31,7 @@ import { EduResultComponent } from './components/edu-result/edu-result.component
 import { KpiTableComponent } from './components/kpi-table/kpi-table.component';
 import { PlanDetailRowComponent } from './components/kpi-table/plan-detail-row/plan-detail-row.component'
 import { ResultComponent } from './components/steps/result/result.component';
-
+import { PlanningEduComponent } from './components/planning-edu/planning-edu.component';
 
 
 @NgModule({
@@ -55,7 +55,8 @@ import { ResultComponent } from './components/steps/result/result.component';
     EduResultComponent,
     KpiTableComponent,
     PlanDetailRowComponent,
-    ResultComponent,    
+    ResultComponent,
+    PlanningEduComponent
   ],
   entryComponents: [
     EduConfigComponent,
@@ -70,7 +71,7 @@ import { ResultComponent } from './components/steps/result/result.component';
     UtilsService,
     AlertBarComponent,
     ResultService,
-    
+
   ]
 })
 export class EducationModule { }

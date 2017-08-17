@@ -7,6 +7,7 @@ export * from './interceptor/interceptable-http';
 
 export * from './pipes/pretty-count.pipe';
 export * from './pipes/orderBy.pipe';
+export * from './pipes/sortQuotes.pipe';
 
 export * from './services/da-data.service';
 export * from './services/utils.service';

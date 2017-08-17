@@ -18,22 +18,32 @@
         margin: 10px;
     }
     md-input-container {
-        padding: 5px;
         width: 300px;
     }
     textarea {
-        padding: 5px;
+        // padding: 5px;
     }
     button {
-        width: 116px;
         height: 36px;
+        width: 170px;
         padding: 2px;
-        margin-left: 180px;
     }
 }
 
 @media (max-width: 870px) {
     md-input-container {
         width: 300px;
+    }
+}
+
+md-toolbar p {
+    font-size: 20px;
+    margin: 2px;
+}
+
+md-input-container /deep/ {
+    .mat-input-wrapper {
+        // margin: 0;
+        // padding: 0;
     }
 }
