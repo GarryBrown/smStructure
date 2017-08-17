@@ -36,6 +36,7 @@ import { PlanningEduComponent } from './components/planning-edu/planning-edu.com
 import { JournalComponent } from './components/journal/journal.component';
 import { ItemJournalComponent } from './components/journal/item-journal/item-journal.component';
 import { FilterJournalComponent } from './components/journal/filter-journal/filter-journal.component';
+import { EduResultPopupsComponent } from './components/edu-result-popups/edu-result-popups.component';
 
 
 @NgModule({
@@ -64,10 +65,12 @@ import { FilterJournalComponent } from './components/journal/filter-journal/filt
     PlanningEduComponent,
     JournalComponent,
     ItemJournalComponent,
-    FilterJournalComponent,    
+    FilterJournalComponent,
+    EduResultPopupsComponent,    
   ],
   entryComponents: [
     EduConfigComponent,
+    EduResultPopupsComponent
   ],
   providers: [
     EducationService,

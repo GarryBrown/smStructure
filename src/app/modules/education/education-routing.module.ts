@@ -7,20 +7,11 @@ import { EducationComponent } from './education.component';
 import { StepsComponent } from './components/steps/steps.component';
 import { EduResultComponent } from './components/edu-result/edu-result.component';
 import { JournalComponent } from './components/journal/journal.component';
+import { EduResultPopupsComponent } from "./components/edu-result-popups/edu-result-popups.component";
 
 const EducationRoutes: Routes = [
   {
     path: 'edu',
-    component: EducationComponent,
-    canActivate: [RouteAccessService],
-  },
-  {
-    path: 'planning',
-    component: EducationComponent,
-    canActivate: [RouteAccessService],
-  },
-  {
-    path: 'store-check',
     component: EducationComponent,
     canActivate: [RouteAccessService],
   },
@@ -38,6 +29,11 @@ const EducationRoutes: Routes = [
     path: 'journal',
     component: JournalComponent,
     canActivate: [RouteAccessService],
+  },
+  {
+    path: 'result/:id/details',
+    component: EduResultPopupsComponent,
+    outlet: 'popup',
   },
 ];
 

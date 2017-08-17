@@ -50,7 +50,8 @@ export class StepsComponent implements OnInit {
   **       загрузить с сервера   *
   **     Отсортировать           *
   **     Определить текущий      */
-  getTeaching() {
+  getTeaching(result?) {
+
     // this.subscriptionService = this.eduConfigService.getCurrentTeaching().subscribe(
     //   (teaching: any) => {
     //     if (teaching !== undefined) {
@@ -61,12 +62,20 @@ export class StepsComponent implements OnInit {
     //   },
     //   err => this.alert.open("Не удалось получить данные :(")
     // );
-    this.loadFromRouteParam();
+    if (result) {
+      this.onSuccess(result);
+    } else {
+      this.loadFromRouteParam();
+    }
+
   }
 
   loadFromRouteParam() {
     this.subscriptionRoute = this.route.params.subscribe((params) => {
-      this.load(params['id']);
+      if (params['id']) {
+        this.load(params['id']);
+      }
+
     });
   }
 
@@ -174,7 +183,7 @@ export class StepsComponent implements OnInit {
       )
   }
 
- 
+
 
   getDeliveryPoints(id) {
     this.eduConfigService.getDeliveryPoints(id).subscribe(
