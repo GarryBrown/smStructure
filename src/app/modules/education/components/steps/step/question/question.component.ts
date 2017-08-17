@@ -20,6 +20,7 @@ export class QuestionComponent implements OnInit, OnChanges {
   answer: any = new Object();
   comment: string;
   getSelected: any;
+  showAnswer: boolean;
 
   constructor(
     private stepsService: StepsService,
@@ -51,6 +52,9 @@ export class QuestionComponent implements OnInit, OnChanges {
       if (this.comment === '' && this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment !== null) {
         this.comment = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment;
       }
+    }
+    if (this.step) {
+      this.showAnswer = this.step.typeOfTeachingStep.isNeedAnswer;
     }
   }
 

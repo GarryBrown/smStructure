@@ -1,0 +1,42 @@
+<md-card class="filter-form">
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm)">
+    <!--DATE FROM  -->
+    <md-input-container>
+      <input mdInput [mdDatepicker]="dF" placeholder="От" formControlName="dateFrom">
+      <button mdSuffix [mdDatepickerToggle]="dF"></button>
+    </md-input-container>
+    <md-datepicker #dF></md-datepicker>
+    <!--DATE TO  -->
+    <md-input-container>
+      <input mdInput [mdDatepicker]="dT" placeholder="До" formControlName="dateTo">
+      <button mdSuffix [mdDatepickerToggle]="dT"></button>
+    </md-input-container>
+    <md-datepicker #dT></md-datepicker>
+    <!-- ROUTES  -->
+    <md-select placeholder="Маршрут" name="route" formControlName="route">
+      <md-option *ngFor="let route of routes" [value]="route">
+        {{ route.description }}
+      </md-option>
+    </md-select>
+    <!-- associate  -->
+    <md-select placeholder="Сотрудник" name="event" formControlName="associate">
+      <md-option *ngFor="let associate of associates" [value]="associate">
+        {{ type }}
+      </md-option>
+    </md-select>
+    <!--TYPE  -->
+    <md-select placeholder="Тип" name="event" formControlName="type">
+      <md-option *ngFor="let type of types" [value]="type">
+        {{ type }}
+      </md-option>
+    </md-select>
+    <!-- STATUS  -->
+    <md-select placeholder="Статус" name="event" formControlName="status">
+      <md-option *ngFor="let status of statuses" [value]="status">
+        {{ status }}
+      </md-option>
+    </md-select>
+
+    <button type="submit" md-raised-button color="accent">Фильтр</button>
+  </form>
+</md-card>

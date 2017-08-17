@@ -21,7 +21,7 @@
     </md-select>
 </td>
 <td>
-    <span *ngIf="answer">{{ answer.value}}</span>
+    <span *ngIf="answer && showAnswer">{{ answer.value}}</span>
 </td>
 <td>
     <md-input-container floatPlaceholder="never">

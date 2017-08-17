@@ -6,6 +6,7 @@ import { RouteAccessService } from '../../core';
 import { EducationComponent } from './education.component';
 import { StepsComponent } from './components/steps/steps.component';
 import { EduResultComponent } from './components/edu-result/edu-result.component';
+import { JournalComponent } from './components/journal/journal.component';
 
 const EducationRoutes: Routes = [
   {
@@ -31,6 +32,11 @@ const EducationRoutes: Routes = [
   {
     path: 'edu-result',
     component: EduResultComponent,
+    canActivate: [RouteAccessService],
+  },
+  {
+    path: 'journal',
+    component: JournalComponent,
     canActivate: [RouteAccessService],
   },
 ];
