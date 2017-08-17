@@ -88,7 +88,18 @@ export class EduConfigService {
       .map((res: Response) => res.json())
   }
 
+  getStatuses(): Observable<Response> {
+    return this.http.get('/api/activity-statuses')
+      .map((res: Response) => res.json())
+  }
 
+  getStatusById(statuses, id) {
+    //1 - запланировано
+    // 2 - начато
+    // 3 - не проведено 
+    // 4 - проведено
+    return statuses.filter(status => status.id === id)[0]
+  }
 
   setCurrentTeaching(obj) {
     this.teaching.next(obj);

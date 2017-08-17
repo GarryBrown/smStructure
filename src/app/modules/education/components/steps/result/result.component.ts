@@ -20,6 +20,7 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   lastStep: any;
   subscription: Subscription;
   deliveryPoint: any;
+  statuses: any[];
   constructor(
     private eduConfigService: EduConfigService,
     private alertService: AlertBarComponent,
@@ -28,6 +29,16 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
+    this.eduConfigService.getStatuses().subscribe(
+      (data: any) => {
+        this.statuses = data,
+          console.log(this.statuses)
+      },
+      (error) => {
+        this.alertService.open('Ошибка получания статусов.');
+        console.error('Не могу получить статусы втф')
+      }
+    )
   }
 
   ngOnChanges() {
@@ -49,11 +60,11 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-
   }
 
   save() {
     let vm = this;
+    this.teaching.activityStatus = this.eduConfigService.getStatusById(this.statuses, 3);
     this.subscription = this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
       (success) => {
         this.alertService.open('Обучение успешно завершено!');

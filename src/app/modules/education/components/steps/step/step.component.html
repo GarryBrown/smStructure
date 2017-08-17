@@ -5,10 +5,10 @@
     <br>
     <div class="delivery-point-select">
         <section class="example-section">
-            <md-checkbox (ngModelChange)="onRoute($event)">На маршруте</md-checkbox>
+            <md-checkbox [(ngModel)]="isOnRoute" [value]="deliveryPoint" (change)="onRoute($event)" [disabled]="isBegin">На маршруте</md-checkbox>
         </section>
         <label>Выберите точку для продолжения работы:</label>
-        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" floatPlaceholder="never">
+        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" floatPlaceholder="never" [disabled]="isBegin">
             <md-option *ngFor="let dp of deliveryPoints | sortQuotes:'description'" [value]="getSelected(deliveryPoint, dp)">
                 {{ dp.description }}
             </md-option>
@@ -17,7 +17,7 @@
             <p>ТТ: {{deliveryPoint.description}}</p>
             <p>Адрес: {{deliveryPoint.description}}</p>
         </div>
-        <button md-raised-button color="accent" (click)="showListQuestions()" [disabled]="!deliveryPoint">Заполнить анкету</button>
+        <button md-raised-button color="accent" (click)="showListQuestions()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
     </div>
 
     <div *ngIf="isShowListQuestions && deliveryPoint" class="wrapper-block">

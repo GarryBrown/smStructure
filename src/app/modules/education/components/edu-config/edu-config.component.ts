@@ -27,6 +27,7 @@ export class EduConfigComponent implements OnInit {
   getSelected: any;
   isStarted: boolean;
   isFinished: boolean;
+  statuses: any;
   // for select type teaching
   types: Array<string> = [
     STORECHECK,
@@ -60,7 +61,15 @@ export class EduConfigComponent implements OnInit {
       (data: any) => this.onSuccessThemes(data),
       (error) => this.onError('getRoutes', error)
     )
+    this.eduConfigService.getStatuses().subscribe(
+      (data: any) => {
+        this.statuses = data,
+          console.log(this.statuses)
+      },
+      (error) => this.onError('getRoutes', error)
+    )
     this.loadCommonObj();
+
   }
 
   loadCommonObj() {
@@ -86,6 +95,7 @@ export class EduConfigComponent implements OnInit {
   beginTeaching() {
     let position: any = { loc: '' };
     let time, metrics;
+    this.teaching.activityStatus = this.eduConfigService.getStatusById(this.statuses, 2);
     this.eduConfigService.getLocation().then(
       (latLng) => {
         position = latLng ? latLng : position;
@@ -127,6 +137,7 @@ export class EduConfigComponent implements OnInit {
         this.teaching.route = data;
         this.teaching.staff = data.staff;
         this.teaching.kpi = '';
+        this.teaching.activityStatus = this.eduConfigService.getStatusById(this.statuses, 1);
         this.teaching.ability = '';
         this.teaching.strongSuit = '';
         this.teaching.zoneOfGrowth = '';

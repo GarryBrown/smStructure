@@ -5,6 +5,7 @@ export class Event {
     public staff?: any;
     public dp?: any;
     public date?: any;
+    public status?: any;
     constructor(
         id?: number,
         type?: string,
@@ -12,13 +13,15 @@ export class Event {
         staff?: any,
         dp?: any,
         date?: any,
-    ) { 
+        status?: any,
+    ) {
         this.id = id ? id : null;
         this.type = type ? type : '';
         this.route = route ? route : {};
         this.staff = staff ? staff : {};
         this.dp = dp ? dp : {};
         this.date = date ? date : new Date();
+        this.status = status ? status : {};
     }
 }
 

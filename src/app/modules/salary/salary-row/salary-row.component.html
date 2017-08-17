@@ -1,0 +1,32 @@
+<!-- <div class="buttons">
+    <button md-icon-button (click)="toggleInfo($event)"><md-icon>keyboard_arrow_down</md-icon></button>
+</div>
+<p *ngIf="isExpanded">
+    salary-row works!
+</p> -->
+
+<tr>
+    <td>
+        <button md-icon-button (click)="toggleInfo($event)">
+                    <ng-template [ngIf]="isExpanded"><md-icon>keyboard_arrow_up</md-icon></ng-template>
+                    <ng-template [ngIf]="!isExpanded"><md-icon>keyboard_arrow_down</md-icon></ng-template>
+                  </button> {{salary.staff.description}}
+    </td>
+    <td>{{salary.averageSalaryIndex / salary.salarySpecialities.length | number}}</td>
+    <td>{{salary.averagePredictionIndex / salary.salarySpecialities.length | number}}</td>
+    <td>{{salary.averageMinIndex / salary.salarySpecialities.length | number}}</td>
+    <td>{{salary.sumSalary}}</td>
+    <td>{{salary.sumPrediction}}</td>
+
+</tr>
+
+<ng-template [ngIf]="isExpanded">
+    <tr *ngFor="let sp of salary.salarySpecialities">
+        <td>{{sp.description}}</td>
+        <td>{{sp.salaryIndex}}</td>
+        <td>{{sp.predictionIndex}}</td>
+        <td>{{sp.minIndex}}</td>
+        <td>{{sp.salary}}</td>
+        <td>{{sp.prediction}}</td>
+    </tr>
+</ng-template>

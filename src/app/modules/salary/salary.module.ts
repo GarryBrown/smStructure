@@ -11,7 +11,7 @@ import { SharedModule } from '../../shared';
 import { SalaryService } from "app/modules/salary/salary.service";
 /* components */
 import { SalaryComponent } from './salary.component';
-
+import { SalaryRowComponent } from './salary-row/salary-row.component';
 
 @NgModule({
   imports: [
@@ -19,7 +19,8 @@ import { SalaryComponent } from './salary.component';
     SalaryRoutingModule,
     SharedModule
   ],
-  declarations: [SalaryComponent],
+  declarations: [SalaryComponent, SalaryRowComponent],
+  // entryComponents: [SalaryRowComponent],
   providers: [SalaryService]
 })
 export class SalaryModule { }

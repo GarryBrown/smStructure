@@ -31,6 +31,8 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     teachingSubscription: Subscription;
     visitDay: any;
     deliveryPointOnRoute: any;
+    isOnRoute: boolean;
+    isBegin: boolean;
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -43,10 +45,10 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
         this.isFinish = false;
         this.getSelected = this.utilsService.getSelectedSingle;
         this.visitDay = this.utilsService.dateToString(new Date());
+        this.isOnRoute = true;
     }
 
     ngOnInit() {
-        // this.onRoute();
     }
 
     ngOnDestroy() {
@@ -58,6 +60,13 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     ngOnChanges() {
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
         this.isFinish = this.setIsFinish();
+
+        if (this.route && this.deliveryPoint === undefined) {
+            this.eduConfigService.getDeliveryPoints(this.route.id, this.visitDay).subscribe(
+                (data: any) => this.deliveryPoints = data,
+                (error) => console.log(error)
+            )
+        }
     }
 
     sendAnswer(answer) {
@@ -121,8 +130,11 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     showListQuestions() {
-        if (this.deliveryPoint) this.isShowListQuestions = true;
-        this.set_localstorage();
+        if (this.deliveryPoint) {
+            this.isShowListQuestions = true;
+            this.isBegin = true;
+        }
+        // this.set_localstorage();
 
     }
 
@@ -132,16 +144,18 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     onRoute(event) {
-        if (event == true) {
+        this.deliveryPoint = null;
+        if (event.checked === true) {
             this.eduConfigService.getDeliveryPoints(this.route.id, this.visitDay).subscribe(
-                (data: any) => {
-                    this.deliveryPoint = data,
-                        console.log(this.deliveryPoint)
-                },
+                (data: any) => this.deliveryPoints = data,
+                (error) => console.log(error)
+            )
+
+        } else {
+            this.eduConfigService.getDeliveryPoints(this.route.id).subscribe(
+                (data: any) => this.deliveryPoints = data,
                 (error) => console.log(error)
             )
         }
-
     }
-
 }

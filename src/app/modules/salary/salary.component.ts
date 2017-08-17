@@ -18,6 +18,8 @@ export class SalaryComponent implements OnInit, OnDestroy {
   salaries: any;
   user: any;
   userSalary: any;
+  details: boolean;
+  originSalaries: any;
 
   constructor(
     private salaryService: SalaryService,
@@ -36,23 +38,57 @@ export class SalaryComponent implements OnInit, OnDestroy {
   }
 
   onSuccess(data) {
-    let originSalaries = data[0];
+    this.originSalaries = data[0];
     this.user = data[1];
 
-    this.salaries = originSalaries.filter((salary) => {
+    this.salaries = this.originSalaries.filter((salary) => {
+      console.log(salary.salarySpecialities.length)
       return this.user && this.user.id !== salary.staff.userId;
     })
 
-    originSalaries.map(salary => {
+
+    this.originSalaries.map(salary => {
       if (this.salaries && this.user && this.user.id === salary.staff.userId) {
         this.userSalary = salary;
         this.userSalary.sum = this.userSalary.salarySpecialities.reduce((sum, speciality) => {
           return sum + speciality.salary;
         }, 0);
       }
-      salary.sum = salary.salarySpecialities.reduce((sum, speciality) => {
+      this.sumSalary();
+      this.avarageIndex();
+    })
+  }
+
+  sumSalary() {
+    this.originSalaries.map(salary => {
+      salary.sumSalary = salary.salarySpecialities.reduce((sum, speciality) => {
         return sum + speciality.salary;
       }, 0);
+
+      salary.sumPrediction = salary.salarySpecialities.reduce((sum, speciality) => {
+        return sum + speciality.prediction;
+      }, 0);
     })
+
+  }
+
+  avarageIndex() {
+    this.originSalaries.map(salary => {
+      salary.averageMinIndex = salary.salarySpecialities.reduce((sum, speciality) => {
+        return sum + speciality.minIndex;
+      }, 0);
+
+      salary.averagePredictionIndex = salary.salarySpecialities.reduce((sum, speciality) => {
+        return sum + speciality.predictionIndex;
+      }, 0);
+
+      salary.averageSalaryIndex = salary.salarySpecialities.reduce((sum, speciality) => {
+        return sum + speciality.salaryIndex;
+      }, 0);
+    })
+  }
+
+  toggleInfo() {
+    this.details = !this.details;
   }
 }
