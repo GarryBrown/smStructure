@@ -50,6 +50,7 @@ export class SalaryComponent implements OnInit, OnDestroy {
     this.originSalaries.map(salary => {
       if (this.salaries && this.user && this.user.id === salary.staff.userId) {
         this.userSalary = salary;
+        console.log(this.userSalary)
         this.userSalary.sum = this.userSalary.salarySpecialities.reduce((sum, speciality) => {
           return sum + speciality.salary;
         }, 0);

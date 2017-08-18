@@ -21,6 +21,8 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   subscription: Subscription;
   deliveryPoint: any;
   statuses: any[];
+  isCompleted: boolean;
+
   constructor(
     private eduConfigService: EduConfigService,
     private alertService: AlertBarComponent,
@@ -31,8 +33,7 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     this.eduConfigService.getStatuses().subscribe(
       (data: any) => {
-        this.statuses = data,
-          console.log(this.statuses)
+        this.statuses = data
       },
       (error) => {
         this.alertService.open('Ошибка получания статусов.');
@@ -42,9 +43,16 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges() {
+    console.log(this.teaching.activityStatus)
     if (this.teaching) {
       this.deliveryPoint = this.applyDeliveryPoint(this.teaching);
       this.lastStep = this.applyLastStep(this.teaching);
+      if (this.teaching.activityStatus.id === 4) {
+      
+        this.isCompleted = false;
+      } else {
+        this.isCompleted = true;
+      }
     }
   }
 
@@ -64,7 +72,7 @@ export class ResultComponent implements OnInit, OnDestroy, OnChanges {
 
   save() {
     let vm = this;
-    this.teaching.activityStatus = this.eduConfigService.getStatusById(this.statuses, 3);
+    this.teaching.activityStatus = this.eduConfigService.getStatusById(this.statuses, 4);
     this.subscription = this.eduConfigService.partiallyUpdate(this.teaching).subscribe(
       (success) => {
         this.alertService.open('Обучение успешно завершено!');

@@ -1,40 +1,41 @@
 <div *ngIf="step">
-  <md-toolbar>
-    <h3>Шаг {{ step.orderBy}}. {{ step.typeOfTeachingStep.description}}</h3>
-  </md-toolbar>
-  <br>
-  <div class="delivery-point-select">
-    <section class="example-section">
-      <md-checkbox [(ngModel)]="isOnRoute" [value]="deliveryPoint" (change)="onRoute($event)" [disabled]="isBegin">На маршруте</md-checkbox>
-    </section>
-    <label>Выберите точку для продолжения работы:</label>
-    <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" floatPlaceholder="never" [disabled]="isBegin">
-      <md-option *ngFor="let dp of deliveryPoints | sortQuotes:'description'" [value]="getSelected(deliveryPoint, dp)">
-        {{ dp.description }}
-      </md-option>
-    </md-select>
-    <div *ngIf="deliveryPoint">
-      <p>ТТ: {{deliveryPoint.description}}</p>
-      <p>Адрес: {{deliveryPoint.description}}</p>
+    <md-toolbar>
+        <h3>Шаг {{ step.orderBy}}. {{ step.typeOfTeachingStep.description}}</h3>
+    </md-toolbar>
+    <br>
+    <div class="delivery-point-select">
+        <section class="example-section">
+            <md-checkbox [(ngModel)]="isOnRoute" [value]="deliveryPoint" (change)="onRoute($event)" [disabled]="isBegin">На маршруте</md-checkbox>
+        </section>
+        <label>Выберите точку для продолжения работы:</label>
+        <md-select *ngIf="deliveryPoints && deliveryPoints.length" [(ngModel)]="deliveryPoint" placeholder="Торговая точка" name="dp" (ngModelChange)="changeDelivetyPoint($event)" floatPlaceholder="never" [disabled]="isBegin">
+            <md-option *ngFor="let dp of deliveryPoints | sortQuotes:'description'" [value]="getSelected(deliveryPoint, dp)">
+                {{ dp.description }}
+            </md-option>
+        </md-select>
+        <div *ngIf="deliveryPoint">
+            <p>{{deliveryPoint.description}} Адрес: {{deliveryPoint.description}}</p>
+        </div>
+
     </div>
     <button *ngIf="!hideAnswer" md-raised-button color="accent" (click)="showListQuestions()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
     <button *ngIf="hideAnswer" md-raised-button color="accent" (click)="answerDefault()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
-  </div>
+</div>
 
-  <div *ngIf="isShowListQuestions && deliveryPoint" class="wrapper-block">
+<div *ngIf="isShowListQuestions && deliveryPoint" class="wrapper-block">
     <div class="row">
-      <div class="col-md-12">
-        <table class="table table-condensed table-responsive">
-          <tbody>
-            <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId" (sendAnswer)="sendAnswer($event)"></tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="col-md-12">
+            <table class="table table-condensed table-responsive">
+                <tbody>
+                    <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId" (sendAnswer)="sendAnswer($event)"></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div *ngIf="report && deliveryPoint" class="kpi-block">
-      <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
+        <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
     </div>
     <br>
     <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext() || !deliveryPoint">Следующий шаг</button>
     <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
-  </div>
+</div>
