@@ -33,7 +33,7 @@
     <!-- STATUS  -->
     <md-select placeholder="Статус" name="event" formControlName="status">
       <md-option *ngFor="let status of statuses" [value]="status">
-        {{ status }}
+        {{ status.description }}
       </md-option>
     </md-select>
 

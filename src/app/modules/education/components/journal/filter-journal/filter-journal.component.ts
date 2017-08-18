@@ -12,7 +12,9 @@ import { Route } from '../../../../../models';
 export class FilterJournalComponent implements OnInit {
   @Output() onOparams = new EventEmitter();
   routes: Array<Route>
+  statuses: Array<any>
   filterForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private eduConfigService: EduConfigService
@@ -42,6 +44,9 @@ export class FilterJournalComponent implements OnInit {
   loadSelectData() {
     this.eduConfigService.getRoutes().subscribe(
       (data: any) => this.routes = data
+    )
+    this.eduConfigService.getStatuses().subscribe(
+      (data: any) => this.statuses = data
     )
   }
 
