@@ -16,23 +16,26 @@
         <div *ngIf="deliveryPoint">
             <p>{{deliveryPoint.description}} Адрес: {{deliveryPoint.description}}</p>
         </div>
-        <button md-raised-button color="accent" (click)="showListQuestions()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
-    </div>
 
-    <div *ngIf="isShowListQuestions && deliveryPoint" class="wrapper-block">
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-condensed table-responsive">
-                    <tbody>
-                        <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId" (sendAnswer)="sendAnswer($event)"></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div *ngIf="report && deliveryPoint" class="kpi-block">
-            <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
-        </div>
-        <br>
-        <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext() || !deliveryPoint">Следующий шаг</button>
-        <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
     </div>
+    <button *ngIf="!hideAnswer" md-raised-button color="accent" (click)="showListQuestions()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
+    <button *ngIf="hideAnswer" md-raised-button color="accent" (click)="answerDefault()" [disabled]="!deliveryPoint || isBegin">Заполнить анкету</button>
+</div>
+
+<div *ngIf="isShowListQuestions && deliveryPoint" class="wrapper-block">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-responsive">
+                <tbody>
+                    <tr app-question *ngFor="let question of theme.questions" [question]="question" [answeredQuestions]="answeredQuestions" [step]="step" [steps]="theme.steps" [prevStepsId]="prevStepsId" (sendAnswer)="sendAnswer($event)"></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="report && deliveryPoint" class="kpi-block">
+        <app-kpi-table [report]=[report] [deliveryPoint]="deliveryPoint"></app-kpi-table>
+    </div>
+    <br>
+    <button *ngIf="!isFinish" md-raised-button (click)="next()" [disabled]="disableNext() || !deliveryPoint">Следующий шаг</button>
+    <button *ngIf="isFinish" md-raised-button (click)="goToResult()" [disabled]="disableNext()">Завершить</button>
+</div>

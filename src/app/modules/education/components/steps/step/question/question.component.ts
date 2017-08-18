@@ -39,13 +39,13 @@ export class QuestionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-
+    // миграция комментов
     if (!this.onlyLast && this.prevStepsId.length !== 0 &&
       this.question && this.answeredQuestions &&
       this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].questions[this.question.id].answer.comment) {
       this.comment = this.answeredQuestions.steps[this.prevStepsId[this.prevStepsId.length - 1]].questions[this.question.id].answer.comment;
     }
-
+    // выдераем ответ и присваиваем локальной переменной и с комментом тоже самое
     if (this.question && this.answeredQuestions && this.answeredQuestions.steps[this.step.id].questions[this.question.id] &&
       this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer) {
       this.answer = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer;
@@ -53,6 +53,7 @@ export class QuestionComponent implements OnInit, OnChanges {
         this.comment = this.answeredQuestions.steps[this.step.id].questions[this.question.id].answer.comment;
       }
     }
+    // прячем ответы вопросы на шаге показать
     if (this.step) {
       this.showAnswer = this.step.typeOfTeachingStep.isNeedAnswer;
     }

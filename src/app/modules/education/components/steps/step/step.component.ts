@@ -33,6 +33,7 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     deliveryPointOnRoute: any;
     isOnRoute: boolean;
     isBegin: boolean;
+    hideAnswer: boolean;
 
     constructor(
         private eduConfigService: EduConfigService,
@@ -46,6 +47,7 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
         this.getSelected = this.utilsService.getSelectedSingle;
         this.visitDay = this.utilsService.dateToString(new Date());
         this.isOnRoute = true;
+        this.hideAnswer = false;
     }
 
     ngOnInit() {
@@ -58,19 +60,44 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges() {
+        // определить предыдущий шаг, чтобы оттуда взять комментарии
         this.prevStepsId = this.setPrevSteps(this.theme.steps);
+        // если последний то кнопка "завершить", вместо "след шаг"
         this.isFinish = this.setIsFinish();
-
-        if (this.route && this.deliveryPoint === undefined) {
+        // если известен маршрут, и точки не определены, то подтянуть список точек,
+        if (this.route && this.deliveryPoints === undefined) {
             this.eduConfigService.getDeliveryPoints(this.route.id, this.visitDay).subscribe(
                 (data: any) => this.deliveryPoints = data,
                 (error) => console.log(error)
             )
         }
+        // если это шаг показать, то спрять вопросы и ответы
+        if (this.step) {
+            if (!this.step.typeOfTeachingStep.isNeedAnswer && !this.hideAnswer) {
+                this.hideAnswer = true;
+            }
+        }
+        // console.warn(this.answeredQuestions.steps)
     }
 
+    // если это шаг показать, при нажатии заполнить анкету, заполняем все вопросы за него
+    answerDefault() {
+        this.theme.questions.map(question => {
+            // если ответ равен null то сначала создать объект для дальнейших действий
+            if (!this.answeredQuestions.steps[this.step.id].questions[question.id]) {
+                this.answeredQuestions.steps[this.step.id].questions[question.id] = new Object();
+            }
+            this.answeredQuestions.steps[this.step.id].questions[question.id].answer = question.answers[0]
+            this.answeredQuestions.steps[this.step.id].questions[question.id].answer.comment = ''
+            // console.log(this.answeredQuestions.steps[this.step.id].questions[question.id])
+        })
+        this.showListQuestions();
+    }
+
+    // обновление ответа 
     sendAnswer(answer) {
         answer.deliveryPointId = this.deliveryPoint.id;
+        // подтянуть обучение из сервиса и обновить
         this.teachingSubscription = this.eduConfigService.getCurrentTeaching().subscribe(
             (teaching) => {
                 answer.teachingId = teaching.id;
@@ -93,6 +120,7 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
         return this.step.orderBy === stepsIndexes[stepsIndexes.length - 1];
     }
 
+    // переход к след шагу
     next() {
         if (!this.answeredQuestions.steps[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
@@ -116,10 +144,12 @@ export class StepComponent implements OnInit, OnChanges, OnDestroy {
         this.answeredQuestions.steps[this.step.id].deliveryPoint = dp;
     }
 
+    // после последнего шага отправляемся в компонент результатов
     goToResult() {
         if (!this.answeredQuestions.steps[this.step.id].deliveryPoint) {
             this.changeDelivetyPoint(this.deliveryPoint);
         }
+        // обновляем кеш в сервисе
         this.eduResultService.setCurrentAnswer(this.answeredQuestions);
         this.toFinish.emit(true);
     }
