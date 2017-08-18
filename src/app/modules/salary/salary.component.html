@@ -1,33 +1,33 @@
-<div class="wrapper" *ngIf="userSalary && salaries">
-    <div class="header">
-        <md-expansion-panel class="md-expansion-demo-width" #myPanel>
-            <md-expansion-panel-header>
-                <mat-panel-title>{{userSalary.staff.description}} (Вы)</mat-panel-title>
-                <span>Итог: {{userSalary.salary + userSalary.sum}} руб.</span>
-                <mat-panel-description>
-                </mat-panel-description>
-            </md-expansion-panel-header>
+<md-card>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Index факт</th>
+                <th>Index прогноз</th>
+                <th>Index min</th>
+                <th>ЗП факт</th>
+                <th>ЗП прогноз</th>
+            </tr>
+        </thead>
+        <tbody salary-row [salary]="userSalary" class="tbody"></tbody>
+        <tbody salary-row *ngFor="let salary of salaries" [salary]="salary"></tbody>
+    </table>
+</md-card>
 
-            <p *ngFor="let sp of userSalary.salarySpecialities">
-                {{sp.description}} <span> {{sp.salary}} руб.</span>
-            </p>
-        </md-expansion-panel>
-    </div>
 
-    <md-card>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ФИО</th>
-                    <th>Index факт</th>
-                    <th>Index прогноз</th>
-                    <th>Index min</th>
-                    <th>ЗП факт</th>
-                    <th>ЗП прогноз</th>
-                </tr>
-            </thead>
-            <tbody salary-row *ngFor="let salary of salaries" [salary]="salary"></tbody>
-        </table>
-    </md-card>
+<!-- <md-card>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Index факт</th>
+                <th>Index прогноз</th>
+                <th>Index min</th>
+                <th>ЗП факт</th>
+                <th>ЗП прогноз</th>
+            </tr>
+        </thead>
 
-</div>
+    </table>
+</md-card> -->

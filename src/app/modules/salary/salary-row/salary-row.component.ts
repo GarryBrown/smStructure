@@ -5,7 +5,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './salary-row.component.html',
   styleUrls: ['./salary-row.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  inputs: ['salary']
+  inputs: ['salary', 'userSalary']
 })
 export class SalaryRowComponent implements OnInit {
 

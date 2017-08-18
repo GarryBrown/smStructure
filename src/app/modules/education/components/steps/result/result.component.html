@@ -29,7 +29,7 @@
             <textarea mdInput placeholder="Задачи по KPI" [(ngModel)]="teaching.kpi" required></textarea>
         </md-input-container>
 
-        <button md-raised-button color="accent" (click)="save()" [disabled]="disableSave()">Сохранить результат</button>
+        <button *ngIf="isCompleted" md-raised-button color="accent" (click)="save()" [disabled]="disableSave()">Сохранить результат</button>
 
     </div>
 

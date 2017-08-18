@@ -5,9 +5,9 @@
     salary-row works!
 </p> -->
 
-<tr>
+<tr *ngIf="salary">
     <td>
-        <button md-icon-button (click)="toggleInfo($event)">
+        <button md-icon-button color="accent" (click)="toggleInfo($event)">
                     <ng-template [ngIf]="isExpanded"><md-icon>keyboard_arrow_up</md-icon></ng-template>
                     <ng-template [ngIf]="!isExpanded"><md-icon>keyboard_arrow_down</md-icon></ng-template>
                   </button> {{salary.staff.description}}

@@ -1,15 +1,15 @@
 <md-list dense>
 
-  <md-list-item *ngFor="let event of events">
+    <md-list-item *ngFor="let event of events">
 
-    <label md-line>ПО {{ event.staff.description }} </label>
-    <label md-line>{{ event.route.description }} <span>Проведено</span></label>
+        <label md-line>ПО {{ event.staff.description }} </label>
+        <label md-line>{{ event.route.description }} <span>Проведено</span></label>
 
-    <button md-icon-button color="accent" [routerLink]="['/', { outlets: { popup: 'result/' + event.id + '/details' } }]"><md-icon>subject</md-icon></button>
-    <button md-icon-button color="accent" (click)="onOpenDialog(event)"><md-icon>play_arrow</md-icon></button>
-    <button md-icon-button><md-icon>mode_edit</md-icon></button>
-    <button md-icon-button (click)="deleteEducation(event)"><md-icon>delete</md-icon></button>
+        <button md-icon-button *ngIf="event.status.id === 4" color="accent" [routerLink]="['/', { outlets: { popup: 'result/' + event.id + '/details' } }]"><md-icon>subject</md-icon></button>
+        <button md-icon-button *ngIf="event.status.id === 1 || event.status.id === 2" color="accent" (click)="onOpenDialog(event)"><md-icon>play_arrow</md-icon></button>
+        <button md-icon-button *ngIf="event.status.id === 1"><md-icon>mode_edit</md-icon></button>
+        <button md-icon-button (click)="deleteEducation(event)"><md-icon>delete</md-icon></button>
 
-  </md-list-item>
+    </md-list-item>
 
 </md-list>
