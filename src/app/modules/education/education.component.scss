@@ -1,0 +1,27 @@
+md-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+    button {
+        margin-left: auto;
+    }
+}
+
+.schedule {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+    .schedule {
+        flex-direction: column
+    }
+}
+
+app-edu-calendar,
+app-list-day-events {
+    width: 50%;
+}

@@ -1,0 +1,49 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.block-table {
+    width: 50%;
+}
+
+.block-comments {
+    width: 50%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    md-select {
+        margin: 10px;
+    }
+    md-input-container {
+        width: 300px;
+    }
+    textarea {
+        // padding: 5px;
+    }
+    button {
+        height: 36px;
+        width: 170px;
+        padding: 2px;
+    }
+}
+
+@media (max-width: 870px) {
+    md-input-container {
+        width: 300px;
+    }
+}
+
+md-toolbar p {
+    font-size: 20px;
+    margin: 2px;
+}
+
+md-input-container /deep/ {
+    .mat-input-wrapper {
+        // margin: 0;
+        // padding: 0;
+    }
+}

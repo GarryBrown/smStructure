@@ -1,57 +1,47 @@
 <div class="wrapper">
-  <md-toolbar>Основная информация</md-toolbar>
-  <form action="" *ngIf="user">
-    <div class="row">
-      <div class="col-md-6">
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Имя" name="firstName" [(ngModel)]="user.firstName">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Логин" name="login"  [(ngModel)]="user.login">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Email" name="email" [(ngModel)]="user.email">
-        </md-input-container>
-      </div>
-      <div class="col-md-6">
-        <app-avatar [avatarUrl]="user.imageUrl" (updateAvatar)="updateAvatar($event)"></app-avatar>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button md-raised-button color="accent" (click)="update()">Сохранить</button>
-      </div>
-    </div>
-  </form> 
-  <md-toolbar>Контактная информация</md-toolbar>
-  <form action="" *ngIf="user">
-    <div class="row">
-      <div class="col-md-6">
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Имя" name="firstName" [(ngModel)]="user.firstName">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Логин" name="login"  [(ngModel)]="user.login">
-        </md-input-container>
-        <md-input-container class="name-info">
-          <input mdInput placeholder="Email" name="email" [(ngModel)]="user.email">
-        </md-input-container>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <button md-raised-button color="accent" (click)="console.log($event)">Сохранить</button>
-      </div>
-    </div>
-  </form> 
-  
-  <md-toolbar>Сменить пароль</md-toolbar>
+    <md-toolbar>Основная информация</md-toolbar>
+    <form action="" *ngIf="user">
+        <div class="row">
+            <div class="col-md-6 padding-block">
+                <md-input-container class="name-info">
+                    <input mdInput placeholder="Имя" name="firstName" [(ngModel)]="user.firstName">
+                </md-input-container>
+                <md-input-container class="name-info">
+                    <input mdInput placeholder="Фамилия" name="lastName" [(ngModel)]="user.lastName">
+                </md-input-container>
+                <md-input-container class="name-info">
+                    <input mdInput placeholder="Логин" name="login" [(ngModel)]="user.login">
+                </md-input-container>
+                <md-input-container class="name-info">
+                    <input mdInput placeholder="Email" name="email" [(ngModel)]="user.email">
+                </md-input-container>
+            </div>
+            <div class="col-md-6 padding-block">
+                <app-avatar [avatarUrl]="user.imageUrl" (updateAvatar)="updateAvatar($event)"></app-avatar>
+            </div>
+        </div>
+        <div class="row">
+            <div class="padding-block">
+                <button md-raised-button color="accent" (click)="update()">Сохранить</button>
+            </div>
+        </div>
+    </form>
+    <md-toolbar>Настройки</md-toolbar>
+    <form action="" *ngIf="user">
+        <div class="row settings">
+            <div class="col-md-12 padding-block">
+                <md-slide-toggle class="example-margin" [color]="color" [checked]="user.autoReload">
+                    Life reload orders
+                </md-slide-toggle>
+            </div>
+        </div>
+        <div class="row">
+            <div class="padding-block">
+                <button md-raised-button color="accent" (click)="console.log($event)">Сохранить</button>
+            </div>
+        </div>
+    </form>
+
+    <md-toolbar>Сменить пароль</md-toolbar>
     <app-password></app-password>
 </div>
-    

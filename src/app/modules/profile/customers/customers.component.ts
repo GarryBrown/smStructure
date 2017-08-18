@@ -30,13 +30,10 @@ export class CustomersComponent implements OnInit {
   }
 
   private onSuccess (data) {
-    console.log(data.data);
     this.stores = data.data;
   }
 
   private onError (error) {
-    console.log('On error things');
+    console.error('On error things');
   }
-
-
 }

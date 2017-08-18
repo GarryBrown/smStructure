@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Http, ConnectionBackend, RequestOptions, RequestOptionsArgs, Request, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from '../../app.constants';
+
 @Injectable()
 export class InterceptableHttp extends Http {
     private firstInterceptor: HttpInterceptor;
@@ -35,18 +37,22 @@ export class InterceptableHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        url = this.updateUrl(url);
         return super.get(url, this.getRequestOptionArgs(options));
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
+        url = this.updateUrl(url);
         return super.post(url, body, this.getRequestOptionArgs(options));
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
+        url = this.updateUrl(url);
         return super.put(url, body, this.getRequestOptionArgs(options));
     }
 
     delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+        url = this.updateUrl(url);
         return super.delete(url, this.getRequestOptionArgs(options));
     }
 
@@ -56,12 +62,33 @@ export class InterceptableHttp extends Http {
         }
         if (!options.headers) {
             options.headers = new Headers();
-        }
 
+            // options.headers.append('Access-Control-Allow-Origin', '*');
+            // options.headers.append('Access-Control-Allow-Headers', 'origin,X-Requested-With,Content-Type,Accept');
+            // options.headers.append('Access-Control-Allow-Credentials', 'true');
+            // options.headers.append('Access-Control-Expose-Headers', 'X-Total-Count');
+            // options.headers.append('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+
+
+        }
+        options.withCredentials = true;
         return !this.firstInterceptor ? options : this.firstInterceptor.processRequestInterception(options);
     }
+
 
     intercept(observable: Observable<Response>): Observable<Response> {
         return !this.firstInterceptor ? observable : this.firstInterceptor.processResponseInterception(observable);
     }
-}
+
+    private updateUrl(req: string) {
+        if (req.indexOf("api/authenticate") !== -1 || req.indexOf("api/account") !== -1) {
+            console.log(environment.gataway + '/' + req)
+            return environment.gataway + '/' + req;
+        } else if (req.indexOf("api/") !== -1) {
+            return environment.origin + '/' + req;
+        }
+        else {
+            return req;
+        }
+    }
+ }

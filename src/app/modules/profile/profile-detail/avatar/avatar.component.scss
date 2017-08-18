@@ -1,26 +1,26 @@
 .avatar-change {
-  .avatar {
-    outline: 0px solid yellow;
-    width: 180px;
-    height: 180px;
-    margin-left:15px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    margin: 5px auto;
-
-  }
-  
-  .change-button {
-    outline: 0px solid red;
-    text-align: center;
-    label {
-      margin: 10px auto;
+    .avatar {
+        outline: 0px solid yellow;
+        width: 180px;
+        height: 180px;
+        margin-left: 15px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        margin: 5px auto;
     }
-  
-    input {
-      display: none;
+    .change-button {
+        outline: 0px solid red;
+        text-align: center;
+        label {
+            margin: 10px auto;
+        }
+        input {
+            display: none;
+        }
     }
-  }
+}
 
+button {
+    height: 50px;
 }

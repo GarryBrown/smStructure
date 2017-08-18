@@ -1,64 +1,57 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Http, XHRBackend, RequestOptions } from '@angular/http';
 import 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-// import { InterceptorService } from './block/interceptor.service';
-
-import {Ng2Webstorage} from 'ng2-webstorage';
+import { MaterialModule } from '@angular/material';
+import { Ng2Webstorage } from 'ng2-webstorage';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
+import { FormsModule } from '@angular/forms';
 
 /* Basic */
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { SidebarModule } from './components/sidebar/sidebar.module';
-
-
+import { LayoutrModule } from './layouts/layout.module';
 
 /* Modules */
-import { OrdersModule } from './modules/orders/orders.module';
-import { AdminModule } from './modules/admin/admin.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { StoresModule } from './modules/stores/stores.module';
+import { KPIModule } from './modules/kpi/kpi.module';
+import { EducationModule } from './modules/education/education.module';
+import { SalaryModule } from './modules/salary/salary.module';
+import { MapModule } from './modules/map/map.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { LandingModule } from './modules/landing/landing.module';
-import { AccountModule } from './modules/account/account.module';
-
-
-
-export class MyHammerConfig extends HammerGestureConfig  {
-  overrides = <any>{
-      'swipe': {velocity: 0.4, threshold: 20} // override default settings
-  }
-}
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     CoreModule.forRoot(),
     Ng2Webstorage,
     RouterModule,
     /*layouts */
-    SidebarModule,
-    /* modules */
-    AccountModule,
+    LayoutrModule,
+    /* feature modules */
     LandingModule,
-    OrdersModule,
-    AdminModule,
-    DashboardModule,
-    StoresModule,
+    KPIModule,
+    EducationModule,
+    TasksModule,
     ProfileModule,
+    SalaryModule,
+    MapModule,
+
   ],
   providers: [
-      customHttpProvider(),
-       {provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
-     // provide(Http, { useClass: InterceptorService })
+    customHttpProvider(),
   ],
   bootstrap: [AppComponent]
 })

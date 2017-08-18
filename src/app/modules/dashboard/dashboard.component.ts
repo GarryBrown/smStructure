@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
-
-import { DashboardService } from './dashboard.service';
-import { DashboardPopupService } from './dialogs/dashboard-popup.service';
+import { Http } from "@angular/http";
+import { DashboardService } from './services/dashboard.service';
+import { DashboardPopupService } from './services/dashboard-popup.service';
 
 
 
@@ -17,7 +17,8 @@ import { DashboardPopupService } from './dialogs/dashboard-popup.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   orders: any[];
-
+  /* property for sample Interceptor */
+  users: Array<any> = [];
 
   itemsPerPage: number;
   routeData: any;
@@ -27,21 +28,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   predicate: any;
   reverse: any;
   /* filter */
-  dateFrom:any;
+  dateFrom: any;
   dateTo: any;
   foods = [
-    {value: 'steak-0', viewValue: 'P&G'},
-    {value: 'pizza-1', viewValue: 'Food'},
-    {value: 'tacos-2', viewValue: 'Tacko'}
+    { value: 'steak-0', viewValue: 'P&G' },
+    { value: 'pizza-1', viewValue: 'Food' },
+    { value: 'tacos-2', viewValue: 'Tacko' }
   ];
-  dateFromPlaceholder:string = "С";
-  dateToPlaceholder:string = "По";
+  dateFromPlaceholder: string = "С";
+  dateToPlaceholder: string = "По";
 
 
-  constructor(
+  constructor(private http: Http,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public  dashService: DashboardService,
+    public dashService: DashboardService,
     public dialog: MdDialog,
     private dialogsService: DashboardPopupService,
     private viewContainerRef: ViewContainerRef
@@ -56,6 +57,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    this.http.get('/users')
+      .subscribe(
+      (users: any) => {
+        this.users = users.json(),
+          (err: any) => console.log(err)
+      }
+      );
+    // this.http.get('http://mocker.egen.io/users')
+    //         .subscribe(
+    //             (data: any) => console.log(data),
+    //             (err: any) => console.log(err)
+    //         );
+
+
+
     //console.log(`on init page: ${this.page}`);
     this.loadData();
   }
@@ -66,8 +82,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
 
-  transition () {
-    this.router.navigate(['/dashboard'], { queryParams:
+  transition() {
+    this.router.navigate(['/dashboard'], {
+      queryParams:
       {
         page: this.page,
         sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
@@ -76,18 +93,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  loadData(){
+  loadData() {
     //console.log(`loading page: ${this.page} \n with sort: ${this.sort()}`);
     this.dashService.query({
       page: this.page - 1,
-      size : this.itemsPerPage,
-      sort : this.sort()}).subscribe(
+      size: this.itemsPerPage,
+      sort: this.sort()
+    }).subscribe(
       (res: Response) => this.onSuccess(res.json(), res.headers),
       (res: Response) => this.onError(res.json())
-    )
+      )
   }
 
-  sort () {
+  sort() {
     let result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
     if (this.predicate !== 'id') {
       result.push('id');
@@ -102,14 +120,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  private onSuccess (data, headers) {
+  private onSuccess(data, headers) {
     //this.queryCount = this.totalItems;
     //console.log('_success_');
     //console.log(data.data);
     this.orders = this.dashService.computing(data.data);
   }
 
-  private onError (error) {
+  private onError(error) {
     console.log('On error things');
   }
 

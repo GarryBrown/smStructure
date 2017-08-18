@@ -1,0 +1,19 @@
+md-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    .close {
+        margin-left: auto;
+    }
+}
+
+.input_report {
+    button {
+        float: right;
+        margin: 5px;
+    }
+}
+
+.filter-item {
+    display: inline-flex;
+}

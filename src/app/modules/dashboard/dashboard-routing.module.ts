@@ -1,11 +1,11 @@
 import { NgModule, Injectable } from '@angular/core';
 import { Resolve, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 
-import { PaginUtilService } from '../../shared/services/pagin-util.service';
-import { RouteAccessService } from '../../core/auth/route-access.service';
+import { PaginUtilService } from '../../shared';
+import { RouteAccessService } from '../../core';
 
 import { DashboardComponent } from './dashboard.component';
-import { OrderPopupComponent } from './dialogs/order-popup.component';
+import { OrderPopupComponent } from './components/dialogs/order-popup.component';
 
 @Injectable()
 export class UserResolvePagingParams implements Resolve<any> {
@@ -41,7 +41,7 @@ const DashboardRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(DashboardRoutes, { useHash: true }),
+    RouterModule.forChild(DashboardRoutes),
   ],
   exports: [
     RouterModule

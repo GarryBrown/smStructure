@@ -29,14 +29,9 @@ export class ProfileDetailComponent implements OnInit {
 
   update() {
     this.profileDetailService.updateProfile(this.user);
-    console.log('Данные успешно обновлены');
   }
 
   updateAvatar(newAvatar) {
     this.user.imageUrl = newAvatar;
-    console.log(this.user);
   }
-
-
-
 }

@@ -1,7 +1,27 @@
 {
-  "/api/*": {
-    "target": "https://localhost:8443",
-    "secure": false,
-    "logLevel": "debug"
-  }
+    "/api/*": {
+        "target": "https://192.168.210.36:8081",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/api/account": {
+        "target": "https://192.168.210.36:8443",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/api/login": {
+        "target": "https://192.168.210.36:8443",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/api/authenticate": {
+        "target": "https://192.168.210.36:8443",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/api*": {
+        "target": "https://192.168.210.36:8081",
+        "secure": false,
+        "logLevel": "debug"
+    }
 }

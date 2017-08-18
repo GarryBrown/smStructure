@@ -1,0 +1,19 @@
+button {
+    height: 24px;
+    width: 48px;
+    margin-right: 8px;
+    padding: 0 !important;
+    button:active,
+    button:focus {
+        outline: none;
+    }
+}
+
+td:first-child {
+    width: 130px;
+}
+
+.empty-field {
+    background-color: rgba(248, 248, 248, 1.0); //  #ECEFF1;216
+    border-bottom: 3px solid #fff;
+}

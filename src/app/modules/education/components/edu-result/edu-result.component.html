@@ -1,0 +1,126 @@
+<div class="wrapper" *ngIf="eduResult">
+    <!-- <md-card>
+        <div *ngIf="resultFilter" class="filterWrapp">
+            <div class="dateFilter">
+                <label>С</label>
+                <material-datepicker [(date)]="resultFilter.dateFrom" dateFormat="YYYY-MM-DD"></material-datepicker>
+                <label>По</label>
+                <material-datepicker [(date)]="resultFilter.dateTo" dateFormat="YYYY-MM-DD"></material-datepicker>
+            </div>
+            <div class="selectFilter">
+                <md-select placeholder="Маршруты" [(ngModel)]="resultFilter.routes" [multiple]="true">
+                    <md-option *ngFor="let route of routes" [value]="route.id">
+                        {{ route.description }}
+                    </md-option>
+                </md-select>
+                <md-select placeholder="Категории" [(ngModel)]="resultFilter.categoty">
+                    <md-option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.description }}
+                    </md-option>
+                </md-select>
+                <md-select placeholder="Темы" [(ngModel)]="resultFilter.themes" [multiple]="true">
+                    <md-option *ngFor="let theme of themes" [value]="theme.id">
+                        {{ theme.description }}
+                    </md-option>
+                </md-select>
+            </div>
+            <button md-mini-fab (click)="loadData()"><md-icon>filter_list</md-icon></button>
+        </div>
+    </md-card> -->
+
+
+    <md-card>
+        <md-progress-bar mode="indeterminate" color="primary" *ngIf="!isLoading"></md-progress-bar>
+        <md-toolbar>
+            Результаты
+        </md-toolbar>
+        <div class="content">
+            <table class="table  table-hover table-condensed table-responsive dataTables-example">
+                <thead align="center">
+                    <tr>
+                        <th rowspan="2">Должность</th>
+                        <th rowspan="2">Маршрут</th>
+                        <th rowspan="2">Сотрудник</th>
+                        <th rowspan="2">Вступил в долность</th>
+                        <th rowspan="2">Время работы</th>
+                        <th colspan="5" class="fir">Аттестация</th>
+                        <th colspan="4">Темы</th>
+                    </tr>
+                    <tr>
+                        <th class="first">Дата последней аттестации</th>
+                        <th class="first">Категория цель</th>
+                        <th class="first">Min цель</th>
+                        <th class="first">Оценка</th>
+                        <th class="first">Категория факт</th>
+                        <!-- <th colspan="6" class="four">
+                            <label>Название темы</label>
+                            <label>Дата проведения</label>
+                            <label>Цель</label>
+                            <label>Оценка</label>
+                        </th> -->
+                        <th class="theme">Название темы</th>
+                        <th class="theme">Дата проведения</th>
+                        <th class="theme">Цель</th>
+                        <th class="theme">Оценка</th>
+
+                    </tr>
+
+                </thead>
+                <tbody *ngFor="let eduRes of eduResult" align="center">
+                    <td>{{eduRes.staff.position.description}}</td>
+                    <td>{{eduRes.route.description}}</td>
+                    <td>{{eduRes.staff.description}}</td>
+                    <td>{{eduRes.staff.startDate | date}}</td>
+                    <td>{{eduRes.staff.workTime}}</td>
+                    <ng-template [ngIf]="eduRes.attestation">
+                        <td>{{eduRes.attestation.dateOfStart | date}}</td>
+                        <td>{{eduRes.attestation.planGrade}}</td>
+                        <td>{{eduRes.attestation.planValue}}</td>
+                        <td>{{eduRes.attestation.factValue}}</td>
+                        <td>{{eduRes.attestation.factGrade}}</td>
+                    </ng-template>
+                    <ng-template [ngIf]="!eduRes.attestation">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </ng-template>
+                    <ng-template [ngIf]="eduRes.themes">
+                        <td class="themes" colspan="4">
+                            <tr *ngFor="let theme of eduRes.themes">
+                                <td> {{theme.typeOfTeaching.description}}</td>
+                                <td>{{theme.dateOfStart | date}}</td>
+                                <td> {{theme.planValue}}</td>
+                                <td> {{theme.factValue}}</td>
+                            </tr>
+                        </td>
+                        <!-- <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.typeOfTeaching.description}}
+                            </tr>
+                        </td>
+
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.dateOfStart | date}}
+                            </tr>
+                        </td>
+
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.planValue}}
+                            </tr>
+                        </td>
+                        <td>
+                            <tr *ngFor="let theme of eduRes.themes">
+                                {{theme.factValue}}
+                            </tr>
+                        </td> -->
+
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </md-card>
+</div>

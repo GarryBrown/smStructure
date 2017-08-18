@@ -1,0 +1,52 @@
+<div class="header">
+  <md-toolbar>
+    <h3> Полевая активность </h3>
+    <span class="close">
+      <button md-icon-button (click)="close()">
+        <md-icon >close</md-icon>
+      </button>
+    </span>
+  </md-toolbar>
+</div>
+
+<div class="wrapper" *ngIf="event">
+
+  <div *ngIf="event.id === null" class="dataPicker">
+    <material-datepicker [(date)]="event.date" dateFormat="YYYY-MM-DD" [disabled]="isStarted || isFinished"></material-datepicker>
+  </div>
+
+  <md-select placeholder="Тип" name="event" [(ngModel)]="event.type" [disabled]="access !== all" [disabled]="isStarted || isFinished" (ngModelChange)="changeEventType($event)">
+    <md-option *ngFor="let type of types" [value]="type">
+      {{ type }}
+    </md-option>
+  </md-select>
+
+  <md-select placeholder="Маршрут" name="route" [(ngModel)]="event.route" [disabled]="isStarted || isFinished">
+    <md-option *ngFor="let route of routes" [value]="getSelected(event.route, route)">
+      {{ route.description }}
+    </md-option>
+  </md-select>
+
+  <md-select *ngIf="teaching" placeholder="Тема" [(ngModel)]="teaching.typeOfTeaching" [disabled]="isStarted || isFinished">
+    <md-option *ngFor="let theme of themes" [value]="getSelected(teaching.typeOfTeaching, theme)">
+      {{ theme.description }}
+    </md-option>
+  </md-select>
+
+  <md-select *ngIf="teaching" placeholder="Отчет KPI" name="event" [(ngModel)]="teaching.planReport" [disabled]="isStarted || isFinished">
+    <md-option *ngFor="let reportOption of reports" [value]="getSelected(teaching.planReport, reportOption)">
+      {{ reportOption.description }}
+    </md-option>
+  </md-select>
+
+</div>
+
+<div *ngIf="access && event" class="footer">
+  <!-- Блок планирование создание обучения или стор-чека  -->
+  <button *ngIf="access === all && !event.id" md-raised-button color="accent" (click)="saveEvent()">Создать</button>
+  <button *ngIf="event.id && teaching && !isStarted && !isFinished" md-raised-button color="accent" (click)="startEvent()" [disabled]="!teaching && !teaching.planReport.id">Начать</button>
+  <button *ngIf="isStarted && !isFinished" md-raised-button color="accent" (click)="continueEvent()">Продолжить</button>
+
+  <button *ngIf="isFinished" md-raised-button (click)="close()" [disabled]="true">Завершено</button>
+  <button md-raised-button (click)="close()">Отмена</button>
+</div>

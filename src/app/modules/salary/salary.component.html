@@ -1,0 +1,33 @@
+<md-card>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Index факт</th>
+                <th>Index прогноз</th>
+                <th>Index min</th>
+                <th>ЗП факт</th>
+                <th>ЗП прогноз</th>
+            </tr>
+        </thead>
+        <tbody salary-row [salary]="userSalary" class="tbody"></tbody>
+        <tbody salary-row *ngFor="let salary of salaries" [salary]="salary"></tbody>
+    </table>
+</md-card>
+
+
+<!-- <md-card>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Index факт</th>
+                <th>Index прогноз</th>
+                <th>Index min</th>
+                <th>ЗП факт</th>
+                <th>ЗП прогноз</th>
+            </tr>
+        </thead>
+
+    </table>
+</md-card> -->

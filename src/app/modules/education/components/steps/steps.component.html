@@ -1,0 +1,10 @@
+<md-card *ngIf="teaching" class="wrapper md-card">
+    <app-introduction *ngIf="showIntro" [theme]="teaching.typeOfTeaching" (beginSteps)="beginSteps($event)"></app-introduction>
+    <ng-template [ngIf]="!showIntro && !showResult">
+        <ng-template ngFor let-step [ngForOf]="teaching.typeOfTeaching.steps">
+            <app-step *ngIf="step.id === stepsIndex[currentStepIndex]" [theme]="teaching.typeOfTeaching" [route]="teaching.route" [step]="step" [answeredQuestions]="teaching.teachingSpecialities" [report]="report" [deliveryPoints]="deliveryPoints" (nextStep)="nextStep($event)"
+                (toFinish)="setFinish($event)"></app-step>
+        </ng-template>
+    </ng-template>
+    <app-result *ngIf="showResult" [teaching]="teaching" [report]="report"></app-result>
+</md-card>
